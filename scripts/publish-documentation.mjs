@@ -23,7 +23,10 @@ const version = `${base}-main.${date}.${sha}`;
 
 execFileSync('npm', ['version', version, '--no-git-tag-version'], { stdio: 'inherit' });
 try {
-	execFileSync('npm', ['publish', '--access', 'public', '--tag', 'main'], { stdio: 'inherit' });
+	execFileSync('npm', ['exec', '--', 'tsx', 'scripts/build-package.ts'], { stdio: 'inherit' });
+	execFileSync('npm', ['publish', './dist-package', '--access', 'public', '--tag', 'main'], {
+		stdio: 'inherit'
+	});
 } finally {
 	execFileSync('git', ['restore', 'package.json', 'package-lock.json'], { stdio: 'inherit' });
 }

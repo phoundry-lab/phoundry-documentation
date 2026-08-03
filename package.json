@@ -2,21 +2,11 @@
 	"name": "@phoundry/documentation",
 	"version": "1.0.0",
 	"description": "Canonical Phoundry documentation, static site, and Phials offline Help artifact",
+	"private": true,
 	"type": "module",
 	"license": "MIT",
 	"engines": {
 		"node": "24.x"
-	},
-	"files": [
-		"dist-package",
-		"README.md",
-		"LICENSE"
-	],
-	"exports": {
-		".": {
-			"types": "./dist-package/index.d.ts",
-			"import": "./dist-package/index.js"
-		}
 	},
 	"scripts": {
 		"dev": "npm run generate && vite dev --host 127.0.0.1 --port 5179 --strictPort",
@@ -66,9 +56,6 @@
 		"unist-util-visit": "^5.1.0",
 		"vite": "^8.0.16",
 		"vitest": "^4.1.4"
-	},
-	"publishConfig": {
-		"access": "public"
 	},
 	"allowScripts": {
 		"esbuild@0.28.1": true
