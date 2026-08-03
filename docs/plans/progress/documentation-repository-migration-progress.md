@@ -2,7 +2,7 @@
 
 ## Status
 
-Public cutover complete; local package cutover in progress.
+Migration complete. The public site deploys continuously from `main`, and Phials consumes an exact immutable documentation artifact.
 
 ## Phase 1: repository and canonical snapshot
 
@@ -16,7 +16,7 @@ Public cutover complete; local package cutover in progress.
 
 - [x] Publish `@phoundry/phials-plugin-sdk@1.0.0` locally.
 - [x] Generate SDK references from the pinned package artifact.
-- [ ] Replace Phials' committed documentation source and eager loader with the local artifact adapter.
+- [x] Replace Phials' committed documentation source and eager loader with the local artifact adapter.
 - [x] Retire the Documentation authoring section while preserving Contextual Help and Tutorials in the Phials integration worktree.
 
 ## Phase 3: public cutover
@@ -33,6 +33,7 @@ Public cutover complete; local package cutover in progress.
 - Existing unrelated changes in Phials, phoundry-ui, and the workspace root are preserved and must not be staged with this migration.
 - npm package publication is local and on demand. Static-site deployment remains continuous.
 - Documentation snapshots publish under npm's required `main` dist-tag, but Phials consumes only exact immutable versions.
+- Phials commit `37cbdfba` pins `@phoundry/documentation@1.0.0-main.20260803.c60fa3807c`, retains only the Help adapter, and removes the former committed corpora and documentation-generation logic.
 - The published snapshot is the standalone `dist-package/` payload with no static-site runtime dependencies; the repository root is private to prevent accidental site-package publication.
 - SDK references regenerate during every build from the exact lockfile pin `@phoundry/phials-plugin-sdk@1.0.0`.
 - Sevalla currently offers Node 22 for static-site builds. Local validation and GitHub CI remain pinned to Node 24.17.0; the hosting build uses Node 22 only for the SvelteKit static projection.
