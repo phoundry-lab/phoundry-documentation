@@ -1,0 +1,1029 @@
+{
+	"pluginApiVersion": "1.0.0",
+	"categories": [
+		{
+			"id": "container",
+			"title": "Plugin",
+			"types": [
+				"PluginSettingsComponentProps",
+				"PhialsPlugin"
+			],
+			"entries": [
+				{
+					"name": "PluginSettingsComponentProps",
+					"alias": "references/PluginSettingsComponentProps",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PhialsPlugin",
+					"alias": "references/PhialsPlugin",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "provider-union",
+			"title": "Provider union",
+			"types": [
+				"PluginProvider",
+				"ProviderType"
+			],
+			"entries": [
+				{
+					"name": "PluginProvider",
+					"alias": "references/PluginProvider",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ProviderType",
+					"alias": "references/ProviderType",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "preview",
+			"title": "File viewing and editing",
+			"types": [
+				"PreviewProvider",
+				"PreviewDestination",
+				"PreviewSession",
+				"PreviewSessionFactoryProps",
+				"PreviewSurfaceProps",
+				"PreviewToolbarContributionProps",
+				"PreviewDestinationCapabilities",
+				"ThumbnailProviderProps",
+				"EditorHistoryHandle",
+				"PreviewToolbarEditorState"
+			],
+			"entries": [
+				{
+					"name": "PreviewProvider",
+					"alias": "references/PreviewProvider",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PreviewDestination",
+					"alias": "references/PreviewDestination",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PreviewSession",
+					"alias": "references/PreviewSession",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PreviewSessionFactoryProps",
+					"alias": "references/PreviewSessionFactoryProps",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PreviewSurfaceProps",
+					"alias": "references/PreviewSurfaceProps",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PreviewToolbarContributionProps",
+					"alias": "references/PreviewToolbarContributionProps",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PreviewDestinationCapabilities",
+					"alias": "references/PreviewDestinationCapabilities",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ThumbnailProviderProps",
+					"alias": "references/ThumbnailProviderProps",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "EditorHistoryHandle",
+					"alias": "references/EditorHistoryHandle",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PreviewToolbarEditorState",
+					"alias": "references/PreviewToolbarEditorState",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "metadata",
+			"title": "Metadata",
+			"types": [
+				"MetadataProvider",
+				"RawMetadata",
+				"ExtractedMetadata",
+				"FileMetadata",
+				"MetadataSchemaField",
+				"MetadataSchema",
+				"MetadataColumnPolicy",
+				"FilterValueOption",
+				"DirectoryMetadataProfileOptions",
+				"MetadataProviderDirectoryStats",
+				"DirectoryMetadataProfile"
+			],
+			"entries": [
+				{
+					"name": "MetadataProvider",
+					"alias": "references/MetadataProvider",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "RawMetadata",
+					"alias": "references/RawMetadata",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ExtractedMetadata",
+					"alias": "references/ExtractedMetadata",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "FileMetadata",
+					"alias": "references/FileMetadata",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "MetadataSchemaField",
+					"alias": "references/MetadataSchemaField",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "MetadataSchema",
+					"alias": "references/MetadataSchema",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "MetadataColumnPolicy",
+					"alias": "references/MetadataColumnPolicy",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "FilterValueOption",
+					"alias": "references/FilterValueOption",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "DirectoryMetadataProfileOptions",
+					"alias": "references/DirectoryMetadataProfileOptions",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "MetadataProviderDirectoryStats",
+					"alias": "references/MetadataProviderDirectoryStats",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "DirectoryMetadataProfile",
+					"alias": "references/DirectoryMetadataProfile",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "view",
+			"title": "File views",
+			"types": [
+				"FileBrowserViewProvider",
+				"FileBrowserViewProps",
+				"ViewColumnDefinition",
+				"ViewItemSizePreset"
+			],
+			"entries": [
+				{
+					"name": "FileBrowserViewProvider",
+					"alias": "references/FileBrowserViewProvider",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "FileBrowserViewProps",
+					"alias": "references/FileBrowserViewProps",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ViewColumnDefinition",
+					"alias": "references/ViewColumnDefinition",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ViewItemSizePreset",
+					"alias": "references/ViewItemSizePreset",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "module",
+			"title": "Panels and tabs",
+			"types": [
+				"ModuleProvider",
+				"ModuleProviderProps",
+				"ModuleAPI",
+				"ModulesAPI",
+				"ModuleOpenResult",
+				"ModulePosition",
+				"ModuleInstance",
+				"ItemShortcutConfig"
+			],
+			"entries": [
+				{
+					"name": "ModuleProvider",
+					"alias": "references/ModuleProvider",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ModuleProviderProps",
+					"alias": "references/ModuleProviderProps",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ModuleAPI",
+					"alias": "references/ModuleAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ModulesAPI",
+					"alias": "references/ModulesAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ModuleOpenResult",
+					"alias": "references/ModuleOpenResult",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ModulePosition",
+					"alias": "references/ModulePosition",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ModuleInstance",
+					"alias": "references/ModuleInstance",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ItemShortcutConfig",
+					"alias": "references/ItemShortcutConfig",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "settings-db",
+			"title": "Settings and database",
+			"types": [
+				"PluginSettingsSchema",
+				"SettingsField",
+				"SettingsFieldType",
+				"SettingsFieldBase",
+				"BooleanSettingsField",
+				"StringSettingsField",
+				"NumberSettingsField",
+				"SelectSettingsField",
+				"PathSettingsField",
+				"PluginDatabaseSchema",
+				"PluginDatabaseMigration",
+				"PluginDatabaseTransaction",
+				"PluginDatabaseSchemaOperations",
+				"PluginTableDefinition",
+				"PluginColumnDefinition",
+				"PluginIndexDefinition",
+				"PluginColumnType"
+			],
+			"entries": [
+				{
+					"name": "PluginSettingsSchema",
+					"alias": "references/PluginSettingsSchema",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "SettingsField",
+					"alias": "references/SettingsField",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "SettingsFieldType",
+					"alias": "references/SettingsFieldType",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "SettingsFieldBase",
+					"alias": "references/SettingsFieldBase",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "BooleanSettingsField",
+					"alias": "references/BooleanSettingsField",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "StringSettingsField",
+					"alias": "references/StringSettingsField",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "NumberSettingsField",
+					"alias": "references/NumberSettingsField",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "SelectSettingsField",
+					"alias": "references/SelectSettingsField",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PathSettingsField",
+					"alias": "references/PathSettingsField",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginDatabaseSchema",
+					"alias": "references/PluginDatabaseSchema",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginDatabaseMigration",
+					"alias": "references/PluginDatabaseMigration",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginDatabaseTransaction",
+					"alias": "references/PluginDatabaseTransaction",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginDatabaseSchemaOperations",
+					"alias": "references/PluginDatabaseSchemaOperations",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginTableDefinition",
+					"alias": "references/PluginTableDefinition",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginColumnDefinition",
+					"alias": "references/PluginColumnDefinition",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginIndexDefinition",
+					"alias": "references/PluginIndexDefinition",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginColumnType",
+					"alias": "references/PluginColumnType",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "apis",
+			"title": "Base and scoped APIs",
+			"types": [
+				"PluginAPI",
+				"PreviewAPI",
+				"MetadataAPI",
+				"ExplorerAPI",
+				"GitAPI",
+				"WorkspaceFoldersAPI",
+				"ClipboardAPI",
+				"PluginSettings",
+				"PluginSettingsChange",
+				"PluginSettingsSubscription",
+				"PluginStorageAPI",
+				"PluginDatabaseAPI",
+				"DatabaseExecuteResult",
+				"ReadonlyAppSettings",
+				"ModalAPI",
+				"NotifyAPI",
+				"FileUtilsAPI",
+				"PluginTextFileSnapshot",
+				"PluginTextWriteResult",
+				"PluginBinaryFileSnapshot",
+				"PluginBinaryWriteResult",
+				"PluginDirectoryReadResult",
+				"PluginPathOutcome",
+				"PluginFileError",
+				"PluginFileErrorCode",
+				"PluginFileFailure",
+				"PluginDirectoryWatch",
+				"FileMatchAPI",
+				"EventsAPI",
+				"ViewAPI"
+			],
+			"entries": [
+				{
+					"name": "PluginAPI",
+					"alias": "references/PluginAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PreviewAPI",
+					"alias": "references/PreviewAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "MetadataAPI",
+					"alias": "references/MetadataAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ExplorerAPI",
+					"alias": "references/ExplorerAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "GitAPI",
+					"alias": "references/GitAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "WorkspaceFoldersAPI",
+					"alias": "references/WorkspaceFoldersAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ClipboardAPI",
+					"alias": "references/ClipboardAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginSettings",
+					"alias": "references/PluginSettings",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginSettingsChange",
+					"alias": "references/PluginSettingsChange",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginSettingsSubscription",
+					"alias": "references/PluginSettingsSubscription",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginStorageAPI",
+					"alias": "references/PluginStorageAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginDatabaseAPI",
+					"alias": "references/PluginDatabaseAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "DatabaseExecuteResult",
+					"alias": "references/DatabaseExecuteResult",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ReadonlyAppSettings",
+					"alias": "references/ReadonlyAppSettings",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ModalAPI",
+					"alias": "references/ModalAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "NotifyAPI",
+					"alias": "references/NotifyAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "FileUtilsAPI",
+					"alias": "references/FileUtilsAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginTextFileSnapshot",
+					"alias": "references/PluginTextFileSnapshot",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginTextWriteResult",
+					"alias": "references/PluginTextWriteResult",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginBinaryFileSnapshot",
+					"alias": "references/PluginBinaryFileSnapshot",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginBinaryWriteResult",
+					"alias": "references/PluginBinaryWriteResult",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginDirectoryReadResult",
+					"alias": "references/PluginDirectoryReadResult",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPathOutcome",
+					"alias": "references/PluginPathOutcome",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginFileError",
+					"alias": "references/PluginFileError",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginFileErrorCode",
+					"alias": "references/PluginFileErrorCode",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginFileFailure",
+					"alias": "references/PluginFileFailure",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginDirectoryWatch",
+					"alias": "references/PluginDirectoryWatch",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "FileMatchAPI",
+					"alias": "references/FileMatchAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "EventsAPI",
+					"alias": "references/EventsAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ViewAPI",
+					"alias": "references/ViewAPI",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "explorer",
+			"title": "Explorer",
+			"types": [
+				"PluginPaneContext",
+				"PluginPaneListing",
+				"PluginPaneSelection",
+				"PluginPaneNavigation",
+				"PluginPaneView",
+				"PluginPaneColumn",
+				"PluginPaneSort",
+				"PluginPaneWorkspaceFolder"
+			],
+			"entries": [
+				{
+					"name": "PluginPaneContext",
+					"alias": "references/PluginPaneContext",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPaneListing",
+					"alias": "references/PluginPaneListing",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPaneSelection",
+					"alias": "references/PluginPaneSelection",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPaneNavigation",
+					"alias": "references/PluginPaneNavigation",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPaneView",
+					"alias": "references/PluginPaneView",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPaneColumn",
+					"alias": "references/PluginPaneColumn",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPaneSort",
+					"alias": "references/PluginPaneSort",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPaneWorkspaceFolder",
+					"alias": "references/PluginPaneWorkspaceFolder",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "workspace-folders",
+			"title": "Workspace Folders",
+			"types": [
+				"WorkspaceFolderSchema",
+				"WorkspaceFolderPropertyDefinition",
+				"WorkspaceFolderPropertyOption",
+				"WorkspaceFolderPropertyType",
+				"WorkspaceFolderPropertyValue",
+				"WorkspaceFolderFileRef",
+				"WorkspaceFolderPropertyWrite",
+				"KnownWorkspaceFolder"
+			],
+			"entries": [
+				{
+					"name": "WorkspaceFolderSchema",
+					"alias": "references/WorkspaceFolderSchema",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "WorkspaceFolderPropertyDefinition",
+					"alias": "references/WorkspaceFolderPropertyDefinition",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "WorkspaceFolderPropertyOption",
+					"alias": "references/WorkspaceFolderPropertyOption",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "WorkspaceFolderPropertyType",
+					"alias": "references/WorkspaceFolderPropertyType",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "WorkspaceFolderPropertyValue",
+					"alias": "references/WorkspaceFolderPropertyValue",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "WorkspaceFolderFileRef",
+					"alias": "references/WorkspaceFolderFileRef",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "WorkspaceFolderPropertyWrite",
+					"alias": "references/WorkspaceFolderPropertyWrite",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "KnownWorkspaceFolder",
+					"alias": "references/KnownWorkspaceFolder",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "git",
+			"title": "Repository inspection",
+			"types": [
+				"GitInfo",
+				"RepositoryLanguage",
+				"FolderSummary"
+			],
+			"entries": [
+				{
+					"name": "GitInfo",
+					"alias": "references/GitInfo",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "RepositoryLanguage",
+					"alias": "references/RepositoryLanguage",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "FolderSummary",
+					"alias": "references/FolderSummary",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "commands",
+			"title": "Commands",
+			"types": [
+				"ToolbarContext",
+				"ToolbarSubToolbarProps",
+				"CommandContextKey",
+				"CommandContext",
+				"CommandShortcut",
+				"CommandPlacementArea",
+				"CommandPlacementBase",
+				"ToolbarPlacementConfig",
+				"ContextMenuPlacementConfig",
+				"CommandPlacement",
+				"Command",
+				"CommandProvider"
+			],
+			"entries": [
+				{
+					"name": "ToolbarContext",
+					"alias": "references/ToolbarContext",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ToolbarSubToolbarProps",
+					"alias": "references/ToolbarSubToolbarProps",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "CommandContextKey",
+					"alias": "references/CommandContextKey",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "CommandContext",
+					"alias": "references/CommandContext",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "CommandShortcut",
+					"alias": "references/CommandShortcut",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "CommandPlacementArea",
+					"alias": "references/CommandPlacementArea",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "CommandPlacementBase",
+					"alias": "references/CommandPlacementBase",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ToolbarPlacementConfig",
+					"alias": "references/ToolbarPlacementConfig",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ContextMenuPlacementConfig",
+					"alias": "references/ContextMenuPlacementConfig",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "CommandPlacement",
+					"alias": "references/CommandPlacement",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "Command",
+					"alias": "references/Command",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "CommandProvider",
+					"alias": "references/CommandProvider",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "file-model",
+			"title": "File model",
+			"types": [
+				"FileEntry",
+				"FileCategory",
+				"JsonValue"
+			],
+			"entries": [
+				{
+					"name": "FileEntry",
+					"alias": "references/FileEntry",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "FileCategory",
+					"alias": "references/FileCategory",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "JsonValue",
+					"alias": "references/JsonValue",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "shortcuts",
+			"title": "Shortcuts",
+			"types": [
+				"ShortcutDefinition",
+				"PlatformShortcuts"
+			],
+			"entries": [
+				{
+					"name": "ShortcutDefinition",
+					"alias": "references/ShortcutDefinition",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PlatformShortcuts",
+					"alias": "references/PlatformShortcuts",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "events",
+			"title": "Events",
+			"types": [
+				"EventMap",
+				"EventHandler",
+				"EventSubscription",
+				"CoreEvents",
+				"PluginEvents",
+				"EventPayload",
+				"ColumnLayoutChangedPayload",
+				"LayoutSettledPayload",
+				"LayoutSettledReason"
+			],
+			"entries": [
+				{
+					"name": "EventMap",
+					"alias": "references/EventMap",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "EventHandler",
+					"alias": "references/EventHandler",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "EventSubscription",
+					"alias": "references/EventSubscription",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "CoreEvents",
+					"alias": "references/CoreEvents",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginEvents",
+					"alias": "references/PluginEvents",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "EventPayload",
+					"alias": "references/EventPayload",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ColumnLayoutChangedPayload",
+					"alias": "references/ColumnLayoutChangedPayload",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "LayoutSettledPayload",
+					"alias": "references/LayoutSettledPayload",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "LayoutSettledReason",
+					"alias": "references/LayoutSettledReason",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "manifest",
+			"title": "Manifest",
+			"types": [
+				"PluginManifest",
+				"PluginPermission",
+				"PluginIdentity",
+				"PluginIdentityProjection",
+				"PluginCandidateIdentity",
+				"ValidationResult"
+			],
+			"entries": [
+				{
+					"name": "PluginManifest",
+					"alias": "references/PluginManifest",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPermission",
+					"alias": "references/PluginPermission",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginIdentity",
+					"alias": "references/PluginIdentity",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginIdentityProjection",
+					"alias": "references/PluginIdentityProjection",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginCandidateIdentity",
+					"alias": "references/PluginCandidateIdentity",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ValidationResult",
+					"alias": "references/ValidationResult",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		},
+		{
+			"id": "helpers",
+			"title": "Helpers and constants",
+			"types": [
+				"SUPPORTED_PLUGIN_API_VERSION",
+				"PERMISSION_DESCRIPTIONS",
+				"PERMISSION_RISK",
+				"validateManifest",
+				"parseManifest",
+				"validatePluginId",
+				"validateSemver",
+				"compareSemver",
+				"satisfiesMinVersion",
+				"definePluginManifest",
+				"manifestIdentity",
+				"validateIdentityProjections",
+				"definePlugin"
+			],
+			"entries": [
+				{
+					"name": "SUPPORTED_PLUGIN_API_VERSION",
+					"alias": "references/SUPPORTED_PLUGIN_API_VERSION",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PERMISSION_DESCRIPTIONS",
+					"alias": "references/PERMISSION_DESCRIPTIONS",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PERMISSION_RISK",
+					"alias": "references/PERMISSION_RISK",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "validateManifest",
+					"alias": "references/validateManifest",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "parseManifest",
+					"alias": "references/parseManifest",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "validatePluginId",
+					"alias": "references/validatePluginId",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "validateSemver",
+					"alias": "references/validateSemver",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "compareSemver",
+					"alias": "references/compareSemver",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "satisfiesMinVersion",
+					"alias": "references/satisfiesMinVersion",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "definePluginManifest",
+					"alias": "references/definePluginManifest",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "manifestIdentity",
+					"alias": "references/manifestIdentity",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "validateIdentityProjections",
+					"alias": "references/validateIdentityProjections",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "definePlugin",
+					"alias": "references/definePlugin",
+					"sincePluginApiVersion": "1.0.0"
+				}
+			]
+		}
+	]
+}

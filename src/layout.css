@@ -1,0 +1,1211 @@
+@import 'phoundry-ui/styles';
+@import 'phoundry-ui/themes/default-dark/theme.css';
+
+/* ============================================
+   PHOUNDRY WEBSITE - OVERRIDES & EXTENSIONS
+   Monochrome branding on top of phoundry-ui tokens
+   ============================================ */
+
+@theme {
+	/* Glass effects (website-only) */
+	--color-glass-border: rgba(255, 255, 255, 0.06);
+	--color-glass-border-hover: rgba(255, 255, 255, 0.12);
+	--color-glass-fill: rgba(255, 255, 255, 0.02);
+	--color-glass-fill-hover: rgba(255, 255, 255, 0.04);
+
+	/* Accent extras (website-only) */
+	--color-accent-glow: rgba(255, 255, 255, 0.08);
+
+	/* Typography (website-only) */
+	--font-header: 'Host Grotesk', system-ui, sans-serif;
+	--font-body: 'Hanken Grotesk', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+	/* Layout (website-only) */
+	--section-padding: clamp(4rem, 10vw, 4rem);
+	--content-max-width: 1200px;
+
+	/* Animation (website-only) */
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+html {
+	background-color: var(--surface-deep);
+	color: var(--text-primary);
+	font-family: var(--font-body);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	min-height: 100vh;
+	background: var(--surface-deep);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+.headline-xl {
+	font-family: var(--font-header);
+	font-size: clamp(2.5rem, 6vw, 4rem);
+	font-weight: 500;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	font-optical-sizing: auto;
+}
+
+.headline-lg {
+	font-family: var(--font-header);
+	font-size: clamp(1.5rem, 4vw, 2.5rem);
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+}
+
+.headline-md {
+	font-family: var(--font-header);
+	font-size: clamp(1.25rem, 3vw, 1.75rem);
+	font-weight: 500;
+	line-height: 1.3;
+}
+
+.text-body-lg {
+	font-size: 1rem;
+	line-height: 1.6;
+	color: var(--text-secondary);
+}
+
+.text-body {
+	font-size: 0.875rem;
+	line-height: 1.6;
+	color: var(--text-secondary);
+}
+
+/* ============================================
+   GLASS CARD STYLES
+   ============================================ */
+
+.glass-card {
+	background: var(--color-glass-fill);
+	border: 1px solid var(--color-glass-border);
+	border-radius: 1rem;
+}
+
+.glass-card-hover {
+	transition:
+		background 0.2s ease,
+		border-color 0.2s ease;
+}
+
+.glass-card-hover:hover {
+	background: var(--color-glass-fill-hover);
+	border-color: var(--color-glass-border-hover);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn-primary {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1.5rem;
+	background: var(--accent-primary);
+	color: var(--text-primary);
+	font-weight: 600;
+	border-radius: 0.5rem;
+	transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+	background: var(--accent-primary-hover);
+	box-shadow: 0 4px 20px var(--color-accent-glow);
+}
+
+.btn-secondary {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1.5rem;
+	background: transparent;
+	color: var(--text-secondary);
+	font-weight: 500;
+	border: 1px solid var(--border-default);
+	border-radius: 0.5rem;
+	transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+	color: var(--text-primary);
+	border-color: var(--border-emphasis);
+	background: var(--color-glass-fill-hover);
+}
+
+/* Marketing site background - dot grid with radial edge fade */
+.dot-grid-bg {
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	background-image: radial-gradient(circle, rgba(255, 255, 255, 0.13) 1px, var(--surface-deep) 1px);
+	background-size: 24px 24px;
+	-webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, #000 0%, transparent 100%);
+	mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, #000 0%, transparent 100%);
+}
+
+.hero-background-slot {
+	z-index: 0;
+	overflow: hidden;
+}
+
+.hero-split-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+	align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+	.hero-split-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+		gap: 3rem;
+		align-items: center;
+	}
+}
+
+.hero-copy--split {
+	min-width: 0;
+	animation: hero-rise 0.7s var(--ease-out-expo) both;
+}
+
+/* Asymmetric cascade: copy sits top-left, demo overlaps below-right and bleeds
+   wider than the copy column. Neither a stacked nor an even side-by-side split. */
+@media (min-width: 1024px) {
+	.hero-split-grid--overlap {
+		display: block;
+		position: relative;
+	}
+
+	.hero-split-grid--overlap .hero-copy--split {
+		position: relative;
+		z-index: 2;
+		max-width: 30rem;
+	}
+
+	.hero-split-grid--overlap .hero-demo-stage {
+		position: relative;
+		z-index: 1;
+		width: 82%;
+		margin-left: auto;
+		margin-top: -3.5rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	.hero-split-grid--overlap .hero-demo-stage {
+		width: 74%;
+		margin-top: -5rem;
+	}
+}
+
+.hero-actions--split {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.625rem;
+}
+
+.btn-hero {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.6875rem 1.25rem;
+	border-radius: 0.625rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	line-height: 1;
+	white-space: nowrap;
+	transition:
+		color 0.2s ease,
+		background 0.2s ease,
+		border-color 0.2s ease,
+		box-shadow 0.2s ease,
+		transform 0.15s var(--ease-out-expo);
+}
+
+.btn-hero:active {
+	transform: scale(0.98);
+}
+
+.btn-hero--primary {
+	background: rgba(255, 255, 255, 0.92);
+	color: var(--surface-sunken);
+	border: 1px solid transparent;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.12) inset,
+		0 8px 24px -8px rgba(255, 255, 255, 0.18);
+}
+
+.btn-hero--primary:hover {
+	background: rgba(255, 255, 255, 1);
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.16) inset,
+		0 12px 28px -6px rgba(255, 255, 255, 0.22);
+}
+
+.btn-hero--secondary {
+	background: var(--color-glass-fill);
+	color: var(--text-secondary);
+	border: 1px solid var(--color-glass-border);
+	backdrop-filter: blur(12px);
+}
+
+.btn-hero--secondary:hover {
+	color: var(--text-primary);
+	border-color: var(--color-glass-border-hover);
+	background: var(--color-glass-fill-hover);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+	.btn-hero--secondary {
+		backdrop-filter: none;
+		background: var(--surface-raised);
+	}
+}
+
+.hero-demo-stage {
+	position: relative;
+	isolation: isolate;
+	min-width: 0;
+	animation: hero-rise 0.85s var(--ease-out-expo) 0.08s both;
+}
+
+.hero-demo-stage__frame {
+	position: relative;
+	z-index: 1;
+}
+
+.hero-demo-stage__frame :is(img) {
+	display: block;
+	border: 0;
+	outline: none;
+}
+
+@keyframes hero-rise {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-copy--split,
+	.hero-demo-stage {
+		animation: none;
+	}
+}
+
+/* ============================================
+   PHIALS LANDING FEATURE SECTIONS
+   ============================================ */
+
+@utility feature-section {
+	@apply relative overflow-hidden bg-surface-deep py-8 px-8;
+}
+
+@utility phials-feature-content {
+	@apply relative mx-auto pb-16!;
+	padding: var(--section-padding) 2em;
+	max-width: var(--content-max-width);
+}
+
+@utility phials-feature-header {
+	@apply mx-auto mb-8 flex max-w-3xl flex-col items-center text-center lg:mb-12 mt-4;
+}
+
+@utility phials-section-divider {
+	@apply mx-auto my-16 border-border-muted/50 border-b;
+}
+
+@utility phials-feature-eyebrow {
+	@apply mb-2 max-w-2xl text-txt-secondary italic font-normal font-header leading-4 [&_b]:font-medium;
+	color: var(--phials-feature-accent);
+}
+
+@utility phials-feature-eyebrow-secondary {
+	@apply mb-2 max-w-2xl text-txt-secondary italic font-normal font-header leading-4 text-xs [&_b]:font-medium;
+}
+
+@utility phials-feature-title {
+	@apply mb-6 max-w-2xl text-txt-primary text-2xl font-medium font-header leading-10;
+}
+
+@utility phials-feature-pill-band {
+	@apply mx-auto flex list-none flex-wrap items-center justify-center gap-x-4 gap-y-3 p-0;
+}
+
+@utility phials-feature-pill {
+	@apply flex items-center gap-2 rounded-full py-1 pr-2.5 pl-2 text-sm font-semibold backdrop-blur-2xl;
+	background: linear-gradient(
+		0deg,
+		color-mix(in oklab, var(--phials-feature-accent) 10%, transparent),
+		transparent
+	);
+	box-shadow: 0 4px 10px color-mix(in oklab, var(--phials-feature-accent) 15%, transparent);
+	color: var(--phials-feature-accent);
+}
+
+@utility phials-feature-pill-icon {
+	@apply shrink-0;
+	color: var(--phials-feature-accent);
+}
+
+@utility phials-feature-caption {
+	@apply w-fit text-xs font-medium leading-snug text-txt-secondary mb-3;
+}
+
+@utility phials-feature-beat {
+	animation: fade-up 0.8s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+@utility phials-feature-beat-title {
+	@apply mb-1 text-txt-primary text-xl font-header font-medium leading-8;
+}
+
+@utility phials-feature-row-list {
+	@apply m-0 grid list-none gap-5 p-0;
+}
+
+@utility phials-feature-row {
+	@apply grid grid-cols-[1.25rem_1fr] items-start gap-3 py-2;
+	animation: fade-up 0.7s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+@utility phials-feature-row-icon {
+	@apply mt-0.5 shrink-0 text-txt-primary transition-colors;
+}
+
+@utility phials-feature-row-label {
+	@apply text-[0.9375rem] leading-snug font-semibold text-txt-primary;
+}
+
+@utility phials-feature-row-desc {
+	@apply mt-0.5 text-[0.8125rem] leading-normal text-txt-tertiary;
+}
+
+@keyframes fade-up {
+	from {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.phials-feature-beat,
+	.phials-feature-row {
+		animation: none;
+	}
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--surface-base);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--surface-raised);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--surface-overlay);
+}
+
+/* ============================================
+   VIEW TRANSITIONS
+   ============================================ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 200ms;
+	animation-timing-function: var(--ease-out-expo);
+}
+
+::view-transition-old(root) {
+	animation-name: fade-out;
+}
+
+::view-transition-new(root) {
+	animation-name: fade-in;
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Element-level hero transitions */
+.hero-title {
+	view-transition-name: hero-title;
+}
+.hero-subtitle {
+	view-transition-name: hero-subtitle;
+}
+.hero-actions {
+	view-transition-name: hero-actions;
+}
+.hero-content {
+	view-transition-name: hero-content;
+}
+
+::view-transition-old(hero-title),
+::view-transition-new(hero-title),
+::view-transition-old(hero-subtitle),
+::view-transition-new(hero-subtitle),
+::view-transition-old(hero-actions),
+::view-transition-new(hero-actions),
+::view-transition-old(hero-content),
+::view-transition-new(hero-content) {
+	animation-duration: 300ms;
+	animation-timing-function: var(--ease-out-expo);
+}
+
+/* =============================================================================
+   Documentation (mdsvex) - body in DocLayout.svelte (.doc-md)
+   ============================================================================= */
+
+.doc-md {
+	--doc-prose: var(--text-primary);
+	font-synthesis: weight;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+}
+
+.doc-md :is(p, li, td) {
+	color: var(--doc-prose);
+}
+
+.doc-md h1 {
+	font-family: var(--font-header);
+	font-size: clamp(1.875rem, 4vw, 2.5rem);
+	font-weight: 600;
+	line-height: 1.1;
+	letter-spacing: -0.025em;
+	color: var(--text-primary);
+	margin: 0 0 0.75rem;
+	font-optical-sizing: auto;
+}
+
+.doc-md h1 + p,
+.doc-md h1 + p:has(em:only-child) {
+	font-size: 1.0625rem;
+	line-height: 1.55;
+	color: var(--text-secondary);
+	margin-top: 0;
+	margin-bottom: 2.5rem;
+}
+
+.doc-md h2 {
+	font-family: var(--font-header);
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -0.015em;
+	color: var(--text-secondary);
+	margin: 3rem 0 0.75rem;
+	padding-bottom: 0.5rem;
+	scroll-margin-top: 5rem;
+}
+
+.doc-md h3 {
+	font-family: var(--font-header);
+	font-size: 1.1875rem;
+	font-weight: 600;
+	line-height: 1.3;
+	letter-spacing: -0.01em;
+	color: var(--text-secondary);
+	margin: 2rem 0 0.5rem;
+	scroll-margin-top: 5rem;
+}
+
+.doc-md h4 {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 1.5rem 0 0.4rem;
+	scroll-margin-top: 5rem;
+}
+
+.doc-md h5,
+.doc-md h6 {
+	font-size: 0.9375rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 1rem 0 0.35rem;
+}
+
+.doc-md p {
+	margin: 0.9em 0;
+	line-height: 1.7;
+}
+
+.doc-md a {
+	color: var(--accent-secondary);
+	text-decoration: underline;
+	text-decoration-color: color-mix(in oklab, var(--accent-secondary) 40%, transparent);
+	text-underline-offset: 0.2em;
+	text-decoration-thickness: 1px;
+	font-weight: 500;
+	transition:
+		color 0.15s ease,
+		text-decoration-color 0.15s ease;
+}
+.doc-md a:hover {
+	color: var(--text-primary);
+	text-decoration-color: var(--accent-secondary);
+}
+
+/* rehype-autolink: heading permalink - no underline, inherit color */
+.doc-md :is(h1, h2, h3, h4, h5, h6) a {
+	color: inherit;
+	font-weight: inherit;
+	text-decoration: none;
+}
+.doc-md :is(h1, h2, h3, h4) a:hover,
+.doc-md a[href^='#']:hover {
+	text-decoration: none;
+}
+
+.doc-md ul,
+.doc-md ol {
+	margin: 0.9em 0;
+	padding-left: 1.5em;
+}
+.doc-md ul {
+	list-style-type: disc;
+}
+.doc-md ol {
+	list-style-type: decimal;
+}
+.doc-md li {
+	margin: 0.4em 0;
+	line-height: 1.65;
+}
+.doc-md li::marker {
+	color: var(--text-tertiary);
+}
+.doc-md :is(ul, ol) ul {
+	list-style-type: circle;
+	margin: 0.4em 0 0.4em 0;
+}
+.doc-md :is(ul, ol) :is(ul, ol) ul {
+	list-style-type: square;
+}
+
+.doc-md table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	font-size: 0.875em;
+	margin: 1.5em 0;
+	border: 1px solid var(--border-muted);
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+.doc-md th,
+.doc-md td {
+	border-bottom: 1px solid var(--border-muted);
+	padding: 0.6em 0.85em;
+	text-align: left;
+	vertical-align: top;
+}
+.doc-md tbody tr:last-child td {
+	border-bottom: 0;
+}
+.doc-md th {
+	background: color-mix(in oklab, var(--surface-raised) 50%, transparent);
+	color: var(--text-primary);
+	font-weight: 600;
+	font-size: 0.8125em;
+	letter-spacing: 0.01em;
+}
+.doc-md tbody tr:hover td {
+	background: color-mix(in oklab, var(--surface-raised) 35%, transparent);
+}
+
+/* Inline code (parent is never <pre> for mdsvex/Shiki) */
+.doc-md :not(pre) > code {
+	font-family: var(--font-mono, ui-monospace, monospace);
+	font-size: 0.85em;
+	color: var(--text-primary);
+	background: color-mix(in oklab, var(--surface-raised) 75%, transparent);
+	border: 1px solid var(--border-muted);
+	border-radius: 0.3rem;
+	padding: 0.1em 0.35em;
+	white-space: break-spaces;
+}
+
+/* Links that wrap only code show the code, not the underline */
+.doc-md a:has(> code) {
+	text-decoration: none;
+}
+.doc-md a > code {
+	color: var(--accent-secondary);
+	border-color: color-mix(in oklab, var(--accent-secondary) 25%, var(--border-muted));
+}
+.doc-md a:hover > code {
+	color: var(--text-primary);
+	border-color: var(--accent-secondary);
+}
+
+.doc-md pre.shiki,
+.doc-md pre:has(> code) {
+	border: 1px solid var(--border-muted);
+	border-radius: 0.5rem;
+	padding: 0.95rem 1.1rem;
+	overflow: auto;
+	margin: 1.5em 0;
+	font-size: 0.8125rem;
+	line-height: 1.6;
+	box-shadow: 0 1px 0 0 color-mix(in oklab, var(--surface-overlay) 30%, transparent) inset;
+}
+.doc-md pre > code,
+.doc-md pre code {
+	font-size: 0.875em;
+	font-family: var(--font-mono, ui-monospace, monospace);
+	background: none !important;
+	border: 0 !important;
+	padding: 0 !important;
+	white-space: pre;
+}
+
+.doc-md blockquote {
+	margin: 1.25em 0;
+	padding: 0.25em 1em;
+	border-left: 3px solid var(--accent-primary);
+	background: color-mix(in oklab, var(--accent-primary) 5%, transparent);
+	border-radius: 0 0.375rem 0.375rem 0;
+	color: var(--text-secondary);
+	font-style: normal;
+}
+.doc-md blockquote p {
+	color: inherit;
+}
+.doc-md hr {
+	border: none;
+	border-top: 1px solid transparent;
+	margin: 1em 0;
+}
+.doc-md :is(strong, b) {
+	color: var(--text-primary);
+	font-weight: 600;
+}
+.doc-md :is(em, i) {
+	font-style: italic;
+}
+.doc-md img,
+.doc-md figure img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 0.375rem;
+}
+.doc-md a:has(> img) {
+	text-decoration: none;
+}
+
+/* =============================================================================
+   phoundry-ui doc set (mdsvex) - body in UiDocLayout.svelte (.ui-doc)
+   Prose rules are scoped to DIRECT children so they never bleed into the
+   embedded live demo components (Example, PropTable, CodeBlock, …), which
+   bring their own phoundry-ui token styling.
+   ============================================================================= */
+
+.ui-doc {
+	font-synthesis: weight;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--text-secondary);
+}
+
+.ui-doc > :is(p, ul, ol) {
+	color: var(--text-secondary);
+}
+
+.ui-doc > h1 {
+	font-family: var(--font-header);
+	font-size: clamp(1.875rem, 4vw, 2.5rem);
+	font-weight: 600;
+	line-height: 1.1;
+	letter-spacing: -0.025em;
+	color: var(--text-primary);
+	margin: 0 0 0.75rem;
+}
+
+.ui-doc > h2 {
+	font-family: var(--font-header);
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -0.015em;
+	color: var(--text-primary);
+	margin: 3rem 0 0.75rem;
+	scroll-margin-top: 5rem;
+}
+
+.ui-doc > h3 {
+	font-family: var(--font-header);
+	font-size: 1.1875rem;
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--text-primary);
+	margin: 2rem 0 0.5rem;
+	scroll-margin-top: 5rem;
+}
+
+.ui-doc > h4 {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 1.5rem 0 0.4rem;
+	scroll-margin-top: 5rem;
+}
+
+.ui-doc > p {
+	margin: 0.9em 0;
+	line-height: 1.7;
+}
+
+.ui-doc > :is(ul, ol) {
+	margin: 0.9em 0;
+	padding-left: 1.5em;
+}
+.ui-doc > ul {
+	list-style-type: disc;
+}
+.ui-doc > ol {
+	list-style-type: decimal;
+}
+.ui-doc > :is(ul, ol) li {
+	margin: 0.4em 0;
+	line-height: 1.65;
+}
+.ui-doc > :is(ul, ol) li::marker {
+	color: var(--text-tertiary);
+}
+
+/* Prose links (scoped to top-level markdown blocks; demo component links are untouched) */
+.ui-doc > :is(p, ul, ol) a {
+	color: var(--accent-secondary);
+	text-decoration: underline;
+	text-decoration-color: color-mix(in oklab, var(--accent-secondary) 40%, transparent);
+	text-underline-offset: 0.2em;
+	font-weight: 500;
+}
+.ui-doc > :is(p, ul, ol) a:hover {
+	color: var(--text-primary);
+}
+
+/* rehype-autolink heading permalinks */
+.ui-doc > :is(h1, h2, h3, h4) a {
+	color: inherit;
+	font-weight: inherit;
+	text-decoration: none;
+}
+
+/* Inline code in prose only */
+.ui-doc > :is(p, ul, ol) code {
+	font-family: var(--font-mono, ui-monospace, monospace);
+	font-size: 0.85em;
+	color: var(--text-primary);
+	background: color-mix(in oklab, var(--surface-raised) 75%, transparent);
+	border: 1px solid var(--border-muted);
+	border-radius: 0.3rem;
+	padding: 0.1em 0.35em;
+}
+
+/* Markdown fenced code blocks (Shiki). Component CodeBlock has its own styling. */
+.ui-doc > pre.shiki,
+.ui-doc > pre:has(> code) {
+	border: 1px solid var(--border-muted);
+	border-radius: 0.5rem;
+	padding: 0.95rem 1.1rem;
+	overflow: auto;
+	margin: 1.5em 0;
+	font-size: 0.8125rem;
+	line-height: 1.6;
+}
+.ui-doc > pre > code {
+	font-size: 0.875em;
+	font-family: var(--font-mono, ui-monospace, monospace);
+	background: none !important;
+	border: 0 !important;
+	padding: 0 !important;
+	white-space: pre;
+}
+
+.ui-doc > hr {
+	border: none;
+	border-top: 1px solid var(--border-muted);
+	margin: 2rem 0;
+}
+
+html[data-site='docs'][data-doc-theme='light'] {
+	color-scheme: light;
+	--text-primary: #0a0a0a;
+	--text-secondary: #404040;
+	--text-tertiary: #737373;
+	--border-default: #e5e5e5;
+	--border-emphasis: #a3a3a3;
+	--surface-sunken: #fafafa;
+	--surface-base: #f5f5f5;
+	--surface-raised: #f0f0f0;
+	--surface-overlay: #e5e5e5;
+	--accent-primary: #171717;
+	--accent-primary-hover: #262626;
+	--color-stroke: rgba(0, 0, 0, 0.12);
+
+	/* Shiki (createCssVariablesTheme) - maps to phoundry-ui tokens + docs light surfaces */
+	--shiki-light-foreground: var(--text-primary);
+	--shiki-light-background: var(--surface-base);
+	--shiki-light-token-comment: var(--text-tertiary);
+	--shiki-light-token-string: var(--option-green);
+	--shiki-light-token-constant: var(--option-orange);
+	--shiki-light-token-keyword: var(--accent-primary);
+	--shiki-light-token-parameter: var(--text-secondary);
+	--shiki-light-token-function: var(--option-blue);
+	--shiki-light-token-string-expression: var(--option-cyan);
+	--shiki-light-token-punctuation: var(--text-tertiary);
+	--shiki-light-token-link: var(--accent-secondary);
+	--shiki-light-token-inserted: var(--semantic-success);
+	--shiki-light-token-deleted: var(--semantic-error);
+	--shiki-light-token-changed: var(--semantic-warning);
+	--shiki-light-ansi-black: var(--text-primary);
+	--shiki-light-ansi-red: var(--option-red);
+	--shiki-light-ansi-green: var(--option-green);
+	--shiki-light-ansi-yellow: var(--option-yellow);
+	--shiki-light-ansi-blue: var(--option-blue);
+	--shiki-light-ansi-magenta: var(--option-purple);
+	--shiki-light-ansi-cyan: var(--option-cyan);
+	--shiki-light-ansi-white: var(--text-secondary);
+	--shiki-light-ansi-bright-black: var(--text-secondary);
+	--shiki-light-ansi-bright-red: var(--semantic-error);
+	--shiki-light-ansi-bright-green: var(--semantic-success);
+	--shiki-light-ansi-bright-yellow: var(--semantic-warning);
+	--shiki-light-ansi-bright-blue: var(--accent-secondary);
+	--shiki-light-ansi-bright-magenta: var(--option-pink);
+	--shiki-light-ansi-bright-cyan: var(--option-cyan);
+	--shiki-light-ansi-bright-white: var(--text-primary);
+}
+
+html[data-site='docs'][data-doc-theme='dark'] {
+	/* Shiki - phoundry-ui :root semantic + option palette */
+	--shiki-dark-foreground: var(--text-primary);
+	--shiki-dark-background: var(--surface-base);
+	--shiki-dark-token-comment: var(--text-tertiary);
+	--shiki-dark-token-string: var(--option-green);
+	--shiki-dark-token-constant: var(--option-orange);
+	--shiki-dark-token-keyword: var(--accent-primary);
+	--shiki-dark-token-parameter: var(--text-secondary);
+	--shiki-dark-token-function: var(--option-blue);
+	--shiki-dark-token-string-expression: var(--option-cyan);
+	--shiki-dark-token-punctuation: var(--text-tertiary);
+	--shiki-dark-token-link: var(--accent-secondary);
+	--shiki-dark-token-inserted: var(--semantic-success);
+	--shiki-dark-token-deleted: var(--semantic-error);
+	--shiki-dark-token-changed: var(--semantic-warning);
+	--shiki-dark-ansi-black: var(--text-inverse);
+	--shiki-dark-ansi-red: var(--option-red);
+	--shiki-dark-ansi-green: var(--option-green);
+	--shiki-dark-ansi-yellow: var(--option-yellow);
+	--shiki-dark-ansi-blue: var(--option-blue);
+	--shiki-dark-ansi-magenta: var(--option-purple);
+	--shiki-dark-ansi-cyan: var(--option-cyan);
+	--shiki-dark-ansi-white: var(--text-secondary);
+	--shiki-dark-ansi-bright-black: var(--text-tertiary);
+	--shiki-dark-ansi-bright-red: var(--semantic-error);
+	--shiki-dark-ansi-bright-green: var(--semantic-success);
+	--shiki-dark-ansi-bright-yellow: var(--semantic-warning);
+	--shiki-dark-ansi-bright-blue: var(--accent-secondary);
+	--shiki-dark-ansi-bright-magenta: var(--option-pink);
+	--shiki-dark-ansi-bright-cyan: var(--option-cyan);
+	--shiki-dark-ansi-bright-white: var(--text-primary);
+}
+
+/* Dual-theme Shiki: defaultColor is light - swap to dark tokens on the doc surface */
+html[data-site='docs'][data-doc-theme='dark'] .doc-md pre.shiki span.line > span {
+	color: var(--shiki-dark) !important;
+}
+
+html[data-site='docs'][data-doc-theme='dark'] .doc-md pre.shiki {
+	background-color: var(--shiki-dark-background) !important;
+}
+
+/* ============================================
+   PHOUNDDRY UI LANDING (phoundry-ui.phoundry.app)
+   Monochrome shell - faint radial glow like Phials
+   ============================================ */
+
+.ui-landing {
+	min-height: 100vh;
+}
+
+.ui-landing-hero-glow {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+.ui-landing-hero-glow::before {
+	content: '';
+	position: absolute;
+	top: 18%;
+	right: -8%;
+	width: min(760px, 72vw);
+	aspect-ratio: 1;
+	border-radius: 999px;
+	background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12), transparent 55%);
+	filter: blur(48px);
+	opacity: 0.35;
+}
+
+@keyframes ui-landing-glow-drift {
+	from {
+		transform: translate3d(0, 0, 0) rotate(0deg);
+	}
+
+	to {
+		transform: translate3d(-28px, 22px, 0) rotate(10deg);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.ui-landing-hero-glow::before {
+		animation: ui-landing-glow-drift 18s var(--ease-in-out-expo) infinite alternate;
+	}
+}
+
+.ui-landing-terminal {
+	max-width: 34rem;
+	border-radius: 0.875rem;
+	overflow: hidden;
+	border: 1px solid var(--color-glass-border);
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%), var(--surface-base);
+	box-shadow:
+		0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+		0 1px 0 rgba(255, 255, 255, 0.06) inset,
+		0 24px 48px -16px rgba(0, 0, 0, 0.55);
+}
+
+.ui-landing-terminal__chrome {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.625rem 0.875rem;
+	border-bottom: 1px solid var(--border-muted);
+	background: rgba(0, 0, 0, 0.22);
+}
+
+.ui-landing-terminal__traffic {
+	display: flex;
+	gap: 0.4rem;
+}
+
+.ui-landing-terminal__traffic span {
+	width: 0.6875rem;
+	height: 0.6875rem;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.16);
+	box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.2) inset;
+}
+
+.ui-landing-terminal__traffic span:first-child {
+	background: #ff5f57;
+}
+
+.ui-landing-terminal__traffic span:nth-child(2) {
+	background: #febc2e;
+}
+
+.ui-landing-terminal__traffic span:nth-child(3) {
+	background: #28c840;
+}
+
+.ui-landing-terminal__title {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	letter-spacing: 0.01em;
+	color: var(--text-tertiary);
+	pointer-events: none;
+}
+
+.ui-landing-terminal__body {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1.125rem 1.25rem;
+}
+
+.ui-landing-terminal__cmd {
+	min-width: 0;
+	font-family: var(--font-mono);
+	font-size: clamp(0.95rem, 2.4vw, 1.25rem);
+	font-weight: 500;
+	line-height: 1.4;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.ui-landing-terminal__prompt {
+	margin-right: 0.5em;
+	font-weight: 700;
+	color: #34d399;
+	user-select: none;
+}
+
+.ui-landing-terminal__cmd .tok-cmd {
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.ui-landing-terminal__cmd .tok-arg {
+	color: var(--text-tertiary);
+}
+
+.ui-landing-terminal__cmd .tok-pkg {
+	color: var(--text-primary);
+}
+
+.ui-landing-terminal__caret {
+	display: inline-block;
+	width: 0.5ch;
+	height: 1.05em;
+	margin-left: 0.12em;
+	transform: translateY(0.14em);
+	background: var(--text-primary);
+	border-radius: 1px;
+	opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.ui-landing-terminal__caret {
+		animation: ui-landing-caret-blink 1.1s steps(1) infinite;
+	}
+}
+
+@keyframes ui-landing-caret-blink {
+	0%,
+	50% {
+		opacity: 0.85;
+	}
+	50.01%,
+	100% {
+		opacity: 0;
+	}
+}
+
+.ui-landing-terminal__copy {
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.4rem 0.7rem;
+	font-family: var(--font-body);
+	font-size: 0.8125rem;
+	font-weight: 500;
+	color: var(--text-secondary);
+	background: var(--color-glass-fill);
+	border: 1px solid var(--color-glass-border);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition:
+		color 0.18s ease,
+		background 0.18s ease,
+		border-color 0.18s ease;
+}
+
+.ui-landing-terminal__copy:hover {
+	color: var(--text-primary);
+	background: var(--color-glass-fill-hover);
+	border-color: var(--color-glass-border-hover);
+}
+
+.ui-landing-terminal__copy:focus-visible {
+	outline: 2px solid var(--text-secondary);
+	outline-offset: 2px;
+}
+
+.ui-landing-terminal__copy svg {
+	flex-shrink: 0;
+}
+
+.ui-landing-terminal__copy.is-copied {
+	color: #34d399;
+	border-color: rgba(52, 211, 153, 0.4);
+	background: rgba(52, 211, 153, 0.1);
+}
+
+@media (max-width: 480px) {
+	.ui-landing-terminal__body {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.875rem;
+	}
+
+	.ui-landing-terminal__cmd {
+		white-space: normal;
+		word-break: break-word;
+	}
+
+	.ui-landing-terminal__copy {
+		align-self: flex-end;
+	}
+}
+
+svg {
+	transform-origin: center center !important;
+	offset-anchor: center center !important;
+}
