@@ -10,12 +10,12 @@ Implementation in progress.
 - [x] Initialize a fresh `phoundry-documentation` Git repository.
 - [x] Import the three published documentation sets.
 - [x] Record exact source provenance.
-- [ ] Complete and verify the shared manifest, static site, and offline package builds.
+- [x] Complete and verify the shared manifest, static site, and offline package builds.
 
 ## Phase 2: Phials integration
 
 - [ ] Publish the public SDK package locally.
-- [ ] Generate SDK references from the pinned package.
+- [x] Generate SDK references from the pinned package artifact.
 - [ ] Replace Phials' committed documentation source and eager loader with the local artifact adapter.
 - [ ] Retire the Documentation authoring section while preserving Contextual Help and Tutorials.
 
@@ -32,4 +32,4 @@ Implementation in progress.
 
 - Existing unrelated changes in Phials, phoundry-ui, and the workspace root are preserved and must not be staged with this migration.
 - npm package publication is local and on demand. Static-site deployment remains continuous.
-
+- Sevalla currently offers Node 22 for static-site builds. Local validation and GitHub CI remain pinned to Node 24.17.0; the hosting build uses Node 22 only for the SvelteKit static projection.

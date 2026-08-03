@@ -36,7 +36,7 @@
 	},
 	"dependencies": {
 		"@iconify/svelte": "^5.2.1",
-		"phoundry-ui": "git+https://github.com/phoundry-lab/phoundry-ui.git#0b3fa2c"
+		"phoundry-ui": "file:vendor/phoundry-ui-0b3fa2c.tgz"
 	},
 	"devDependencies": {
 		"@shikijs/rehype": "^4.0.2",
@@ -70,7 +70,6 @@
 		"access": "public"
 	},
 	"allowScripts": {
-		"github:phoundry-lab/phoundry-ui#0b3fa2c": true,
 		"esbuild@0.28.1": true
 	}
 }
