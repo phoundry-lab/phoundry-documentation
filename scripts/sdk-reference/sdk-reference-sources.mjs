@@ -5,11 +5,9 @@ import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const installedSdk = path.join(repositoryRoot, 'node_modules/@phoundry/phials-plugin-sdk');
-const siblingSdk = path.resolve(repositoryRoot, '../phials/dist-plugin-sdk');
 
 export const SDK_ROOT = path.resolve(
-	process.env.PHOUNDRY_PHIALS_PLUGIN_SDK_DIR ||
-		(fs.existsSync(installedSdk) ? installedSdk : siblingSdk),
+	process.env.PHOUNDRY_PHIALS_PLUGIN_SDK_DIR || installedSdk,
 );
 
 export function loadTypeReferenceSources() {

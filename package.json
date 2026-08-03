@@ -20,7 +20,7 @@
 	},
 	"scripts": {
 		"dev": "npm run generate && vite dev --host 127.0.0.1 --port 5179 --strictPort",
-		"generate": "tsx scripts/generate-documentation.ts",
+		"generate": "npm run generate:sdk-reference && tsx scripts/generate-documentation.ts",
 		"build:site": "npm run generate && svelte-kit sync && vite build && pagefind --site build",
 		"build:package": "npm run generate && tsx scripts/build-package.ts",
 		"generate:sdk-reference": "node scripts/sdk-reference/generate-type-references.mjs && node scripts/sdk-reference/link-type-references.mjs",
@@ -39,6 +39,7 @@
 		"phoundry-ui": "file:vendor/phoundry-ui-0b3fa2c.tgz"
 	},
 	"devDependencies": {
+		"@phoundry/phials-plugin-sdk": "1.0.0",
 		"@shikijs/rehype": "^4.0.2",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.67.0",
