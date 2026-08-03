@@ -32,6 +32,7 @@ Public cutover complete; local package cutover in progress.
 
 - Existing unrelated changes in Phials, phoundry-ui, and the workspace root are preserved and must not be staged with this migration.
 - npm package publication is local and on demand. Static-site deployment remains continuous.
+- Documentation snapshots publish under npm's required `main` dist-tag, but Phials consumes only exact immutable versions.
 - SDK references regenerate during every build from the exact lockfile pin `@phoundry/phials-plugin-sdk@1.0.0`.
 - Sevalla currently offers Node 22 for static-site builds. Local validation and GitHub CI remain pinned to Node 24.17.0; the hosting build uses Node 22 only for the SvelteKit static projection.
 - Sevalla uses the Kinsta GitHub App's selected access to `phoundry-lab/phoundry-documentation`; the site source is authenticated GitHub with automatic `main` deployments and pull-request previews enabled.
