@@ -34,5 +34,6 @@ Public cutover complete; local package cutover in progress.
 - npm package publication is local and on demand. Static-site deployment remains continuous.
 - SDK references regenerate during every build from the exact lockfile pin `@phoundry/phials-plugin-sdk@1.0.0`.
 - Sevalla currently offers Node 22 for static-site builds. Local validation and GitHub CI remain pinned to Node 24.17.0; the hosting build uses Node 22 only for the SvelteKit static projection.
+- Sevalla uses the Kinsta GitHub App's selected access to `phoundry-lab/phoundry-documentation`; the site source is authenticated GitHub with automatic `main` deployments and pull-request previews enabled.
 - Sevalla static site id: `bd98c9c4-605c-4900-9355-5260f7a55018`. The first successful production deployment was `e7f68f4f-c08c-4f9e-a6c0-70a01ef58415` from commit `a941e78`.
 - GoDaddy has explicit `docs` A, `_cf-custom-hostname.docs` TXT, and `_acme-challenge.docs` TXT records for the static site. The existing wildcard record remains unchanged for other product hosts.
