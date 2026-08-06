@@ -2,7 +2,7 @@
 title: "Use Calendar view"
 description: "Place files on a calendar by a built-in or custom date and reschedule editable dates."
 icon: phoundry-mono:folder
-order: 5
+order: 6
 ai_disclosure: true
 ---
 

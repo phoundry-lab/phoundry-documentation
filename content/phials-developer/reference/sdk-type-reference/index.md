@@ -31,6 +31,7 @@ Use the workflow guides for permissions, lifecycle consequences, and complete ex
 - [`PreviewSurfaceProps`](PreviewSurfaceProps.md)
 - [`PreviewToolbarContributionProps`](PreviewToolbarContributionProps.md)
 - [`PreviewDestinationCapabilities`](PreviewDestinationCapabilities.md)
+- [`ThumbnailIntrinsicDimensions`](ThumbnailIntrinsicDimensions.md)
 - [`ThumbnailProviderProps`](ThumbnailProviderProps.md)
 - [`EditorHistoryHandle`](EditorHistoryHandle.md)
 - [`PreviewToolbarEditorState`](PreviewToolbarEditorState.md)

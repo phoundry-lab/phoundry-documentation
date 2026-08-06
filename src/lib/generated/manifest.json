@@ -538,6 +538,18 @@
                 "aiDisclosure": true
               },
               {
+                "slug": "browse-and-manage-files/choose-and-configure-file-views/use-masonry-view",
+                "aliases": [],
+                "href": "/phials/browse-and-manage-files/choose-and-configure-file-views/use-masonry-view",
+                "title": "Use Masonry view",
+                "description": "Browse ratio-aware thumbnails in compact, variable-height columns.",
+                "hidden": false,
+                "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-masonry-view.md",
+                "order": 3,
+                "icon": "phoundry-mono:view-masonry",
+                "aiDisclosure": true
+              },
+              {
                 "slug": "browse-and-manage-files/choose-and-configure-file-views/use-columns-view",
                 "aliases": [],
                 "href": "/phials/browse-and-manage-files/choose-and-configure-file-views/use-columns-view",
@@ -545,7 +557,7 @@
                 "description": "Follow a folder branch across adjacent columns before committing to a new Explorer path.",
                 "hidden": false,
                 "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-columns-view.md",
-                "order": 3,
+                "order": 4,
                 "icon": "phoundry-mono:folder",
                 "aiDisclosure": true
               },
@@ -557,7 +569,7 @@
                 "description": "Group Workspace Folder files into option-based columns and update values by moving cards.",
                 "hidden": false,
                 "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-boards-view.md",
-                "order": 4,
+                "order": 5,
                 "icon": "phoundry-mono:folder",
                 "aiDisclosure": true
               },
@@ -569,7 +581,7 @@
                 "description": "Place files on a calendar by a built-in or custom date and reschedule editable dates.",
                 "hidden": false,
                 "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-calendar-view.md",
-                "order": 5,
+                "order": 6,
                 "icon": "phoundry-mono:folder",
                 "aiDisclosure": true
               },
@@ -581,7 +593,7 @@
                 "description": "Switch file views and control visible properties, view options, and app-wide file visibility.",
                 "hidden": false,
                 "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/configure-a-file-view.md",
-                "order": 6,
+                "order": 7,
                 "icon": "phoundry-mono:folder",
                 "aiDisclosure": true
               }
@@ -2482,7 +2494,7 @@
         "description": "Switch file views and control visible properties, view options, and app-wide file visibility.",
         "hidden": false,
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/configure-a-file-view.md",
-        "order": 6,
+        "order": 7,
         "icon": "phoundry-mono:folder",
         "aiDisclosure": true
       },
@@ -2494,7 +2506,7 @@
         "description": "Group Workspace Folder files into option-based columns and update values by moving cards.",
         "hidden": false,
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-boards-view.md",
-        "order": 4,
+        "order": 5,
         "icon": "phoundry-mono:folder",
         "aiDisclosure": true
       },
@@ -2506,7 +2518,7 @@
         "description": "Place files on a calendar by a built-in or custom date and reschedule editable dates.",
         "hidden": false,
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-calendar-view.md",
-        "order": 5,
+        "order": 6,
         "icon": "phoundry-mono:folder",
         "aiDisclosure": true
       },
@@ -2518,7 +2530,7 @@
         "description": "Follow a folder branch across adjacent columns before committing to a new Explorer path.",
         "hidden": false,
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-columns-view.md",
-        "order": 3,
+        "order": 4,
         "icon": "phoundry-mono:folder",
         "aiDisclosure": true
       },
@@ -2544,6 +2556,18 @@
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-grid-view.md",
         "order": 2,
         "icon": "phoundry-mono:folder",
+        "aiDisclosure": true
+      },
+      "browse-and-manage-files/choose-and-configure-file-views/use-masonry-view": {
+        "slug": "browse-and-manage-files/choose-and-configure-file-views/use-masonry-view",
+        "aliases": [],
+        "href": "/phials/browse-and-manage-files/choose-and-configure-file-views/use-masonry-view",
+        "title": "Use Masonry view",
+        "description": "Browse ratio-aware thumbnails in compact, variable-height columns.",
+        "hidden": false,
+        "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-masonry-view.md",
+        "order": 3,
+        "icon": "phoundry-mono:view-masonry",
         "aiDisclosure": true
       },
       "browse-and-manage-files/find-and-narrow-files": {
@@ -4400,6 +4424,18 @@
         "aiDisclosure": true
       },
       {
+        "slug": "browse-and-manage-files/choose-and-configure-file-views/use-masonry-view",
+        "aliases": [],
+        "href": "/phials/browse-and-manage-files/choose-and-configure-file-views/use-masonry-view",
+        "title": "Use Masonry view",
+        "description": "Browse ratio-aware thumbnails in compact, variable-height columns.",
+        "hidden": false,
+        "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-masonry-view.md",
+        "order": 3,
+        "icon": "phoundry-mono:view-masonry",
+        "aiDisclosure": true
+      },
+      {
         "slug": "browse-and-manage-files/choose-and-configure-file-views/use-columns-view",
         "aliases": [],
         "href": "/phials/browse-and-manage-files/choose-and-configure-file-views/use-columns-view",
@@ -4407,7 +4443,7 @@
         "description": "Follow a folder branch across adjacent columns before committing to a new Explorer path.",
         "hidden": false,
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-columns-view.md",
-        "order": 3,
+        "order": 4,
         "icon": "phoundry-mono:folder",
         "aiDisclosure": true
       },
@@ -4419,7 +4455,7 @@
         "description": "Group Workspace Folder files into option-based columns and update values by moving cards.",
         "hidden": false,
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-boards-view.md",
-        "order": 4,
+        "order": 5,
         "icon": "phoundry-mono:folder",
         "aiDisclosure": true
       },
@@ -4431,7 +4467,7 @@
         "description": "Place files on a calendar by a built-in or custom date and reschedule editable dates.",
         "hidden": false,
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/use-calendar-view.md",
-        "order": 5,
+        "order": 6,
         "icon": "phoundry-mono:folder",
         "aiDisclosure": true
       },
@@ -4443,7 +4479,7 @@
         "description": "Switch file views and control visible properties, view options, and app-wide file visibility.",
         "hidden": false,
         "filePath": "content/phials/browse-and-manage-files/choose-and-configure-file-views/configure-a-file-view.md",
-        "order": 6,
+        "order": 7,
         "icon": "phoundry-mono:folder",
         "aiDisclosure": true
       },
@@ -9172,6 +9208,19 @@
                 "aiDisclosure": true
               },
               {
+                "slug": "reference/sdk-type-reference/ThumbnailIntrinsicDimensions",
+                "aliases": [
+                  "references/ThumbnailIntrinsicDimensions"
+                ],
+                "href": "/phials-developer/reference/sdk-type-reference/ThumbnailIntrinsicDimensions",
+                "title": "ThumbnailIntrinsicDimensions",
+                "description": "TypeScript signature and members for the ThumbnailIntrinsicDimensions public SDK declaration.",
+                "hidden": false,
+                "filePath": "content/phials-developer/reference/sdk-type-reference/ThumbnailIntrinsicDimensions.md",
+                "order": 129,
+                "aiDisclosure": true
+              },
+              {
                 "slug": "reference/sdk-type-reference/ThumbnailProviderProps",
                 "aliases": [
                   "references/ThumbnailProviderProps"
@@ -9181,7 +9230,7 @@
                 "description": "TypeScript signature and members for the ThumbnailProviderProps public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/ThumbnailProviderProps.md",
-                "order": 129,
+                "order": 130,
                 "aiDisclosure": true
               },
               {
@@ -9194,7 +9243,7 @@
                 "description": "TypeScript signature and members for the ToolbarContext public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarContext.md",
-                "order": 130,
+                "order": 131,
                 "aiDisclosure": true
               },
               {
@@ -9207,7 +9256,7 @@
                 "description": "TypeScript signature and members for the ToolbarPlacementConfig public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarPlacementConfig.md",
-                "order": 131,
+                "order": 132,
                 "aiDisclosure": true
               },
               {
@@ -9220,7 +9269,7 @@
                 "description": "TypeScript signature and members for the ToolbarSubToolbarProps public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarSubToolbarProps.md",
-                "order": 132,
+                "order": 133,
                 "aiDisclosure": true
               },
               {
@@ -9233,7 +9282,7 @@
                 "description": "TypeScript signature and members for the validateIdentityProjections public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/validateIdentityProjections.md",
-                "order": 133,
+                "order": 134,
                 "aiDisclosure": true
               },
               {
@@ -9246,7 +9295,7 @@
                 "description": "TypeScript signature and members for the validateManifest public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/validateManifest.md",
-                "order": 134,
+                "order": 135,
                 "aiDisclosure": true
               },
               {
@@ -9259,7 +9308,7 @@
                 "description": "TypeScript signature and members for the validatePluginId public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/validatePluginId.md",
-                "order": 135,
+                "order": 136,
                 "aiDisclosure": true
               },
               {
@@ -9272,7 +9321,7 @@
                 "description": "TypeScript signature and members for the validateSemver public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/validateSemver.md",
-                "order": 136,
+                "order": 137,
                 "aiDisclosure": true
               },
               {
@@ -9285,7 +9334,7 @@
                 "description": "TypeScript signature and members for the ValidationResult public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/ValidationResult.md",
-                "order": 137,
+                "order": 138,
                 "aiDisclosure": true
               },
               {
@@ -9298,7 +9347,7 @@
                 "description": "TypeScript signature and members for the ViewAPI public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/ViewAPI.md",
-                "order": 138,
+                "order": 139,
                 "aiDisclosure": true
               },
               {
@@ -9311,7 +9360,7 @@
                 "description": "TypeScript signature and members for the ViewColumnDefinition public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/ViewColumnDefinition.md",
-                "order": 139,
+                "order": 140,
                 "aiDisclosure": true
               },
               {
@@ -9324,7 +9373,7 @@
                 "description": "TypeScript signature and members for the ViewItemSizePreset public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/ViewItemSizePreset.md",
-                "order": 140,
+                "order": 141,
                 "aiDisclosure": true
               },
               {
@@ -9337,7 +9386,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderFileRef public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderFileRef.md",
-                "order": 141,
+                "order": 142,
                 "aiDisclosure": true
               },
               {
@@ -9350,7 +9399,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyDefinition public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyDefinition.md",
-                "order": 142,
+                "order": 143,
                 "aiDisclosure": true
               },
               {
@@ -9363,7 +9412,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyOption public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyOption.md",
-                "order": 143,
+                "order": 144,
                 "aiDisclosure": true
               },
               {
@@ -9376,7 +9425,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyType public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyType.md",
-                "order": 144,
+                "order": 145,
                 "aiDisclosure": true
               },
               {
@@ -9389,7 +9438,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyValue public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyValue.md",
-                "order": 145,
+                "order": 146,
                 "aiDisclosure": true
               },
               {
@@ -9402,7 +9451,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyWrite public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyWrite.md",
-                "order": 146,
+                "order": 147,
                 "aiDisclosure": true
               },
               {
@@ -9415,7 +9464,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFoldersAPI public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFoldersAPI.md",
-                "order": 147,
+                "order": 148,
                 "aiDisclosure": true
               },
               {
@@ -9428,7 +9477,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderSchema public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderSchema.md",
-                "order": 148,
+                "order": 149,
                 "aiDisclosure": true
               }
             ],
@@ -12131,6 +12180,19 @@
         "order": 127,
         "aiDisclosure": true
       },
+      "reference/sdk-type-reference/ThumbnailIntrinsicDimensions": {
+        "slug": "reference/sdk-type-reference/ThumbnailIntrinsicDimensions",
+        "aliases": [
+          "references/ThumbnailIntrinsicDimensions"
+        ],
+        "href": "/phials-developer/reference/sdk-type-reference/ThumbnailIntrinsicDimensions",
+        "title": "ThumbnailIntrinsicDimensions",
+        "description": "TypeScript signature and members for the ThumbnailIntrinsicDimensions public SDK declaration.",
+        "hidden": false,
+        "filePath": "content/phials-developer/reference/sdk-type-reference/ThumbnailIntrinsicDimensions.md",
+        "order": 129,
+        "aiDisclosure": true
+      },
       "reference/sdk-type-reference/ThumbnailProviderProps": {
         "slug": "reference/sdk-type-reference/ThumbnailProviderProps",
         "aliases": [
@@ -12141,7 +12203,7 @@
         "description": "TypeScript signature and members for the ThumbnailProviderProps public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ThumbnailProviderProps.md",
-        "order": 129,
+        "order": 130,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/ToolbarContext": {
@@ -12154,7 +12216,7 @@
         "description": "TypeScript signature and members for the ToolbarContext public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarContext.md",
-        "order": 130,
+        "order": 131,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/ToolbarPlacementConfig": {
@@ -12167,7 +12229,7 @@
         "description": "TypeScript signature and members for the ToolbarPlacementConfig public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarPlacementConfig.md",
-        "order": 131,
+        "order": 132,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/ToolbarSubToolbarProps": {
@@ -12180,7 +12242,7 @@
         "description": "TypeScript signature and members for the ToolbarSubToolbarProps public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarSubToolbarProps.md",
-        "order": 132,
+        "order": 133,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/ValidationResult": {
@@ -12193,7 +12255,7 @@
         "description": "TypeScript signature and members for the ValidationResult public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ValidationResult.md",
-        "order": 137,
+        "order": 138,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/ViewAPI": {
@@ -12206,7 +12268,7 @@
         "description": "TypeScript signature and members for the ViewAPI public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ViewAPI.md",
-        "order": 138,
+        "order": 139,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/ViewColumnDefinition": {
@@ -12219,7 +12281,7 @@
         "description": "TypeScript signature and members for the ViewColumnDefinition public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ViewColumnDefinition.md",
-        "order": 139,
+        "order": 140,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/ViewItemSizePreset": {
@@ -12232,7 +12294,7 @@
         "description": "TypeScript signature and members for the ViewItemSizePreset public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ViewItemSizePreset.md",
-        "order": 140,
+        "order": 141,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderFileRef": {
@@ -12245,7 +12307,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderFileRef public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderFileRef.md",
-        "order": 141,
+        "order": 142,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyDefinition": {
@@ -12258,7 +12320,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyDefinition public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyDefinition.md",
-        "order": 142,
+        "order": 143,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyOption": {
@@ -12271,7 +12333,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyOption public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyOption.md",
-        "order": 143,
+        "order": 144,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyType": {
@@ -12284,7 +12346,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyType public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyType.md",
-        "order": 144,
+        "order": 145,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyValue": {
@@ -12297,7 +12359,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyValue public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyValue.md",
-        "order": 145,
+        "order": 146,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyWrite": {
@@ -12310,7 +12372,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyWrite public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyWrite.md",
-        "order": 146,
+        "order": 147,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderSchema": {
@@ -12323,7 +12385,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderSchema public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderSchema.md",
-        "order": 148,
+        "order": 149,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFoldersAPI": {
@@ -12336,7 +12398,7 @@
         "description": "TypeScript signature and members for the WorkspaceFoldersAPI public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFoldersAPI.md",
-        "order": 147,
+        "order": 148,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/compareSemver": {
@@ -12427,7 +12489,7 @@
         "description": "TypeScript signature and members for the validateIdentityProjections public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/validateIdentityProjections.md",
-        "order": 133,
+        "order": 134,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/validateManifest": {
@@ -12440,7 +12502,7 @@
         "description": "TypeScript signature and members for the validateManifest public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/validateManifest.md",
-        "order": 134,
+        "order": 135,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/validatePluginId": {
@@ -12453,7 +12515,7 @@
         "description": "TypeScript signature and members for the validatePluginId public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/validatePluginId.md",
-        "order": 135,
+        "order": 136,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/validateSemver": {
@@ -12466,7 +12528,7 @@
         "description": "TypeScript signature and members for the validateSemver public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/validateSemver.md",
-        "order": 136,
+        "order": 137,
         "aiDisclosure": true
       },
       "test-and-troubleshoot/debug-plugin-failures": {
@@ -13063,6 +13125,7 @@
       "references/SettingsFieldType": "reference/sdk-type-reference/SettingsFieldType",
       "references/ShortcutDefinition": "reference/sdk-type-reference/ShortcutDefinition",
       "references/StringSettingsField": "reference/sdk-type-reference/StringSettingsField",
+      "references/ThumbnailIntrinsicDimensions": "reference/sdk-type-reference/ThumbnailIntrinsicDimensions",
       "references/ThumbnailProviderProps": "reference/sdk-type-reference/ThumbnailProviderProps",
       "references/ToolbarContext": "reference/sdk-type-reference/ToolbarContext",
       "references/ToolbarPlacementConfig": "reference/sdk-type-reference/ToolbarPlacementConfig",
@@ -16294,6 +16357,19 @@
         "aiDisclosure": true
       },
       {
+        "slug": "reference/sdk-type-reference/ThumbnailIntrinsicDimensions",
+        "aliases": [
+          "references/ThumbnailIntrinsicDimensions"
+        ],
+        "href": "/phials-developer/reference/sdk-type-reference/ThumbnailIntrinsicDimensions",
+        "title": "ThumbnailIntrinsicDimensions",
+        "description": "TypeScript signature and members for the ThumbnailIntrinsicDimensions public SDK declaration.",
+        "hidden": false,
+        "filePath": "content/phials-developer/reference/sdk-type-reference/ThumbnailIntrinsicDimensions.md",
+        "order": 129,
+        "aiDisclosure": true
+      },
+      {
         "slug": "reference/sdk-type-reference/ThumbnailProviderProps",
         "aliases": [
           "references/ThumbnailProviderProps"
@@ -16303,7 +16379,7 @@
         "description": "TypeScript signature and members for the ThumbnailProviderProps public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ThumbnailProviderProps.md",
-        "order": 129,
+        "order": 130,
         "aiDisclosure": true
       },
       {
@@ -16316,7 +16392,7 @@
         "description": "TypeScript signature and members for the ToolbarContext public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarContext.md",
-        "order": 130,
+        "order": 131,
         "aiDisclosure": true
       },
       {
@@ -16329,7 +16405,7 @@
         "description": "TypeScript signature and members for the ToolbarPlacementConfig public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarPlacementConfig.md",
-        "order": 131,
+        "order": 132,
         "aiDisclosure": true
       },
       {
@@ -16342,7 +16418,7 @@
         "description": "TypeScript signature and members for the ToolbarSubToolbarProps public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ToolbarSubToolbarProps.md",
-        "order": 132,
+        "order": 133,
         "aiDisclosure": true
       },
       {
@@ -16355,7 +16431,7 @@
         "description": "TypeScript signature and members for the validateIdentityProjections public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/validateIdentityProjections.md",
-        "order": 133,
+        "order": 134,
         "aiDisclosure": true
       },
       {
@@ -16368,7 +16444,7 @@
         "description": "TypeScript signature and members for the validateManifest public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/validateManifest.md",
-        "order": 134,
+        "order": 135,
         "aiDisclosure": true
       },
       {
@@ -16381,7 +16457,7 @@
         "description": "TypeScript signature and members for the validatePluginId public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/validatePluginId.md",
-        "order": 135,
+        "order": 136,
         "aiDisclosure": true
       },
       {
@@ -16394,7 +16470,7 @@
         "description": "TypeScript signature and members for the validateSemver public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/validateSemver.md",
-        "order": 136,
+        "order": 137,
         "aiDisclosure": true
       },
       {
@@ -16407,7 +16483,7 @@
         "description": "TypeScript signature and members for the ValidationResult public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ValidationResult.md",
-        "order": 137,
+        "order": 138,
         "aiDisclosure": true
       },
       {
@@ -16420,7 +16496,7 @@
         "description": "TypeScript signature and members for the ViewAPI public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ViewAPI.md",
-        "order": 138,
+        "order": 139,
         "aiDisclosure": true
       },
       {
@@ -16433,7 +16509,7 @@
         "description": "TypeScript signature and members for the ViewColumnDefinition public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ViewColumnDefinition.md",
-        "order": 139,
+        "order": 140,
         "aiDisclosure": true
       },
       {
@@ -16446,7 +16522,7 @@
         "description": "TypeScript signature and members for the ViewItemSizePreset public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/ViewItemSizePreset.md",
-        "order": 140,
+        "order": 141,
         "aiDisclosure": true
       },
       {
@@ -16459,7 +16535,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderFileRef public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderFileRef.md",
-        "order": 141,
+        "order": 142,
         "aiDisclosure": true
       },
       {
@@ -16472,7 +16548,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyDefinition public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyDefinition.md",
-        "order": 142,
+        "order": 143,
         "aiDisclosure": true
       },
       {
@@ -16485,7 +16561,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyOption public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyOption.md",
-        "order": 143,
+        "order": 144,
         "aiDisclosure": true
       },
       {
@@ -16498,7 +16574,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyType public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyType.md",
-        "order": 144,
+        "order": 145,
         "aiDisclosure": true
       },
       {
@@ -16511,7 +16587,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyValue public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyValue.md",
-        "order": 145,
+        "order": 146,
         "aiDisclosure": true
       },
       {
@@ -16524,7 +16600,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyWrite public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyWrite.md",
-        "order": 146,
+        "order": 147,
         "aiDisclosure": true
       },
       {
@@ -16537,7 +16613,7 @@
         "description": "TypeScript signature and members for the WorkspaceFoldersAPI public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFoldersAPI.md",
-        "order": 147,
+        "order": 148,
         "aiDisclosure": true
       },
       {
@@ -16550,7 +16626,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderSchema public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderSchema.md",
-        "order": 148,
+        "order": 149,
         "aiDisclosure": true
       }
     ]

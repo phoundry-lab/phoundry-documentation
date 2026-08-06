@@ -2,7 +2,7 @@
 title: "ViewColumnDefinition"
 description: "TypeScript signature and members for the ViewColumnDefinition public SDK declaration."
 ai_disclosure: true
-order: 139
+order: 140
 aliases:
   - references/ViewColumnDefinition
 ---

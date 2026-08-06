@@ -16,6 +16,7 @@ Phials provides views for different kinds of work:
 
 - **Details** presents rows and configurable columns.
 - **Grid** emphasizes thumbnails and file cards.
+- **Masonry** packs ratio-aware thumbnails into compact variable-height columns.
 - **Columns** follows a folder branch across adjacent columns.
 - **Boards** groups files into property-backed columns.
 - **Calendar** places files by a filesystem date or a Workspace Folder date property.

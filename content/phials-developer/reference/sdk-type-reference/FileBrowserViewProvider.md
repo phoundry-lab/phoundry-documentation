@@ -42,5 +42,5 @@ interface FileBrowserViewProvider {
 | `component` | `import("svelte").Component<`[`FileBrowserViewProps`](FileBrowserViewProps.md)`>` | yes | View component |
 | `columns` | [`ViewColumnDefinition`](ViewColumnDefinition.md)`[]` | no | Optional: custom column configuration for this view |
 | `collectionOnly` | `boolean` | no | If true, this view is only available in collections (vials) |
-| `defaultItemSizePreset` | [`ViewItemSizePreset`](ViewItemSizePreset.md) | no | Default item size when a folder has no per-folder override (`itemSize` null). Details family uses row-height ticks; thumbnails / gallery use grid ticks; Boards uses its column-width ticks. |
+| `defaultItemSizePreset` | [`ViewItemSizePreset`](ViewItemSizePreset.md) | no | Default item size when a folder has no per-folder override (`itemSize` null). Details family uses row-height ticks; thumbnails / Masonry / gallery use grid ticks; Boards uses its column-width ticks. |
 | `getConfigurationItems` | `(pane: `[`PluginPaneContext`](PluginPaneContext.md)`, api: `[`ViewAPI`](ViewAPI.md)`) => import("phoundry-ui").MenuItem[]` | no | Optional inline view configuration items (phoundry-ui menu row contract). `api` is scoped to the plugin that registered this view. |

@@ -2,7 +2,7 @@
 title: "WorkspaceFolderPropertyValue"
 description: "TypeScript signature and members for the WorkspaceFolderPropertyValue public SDK declaration."
 ai_disclosure: true
-order: 145
+order: 146
 aliases:
   - references/WorkspaceFolderPropertyValue
 ---

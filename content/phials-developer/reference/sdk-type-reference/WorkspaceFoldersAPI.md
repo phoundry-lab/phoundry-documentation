@@ -2,7 +2,7 @@
 title: "WorkspaceFoldersAPI"
 description: "TypeScript signature and members for the WorkspaceFoldersAPI public SDK declaration."
 ai_disclosure: true
-order: 147
+order: 148
 aliases:
   - references/WorkspaceFoldersAPI
 ---

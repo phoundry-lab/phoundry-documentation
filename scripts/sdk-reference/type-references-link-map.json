@@ -10,6 +10,7 @@
 	"PreviewSurfaceProps": "reference/sdk-type-reference/PreviewSurfaceProps",
 	"PreviewToolbarContributionProps": "reference/sdk-type-reference/PreviewToolbarContributionProps",
 	"PreviewDestinationCapabilities": "reference/sdk-type-reference/PreviewDestinationCapabilities",
+	"ThumbnailIntrinsicDimensions": "reference/sdk-type-reference/ThumbnailIntrinsicDimensions",
 	"ThumbnailProviderProps": "reference/sdk-type-reference/ThumbnailProviderProps",
 	"EditorHistoryHandle": "reference/sdk-type-reference/EditorHistoryHandle",
 	"PreviewToolbarEditorState": "reference/sdk-type-reference/PreviewToolbarEditorState",

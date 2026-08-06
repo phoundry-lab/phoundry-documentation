@@ -2,7 +2,7 @@
 title: "Configure a file view"
 description: "Switch file views and control visible properties, view options, and app-wide file visibility."
 icon: phoundry-mono:folder
-order: 6
+order: 7
 ai_disclosure: true
 ---
 
@@ -14,7 +14,7 @@ Use **Configure view** to change how files are presented in the active Explorer 
 
 1. Choose **Configure view** in the toolbar.
 2. Choose **View mode**.
-3. Choose **Details**, **Grid**, **Columns**, **Boards**, or **Calendar**.
+3. Choose **Details**, **Grid**, **Masonry**, **Columns**, **Boards**, or **Calendar**.
 
 The available choices depend on the current location. Boards appears only when the Explorer tab is inside a Workspace Folder with properties.
 
@@ -28,7 +28,7 @@ Choose **Property visibility** to open the **Properties** page.
 - Drag visible properties into the order you want.
 - Choose **Reset** to restore the current file view's default property visibility and order.
 
-Details, Grid, and Boards use this configuration in different ways: Details creates columns, Grid creates captions, and Boards adds values to cards. Details always keeps Name visible.
+Details, Grid, Masonry, and Boards use this configuration in different ways: Details creates columns, Grid and Masonry create card captions, and Boards adds values to cards. Details always keeps Name visible.
 
 Columns and Calendar do not currently support property visibility. Their **Properties** page shows the available Workspace Folder properties, but its visibility and reordering controls are disabled.
 
@@ -40,10 +40,11 @@ The **View options** section changes with the selected file view:
 
 - Details offers row density, borders, alternating backgrounds, colored group backgrounds, and a calculation row.
 - Grid offers item size, thumbnail orientation, card styling, compact properties, previews, and colored group backgrounds.
+- Masonry offers item size, compact properties, thumbnail or note previews, hover properties, and colored groups.
 - Calendar offers compact properties for Month and Week.
 - Columns and Boards currently have no additional presentation options in this section.
 
-For Grid, **Item size** provides **S**, **M**, and **L** presets.
+For Grid and Masonry, **Item size** provides **S**, **M**, and **L** presets.
 
 View-specific options act as global defaults when no saved view is active. When an active saved view overrides those defaults, **Use global defaults** appears; choose it to remove that saved view's overrides. See [Update or reset a saved view](../../organize-files-with-phials/save-and-reuse-views/update-or-reset-a-saved-view.md).
 

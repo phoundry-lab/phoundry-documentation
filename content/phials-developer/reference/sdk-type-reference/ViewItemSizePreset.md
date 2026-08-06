@@ -2,7 +2,7 @@
 title: "ViewItemSizePreset"
 description: "TypeScript signature and members for the ViewItemSizePreset public SDK declaration."
 ai_disclosure: true
-order: 140
+order: 141
 aliases:
   - references/ViewItemSizePreset
 ---

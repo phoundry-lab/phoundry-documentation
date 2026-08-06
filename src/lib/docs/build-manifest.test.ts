@@ -12,7 +12,7 @@ describe('Phials documentation manifest v2', () => {
 		const set = buildManifest(projectRoot).phials!;
 		expect(set.schemaVersion).toBe(2);
 		expect(set.sections).toHaveLength(6);
-		expect(Object.keys(set.pagesBySlug)).toHaveLength(145);
+		expect(Object.keys(set.pagesBySlug)).toHaveLength(146);
 		expect(Object.keys(set.aliasesBySlug)).toHaveLength(44);
 		expect(set.aliasesBySlug['basic-use/file-explorer']).toBe(
 			'get-started/phials-basics/the-phials-window'
@@ -79,8 +79,8 @@ describe('Phials documentation manifest v2', () => {
 		const set = buildManifest(projectRoot)['phials-developer']!;
 		expect(set.schemaVersion).toBe(2);
 		expect(set.sections).toHaveLength(6);
-		expect(Object.keys(set.pagesBySlug)).toHaveLength(288);
-		expect(Object.keys(set.aliasesBySlug)).toHaveLength(163);
+		expect(Object.keys(set.pagesBySlug)).toHaveLength(289);
+		expect(Object.keys(set.aliasesBySlug)).toHaveLength(164);
 		expect(set.aliasesBySlug['plugins/public-api-contract']).toBe(
 			'reference/plugin-contract-and-compatibility/public-sdk-support-contract'
 		);

@@ -131,6 +131,7 @@ The **View Mode** group in the Path Bar and Command Bar contains one command for
 | --- | --- | --- | --- |
 | Details View | Show files as rows with configurable columns. | Any Explorer tab. | **View Mode** group |
 | Thumbnails View | Show files as thumbnail cards. This is called **Grid view** elsewhere in the user documentation. | Any Explorer tab. | **View Mode** group |
+| Masonry View | Pack ratio-aware thumbnail cards into variable-height columns. | Any Explorer tab. | **View Mode** group |
 | Column View | Browse a folder branch across adjacent columns. This is called **Columns view** elsewhere in the user documentation. | Any Explorer tab. | **View Mode** group |
 | Boards View | Group files into cards and columns by an option-backed property. | A Workspace Folder with properties. | **View Mode** group |
 | Gallery View | Show large previews in a gallery layout. | Any Explorer tab. | **View Mode** group |

@@ -2,7 +2,7 @@
 title: "ThumbnailProviderProps"
 description: "TypeScript signature and members for the ThumbnailProviderProps public SDK declaration."
 ai_disclosure: true
-order: 129
+order: 130
 aliases:
   - references/ThumbnailProviderProps
 ---
@@ -22,6 +22,7 @@ interface ThumbnailProviderProps {
     size: number;
     generatedSize?: number;
     quality?: number;
+    onIntrinsicDimensions?: (dimensions: ThumbnailIntrinsicDimensions) => void;
 }
 ```
 
@@ -34,3 +35,4 @@ interface ThumbnailProviderProps {
 | `size` | `number` | yes | - |
 | `generatedSize` | `number` | no | - |
 | `quality` | `number` | no | - |
+| `onIntrinsicDimensions` | `(dimensions: `[`ThumbnailIntrinsicDimensions`](ThumbnailIntrinsicDimensions.md)`) => void` | no | Report meaningful rendered dimensions to hosts that support ratio-aware layouts. |

@@ -2,7 +2,7 @@
 title: "ToolbarPlacementConfig"
 description: "TypeScript signature and members for the ToolbarPlacementConfig public SDK declaration."
 ai_disclosure: true
-order: 131
+order: 132
 aliases:
   - references/ToolbarPlacementConfig
 ---

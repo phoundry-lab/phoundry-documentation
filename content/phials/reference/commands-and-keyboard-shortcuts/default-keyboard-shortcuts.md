@@ -94,7 +94,7 @@ The following runnable commands ship without a default keyboard shortcut:
 | Files and folders | Open in…; Pin to Favorites; Unpin from Favorites; Expand Archive; Compress; Flatten Directory; Flatten Directories |
 | Create | Markdown File; Spreadsheet (CSV); Create Workspace Folder; New saved view |
 | Properties | Text; Select; Multi-select; Tags; Status; Rating; URL; Date; Number; Checkbox; Relation; Rollup |
-| File views | Details View; Thumbnails View; Column View; Boards View; Gallery View; Calendar View; Filter; Sort; Configure view |
+| File views | Details View; Thumbnails View; Masonry View; Column View; Boards View; Gallery View; Calendar View; Filter; Sort; Configure view |
 | Workspaces and Pages | Refresh Workspaces; Open Page |
 | Network folders | Connect to Server |
 

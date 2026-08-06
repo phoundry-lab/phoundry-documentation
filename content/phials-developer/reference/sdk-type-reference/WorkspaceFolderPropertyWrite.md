@@ -2,7 +2,7 @@
 title: "WorkspaceFolderPropertyWrite"
 description: "TypeScript signature and members for the WorkspaceFolderPropertyWrite public SDK declaration."
 ai_disclosure: true
-order: 146
+order: 147
 aliases:
   - references/WorkspaceFolderPropertyWrite
 ---

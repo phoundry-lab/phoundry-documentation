@@ -27,7 +27,7 @@ To change order inside every group, configure [Sort files](./sort-files.md). For
 
 ## Collapse or expand a group
 
-Choose a group header to collapse its files, then choose it again to expand them. Details, Grid, and Columns views let you collapse each group independently.
+Choose a group header to collapse its files, then choose it again to expand them. Details, Grid, Masonry, and Columns views let you collapse each group independently.
 
 When a saved view is active, collapsed groups save automatically as view state and do not mark the view as changed. The grouping field and direction are part of the view configuration; use **Save view settings** to keep those choices.
 

@@ -52,6 +52,7 @@
 				"PreviewSurfaceProps",
 				"PreviewToolbarContributionProps",
 				"PreviewDestinationCapabilities",
+				"ThumbnailIntrinsicDimensions",
 				"ThumbnailProviderProps",
 				"EditorHistoryHandle",
 				"PreviewToolbarEditorState"
@@ -90,6 +91,11 @@
 				{
 					"name": "PreviewDestinationCapabilities",
 					"alias": "references/PreviewDestinationCapabilities",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "ThumbnailIntrinsicDimensions",
+					"alias": "references/ThumbnailIntrinsicDimensions",
 					"sincePluginApiVersion": "1.0.0"
 				},
 				{

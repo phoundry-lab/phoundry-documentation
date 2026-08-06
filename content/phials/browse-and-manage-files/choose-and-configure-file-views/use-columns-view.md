@@ -2,7 +2,7 @@
 title: "Use Columns view"
 description: "Follow a folder branch across adjacent columns before committing to a new Explorer path."
 icon: phoundry-mono:folder
-order: 3
+order: 4
 ai_disclosure: true
 ---
 

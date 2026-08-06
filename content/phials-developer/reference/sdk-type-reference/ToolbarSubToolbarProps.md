@@ -2,7 +2,7 @@
 title: "ToolbarSubToolbarProps"
 description: "TypeScript signature and members for the ToolbarSubToolbarProps public SDK declaration."
 ai_disclosure: true
-order: 132
+order: 133
 aliases:
   - references/ToolbarSubToolbarProps
 ---

@@ -2,7 +2,7 @@
 title: "Use Boards view"
 description: "Group Workspace Folder files into option-based columns and update values by moving cards."
 icon: phoundry-mono:folder
-order: 4
+order: 5
 ai_disclosure: true
 ---
 

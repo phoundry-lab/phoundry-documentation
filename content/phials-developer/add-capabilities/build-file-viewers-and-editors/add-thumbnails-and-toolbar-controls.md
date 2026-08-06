@@ -57,6 +57,26 @@ A thumbnail receives the file and requested sizes. It should finish quickly, avo
 
 `size` is the displayed size. `generatedSize` is the requested source/render resolution and may be larger for a dense display. `quality` is available for lossy encoded output. Preserve aspect ratio for content thumbnails, bound file reads and decoding work, cancel abandoned asynchronous work, and release canvases, object URLs, or document handles when the component unmounts.
 
+Ratio-aware hosts such as Masonry initially reserve a square frame. If the thumbnail has meaningful intrinsic dimensions, report them after the content loads so the host can fit the frame without learning file-format details:
+
+```svelte
+<script lang="ts">
+	let { file, onIntrinsicDimensions }: ThumbnailProviderProps = $props();
+</script>
+
+<img
+	src={thumbnailUrl}
+	alt={file.name}
+	onload={(event) =>
+		onIntrinsicDimensions?.({
+			width: event.currentTarget.naturalWidth,
+			height: event.currentTarget.naturalHeight,
+		})}
+/>
+```
+
+The callback is optional. Report the source or rendered content dimensions, not the current CSS box; Phials validates the values and may clamp extreme ratios for a usable card. Dimensionless or synthetic thumbnails can omit the callback and remain square.
+
 Do not reuse the full file surface as a thumbnail. It carries unnecessary state and interaction, and it may read the complete file many times while a directory scrolls.
 
 ## Build one toolbar contribution
