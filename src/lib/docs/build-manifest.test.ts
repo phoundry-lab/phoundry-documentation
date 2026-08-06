@@ -79,8 +79,8 @@ describe('Phials documentation manifest v2', () => {
 		const set = buildManifest(projectRoot)['phials-developer']!;
 		expect(set.schemaVersion).toBe(2);
 		expect(set.sections).toHaveLength(6);
-		expect(Object.keys(set.pagesBySlug)).toHaveLength(289);
-		expect(Object.keys(set.aliasesBySlug)).toHaveLength(164);
+		expect(Object.keys(set.pagesBySlug)).toHaveLength(290);
+		expect(Object.keys(set.aliasesBySlug)).toHaveLength(165);
 		expect(set.aliasesBySlug['plugins/public-api-contract']).toBe(
 			'reference/plugin-contract-and-compatibility/public-sdk-support-contract'
 		);

@@ -32,6 +32,7 @@ interface Command {
     searchAliases?: string[];
     menuGroup?: string;
     children?: Command[];
+    submenuItems?: (ctx: CommandContext) => import("phoundry-ui").MenuItem[];
     renderSnippet?: (ctx: CommandContext) => import("svelte").Snippet;
 }
 ```
@@ -57,4 +58,5 @@ interface Command {
 | `searchAliases` | `string[]` | no | Alternative search terms for command bar fuzzy search |
 | `menuGroup` | `string` | no | Optional group for path bar dropdown separators between sibling child commands |
 | `children` | `Command[]` | no | Child commands for dropdown/submenu patterns. When a command has children, its action typically does nothing and the UI shows a dropdown menu of child commands instead. |
+| `submenuItems` | `(ctx: `[`CommandContext`](CommandContext.md)`) => import("phoundry-ui").MenuItem[]` | no | Optional custom items for menu surfaces that present this command as a submenu. Semantic children remain available to the Command Bar. |
 | `renderSnippet` | `(ctx: `[`CommandContext`](CommandContext.md)`) => import("svelte").Snippet` | no | Custom render snippet for context menu. When provided, the command renders as a custom menu item instead of a standard action item. Useful for inline controls like ratings. |

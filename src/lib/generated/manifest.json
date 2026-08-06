@@ -9377,6 +9377,19 @@
                 "aiDisclosure": true
               },
               {
+                "slug": "reference/sdk-type-reference/WorkspaceFolderCalendarValue",
+                "aliases": [
+                  "references/WorkspaceFolderCalendarValue"
+                ],
+                "href": "/phials-developer/reference/sdk-type-reference/WorkspaceFolderCalendarValue",
+                "title": "WorkspaceFolderCalendarValue",
+                "description": "TypeScript signature and members for the WorkspaceFolderCalendarValue public SDK declaration.",
+                "hidden": false,
+                "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderCalendarValue.md",
+                "order": 142,
+                "aiDisclosure": true
+              },
+              {
                 "slug": "reference/sdk-type-reference/WorkspaceFolderFileRef",
                 "aliases": [
                   "references/WorkspaceFolderFileRef"
@@ -9386,7 +9399,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderFileRef public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderFileRef.md",
-                "order": 142,
+                "order": 143,
                 "aiDisclosure": true
               },
               {
@@ -9399,7 +9412,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyDefinition public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyDefinition.md",
-                "order": 143,
+                "order": 144,
                 "aiDisclosure": true
               },
               {
@@ -9412,7 +9425,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyOption public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyOption.md",
-                "order": 144,
+                "order": 145,
                 "aiDisclosure": true
               },
               {
@@ -9425,7 +9438,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyType public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyType.md",
-                "order": 145,
+                "order": 146,
                 "aiDisclosure": true
               },
               {
@@ -9438,7 +9451,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyValue public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyValue.md",
-                "order": 146,
+                "order": 147,
                 "aiDisclosure": true
               },
               {
@@ -9451,7 +9464,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderPropertyWrite public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyWrite.md",
-                "order": 147,
+                "order": 148,
                 "aiDisclosure": true
               },
               {
@@ -9464,7 +9477,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFoldersAPI public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFoldersAPI.md",
-                "order": 148,
+                "order": 149,
                 "aiDisclosure": true
               },
               {
@@ -9477,7 +9490,7 @@
                 "description": "TypeScript signature and members for the WorkspaceFolderSchema public SDK declaration.",
                 "hidden": false,
                 "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderSchema.md",
-                "order": 149,
+                "order": 150,
                 "aiDisclosure": true
               }
             ],
@@ -12297,6 +12310,19 @@
         "order": 141,
         "aiDisclosure": true
       },
+      "reference/sdk-type-reference/WorkspaceFolderCalendarValue": {
+        "slug": "reference/sdk-type-reference/WorkspaceFolderCalendarValue",
+        "aliases": [
+          "references/WorkspaceFolderCalendarValue"
+        ],
+        "href": "/phials-developer/reference/sdk-type-reference/WorkspaceFolderCalendarValue",
+        "title": "WorkspaceFolderCalendarValue",
+        "description": "TypeScript signature and members for the WorkspaceFolderCalendarValue public SDK declaration.",
+        "hidden": false,
+        "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderCalendarValue.md",
+        "order": 142,
+        "aiDisclosure": true
+      },
       "reference/sdk-type-reference/WorkspaceFolderFileRef": {
         "slug": "reference/sdk-type-reference/WorkspaceFolderFileRef",
         "aliases": [
@@ -12307,7 +12333,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderFileRef public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderFileRef.md",
-        "order": 142,
+        "order": 143,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyDefinition": {
@@ -12320,7 +12346,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyDefinition public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyDefinition.md",
-        "order": 143,
+        "order": 144,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyOption": {
@@ -12333,7 +12359,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyOption public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyOption.md",
-        "order": 144,
+        "order": 145,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyType": {
@@ -12346,7 +12372,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyType public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyType.md",
-        "order": 145,
+        "order": 146,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyValue": {
@@ -12359,7 +12385,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyValue public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyValue.md",
-        "order": 146,
+        "order": 147,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderPropertyWrite": {
@@ -12372,7 +12398,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyWrite public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyWrite.md",
-        "order": 147,
+        "order": 148,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFolderSchema": {
@@ -12385,7 +12411,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderSchema public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderSchema.md",
-        "order": 149,
+        "order": 150,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/WorkspaceFoldersAPI": {
@@ -12398,7 +12424,7 @@
         "description": "TypeScript signature and members for the WorkspaceFoldersAPI public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFoldersAPI.md",
-        "order": 148,
+        "order": 149,
         "aiDisclosure": true
       },
       "reference/sdk-type-reference/compareSemver": {
@@ -13134,6 +13160,7 @@
       "references/ViewAPI": "reference/sdk-type-reference/ViewAPI",
       "references/ViewColumnDefinition": "reference/sdk-type-reference/ViewColumnDefinition",
       "references/ViewItemSizePreset": "reference/sdk-type-reference/ViewItemSizePreset",
+      "references/WorkspaceFolderCalendarValue": "reference/sdk-type-reference/WorkspaceFolderCalendarValue",
       "references/WorkspaceFolderFileRef": "reference/sdk-type-reference/WorkspaceFolderFileRef",
       "references/WorkspaceFolderPropertyDefinition": "reference/sdk-type-reference/WorkspaceFolderPropertyDefinition",
       "references/WorkspaceFolderPropertyOption": "reference/sdk-type-reference/WorkspaceFolderPropertyOption",
@@ -16526,6 +16553,19 @@
         "aiDisclosure": true
       },
       {
+        "slug": "reference/sdk-type-reference/WorkspaceFolderCalendarValue",
+        "aliases": [
+          "references/WorkspaceFolderCalendarValue"
+        ],
+        "href": "/phials-developer/reference/sdk-type-reference/WorkspaceFolderCalendarValue",
+        "title": "WorkspaceFolderCalendarValue",
+        "description": "TypeScript signature and members for the WorkspaceFolderCalendarValue public SDK declaration.",
+        "hidden": false,
+        "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderCalendarValue.md",
+        "order": 142,
+        "aiDisclosure": true
+      },
+      {
         "slug": "reference/sdk-type-reference/WorkspaceFolderFileRef",
         "aliases": [
           "references/WorkspaceFolderFileRef"
@@ -16535,7 +16575,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderFileRef public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderFileRef.md",
-        "order": 142,
+        "order": 143,
         "aiDisclosure": true
       },
       {
@@ -16548,7 +16588,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyDefinition public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyDefinition.md",
-        "order": 143,
+        "order": 144,
         "aiDisclosure": true
       },
       {
@@ -16561,7 +16601,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyOption public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyOption.md",
-        "order": 144,
+        "order": 145,
         "aiDisclosure": true
       },
       {
@@ -16574,7 +16614,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyType public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyType.md",
-        "order": 145,
+        "order": 146,
         "aiDisclosure": true
       },
       {
@@ -16587,7 +16627,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyValue public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyValue.md",
-        "order": 146,
+        "order": 147,
         "aiDisclosure": true
       },
       {
@@ -16600,7 +16640,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderPropertyWrite public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderPropertyWrite.md",
-        "order": 147,
+        "order": 148,
         "aiDisclosure": true
       },
       {
@@ -16613,7 +16653,7 @@
         "description": "TypeScript signature and members for the WorkspaceFoldersAPI public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFoldersAPI.md",
-        "order": 148,
+        "order": 149,
         "aiDisclosure": true
       },
       {
@@ -16626,7 +16666,7 @@
         "description": "TypeScript signature and members for the WorkspaceFolderSchema public SDK declaration.",
         "hidden": false,
         "filePath": "content/phials-developer/reference/sdk-type-reference/WorkspaceFolderSchema.md",
-        "order": 149,
+        "order": 150,
         "aiDisclosure": true
       }
     ]

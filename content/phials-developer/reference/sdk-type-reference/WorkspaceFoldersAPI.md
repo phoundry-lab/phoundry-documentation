@@ -2,7 +2,7 @@
 title: "WorkspaceFoldersAPI"
 description: "TypeScript signature and members for the WorkspaceFoldersAPI public SDK declaration."
 ai_disclosure: true
-order: 148
+order: 149
 aliases:
   - references/WorkspaceFoldersAPI
 ---
@@ -24,6 +24,8 @@ interface WorkspaceFoldersAPI {
     setTags(file: WorkspaceFolderFileRef, tags: readonly string[]): Promise<void>;
     getRating(file: WorkspaceFolderFileRef): Promise<number | null>;
     setRating(file: WorkspaceFolderFileRef, rating: number | null): Promise<void>;
+    getCalendar(file: WorkspaceFolderFileRef): Promise<WorkspaceFolderCalendarValue | null>;
+    setCalendar(file: WorkspaceFolderFileRef, value: WorkspaceFolderCalendarValue | null): Promise<void>;
     listKnown(): Promise<readonly KnownWorkspaceFolder[]>;
     openPage(file: WorkspaceFolderFileRef, options?: {
         focusEditor?: boolean;
@@ -45,5 +47,7 @@ interface WorkspaceFoldersAPI {
 | `setTags` | `(file: `[`WorkspaceFolderFileRef`](WorkspaceFolderFileRef.md)`, tags: readonly string[]) => Promise<void>` | yes | - |
 | `getRating` | `(file: `[`WorkspaceFolderFileRef`](WorkspaceFolderFileRef.md)`) => Promise<number &#124; null>` | yes | - |
 | `setRating` | `(file: `[`WorkspaceFolderFileRef`](WorkspaceFolderFileRef.md)`, rating: number &#124; null) => Promise<void>` | yes | - |
+| `getCalendar` | `(file: `[`WorkspaceFolderFileRef`](WorkspaceFolderFileRef.md)`) => Promise<`[`WorkspaceFolderCalendarValue`](WorkspaceFolderCalendarValue.md)` &#124; null>` | yes | - |
+| `setCalendar` | `(file: `[`WorkspaceFolderFileRef`](WorkspaceFolderFileRef.md)`, value: `[`WorkspaceFolderCalendarValue`](WorkspaceFolderCalendarValue.md)` &#124; null) => Promise<void>` | yes | - |
 | `listKnown` | `() => Promise<readonly `[`KnownWorkspaceFolder`](KnownWorkspaceFolder.md)`[]>` | yes | - |
 | `openPage` | `(file: `[`WorkspaceFolderFileRef`](WorkspaceFolderFileRef.md)`, options?: { … }) => Promise<void>` | yes | - |

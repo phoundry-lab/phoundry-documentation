@@ -2,7 +2,7 @@
 title: "WorkspaceFolderPropertyType"
 description: "TypeScript signature and members for the WorkspaceFolderPropertyType public SDK declaration."
 ai_disclosure: true
-order: 145
+order: 146
 aliases:
   - references/WorkspaceFolderPropertyType
 ---
@@ -14,7 +14,7 @@ aliases:
 ## Signature
 
 ```typescript
-type WorkspaceFolderPropertyType = "text" | "number" | "date" | "boolean" | "select" | "multi-select" | "status" | "rating" | "url" | "relation" | "rollup" | "formula";
+type WorkspaceFolderPropertyType = "text" | "number" | "date" | "calendar" | "boolean" | "select" | "multi-select" | "status" | "rating" | "url" | "relation" | "rollup" | "formula";
 ```
 
 ## Union members
@@ -22,6 +22,7 @@ type WorkspaceFolderPropertyType = "text" | "number" | "date" | "boolean" | "sel
 - `text`
 - `number`
 - `date`
+- `calendar`
 - `boolean`
 - `select`
 - `multi-select`

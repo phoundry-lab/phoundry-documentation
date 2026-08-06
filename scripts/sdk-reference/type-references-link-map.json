@@ -97,6 +97,7 @@
 	"WorkspaceFolderPropertyOption": "reference/sdk-type-reference/WorkspaceFolderPropertyOption",
 	"WorkspaceFolderPropertyType": "reference/sdk-type-reference/WorkspaceFolderPropertyType",
 	"WorkspaceFolderPropertyValue": "reference/sdk-type-reference/WorkspaceFolderPropertyValue",
+	"WorkspaceFolderCalendarValue": "reference/sdk-type-reference/WorkspaceFolderCalendarValue",
 	"WorkspaceFolderFileRef": "reference/sdk-type-reference/WorkspaceFolderFileRef",
 	"WorkspaceFolderPropertyWrite": "reference/sdk-type-reference/WorkspaceFolderPropertyWrite",
 	"KnownWorkspaceFolder": "reference/sdk-type-reference/KnownWorkspaceFolder",

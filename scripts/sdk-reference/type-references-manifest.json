@@ -640,6 +640,7 @@
 				"WorkspaceFolderPropertyOption",
 				"WorkspaceFolderPropertyType",
 				"WorkspaceFolderPropertyValue",
+				"WorkspaceFolderCalendarValue",
 				"WorkspaceFolderFileRef",
 				"WorkspaceFolderPropertyWrite",
 				"KnownWorkspaceFolder"
@@ -668,6 +669,11 @@
 				{
 					"name": "WorkspaceFolderPropertyValue",
 					"alias": "references/WorkspaceFolderPropertyValue",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "WorkspaceFolderCalendarValue",
+					"alias": "references/WorkspaceFolderCalendarValue",
 					"sincePluginApiVersion": "1.0.0"
 				},
 				{

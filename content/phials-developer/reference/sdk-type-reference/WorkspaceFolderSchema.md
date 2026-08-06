@@ -2,7 +2,7 @@
 title: "WorkspaceFolderSchema"
 description: "TypeScript signature and members for the WorkspaceFolderSchema public SDK declaration."
 ai_disclosure: true
-order: 149
+order: 150
 aliases:
   - references/WorkspaceFolderSchema
 ---

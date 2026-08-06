@@ -26,10 +26,10 @@
 	},
 	"dependencies": {
 		"@iconify/svelte": "^5.2.1",
-		"phoundry-ui": "file:vendor/phoundry-ui-0b3fa2c.tgz"
+		"phoundry-ui": "file:vendor/phoundry-ui-c7900ae.tgz"
 	},
 	"devDependencies": {
-		"@phoundry/phials-plugin-sdk": "1.0.0",
+		"@phoundry/phials-plugin-sdk": "^1.0.1",
 		"@shikijs/rehype": "^4.0.2",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.67.0",

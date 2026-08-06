@@ -11,7 +11,7 @@ aliases:
 
 **Since Plugin API:** `1.0.0`
 
-Details column layout live-sync payload (ADR-0010).
+Details column layout live-sync payload.
 
 ## Signature
 

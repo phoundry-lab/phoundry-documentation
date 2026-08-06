@@ -139,6 +139,7 @@ Use the workflow guides for permissions, lifecycle consequences, and complete ex
 - [`WorkspaceFolderPropertyOption`](WorkspaceFolderPropertyOption.md)
 - [`WorkspaceFolderPropertyType`](WorkspaceFolderPropertyType.md)
 - [`WorkspaceFolderPropertyValue`](WorkspaceFolderPropertyValue.md)
+- [`WorkspaceFolderCalendarValue`](WorkspaceFolderCalendarValue.md)
 - [`WorkspaceFolderFileRef`](WorkspaceFolderFileRef.md)
 - [`WorkspaceFolderPropertyWrite`](WorkspaceFolderPropertyWrite.md)
 - [`KnownWorkspaceFolder`](KnownWorkspaceFolder.md)
