@@ -35,7 +35,7 @@ Choose **Page** when you want the same file's Workspace Folder properties and bo
 
 When you open another file, Phials can reuse the active unpinned file tab if its viewer or editor is in a safe state. To keep that tab on its current file, open the tab menu and choose **Pin Tab**. Choose **Unpin Tab** when contextual reuse is acceptable again.
 
-Pinning protects the file tab from replacement. It is not required for session restoration.
+Pinning protects the file tab from replacement. It is not required for Layout restoration.
 
 When a file is renamed or moved within Phials, an indexed file tab retains the file's stable identity and follows the changed path.
 
@@ -43,6 +43,6 @@ When a file is renamed or moved within Phials, an indexed file tab retains the f
 
 Open the tab menu and choose **Close Tab** to close one file tab. Before closing or replacing a tab, Phials asks its active editor to finish or confirm pending work. If the work cannot be finalized, the tab remains open.
 
-Phials restores both pinned and unpinned file tabs with the window session. It preserves their tab-group placement, active File or Page mode, compatible viewer, Page body mode and scroll position, and the File metadata layout choice.
+Phials restores both pinned and unpinned file tabs with their Layout. It preserves their tab-group placement, active File or Page mode, compatible viewer, Page body mode and scroll position, and the File metadata layout choice.
 
 If the saved viewer is no longer available, Phials falls back to another compatible viewer when possible. If it cannot resolve a saved Workspace Folder or indexed file, it keeps the tab in an unavailable state rather than silently attaching it to a different file. Choose **Close Tab** when you no longer need that unavailable tab.

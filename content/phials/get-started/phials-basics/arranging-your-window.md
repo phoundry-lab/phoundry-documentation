@@ -24,8 +24,8 @@ Explorer tabs, file tabs, and eligible feature tabs can share this arrangement. 
 
 ## Layouts remember the center
 
-A **Layout** is a named snapshot of the complete center arrangement. It includes tab groups, tabs, split directions, and proportions. It does not include the left, right, or bottom docks.
+A **Layout** is a named, automatically saved complete center environment. It includes tab groups, tabs, Explorer state, split directions, and proportions. It does not include the left, right, or bottom docks.
 
-Layouts are separate from automatic session restoration and from saved views. Session restoration remembers where you left off. A saved view remembers how files appear in a location. A Layout is an explicit center arrangement that changes only when you update it.
+Exactly one Layout is active, and center changes save into it as you work. Restart restoration opens that active Layout where you left it. A saved view is narrower: it remembers how files appear in one location.
 
-See [Arrange docks and panels](../../arrange-and-customize-phials/arrange-your-window/arrange-docks-and-panels.md), [Create tab groups and split views](../../arrange-and-customize-phials/arrange-your-window/create-tab-groups-and-split-views.md), and [Save and reuse Layouts](../../arrange-and-customize-phials/arrange-your-window/save-and-reuse-layouts.md) for the complete controls.
+See [Arrange docks and panels](../../arrange-and-customize-phials/arrange-your-window/arrange-docks-and-panels.md), [Create tab groups and split views](../../arrange-and-customize-phials/arrange-your-window/create-tab-groups-and-split-views.md), and [Create and switch Layouts](../../arrange-and-customize-phials/arrange-your-window/save-and-reuse-layouts.md) for the complete controls.

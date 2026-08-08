@@ -17,7 +17,7 @@ The **Navigator panel** contains shortcuts and destinations rather than the cont
 - **Favorites** for shortcuts to files and folders
 - **Locations** for drives, cloud storage, network locations, and Trash where supported
 - **Workspaces** for folders with Workspace Folder data
-- **Layouts** for saved center arrangements
+- **Layouts** for named, autosaved center environments
 - **Saved searches** for reusable searches
 
 Choosing a folder or location in the Navigator opens it in an available Explorer tab. You can also open a location in a new Explorer tab when you want to keep the current one in place.

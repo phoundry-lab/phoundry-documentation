@@ -34,6 +34,6 @@ You can start or replay tutorials later from the **Learning** panel. See [Get he
 
 ## Open your first location
 
-When no earlier session exists, Phials creates an **Explorer tab**, which browses one location and keeps its own navigation and view state. The first Explorer tab opens your home folder. Later launches restore the saved tab arrangement when it is available.
+On a fresh profile, Phials creates an ordinary Layout named **Default** with one **Explorer tab**. That tab browses one location and keeps its own navigation and view state; it opens your configured default directory or your home folder when no default is set. Later launches restore the active Layout where you left it.
 
 Choose another location in the **Navigator** panel or enter a folder in the path bar when you want to browse somewhere else. For the main browsing controls, continue with [Browsing in Phials](../phials-basics/browsing-in-phials.md).

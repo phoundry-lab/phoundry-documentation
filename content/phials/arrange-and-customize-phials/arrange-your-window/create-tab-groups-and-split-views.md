@@ -48,8 +48,8 @@ Most empty groups in a multi-group split are removed automatically. An edge move
 
 For the complete tab-closing and restart behavior, see [Close tabs and restore your session](../../browse-and-manage-files/work-with-explorer-tabs/close-tabs-and-restore-your-session.md).
 
-## Restore or save the arrangement
+## Restore the arrangement
 
-Phials automatically restores the live tab groups, open tabs, active tabs, intentional empty groups, and divider proportions after restart. This is session restoration, not a named Layout.
+Phials automatically saves the live tab groups, open tabs, active tabs, intentional empty groups, and divider proportions into the active Layout. After restart, it restores that Layout where you left it.
 
-Use [Save and reuse Layouts](./save-and-reuse-layouts.md) when you want to return to a specific named center arrangement rather than whichever split view was open when you last quit.
+Use [Create and switch Layouts](./save-and-reuse-layouts.md) to keep independent center environments for different tasks.

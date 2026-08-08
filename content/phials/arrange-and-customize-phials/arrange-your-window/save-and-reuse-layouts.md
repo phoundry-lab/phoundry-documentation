@@ -1,6 +1,6 @@
 ---
-title: "Save and reuse Layouts"
-description: "Create, load, update, reload, rename, customize, and delete named center Layouts."
+title: "Create and switch Layouts"
+description: "Create, switch, duplicate, rename, customize, and delete autosaved center Layouts."
 icon: phoundry-mono:settings
 order: 3
 aliases:
@@ -8,54 +8,54 @@ aliases:
 ai_disclosure: true
 ---
 
-# Save and reuse Layouts
+# Create and switch Layouts
 
-A **Layout** is a named snapshot of the complete center arrangement. Use one when you want to return to a particular set of tab groups, tabs, active tabs, split proportions, and center-tab state.
+A **Layout** is a named, automatically saved center environment. It includes tab groups, center tabs, active tabs, split proportions, Explorer locations and history, file-view state, pinning, and serializable state kept by eligible center tabs.
 
-A Layout does not include the left, right, or bottom docks. It also does not change automatically as your live center changes.
+Exactly one Layout is active. Changes to the center are saved into that Layout as you work, so switching away and returning brings you back to where you left it. Layouts do not include the left, right, or bottom docks; those panels and their arrangement remain global.
 
-## Save the current center as a Layout
+## Start with the Default Layout
 
-1. Arrange the center tabs and groups you want to preserve.
-2. In the Navigator panel, expand **Layouts**.
-3. Choose the add button beside **Layouts**.
-4. Enter a name in **Save Layout**, then confirm.
+A fresh Phials profile begins with an ordinary Layout named **Default**. You can use, rename, customize, or duplicate it like any other Layout. The active Layout and the final remaining Layout cannot be deleted, so the catalog always has a center environment to restore.
 
-Phials saves the snapshot and marks the new Layout as loaded. Pin state, Explorer state, state kept by eligible center tabs, which tab and group are active, empty groups, and divider proportions are included.
+## Create a new Layout
 
-## Load a Layout
+1. In the Navigator panel, expand **Layouts**.
+2. Choose the add button beside **Layouts**.
+3. Enter a unique name in **New Layout**, then choose **Create**.
 
-Choose an unloaded Layout in the Navigator panel, or open its menu and choose **Load Layout**. Loading replaces the current center arrangement rather than merging with it. Your docks and panels do not move.
+Phials finishes and saves the outgoing Layout, then creates and activates a clean Layout with one Explorer tab. The Explorer opens the configured default directory, or your system home folder when no default directory is set. **Duplicate Current Tab** does not affect New Layout.
 
-Before loading, save any work you intend to keep. Phials runs the normal close or finalization guard for tabs that own editable work. If a tab cannot finish or you cancel its prompt, Phials keeps the current center unchanged and does not load the Layout.
+Layout names ignore surrounding spaces and must be unique regardless of capitalization.
 
-The loaded Layout shows an indicator in the Navigator. If you then change a durable part of the center arrangement or tab state, the indicator changes to **Layout modified**. Automatic session saving remembers that live divergence, but it does not overwrite the named Layout.
+## Switch Layouts
 
-## Keep or discard changes
+Choose an inactive Layout in the Navigator, or open its menu and choose **Switch to Layout**. Switching replaces the complete center rather than merging arrangements. The Navigator uses its ordinary active-row styling to show the active Layout.
 
-Open the loaded Layout's menu:
+Phials prepares the destination before changing the live center and runs the normal finalization guard for editable tabs. If preparation fails, work cannot be finalized, or you cancel a prompt, the current Layout stays active. Docks and panels do not move.
 
-- Choose **Update Layout** to replace its saved snapshot with the current center. Confirm the update when prompted.
-- Choose **Reload Layout** to discard the current center divergence and reapply the saved snapshot.
+If Phials cannot save the outgoing Layout, it blocks the switch and offers **Retry**, **Discard Layout Changes**, or **Return to Phials**. Discard returns that Layout to its last successfully persisted center state before retrying the transition.
 
-Before choosing **Reload Layout**, update the Layout if you want to keep your current arrangement changes. Reload asks for confirmation and still respects each editable tab's normal finalization guard.
+## Duplicate a Layout
+
+Open any Layout's menu and choose **Duplicate Layout**, then enter a unique name. Phials inserts the independent copy immediately after its source and activates it.
+
+The duplicate begins with the source's complete persisted center state, icon, and color. It receives new internal identities for its tab groups, tabs, Explorer panes, and center module instances, so later changes do not alter the source. Serializable module state is copied; ephemeral resources such as live Terminal processes restart rather than becoming a second connection to the same resource.
 
 ## Rename or customize a Layout
 
-Open the Layout's menu and choose **Edit…**. Change its **Display Name**, icon, or icon color, then choose **Save**. These identity changes do not update the saved center snapshot.
+Open the Layout's menu and choose **Edit Layout**. Change its display name, icon, or icon color, then choose **Save**. Names remain case-insensitively unique. Identity changes do not disturb the center environment.
 
 ## Delete a Layout
 
-Deleting a Layout cannot be undone. Open its menu, choose **Delete Layout**, then confirm **Delete**.
+Open an inactive Layout's menu, choose **Delete Layout**, then confirm **Delete**. Deletion cannot be undone. You cannot delete the active Layout or the final remaining Layout; switch to another Layout first when necessary.
 
-Phials removes the named snapshot but leaves the current center tabs and groups as they are. If that Layout was loaded, the center simply stops being associated with a named Layout.
+## Layouts and saved views
 
-## Layouts, session restoration, and saved views
+| System                       | What it remembers                                                 | How it changes                                     |
+| ---------------------------- | ----------------------------------------------------------------- | -------------------------------------------------- |
+| **Layout**                   | One named complete center environment, excluding docks            | Automatically while that Layout is active          |
+| **Global panel arrangement** | Dock visibility, size, panel placement, groups, and active panels | Automatically as you arrange panels                |
+| **Saved view**               | How files appear in one folder or Workspace Folder scope          | Through the saved-view controls in an Explorer tab |
 
-| System | What it remembers | How it changes |
-| --- | --- | --- |
-| **Layout** | One named snapshot of the complete center, excluding docks | Explicit **Save Layout** or **Update Layout** |
-| **Session restoration** | The live center where you left off; dock state is restored separately | Automatically as you work |
-| **Saved view** | How files appear in one folder or Workspace Folder scope | Through the saved-view controls in an Explorer tab |
-
-Use [Create tab groups and split views](./create-tab-groups-and-split-views.md) to build the center arrangement before saving it. Use [Save and reuse views](../../organize-files-with-phials/save-and-reuse-views/index.md) when you want to preserve a folder's view mode, sorting, filters, grouping, and related presentation instead of the whole center.
+There is no separate unnamed center session, Save Layout, Update Layout, or Reload Layout operation. Restart restoration opens the active Layout where it was last saved. Use [Create tab groups and split views](./create-tab-groups-and-split-views.md) to arrange its center. Use [Save and reuse views](../../organize-files-with-phials/save-and-reuse-views/index.md) when you want a reusable folder presentation rather than a complete center environment.

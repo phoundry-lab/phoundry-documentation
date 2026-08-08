@@ -18,11 +18,11 @@ You can also open Settings, enable Developer mode, choose **Developer**, then ch
 
 Without a `PHIALS_HOME` override, the default is a hidden `.phials` folder in your operating-system home folder:
 
-| Platform | Default Phials Home |
-| --- | --- |
-| macOS | `/Users/<name>/.phials` |
-| Windows | `C:\Users\<name>\.phials` |
-| Linux | `/home/<name>/.phials` |
+| Platform | Default Phials Home       |
+| -------- | ------------------------- |
+| macOS    | `/Users/<name>/.phials`   |
+| Windows  | `C:\Users\<name>\.phials` |
+| Linux    | `/home/<name>/.phials`    |
 
 `~/.phials` is shorthand for the macOS or Linux default, not a universal literal path. On Windows, `%USERPROFILE%\.phials` refers to the default location.
 
@@ -30,18 +30,18 @@ If you set the `PHIALS_HOME` environment variable before launching Phials, every
 
 ## Durable contents
 
-| Relative path | User-visible purpose | Backup class |
-| --- | --- | --- |
-| `config.toml` | App preferences, including appearance, Explorer defaults, file visibility, opening behavior, thumbnails, Terminal, and some feature settings | Durable |
-| `data/app.db` | Ordinary-folder saved views and column layouts, saved network locations, local Workspace Folder registration, and cross-Workspace indexes | Durable as a whole |
-| `data/plugins.db` | Data stored by shipped features and community plugins, including Recents and some feature caches | Durable as a whole |
-| `state/session.json` | Restored tabs and tab groups, Layouts, favorites, saved searches, panel arrangement, Navigator state, command customization, and plugin settings | Durable |
-| `state/shortcuts.json` | Custom keyboard shortcuts | Durable |
-| `state/plugin-data.json` | Namespaced key/value data stored by community plugins | Durable when you want plugin data restored |
-| `vials/<workspace-id>/` | Complete bundles for Workspace Folders stored locally in Phials Home | Durable; copy each bundle as one unit |
-| `plugins/<plugin-id>/` | Installed community-plugin packages and their bundled assets | Durable if you want the same installed plugins |
-| `license.json` | Signed local license entitlement cache | Device-sensitive; you may need to activate again after moving devices |
-| `trial.json` | Local trial record tied to a machine fingerprint | Device-sensitive; it is not a transferable trial |
+| Relative path            | User-visible purpose                                                                                                                                                             | Backup class                                                          |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `config.toml`            | App preferences, including appearance, Explorer defaults, file visibility, opening behavior, thumbnails, Terminal, and some feature settings                                     | Durable                                                               |
+| `data/app.db`            | Ordinary-folder saved views and column layouts, saved network locations, local Workspace Folder registration, and cross-Workspace indexes                                        | Durable as a whole                                                    |
+| `data/plugins.db`        | Data stored by shipped features and community plugins, including Recents and some feature caches                                                                                 | Durable as a whole                                                    |
+| `state/session.json`     | The ordered Layout catalog and active Layout center state, plus favorites, saved searches, global panel arrangement, Navigator state, command customization, and plugin settings | Durable                                                               |
+| `state/shortcuts.json`   | Custom keyboard shortcuts                                                                                                                                                        | Durable                                                               |
+| `state/plugin-data.json` | Namespaced key/value data stored by community plugins                                                                                                                            | Durable when you want plugin data restored                            |
+| `vials/<workspace-id>/`  | Complete bundles for Workspace Folders stored locally in Phials Home                                                                                                             | Durable; copy each bundle as one unit                                 |
+| `plugins/<plugin-id>/`   | Installed community-plugin packages and their bundled assets                                                                                                                     | Durable if you want the same installed plugins                        |
+| `license.json`           | Signed local license entitlement cache                                                                                                                                           | Device-sensitive; you may need to activate again after moving devices |
+| `trial.json`             | Local trial record tied to a machine fingerprint                                                                                                                                 | Device-sensitive; it is not a transferable trial                      |
 
 Phials also creates app-managed directories such as `themes/`, and regenerable files such as `open-with-probes/`. Preserve the complete Phials Home for a full backup instead of selecting only the familiar filenames.
 

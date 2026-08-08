@@ -8,7 +8,7 @@ ai_disclosure: true
 
 # Start a trial or activate a license
 
-Start a 14-day trial or activate a license to load the main Phials window. Until Phials finds a valid trial or license, it shows an access screen instead of opening your files and saved session. On a new installation, that screen is titled **Activate Phials**.
+Start a 14-day trial or activate a license to load the main Phials window. Until Phials finds a valid trial or license, it shows an access screen instead of opening your files and active Layout. On a new installation, that screen is titled **Activate Phials**.
 
 ## Start the trial
 

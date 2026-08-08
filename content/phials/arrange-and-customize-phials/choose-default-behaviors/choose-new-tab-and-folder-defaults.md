@@ -19,11 +19,13 @@ Choose where a new Explorer tab begins and how Phials presents a folder before a
    - **Duplicate Current Tab** opens it at the active Explorer tab's current folder.
 4. If you chose **Use Default Directory**, choose **Browse** beside **Default Directory** and select a folder. Use **Reset to home** to return to your system home folder.
 
-The behavior applies to the tab-bar **+**, the **New Tab** command, and its keyboard shortcut. It affects new Explorer tabs only; it does not move a tab that is already open or replace tabs restored from your previous session.
+The behavior applies to the tab-bar **+**, the **New Tab** command, and its keyboard shortcut. It affects new Explorer tabs only; it does not move a tab that is already open or replace tabs restored from a Layout.
 
 Despite its name, **Duplicate Current Tab** copies only the current folder as the new tab's starting point. It does not copy selection, navigation history, file-view settings, tab groups, or split views. Use [Duplicate an Explorer tab](../../browse-and-manage-files/work-with-explorer-tabs/duplicate-an-explorer-tab.md) when you want the complete Explorer-tab state copied.
 
 If no Explorer tab is active, Phials uses the default directory instead. Leaving **Default Directory** unset means your system home folder.
+
+**New Layout** also starts with one Explorer tab at the default directory or system home folder. It always uses that clean starting point and ignores **Duplicate Current Tab**. Use **Duplicate Layout** when you want to fork the complete current center instead.
 
 ## Set fallback folder presentation
 
@@ -34,7 +36,7 @@ In **Settings → General**, find **Defaults**, then set:
 - **Default sort order** to **Ascending** or **Descending**
 - **Default group by** to **None**, **Extension**, **Kind**, **Created**, or **Modified**
 
-These choices supply a baseline when a folder has no more specific presentation state. A restored Explorer tab keeps its restored state, and an active saved view supplies its own view, sort, filter, and grouping. Changing these defaults does not rewrite a saved view.
+These choices supply a baseline when a folder has no more specific presentation state. An Explorer tab restored from a Layout keeps its restored state, and an active saved view supplies its own view, sort, filter, and grouping. Changing these defaults does not rewrite a saved view.
 
 Default groups start in ascending order. Change the direction in the active file view when you need a different arrangement.
 

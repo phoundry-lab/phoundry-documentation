@@ -50,4 +50,4 @@ If you close the last panel in a dock's only group, the dock remains available w
 
 Phials saves dock visibility, dock sizes, panel placement, panel groups, and the active panel automatically. It restores that global panel arrangement after restart.
 
-Named Layouts do not include docks or panels. Loading a Layout changes only the center, leaving this panel arrangement in place. See [Save and reuse Layouts](./save-and-reuse-layouts.md) for that boundary.
+Layouts do not include docks or panels. Switching Layouts changes only the center, leaving this global panel arrangement in place. See [Create and switch Layouts](./save-and-reuse-layouts.md) for that boundary.
