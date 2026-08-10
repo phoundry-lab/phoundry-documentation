@@ -12,6 +12,9 @@ const config = {
 		alias: {
 			$phoundry: 'node_modules/phoundry-ui/dist'
 		},
+		paths: {
+			relative: false
+		},
 		prerender: {
 			origin: 'https://docs.phoundry.app',
 			handleHttpError: 'fail'
@@ -20,4 +23,3 @@ const config = {
 };
 
 export default config;
-
