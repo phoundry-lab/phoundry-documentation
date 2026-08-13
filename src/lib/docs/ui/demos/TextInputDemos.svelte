@@ -16,6 +16,7 @@
 	let outline = $state('');
 	let fill = $state('');
 	let ghost = $state('');
+	let trueGhost = $state('');
 	let email = $state('');
 	let prefixOnly = $state('');
 	let prefixWithIcon = $state('');
@@ -47,7 +48,8 @@
 
 	const variantsCode = `<TextInput variant="outline" placeholder="Outline (default)" />
 <TextInput variant="fill" placeholder="Fill" />
-<TextInput variant="ghost" placeholder="Ghost" />`;
+<TextInput variant="ghost" placeholder="Ghost" />
+<TextInput variant="trueGhost" placeholder="True ghost" />`;
 
 	const autocompleteCode = `<TextInput
   type="email"
@@ -289,6 +291,14 @@
 					ghost = v;
 				}}
 				placeholder="Ghost"
+			/>
+			<TextInput
+				variant="trueGhost"
+				value={trueGhost}
+				oninput={(v: string) => {
+					trueGhost = v;
+				}}
+				placeholder="True ghost"
 			/>
 		</div>
 	</Example>

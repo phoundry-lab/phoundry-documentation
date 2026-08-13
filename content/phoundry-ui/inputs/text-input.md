@@ -18,7 +18,7 @@ order: 1
 		{ name: 'type', type: "'text' | 'email' | 'password' | 'search' | 'url' | 'tel'", default: "'text'", description: 'HTML input type' },
 		{ name: 'placeholder', type: 'string', description: 'Placeholder text' },
 		{ name: 'size', type: "'xs' | 'sm' | 'md' | 'lg'", default: "'md'", description: 'Control size aligned to Button scale (`xs` h-4 / 16px … `lg` h-8 / 32px outer box)' },
-		{ name: 'variant', type: "'outline' | 'fill' | 'ghost'", default: "'outline'", description: 'Visual style variant' },
+		{ name: 'variant', type: "'outline' | 'fill' | 'ghost' | 'trueGhost'", default: "'outline'", description: 'Visual style. `trueGhost` has no border, fill, or hover/focus chrome.' },
 		{ name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the input' },
 		{ name: 'readonly', type: 'boolean', default: 'false', description: 'Makes the input read-only' },
 		{ name: 'icon', type: 'string', description: 'Iconify icon string shown at the leading edge' },
@@ -38,7 +38,7 @@ order: 1
 
 <UiDocHeader
 	title="TextInput"
-	description="Single-line text input with optional leading icon, optional prefix text after the icon, and optional trailing suffix. Supports multiple HTML input types, four sizes, three visual variants, and callbacks for both input and change events."
+	description="Single-line text input with optional leading icon, optional prefix text after the icon, and optional trailing suffix. Supports multiple HTML input types, four sizes, four visual variants, and callbacks for both input and change events."
 	importCode={"import { TextInput, PhiIcons } from 'phoundry-ui';"}
 />
 
@@ -53,3 +53,4 @@ order: 1
 - Use `oninput` for real-time feedback (e.g. live search) and `onchange` for commit-on-blur behavior.
 - Set `type="search"` with an icon for a native-feeling search field that shows a clear button in some browsers.
 - Pair with `FormField` to get labels, descriptions, and error messaging for free.
+- Use `variant="trueGhost"` for inline editing where the parent already supplies hover/focus treatment. It has no border, fill, or focus ring — provide your own affordance if the field stands alone.
