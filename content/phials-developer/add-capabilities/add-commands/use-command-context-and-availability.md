@@ -16,7 +16,7 @@ Phials passes the current [CommandContext](../../reference/sdk-type-reference/Co
 - `selectedFiles`: the effective Explorer selection, or an empty array;
 - `targetFile`: the file the user invoked a context menu on, otherwise the first selected file, or `null`;
 - `currentPath`: the current Explorer location;
-- `isVial`: whether the current location is inside a Workspace Folder;
+- `isWorkspace`: whether the current directory is a Workspace Folder;
 - `hasPropertySchema`: whether the current saved-view scope has Workspace Folder properties;
 - `activeContextKeys`: the resolved fast-filter keys;
 - `pane`: the typed Explorer pane context for the invocation.

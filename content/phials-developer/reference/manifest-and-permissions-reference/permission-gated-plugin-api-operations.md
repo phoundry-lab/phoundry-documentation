@@ -102,7 +102,7 @@ not require manifest permissions:
 
 | Service | Always-available operations |
 | --- | --- |
-| `api.settings` | `get`, `set`, `getAll` |
+| `api.settings` | `get`, `set`, `getAll`, `getStored`, `unset`, `reset`, `onChange`, `open` |
 | `api.storage` | `get`, `set`, `delete`, `keys`, `clear` |
 | `api.database` | `query`, `execute`, `insert`, `update`, `deleteFrom`, `selectAll` for declared plugin tables |
 
@@ -121,6 +121,7 @@ These base Plugin API operations require no manifest permission:
 | `api.events` | `on`, `once`, `emit`, `register`; subscriptions remain subject to lifecycle cleanup |
 | `api.modal` | `confirm`, `prompt`, `alert`, `choose` |
 | `api.notify` | `info`, `success`, `warning`, `error` |
+| `api.openSettings()` | Opens Settings on this plugin's settings page. `api.settings.open()` is the same navigation |
 
 No permission makes an unknown module provider, event, database table, or app
 setting available.

@@ -29,7 +29,7 @@
 		"phoundry-ui": "file:vendor/phoundry-ui-c7900ae.tgz"
 	},
 	"devDependencies": {
-		"@phoundry/phials-plugin-sdk": "^1.0.1",
+		"@phoundry/phials-plugin-sdk": "^1.0.2",
 		"@shikijs/rehype": "^4.0.2",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.67.0",

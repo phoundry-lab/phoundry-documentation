@@ -17,7 +17,7 @@ Format: 'broad-category' or 'broad-category - specific'
 ## Signature
 
 ```typescript
-type FileCategory = "image" | "image - vector" | "image - raw" | "video" | "audio - lossless" | "audio - lossy" | "audio - midi" | "document" | "ebook" | "spreadsheet" | "presentation" | "code" | "code - data" | "code - config" | "code - markup" | "model" | "cad" | "archive" | "archive - disk" | "archive - package" | "executable" | "database" | "font" | "folder" | "unknown";
+type FileCategory = "image" | "image - vector" | "image - raw" | "video" | "audio - lossless" | "audio - lossy" | "audio - midi" | "document" | "ebook" | "spreadsheet" | "presentation" | "plain text" | "code" | "code - data" | "code - config" | "code - markup" | "model" | "cad" | "archive" | "archive - disk" | "archive - package" | "executable" | "database" | "font" | "folder" | "unknown";
 ```
 
 ## Union members
@@ -33,6 +33,7 @@ type FileCategory = "image" | "image - vector" | "image - raw" | "video" | "audi
 - `ebook`
 - `spreadsheet`
 - `presentation`
+- `plain text`
 - `code`
 - `code - data`
 - `code - config`

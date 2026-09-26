@@ -55,7 +55,7 @@ export default function createPlugin(): PhialsPlugin {
 ## Build the settings contract
 
 1. [Define plugin settings](define-plugin-settings.md) with stable keys, useful defaults, field constraints, and reset behavior.
-2. [Read and update plugin settings](read-and-update-plugin-settings.md) through `api.settings` and keep long-lived interfaces synchronized with persisted changes.
+2. [Read and update plugin settings](read-and-update-plugin-settings.md) through `api.settings`, and call `api.openSettings()` when a command should open this plugin's settings page.
 3. [Build a custom settings interface](build-a-custom-settings-interface.md) only when the schema-generated controls cannot express the interaction.
 
 Plugin settings are for user-configurable behavior. They are not a general persistence bucket. Use [Choose between settings, storage, and a database](../../work-with-phials/store-plugin-data/choose-between-settings-storage-and-a-database.md) for cached state, progress, indexes, records, and other plugin-owned data.

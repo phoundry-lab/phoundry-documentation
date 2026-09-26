@@ -22,7 +22,7 @@ interface CommandContext {
     selectedFiles: FileEntry[];
     targetFile: FileEntry | null;
     currentPath: string;
-    isVial: boolean;
+    isWorkspace: boolean;
     hasPropertySchema: boolean;
     activeContextKeys: ReadonlySet<CommandContextKey>;
 }
@@ -36,6 +36,6 @@ interface CommandContext {
 | `selectedFiles` | [`FileEntry`](FileEntry.md)`[]` | yes | Selected files (empty if none) |
 | `targetFile` | [`FileEntry`](FileEntry.md)` &#124; null` | yes | The "target" file (for context menu: right-clicked file; otherwise: first selected) |
 | `currentPath` | `string` | yes | Current directory path |
-| `isVial` | `boolean` | yes | Whether current directory is a vial |
+| `isWorkspace` | `boolean` | yes | Whether current directory is a workspace |
 | `hasPropertySchema` | `boolean` | yes | Whether the saved-views scope has a property schema (e.g. Boards). |
 | `activeContextKeys` | `ReadonlySet<`[`CommandContextKey`](CommandContextKey.md)`>` | yes | Active context keys (for debugging/inspection) |

@@ -74,7 +74,7 @@ Use this check for a user-entered leaf name. Do not use it to reject an absolute
 ```ts
 function entryKind(entry: FileEntry): string {
   if (entry.symlink_broken) return "Broken link";
-  if (entry.is_vial) return "Workspace Folder";
+  if (entry.is_workspace) return "Workspace Folder";
   if (entry.is_dir) return "Folder";
   if (entry.is_file) return "File";
   return "Other";
@@ -89,8 +89,9 @@ Important fields include:
 | `path` | Full path to use for subsequent `api.files` calls. |
 | `icon` | Host-resolved Iconify glyph for consistent presentation. |
 | `is_file`, `is_dir` | Effective navigable type. |
-| `is_vial` | The entry is a Workspace Folder root. |
-| `isChildVial` | The entry is a nested Workspace Folder. |
+| `is_workspace` | The entry is a Workspace Folder root. |
+| `isChildWorkspace` | The entry is a nested Workspace Folder. |
+| `online_only` | The bytes are not local. Absent means local or unknown. |
 | `is_symlink` | The listing node is a symbolic link or directory junction. |
 | `symlink_target` | Resolved target when available, or stored link text for a broken link. |
 | `symlink_broken` | The link target cannot be resolved. |

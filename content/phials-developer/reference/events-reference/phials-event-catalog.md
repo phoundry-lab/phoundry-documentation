@@ -64,7 +64,7 @@ Creating the first tab emits `core.tab.created`; it does not require a
 | `core.file.saved` | `{ path: string }` | A supported editor or Plugin API write durably saves file content. | After the write commits. A later save produces another event even when the path is unchanged. |
 | `core.file.renamed` | `{ oldPath: string; newPath: string }` | A file rename commits and Phials reconciles the affected path state. | After commit; a multi-file rename emits one event per file in committed mapping order. |
 | `core.file.deleted` | `{ paths: string[] }` | One supported operation moves or deletes one or more files and reconciles affected state. | One event per committed operation; `paths` preserves that operation's deterministic input order. |
-| `core.file-note.saved` | `{ path: string; vialPath: string; hasNote: boolean }` | Persisted File Note content is created, updated, or removed for a file in a Workspace Folder. | After the note write commits. `hasNote` is false when the persisted content is empty after trimming. |
+| `core.file-note.saved` | `{ path: string; workspacePath: string; hasNote: boolean }` | Persisted File Note content is created, updated, or removed for a file in a Workspace Folder. | After the note write commits. `hasNote` is false when the persisted content is empty after trimming. |
 
 File events describe operations Phials owns or observes through a documented
 public contract. They are not a complete operating-system filesystem watcher.
@@ -74,13 +74,15 @@ Directory operations use the separate directory events.
 
 | Event | Payload | Delivered when | Ordering |
 | --- | --- | --- | --- |
-| `core.vial-page-config.changed` | `{ vialPath: string; page: VialPageConfig }` | The portable Page configuration for one Workspace Folder is persisted and adopted. | Ordered by successful configuration commits for `vialPath`. |
-| `core.vial-values.changed` | `VialValuesChangedEvent` | Canonical Workspace Folder property values change, or a scoped compatibility refresh is required because exact cell deltas are unavailable. | Delta events follow committed mutation-version order. A batch publishes primary cells in commit order. |
+| `core.workspace-page-config.changed` | `{ workspacePath: string; page: WorkspacePageConfig }` | The portable Page configuration for one Workspace Folder is persisted and adopted. | Ordered by successful configuration commits for `workspacePath`. |
+| `core.workspace-values.changed` | `WorkspaceValuesChangedEvent` | Canonical Workspace Folder property values change, or a scoped compatibility refresh is required because exact cell deltas are unavailable. | Delta events follow committed mutation-version order. A batch publishes primary cells in commit order. |
+| `core.workspace-properties.changed` | `{ workspaceIds: string[]; sourcePaneId: string }` | A Workspace Folder Property schema change commits, including a paired Relation. | After the schema commit. `workspaceIds` lists every Workspace Folder whose schema changed. |
+| `core.workspace-formula-output-types.changed` | `{ workspaceId?: string; workspacePath: string; propertyIds: string[]; savedViews: SavedWorkspaceView[]; sourcePaneId: string }` | A formula property's output type changes and saved-view consumers are normalized. | After that normalization commits. `propertyIds` lists the retyped properties. |
 
-`VialPageConfig` is:
+`WorkspacePageConfig` is:
 
 ```ts
-interface VialPageConfig {
+interface WorkspacePageConfig {
   propertyOrder?: string[];
   propertyVisibility?: Record<
     string,
@@ -91,30 +93,30 @@ interface VialPageConfig {
 }
 ```
 
-`core.vial-values.changed` uses a discriminated union:
+`core.workspace-values.changed` uses a discriminated union:
 
 ```ts
-type VialValuesChangedEvent =
+type WorkspaceValuesChangedEvent =
   | {
       kind: "delta";
       sourcePaneId: string;
-      cell: VialCellDelta;
-      dependentDeltas: VialCellDelta[];
+      cell: WorkspaceCellDelta;
+      dependentDeltas: WorkspaceCellDelta[];
     }
   | {
       kind: "refetch";
       sourcePaneId: string;
-      vialId: string;
-      vialPath: string;
+      workspaceId: string;
+      workspacePath: string;
       fileIds?: string[];
       filePaths?: string[];
       propertyIds?: string[];
       reason: "legacy" | "plugin" | "schema";
     };
 
-interface VialCellDelta {
-  vialId: string;
-  vialPath: string;
+interface WorkspaceCellDelta {
+  workspaceId: string;
+  workspacePath: string;
   fileId: string;
   filePath: string;
   propertyId: string;
@@ -156,7 +158,7 @@ which children changed and does not imply recursive changes beneath `path`.
 | Event | Payload | Delivered when | Ordering |
 | --- | --- | --- | --- |
 | `core.settings.changed` | `{ key: string; value: unknown }` | A public app setting commits a different value. | Ordered by successful setting commits. No event is emitted for a rejected write. |
-| `core.known-vials.changed` | `{ paths: string[] }` | The known Workspace Folder list changes. `paths` is the complete presentation-order snapshot. | After the list is persisted and its derived indexes are invalidated. |
+| `core.known-workspaces.changed` | `{ paths: string[] }` | The known Workspace Folder list changes. `paths` is the complete presentation-order snapshot. | After the list is persisted and its derived indexes are invalidated. |
 | `core.config.hidden-globs.changed` | `{ globs: string[] }` | Explorer always-hide globs are normalized, persisted, and adopted. | Ordered by committed configuration changes; `globs` is the complete current list. |
 
 For `core.settings.changed`, `key` is a setting name exposed by the public SDK.

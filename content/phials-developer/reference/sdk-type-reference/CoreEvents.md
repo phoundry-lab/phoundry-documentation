@@ -47,19 +47,23 @@ interface CoreEvents {
     };
     "core.file-note.saved": {
         path: string;
-        vialPath: string;
+        workspacePath: string;
         hasNote: boolean;
     };
-    "core.vial-page-config.changed": {
-        vialPath: string;
-        page: VialPageConfig;
+    "core.workspace-page-config.changed": {
+        workspacePath: string;
+        page: WorkspacePageConfig;
     };
-    "core.vial-values.changed": VialValuesChangedEvent;
-    "core.vial-formula-output-types.changed": {
-        vialId?: string;
-        vialPath: string;
+    "core.workspace-values.changed": WorkspaceValuesChangedEvent;
+    "core.workspace-properties.changed": {
+        workspaceIds: string[];
+        sourcePaneId: string;
+    };
+    "core.workspace-formula-output-types.changed": {
+        workspaceId?: string;
+        workspacePath: string;
         propertyIds: string[];
-        savedViews: SavedVialView[];
+        savedViews: SavedWorkspaceView[];
         sourcePaneId: string;
     };
     "core.file.opened": {
@@ -86,7 +90,7 @@ interface CoreEvents {
         key: string;
         value: unknown;
     };
-    "core.known-vials.changed": {
+    "core.known-workspaces.changed": {
         paths: string[];
     };
     "core.config.hidden-globs.changed": {
@@ -124,9 +128,10 @@ interface CoreEvents {
 | `"core.file.deleted"` | `{ … }` | yes | Files deleted |
 | `"core.file.saved"` | `{ … }` | yes | File saved |
 | `"core.file-note.saved"` | `{ … }` | yes | Persisted File Note content was created, updated, or removed |
-| `"core.vial-page-config.changed"` | `{ … }` | yes | Portable Page visibility/order changed for one Vial. |
-| `"core.vial-values.changed"` | `VialValuesChangedEvent` | yes | Canonical cell deltas or a filtered compatibility refetch for one Vial. |
-| `"core.vial-formula-output-types.changed"` | `{ … }` | yes | Formula output types changed; every pane must normalize its consumers. |
+| `"core.workspace-page-config.changed"` | `{ … }` | yes | Portable Page visibility/order changed for one Workspace. |
+| `"core.workspace-values.changed"` | `WorkspaceValuesChangedEvent` | yes | Canonical cell deltas or a filtered compatibility refetch for one Workspace. |
+| `"core.workspace-properties.changed"` | `{ … }` | yes | Workspace Folder Property schemas changed, including paired Relations. |
+| `"core.workspace-formula-output-types.changed"` | `{ … }` | yes | Formula output types changed; every pane must normalize its consumers. |
 | `"core.file.opened"` | `{ … }` | yes | File opened |
 | `"core.file.created"` | `{ … }` | yes | File created |
 | `"core.directory.changed"` | `{ … }` | yes | Directory contents changed (files added/removed/modified) |
@@ -134,7 +139,7 @@ interface CoreEvents {
 | `"core.directory.deleted"` | `{ … }` | yes | Directory deleted |
 | `"core.directory.created"` | `{ … }` | yes | Directory created |
 | `"core.settings.changed"` | `{ … }` | yes | App setting value changed |
-| `"core.known-vials.changed"` | `{ … }` | yes | Known vials list changed (add/remove/rename in session) |
+| `"core.known-workspaces.changed"` | `{ … }` | yes | Known workspaces list changed (add/remove/rename in session) |
 | `"core.config.hidden-globs.changed"` | `{ … }` | yes | Explorer always-hide globs changed |
 | `"core.audio.track.changed"` | `{ … }` | yes | Global audio: current track or index changed |
 | `"core.audio.queue.changed"` | `{ … }` | yes | Global audio: queue contents changed |

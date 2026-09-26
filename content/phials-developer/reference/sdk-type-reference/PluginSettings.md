@@ -23,6 +23,7 @@ interface PluginSettings {
     getStored(key: string): unknown;
     unset(key: string): Promise<void>;
     reset(): Promise<void>;
+    open(): Promise<void>;
     onChange(handler: (change: PluginSettingsChange) => void): PluginSettingsSubscription;
 }
 ```
@@ -37,4 +38,5 @@ interface PluginSettings {
 | `getStored` | `(key: string) => unknown` | yes | Read the unvalidated durable value for migration or recovery. |
 | `unset` | `(key: string) => Promise<void>` | yes | Remove one durable value and reveal the schema default. |
 | `reset` | `() => Promise<void>` | yes | Remove every durable value and reveal all schema defaults. |
+| `open` | `() => Promise<void>` | yes | Open the Phials settings window directly to this plugin's settings page. |
 | `onChange` | `(handler: (change: `[`PluginSettingsChange`](PluginSettingsChange.md)`) => void) => `[`PluginSettingsSubscription`](PluginSettingsSubscription.md) | yes | - |

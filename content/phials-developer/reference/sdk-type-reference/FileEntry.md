@@ -23,11 +23,12 @@ interface FileEntry {
     icon?: string;
     is_file: boolean;
     is_dir: boolean;
-    is_vial: boolean;
-    isChildVial?: boolean;
+    is_workspace: boolean;
+    isChildWorkspace?: boolean;
     is_symlink?: boolean;
     symlink_target?: string | null;
     symlink_broken?: boolean;
+    online_only?: boolean;
     size: number;
     created?: number | null;
     modified?: number | null;
@@ -46,11 +47,12 @@ interface FileEntry {
 | `icon` | `string` | no | Host-resolved Iconify glyph. Public directory-listing APIs populate this so plugins share Phials' canonical file and folder icon policy. |
 | `is_file` | `boolean` | yes | - |
 | `is_dir` | `boolean` | yes | - |
-| `is_vial` | `boolean` | yes | - |
-| `isChildVial` | `boolean` | no | Nested vial folder when listing inside a parent vial |
+| `is_workspace` | `boolean` | yes | - |
+| `isChildWorkspace` | `boolean` | no | Nested workspace folder when listing inside a parent workspace |
 | `is_symlink` | `boolean` | no | Listing node is a symlink or Windows directory junction |
 | `symlink_target` | `string &#124; null` | no | Resolved absolute target when healthy; stored link text when broken |
 | `symlink_broken` | `boolean` | no | - |
+| `online_only` | `boolean` | no | Bytes are not local. Set from listing metadata; absent means local or unknown. |
 | `size` | `number` | yes | - |
 | `created` | `number &#124; null` | no | - |
 | `modified` | `number &#124; null` | no | - |

@@ -17,6 +17,7 @@ Base Plugin API - available to all providers
 
 ```typescript
 interface PluginAPI {
+    openSettings(): Promise<void>;
     settings: PluginSettings;
     storage: PluginStorageAPI;
     database: PluginDatabaseAPI;
@@ -39,6 +40,7 @@ interface PluginAPI {
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
+| `openSettings` | `() => Promise<void>` | yes | Open the Phials settings window directly to this plugin's settings page. |
 | `settings` | [`PluginSettings`](PluginSettings.md) | yes | Plugin's own settings |
 | `storage` | [`PluginStorageAPI`](PluginStorageAPI.md) | yes | Key/value data storage (separate from settings) |
 | `database` | [`PluginDatabaseAPI`](PluginDatabaseAPI.md) | yes | SQL database for plugin-owned tables |

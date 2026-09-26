@@ -99,6 +99,27 @@ removed. Do not use `getStored()` for normal feature behavior.
 
 Neither operation clears `api.storage` or `api.database`.
 
+## Open this plugin's settings page
+
+`api.openSettings()` opens the Phials Settings window on the settings page for
+the plugin that owns the API. `api.settings.open()` does the same thing. Neither
+call needs a manifest permission.
+
+Call `api.openSettings()` from a command when the user should land on that page:
+
+```typescript
+const openPluginSettings: Command = {
+	id: `${PLUGIN_ID}.open-settings`,
+	label: "Open Document Summary settings",
+	action() {
+		void api?.openSettings();
+	},
+};
+```
+
+The page is the one contributed by this plugin's settings schema or custom
+settings interface. Phials does not register this command for you.
+
 ## Choose the correct durable store
 
 | Need | Use |
