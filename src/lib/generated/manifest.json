@@ -16922,6 +16922,15 @@
             "hidden": false,
             "filePath": "content/phoundry-ui/display/collapsible-section.md",
             "order": 8
+          },
+          {
+            "slug": "display/json-tree",
+            "aliases": [],
+            "href": "/phoundry-ui/display/json-tree",
+            "title": "JsonTree",
+            "hidden": false,
+            "filePath": "content/phoundry-ui/display/json-tree.md",
+            "order": 9
           }
         ],
         "sections": [],
@@ -17463,6 +17472,15 @@
         "hidden": false,
         "filePath": "content/phoundry-ui/display/empty-state.md",
         "order": 6
+      },
+      "display/json-tree": {
+        "slug": "display/json-tree",
+        "aliases": [],
+        "href": "/phoundry-ui/display/json-tree",
+        "title": "JsonTree",
+        "hidden": false,
+        "filePath": "content/phoundry-ui/display/json-tree.md",
+        "order": 9
       },
       "display/kbd": {
         "slug": "display/kbd",
@@ -18031,6 +18049,15 @@
         "hidden": false,
         "filePath": "content/phoundry-ui/display/collapsible-section.md",
         "order": 8
+      },
+      {
+        "slug": "display/json-tree",
+        "aliases": [],
+        "href": "/phoundry-ui/display/json-tree",
+        "title": "JsonTree",
+        "hidden": false,
+        "filePath": "content/phoundry-ui/display/json-tree.md",
+        "order": 9
       },
       {
         "slug": "layout/anchor",

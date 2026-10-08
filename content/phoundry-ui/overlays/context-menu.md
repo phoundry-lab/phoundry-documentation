@@ -153,7 +153,7 @@ order: 3
 
 <UiDocHeader
 	title="Context Menu"
-	description="Right-click context menu overlay with nested submenus, optional horizontal icon groups, shortcuts, boolean toggles, and danger actions."
+	description="Right-click and touch-hold context menu overlay with nested submenus, optional horizontal icon groups, shortcuts, boolean toggles, and danger actions."
 	importCode={"import { useContextMenuAPI, contextMenu } from 'phoundry-ui';"}
 />
 
@@ -179,9 +179,31 @@ order: 3
 
 ### Custom menu descendants
 
-The snippet context exposes `openSubmenu(item, trigger, intent?)` and `closePanel()`. Use `openSubmenu` when an editor rendered by a `CustomMenuItem` needs another menu level, such as an option-level editor. Pass the control element that should anchor the child panel and use `intent: 'keyboard'` for keyboard activation.
+The snippet context exposes `openSubmenu(item, trigger, intent?)` and `closePanel()`. Use `openSubmenu` when an editor rendered by a `CustomMenuItem` needs another menu level, such as an option-level editor. Pass the control element that should anchor the child panel and use `intent: 'keyboard'` for keyboard activation or `'touch'` for immediate touch navigation.
 
 Descendants opened this way stay in the same menu session. Pointer opens preserve neutral focus; keyboard opens focus the first interactive control. Arrow Left or Escape closes the current child panel and returns focus to its trigger. `closePanel()` closes only the panel containing that custom item (or the root session when called at the root).
+
+## Touch and custom contextual callbacks
+
+`contextMenu({ api, items })` opens on a stationary single-finger hold as well as right-click. It uses the exported `longPress` attachment, which can also invoke custom or asynchronous contextual callbacks directly:
+
+```svelte
+<script lang="ts">
+  import { longPress, useContextMenuAPI } from 'phoundry-ui';
+  const api = useContextMenuAPI();
+  function openOptions(event: MouseEvent, trigger: HTMLElement) {
+    api.open(buildItems(), event.clientX, event.clientY, { trigger });
+  }
+</script>
+
+<div {@attach longPress({ onLongPress: openOptions })}>Contextual target</div>
+```
+
+`onLongPress(event, trigger)` receives the original touch `PointerEvent` and attached element. The event's `currentTarget` is no longer available when the hold completes; use `trigger` for anchoring. The default hold duration is 500 milliseconds and movement tolerance is 10 CSS pixels, configurable through `delay` and `movementTolerance`.
+
+Movement, scrolling, pointer cancellation, another touch, window blur, and attachment teardown cancel recognition. A recognized hold consumes its release click and native context menu. Normal taps and scrolling stay native. Inputs, textareas, selects, editable/textbox regions, selectable `.select-text` regions, and nested interactive controls are excluded; mark other native selection or preview regions with `data-native-touch`.
+
+Tap a submenu to open it immediately. Touch does not depend on hover or pointer-leave timers. Below 520 CSS pixels, touch navigation presents the deepest panel with a Back control that returns to its parent. Panels remain within the viewport and scroll when their contents are taller than the screen. An outside pointer press dismisses the session and consumes that dismissal gesture.
 
 ## Usage tips
 

@@ -26,7 +26,7 @@
 	},
 	"dependencies": {
 		"@iconify/svelte": "^5.2.1",
-		"phoundry-ui": "file:vendor/phoundry-ui-c7900ae.tgz"
+		"phoundry-ui": "file:vendor/phoundry-ui-9ced5a4.tgz"
 	},
 	"devDependencies": {
 		"@phoundry/phials-plugin-sdk": "^1.0.2",
