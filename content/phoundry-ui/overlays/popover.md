@@ -89,3 +89,5 @@ Outside pointer presses consume the dismissal gesture. Presses within the panel 
 Declarative `Popover` and programmatic `PopoverOverlay` register their existing close behavior with `getContextualDismissal()` while open. Import it from `phoundry-ui`; read its reactive `active` property when coordinating application focus, and call `back()` before dismissing the application surface beneath it. The call closes only the latest mounted menu level or Popover and returns `true` when consumed. Closing preserves the usual `onOpenChange` or manager callback behavior, and registration is released on close and teardown.
 
 `dismissible: false` controls outside pointer dismissal; Escape and semantic Back still close the Popover. This interface does not manage application navigation, dialogs, or browser history.
+
+Context menus and both Popover forms portal their roots to `document.body`. Opening or promoting an owner places its root after existing contextual owners so paint order follows Back ownership.

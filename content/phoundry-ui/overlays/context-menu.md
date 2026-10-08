@@ -207,7 +207,7 @@ Tap a submenu to open it immediately. Touch does not depend on hover or pointer-
 
 ## Semantic Back
 
-`api.back()` closes the deepest open submenu and returns focus to its trigger. With no submenu open, it closes the root session; with no menu open, it returns `false`. `api.close()` always closes the whole session.
+`api.back()` closes the deepest open submenu and returns focus to its trigger. With no submenu open, it closes the root session; with no menu open, it returns `false`. `api.close()` always closes the whole session. Each `api.open()` starts a fresh session, including when replacing an existing menu or reopening during its exit transition; live item-source updates and `bumpTick()` retain the current submenu branch.
 
 For application Back handling across menus and Popovers, import `getContextualDismissal` from `phoundry-ui`. Its reactive `active` property reports mounted contextual owners, and `back()` asks the most recently mounted owner to dismiss one level, returning whether it consumed Back. Call it before dismissing the underlying application surface. Owners release registration when they close or unmount. The interface does not manage browser history, dialogs, or comboboxes.
 
@@ -219,3 +219,5 @@ For application Back handling across menus and Popovers, import `getContextualDi
 - Nested overlays opened from custom menu content (a dialog popover, Select dropdown, or similar) do not dismiss the child panel while the pointer is over them.
 - `api.open` accepts either a static array or `() => MenuItem[]` so menus can read live state (as with the attachment demo). Pass `ariaLabel` in the fourth argument when the default `"Context menu"` label is too generic.
 - For click-based dropdowns from a button, use `ButtonDropdown` instead.
+
+Context menus and both Popover forms portal their roots to `document.body`. Opening or promoting an owner places its root after existing contextual owners so paint order follows Back ownership.
