@@ -80,6 +80,12 @@ order: 7
 - With `flip: true` (default), the popover repositions if it would overflow the viewport.
 - Set `dismissible: false` to prevent closing on outside clicks (useful for forms).
 - The floating panel uses `role="dialog"`; focus management is minimal - trap focus inside when hosting complex widgets.
-- `Escape` closes while open regardless of `dismissible` (handled on `window`).
+- `Escape` closes the top contextual owner regardless of `dismissible` (handled on `window`).
 
 Outside pointer presses consume the dismissal gesture. Presses within the panel preserve native focus, caret, and editing behavior.
+
+## Application Back
+
+Declarative `Popover` and programmatic `PopoverOverlay` register their existing close behavior with `getContextualDismissal()` while open. Import it from `phoundry-ui`; read its reactive `active` property when coordinating application focus, and call `back()` before dismissing the application surface beneath it. The call closes only the latest mounted menu level or Popover and returns `true` when consumed. Closing preserves the usual `onOpenChange` or manager callback behavior, and registration is released on close and teardown.
+
+`dismissible: false` controls outside pointer dismissal; Escape and semantic Back still close the Popover. This interface does not manage application navigation, dialogs, or browser history.

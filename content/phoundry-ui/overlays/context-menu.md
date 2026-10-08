@@ -205,6 +205,12 @@ Movement, scrolling, pointer cancellation, another touch, window blur, and attac
 
 Tap a submenu to open it immediately. Touch does not depend on hover or pointer-leave timers. Below 520 CSS pixels, touch navigation presents the deepest panel with a Back control that returns to its parent. Panels remain within the viewport and scroll when their contents are taller than the screen. An outside pointer press dismisses the session and consumes that dismissal gesture.
 
+## Semantic Back
+
+`api.back()` closes the deepest open submenu and returns focus to its trigger. With no submenu open, it closes the root session; with no menu open, it returns `false`. `api.close()` always closes the whole session.
+
+For application Back handling across menus and Popovers, import `getContextualDismissal` from `phoundry-ui`. Its reactive `active` property reports mounted contextual owners, and `back()` asks the most recently mounted owner to dismiss one level, returning whether it consumed Back. Call it before dismissing the underlying application surface. Owners release registration when they close or unmount. The interface does not manage browser history, dialogs, or comboboxes.
+
 ## Usage tips
 
 - `provideContextMenu()` must be called in the root layout, and `ContextMenuOverlay` must be rendered there - or call `setupOverlays()` once to initialize all overlay managers together.
