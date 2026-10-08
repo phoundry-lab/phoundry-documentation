@@ -51,3 +51,5 @@ order: 6
 - `Button` with a `title` prop automatically uses the tooltip system. Set `noTooltip` to use the native browser title instead.
 - Tooltips hide on pointer leave, immediately on click, and on window scroll (capture phase).
 - Prefer concise strings in tooltips; move long help text into dialogs or docs - hover delays make long copy hard to read.
+
+Tooltips respond to hover-capable pointer entry. Touch entry does not open a tooltip, and a pointer press hides any visible tooltip immediately.

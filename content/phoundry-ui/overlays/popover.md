@@ -45,7 +45,7 @@ order: 7
 			name: 'dismissible',
 			type: 'boolean',
 			default: 'true',
-			description: 'Close when clicking outside the popover.'
+			description: 'Close on an outside pointer press, including touch.'
 		},
 		{
 			name: 'class',
@@ -81,3 +81,5 @@ order: 7
 - Set `dismissible: false` to prevent closing on outside clicks (useful for forms).
 - The floating panel uses `role="dialog"`; focus management is minimal - trap focus inside when hosting complex widgets.
 - `Escape` closes while open regardless of `dismissible` (handled on `window`).
+
+Outside pointer presses consume the dismissal gesture. Presses within the panel preserve native focus, caret, and editing behavior.

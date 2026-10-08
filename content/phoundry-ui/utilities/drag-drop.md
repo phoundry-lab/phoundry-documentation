@@ -111,3 +111,5 @@ order: 5
 - Attach `dndList` on the scroll/container that wraps draggable rows; attach `dndItem` on each row (up to three levels of wrapper depth are considered when resolving drop slots).
 - Interactive controls inside a row (buttons, inputs, links) block drag initiation unless wrapped outside the hit-tested subtree per `dndItem` rules.
 - `KanbanBoard` composes these attachments for multi-column cards.
+
+Touch input does not initiate the shared desktop drag session. Native touch scrolling and contextual holds remain available; `onClickWithoutDrag` applies only to supported drag-session pointers.
