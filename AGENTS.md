@@ -13,5 +13,5 @@ Before changing production code or canonical content, read `docs/context/CONTEXT
 
 ## Verification
 
-Use Node 24.17.0. Run `npm run validate` before publishing or deploying. Package publication is maintainer-run and local; the static site deploys continuously from validated `main` builds.
+Use Node 24.21.0 (pinned in `.nvmrc`). Run `npm run validate` before publishing or deploying. Package publication is maintainer-run and local; the static site deploys continuously from validated `main` builds.
 
