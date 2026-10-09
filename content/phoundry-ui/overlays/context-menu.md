@@ -215,6 +215,7 @@ For application Back handling across menus and Popovers, import `getContextualDi
 
 - `provideContextMenu()` must be called in the root layout, and `ContextMenuOverlay` must be rendered there - or call `setupOverlays()` once to initialize all overlay managers together.
 - The menu auto-positions to stay within the viewport.
+- Pass `setupOverlays({ contextMenu: { presentation: 'sheet' } })` to present every context menu as a full-width, bottom-anchored sheet with one level visible at a time and a Back control. The setting applies to all menus in the session; `x`, `y`, and `anchor` are ignored in sheet mode.
 - Arrow keys, Home, and End move the highlighted row; Enter and Space activate it. Escape closes the menu. The active row uses the same background as hover; focus returns to the element that opened the menu.
 - Nested overlays opened from custom menu content (a dialog popover, Select dropdown, or similar) do not dismiss the child panel while the pointer is over them.
 - `api.open` accepts either a static array or `() => MenuItem[]` so menus can read live state (as with the attachment demo). Pass `ariaLabel` in the fourth argument when the default `"Context menu"` label is too generic.

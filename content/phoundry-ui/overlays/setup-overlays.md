@@ -49,6 +49,11 @@ order: 1
 			name: 'maxToasts',
 			type: 'number',
 			description: 'Maximum concurrent toasts for the toast singleton. Only applies if no prior getToastManager() ran in this session.'
+		},
+		{
+			name: 'contextMenu',
+			type: '{ presentation?: "popover" | "sheet" }',
+			description: 'Context menu options. Use presentation "sheet" to show every context menu as a full-width, bottom-anchored panel with Back navigation, for mobile Clients. Defaults to "popover".'
 		}
 	];
 
