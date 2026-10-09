@@ -203,7 +203,7 @@ Descendants opened this way stay in the same menu session. Pointer opens preserv
 
 Movement, scrolling, pointer cancellation, another touch, window blur, and attachment teardown cancel recognition. A recognized hold consumes its release click and native context menu. Normal taps and scrolling stay native. Inputs, textareas, selects, editable/textbox regions, selectable `.select-text` regions, and nested interactive controls are excluded; mark other native selection or preview regions with `data-native-touch`.
 
-Tap a submenu to open it immediately. Touch does not depend on hover or pointer-leave timers. Below 520 CSS pixels, touch navigation presents the deepest panel with a Back control that returns to its parent. Panels remain within the viewport and scroll when their contents are taller than the screen. An outside pointer press dismisses the session and consumes that dismissal gesture.
+Tap a submenu to open it immediately. Touch does not depend on hover or pointer-leave timers. Below 520 CSS pixels, touch navigation presents the deepest panel with a Back control that returns to its parent. Panels remain within the viewport and scroll when their contents are taller than the screen. An outside click or completed touch tap dismisses the session and consumes that gesture, so the underlying content is not activated. A cancelled touch leaves the menu open; another tap or Back can still dismiss it.
 
 ## Semantic Back
 
