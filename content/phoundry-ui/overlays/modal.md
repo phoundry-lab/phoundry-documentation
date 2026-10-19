@@ -71,3 +71,18 @@ order: 2
 - Use `useModalManagerAPI()` inside components (context-based) or `getModalManager()` from non-component code (global singleton).
 - `manager.open(Component, props, options)` returns a `Promise` that resolves when the modal closes, with the value passed to `onClose(result)`.
 - Modals stack - opening a second modal layers it on top. `manager.closeAll()` dismisses the entire stack.
+
+## Mobile keyboard
+
+Set `mobile` once on the overlay in your root layout to keep every modal in the
+visible viewport when the on-screen keyboard opens:
+
+```svelte
+<ModalOverlay mobile={isMobileClient} />
+```
+
+`mobile` defaults to `false`. Enable it from the application's native platform
+identity. The overlay follows visual viewport resize and scroll events, recenters
+the entire modal stack above the keyboard, and leaves pinch zoom to the browser.
+The library `Modal` panel also limits its height to the available space. Custom
+dialogs should use a scrollable body for long content.
