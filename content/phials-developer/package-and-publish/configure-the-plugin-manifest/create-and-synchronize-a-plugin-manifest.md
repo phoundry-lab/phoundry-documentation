@@ -19,16 +19,16 @@ Replace the starter values in `src/plugin.manifest.ts`:
 import { definePluginManifest } from "../sdk/manifest-schema";
 
 export const pluginManifest = definePluginManifest({
-	id: "acme.review-tools",
-	name: "Review Tools",
-	version: "0.1.0",
-	minAppVersion: "1.4.0",
-	pluginApiVersion: "1.0.0",
-	author: "Acme",
-	description: "Adds review commands and file annotations.",
-	repository: "https://github.com/acme/review-tools",
-	icons: ["phoundry-mono:check"],
-	permissions: [],
+  id: "acme.review-tools",
+  name: "Review Tools",
+  version: "0.1.0",
+  minAppVersion: "1.4.0",
+  pluginApiVersion: "2.0.0",
+  author: "Acme",
+  description: "Adds review commands and file annotations.",
+  repository: "https://github.com/acme/review-tools",
+  icons: ["phoundry-mono:check"],
+  permissions: [],
 });
 ```
 
@@ -44,7 +44,7 @@ import { definePlugin } from "../sdk/manifest-schema";
 import { pluginManifest } from "./plugin.manifest";
 
 export default definePlugin(pluginManifest, {
-	providers: [],
+  providers: [],
 });
 ```
 
@@ -89,6 +89,33 @@ The directory name, release manifest ID, and exported plugin ID must agree. See 
 
 Do not rename the install folder independently or copy a manifest from another build.
 
+## Provide screenshots and a README
+
+Place optional presentation content at the repository root:
+
+```text
+README.md
+screenshots/
+├── 01-overview.png
+└── 02-workflow.webp
+```
+
+Community plugin cards show the first screenshot in filename order. Selecting a
+card opens the plugin details, with all screenshots, the rendered README, and
+repository and release links. Phials reads this content from the registry's
+accepted release tag. Include the folder and README in that tag before releasing;
+no manifest field or Plugin permission is required.
+
+Phials displays up to eight PNG, JPEG, WebP, or GIF screenshots, at most 2 MiB
+each, and a README of at most 256 KiB. Use numbered filenames to choose the order.
+SVG and executable presentation content are excluded.
+
+For a local development install, copy `README.md` and `screenshots/` beside
+`manifest.json` in the installed plugin folder. Those local assets work offline.
+Registry installs can load missing presentation assets from the installed
+release's repository tag while online. Presentation content does not participate
+in executable artifact verification and never enables Plugin code.
+
 ## Know what synchronization does not mean
 
 The typed source manifest projects one identity graph:
@@ -111,13 +138,13 @@ You own those decisions, and validation verifies them.
 
 ## Update one source, then rebuild
 
-| Change | Source to edit | Follow-up |
-| --- | --- | --- |
-| Plugin version | `src/plugin.manifest.ts` | Set the matching package version, then rebuild and validate. |
-| ID, name, author, description, links, icons | `src/plugin.manifest.ts` | Rebuild and validate all identity projections. |
-| Permissions | `src/plugin.manifest.ts` | Rebuild, validate, and test first-install or changed-set review. |
-| Minimum Phials or Plugin API version | `src/plugin.manifest.ts` | Rebuild and test compatible and incompatible versions. |
-| Capabilities or lifecycle hooks | `src/main.ts` and related source | Do not add provider fields to the manifest. |
+| Change                                      | Source to edit                   | Follow-up                                                        |
+| ------------------------------------------- | -------------------------------- | ---------------------------------------------------------------- |
+| Plugin version                              | `src/plugin.manifest.ts`         | Set the matching package version, then rebuild and validate.     |
+| ID, name, author, description, links, icons | `src/plugin.manifest.ts`         | Rebuild and validate all identity projections.                   |
+| Permissions                                 | `src/plugin.manifest.ts`         | Rebuild, validate, and test first-install or changed-set review. |
+| Minimum Phials or Plugin API version        | `src/plugin.manifest.ts`         | Rebuild and test compatible and incompatible versions.           |
+| Capabilities or lifecycle hooks             | `src/main.ts` and related source | Do not add provider fields to the manifest.                      |
 
 For release-wide version alignment, continue to [Choose a plugin release version](../prepare-a-release/choose-a-plugin-release-version.md).
 
