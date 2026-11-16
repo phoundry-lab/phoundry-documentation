@@ -2,7 +2,7 @@
 title: "ThumbnailNativeAccess"
 description: "TypeScript signature and members for the ThumbnailNativeAccess public SDK declaration."
 ai_disclosure: true
-order: 137
+order: 142
 aliases:
   - references/ThumbnailNativeAccess
 ---

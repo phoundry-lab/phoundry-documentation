@@ -2,7 +2,7 @@
 title: "PluginIdentityProjection"
 description: "TypeScript signature and members for the PluginIdentityProjection public SDK declaration."
 ai_disclosure: true
-order: 85
+order: 90
 aliases:
   - references/PluginIdentityProjection
 ---

@@ -2,7 +2,7 @@
 title: "MetadataProviderDirectoryStats"
 description: "TypeScript signature and members for the MetadataProviderDirectoryStats public SDK declaration."
 ai_disclosure: true
-order: 48
+order: 53
 aliases:
   - references/MetadataProviderDirectoryStats
 ---

@@ -2,7 +2,7 @@
 title: "PluginTextWriteResult"
 description: "TypeScript signature and members for the PluginTextWriteResult public SDK declaration."
 ai_disclosure: true
-order: 109
+order: 114
 aliases:
   - references/PluginTextWriteResult
 ---

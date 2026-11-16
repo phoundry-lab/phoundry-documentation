@@ -2,7 +2,7 @@
 title: "PluginDatabaseSchema"
 description: "TypeScript signature and members for the PluginDatabaseSchema public SDK declaration."
 ai_disclosure: true
-order: 75
+order: 80
 aliases:
   - references/PluginDatabaseSchema
 ---

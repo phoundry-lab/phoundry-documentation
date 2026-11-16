@@ -2,7 +2,7 @@
 title: "PluginIdentity"
 description: "TypeScript signature and members for the PluginIdentity public SDK declaration."
 ai_disclosure: true
-order: 84
+order: 89
 aliases:
   - references/PluginIdentity
 ---

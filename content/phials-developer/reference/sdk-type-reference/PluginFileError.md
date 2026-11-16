@@ -2,7 +2,7 @@
 title: "PluginFileError"
 description: "TypeScript signature and members for the PluginFileError public SDK declaration."
 ai_disclosure: true
-order: 81
+order: 86
 aliases:
   - references/PluginFileError
 ---

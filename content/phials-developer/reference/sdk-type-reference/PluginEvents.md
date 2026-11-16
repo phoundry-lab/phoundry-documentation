@@ -2,7 +2,7 @@
 title: "PluginEvents"
 description: "TypeScript signature and members for the PluginEvents public SDK declaration."
 ai_disclosure: true
-order: 80
+order: 85
 aliases:
   - references/PluginEvents
 ---

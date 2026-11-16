@@ -2,7 +2,7 @@
 title: "PathSettingsField"
 description: "TypeScript signature and members for the PathSettingsField public SDK declaration."
 ai_disclosure: true
-order: 62
+order: 67
 aliases:
   - references/PathSettingsField
 ---

@@ -2,7 +2,7 @@
 title: "PluginColumnType"
 description: "TypeScript signature and members for the PluginColumnType public SDK declaration."
 ai_disclosure: true
-order: 72
+order: 77
 aliases:
   - references/PluginColumnType
 ---

@@ -2,7 +2,7 @@
 title: "PreviewSessionFactoryProps"
 description: "TypeScript signature and members for the PreviewSessionFactoryProps public SDK declaration."
 ai_disclosure: true
-order: 115
+order: 120
 aliases:
   - references/PreviewSessionFactoryProps
 ---

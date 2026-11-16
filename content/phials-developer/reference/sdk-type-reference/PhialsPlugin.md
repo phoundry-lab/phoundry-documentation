@@ -2,7 +2,7 @@
 title: "PhialsPlugin"
 description: "TypeScript signature and members for the PhialsPlugin public SDK declaration."
 ai_disclosure: true
-order: 65
+order: 70
 aliases:
   - references/PhialsPlugin
 ---

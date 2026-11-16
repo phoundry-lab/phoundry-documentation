@@ -53,7 +53,7 @@ If installation fails, confirm that `node --version` reports Node 24 and retry `
 | `dist/` | Generated plugin files. Rebuild them rather than editing them. |
 | `release/release-inventory.json` | Generated list of release files, sizes, and checksums. |
 
-The starter depends on `@phoundry/phials-plugin-sdk@3.0.0`. Its ambient declarations provide public types such as [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md), [PluginAPI](../../reference/sdk-type-reference/PluginAPI.md), and [PreviewProvider](../../reference/sdk-type-reference/PreviewProvider.md). Runtime manifest helpers come from:
+The starter depends on `@phoundry/phials-plugin-sdk@3.1.0`. Its ambient declarations provide public types such as [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md), [PluginAPI](../../reference/sdk-type-reference/PluginAPI.md), and [PreviewProvider](../../reference/sdk-type-reference/PreviewProvider.md). Runtime manifest helpers come from:
 
 ```ts
 import { definePlugin, definePluginManifest } from "@phoundry/phials-plugin-sdk/manifest";

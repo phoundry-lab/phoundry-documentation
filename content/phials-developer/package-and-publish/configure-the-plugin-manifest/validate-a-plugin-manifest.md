@@ -9,7 +9,7 @@ order: 5
 
 Use the manifest helpers in `@phoundry/phials-plugin-sdk/manifest` while
 authoring, then build and verify before publishing. The current starter pins
-the SDK package to `3.0.0`. A valid manifest is necessary, but it does not prove
+the SDK package to `3.1.0`. A valid manifest is necessary, but it does not prove
 that the plugin works or that its declared compatibility bounds are correct.
 
 ## Run the release validator

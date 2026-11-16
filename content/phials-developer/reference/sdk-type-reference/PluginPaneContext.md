@@ -2,7 +2,7 @@
 title: "PluginPaneContext"
 description: "TypeScript signature and members for the PluginPaneContext public SDK declaration."
 ai_disclosure: true
-order: 89
+order: 94
 aliases:
   - references/PluginPaneContext
 ---

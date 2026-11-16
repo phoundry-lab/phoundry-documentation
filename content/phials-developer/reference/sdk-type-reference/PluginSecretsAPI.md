@@ -2,7 +2,7 @@
 title: "PluginSecretsAPI"
 description: "TypeScript signature and members for the PluginSecretsAPI public SDK declaration."
 ai_disclosure: true
-order: 100
+order: 105
 aliases:
   - references/PluginSecretsAPI
 ---

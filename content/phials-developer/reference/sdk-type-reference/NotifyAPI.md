@@ -2,7 +2,7 @@
 title: "NotifyAPI"
 description: "TypeScript signature and members for the NotifyAPI public SDK declaration."
 ai_disclosure: true
-order: 59
+order: 64
 aliases:
   - references/NotifyAPI
 ---

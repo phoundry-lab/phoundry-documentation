@@ -25,7 +25,7 @@ It does not register capabilities or contain plugin settings. Those belong to th
 Author `src/plugin.manifest.ts` with helpers from
 `@phoundry/phials-plugin-sdk/manifest`. It imports `version` from
 `../package.json`, the sole release-version source. The current starter pins
-`@phoundry/phials-plugin-sdk` to `3.0.0`.
+`@phoundry/phials-plugin-sdk` to `3.1.0`.
 
 `src/main.ts` exports the source manifest as `manifest`, exports Svelte
 `mount` and `unmount`, and uses `definePlugin(pluginManifest, …)` for its

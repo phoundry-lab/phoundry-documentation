@@ -2,7 +2,7 @@
 title: "PluginBinaryFileSnapshot"
 description: "TypeScript signature and members for the PluginBinaryFileSnapshot public SDK declaration."
 ai_disclosure: true
-order: 68
+order: 73
 aliases:
   - references/PluginBinaryFileSnapshot
 ---

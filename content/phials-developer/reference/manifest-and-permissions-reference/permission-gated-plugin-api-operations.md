@@ -34,7 +34,7 @@ general filesystem, clipboard, network, or host-command access.
 | `api.files.toAssetUrl(path)` | `filesystem.read` or `filesystem.write` | Trusted-renderer asset URL for one absolute file path |
 | `api.files.readBinary(path)` | `filesystem.read` or `filesystem.write` | Raw-byte snapshot plus opaque revision |
 | `api.files.getFolderSummary(path, { signal })` | `filesystem.read` or `filesystem.write` | Cancellable recursive counts and byte total |
-| `api.git.getInfo(path)` / `getLanguages(path)` | `filesystem.read` or `filesystem.write` | Fixed read-only repository projections with sanitized remotes |
+| `api.git.getInfo(path)` / `getLanguages(path)` / `status(path)` / `diff(path, options?)` / `log(path, options?)` / `listBranches(path)` / `readBlob(path, revision, file)` | `filesystem.read` or `filesystem.write` | [Read-only repository inspection](../../work-with-phials/work-with-files-and-folders/inspect-git-repositories.md) on the captured Host; Git CLI queries require installed Git |
 | `api.files.readText(path)` | `filesystem.read` or `filesystem.write` | [PluginTextFileSnapshot](../../reference/sdk-type-reference/PluginTextFileSnapshot.md) with content and opaque revision |
 | `api.files.watchDirectory(path, handler)` | `filesystem.read` or `filesystem.write` | [PluginDirectoryWatch](../../reference/sdk-type-reference/PluginDirectoryWatch.md); `unsubscribe()` releases it |
 

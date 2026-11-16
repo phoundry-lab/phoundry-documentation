@@ -2,7 +2,7 @@
 title: "ThumbnailContentSnapshot"
 description: "TypeScript signature and members for the ThumbnailContentSnapshot public SDK declaration."
 ai_disclosure: true
-order: 132
+order: 137
 aliases:
   - references/ThumbnailContentSnapshot
 ---

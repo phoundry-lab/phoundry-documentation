@@ -2,7 +2,7 @@
 title: "ThumbnailRenderResult"
 description: "TypeScript signature and members for the ThumbnailRenderResult public SDK declaration."
 ai_disclosure: true
-order: 142
+order: 147
 aliases:
   - references/ThumbnailRenderResult
 ---

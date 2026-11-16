@@ -2,7 +2,7 @@
 title: "ModuleProviderProps"
 description: "TypeScript signature and members for the ModuleProviderProps public SDK declaration."
 ai_disclosure: true
-order: 57
+order: 62
 aliases:
   - references/ModuleProviderProps
 ---

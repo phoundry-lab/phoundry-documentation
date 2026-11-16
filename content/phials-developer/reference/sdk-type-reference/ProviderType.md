@@ -2,7 +2,7 @@
 title: "ProviderType"
 description: "TypeScript signature and members for the ProviderType public SDK declaration."
 ai_disclosure: true
-order: 119
+order: 124
 aliases:
   - references/ProviderType
 ---

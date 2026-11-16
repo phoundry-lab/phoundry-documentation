@@ -2,7 +2,7 @@
 title: "KnownWorkspaceFolder"
 description: "TypeScript signature and members for the KnownWorkspaceFolder public SDK declaration."
 ai_disclosure: true
-order: 41
+order: 46
 aliases:
   - references/KnownWorkspaceFolder
 ---

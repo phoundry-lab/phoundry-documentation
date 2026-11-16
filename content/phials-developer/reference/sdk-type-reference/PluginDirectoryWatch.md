@@ -2,7 +2,7 @@
 title: "PluginDirectoryWatch"
 description: "TypeScript signature and members for the PluginDirectoryWatch public SDK declaration."
 ai_disclosure: true
-order: 79
+order: 84
 aliases:
   - references/PluginDirectoryWatch
 ---

@@ -2,7 +2,7 @@
 title: "RawMetadata"
 description: "TypeScript signature and members for the RawMetadata public SDK declaration."
 ai_disclosure: true
-order: 120
+order: 125
 aliases:
   - references/RawMetadata
 ---

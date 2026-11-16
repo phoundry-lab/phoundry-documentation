@@ -2,7 +2,7 @@
 title: "PluginTextFileSnapshot"
 description: "TypeScript signature and members for the PluginTextFileSnapshot public SDK declaration."
 ai_disclosure: true
-order: 108
+order: 113
 aliases:
   - references/PluginTextFileSnapshot
 ---

@@ -159,6 +159,11 @@ Use the workflow guides for permissions, lifecycle consequences, and complete ex
 ## Repository inspection
 
 - [`GitInfo`](GitInfo.md)
+- [`GitFileStatus`](GitFileStatus.md)
+- [`GitCommit`](GitCommit.md)
+- [`GitBranch`](GitBranch.md)
+- [`GitDiffOptions`](GitDiffOptions.md)
+- [`GitLogOptions`](GitLogOptions.md)
 - [`RepositoryLanguage`](RepositoryLanguage.md)
 - [`FolderSummary`](FolderSummary.md)
 

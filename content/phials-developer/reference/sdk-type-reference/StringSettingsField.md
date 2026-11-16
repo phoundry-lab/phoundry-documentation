@@ -2,7 +2,7 @@
 title: "StringSettingsField"
 description: "TypeScript signature and members for the StringSettingsField public SDK declaration."
 ai_disclosure: true
-order: 129
+order: 134
 aliases:
   - references/StringSettingsField
 ---

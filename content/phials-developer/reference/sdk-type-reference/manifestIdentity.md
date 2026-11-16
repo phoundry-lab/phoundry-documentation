@@ -2,7 +2,7 @@
 title: "manifestIdentity"
 description: "TypeScript signature and members for the manifestIdentity public SDK declaration."
 ai_disclosure: true
-order: 44
+order: 49
 aliases:
   - references/manifestIdentity
 ---

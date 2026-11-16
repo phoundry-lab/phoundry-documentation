@@ -23,7 +23,7 @@ The public SDK includes:
 - the plugin manifest schema, permission names, and validation helpers;
 - the generated SDK type reference and the written support contract.
 
-The current plugin starter pins `@phoundry/phials-plugin-sdk` to `3.0.0`.
+The current plugin starter pins `@phoundry/phials-plugin-sdk` to `3.1.0`.
 Install and update that dependency rather than copying declarations or importing
 files from a Phials source checkout. There is no starter-local SDK directory or
 SDK-sync step.

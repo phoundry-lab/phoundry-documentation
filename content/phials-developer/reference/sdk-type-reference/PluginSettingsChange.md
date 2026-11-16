@@ -2,7 +2,7 @@
 title: "PluginSettingsChange"
 description: "TypeScript signature and members for the PluginSettingsChange public SDK declaration."
 ai_disclosure: true
-order: 102
+order: 107
 aliases:
   - references/PluginSettingsChange
 ---

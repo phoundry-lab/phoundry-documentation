@@ -2,7 +2,7 @@
 title: "PluginSettingsSchema"
 description: "TypeScript signature and members for the PluginSettingsSchema public SDK declaration."
 ai_disclosure: true
-order: 104
+order: 109
 aliases:
   - references/PluginSettingsSchema
 ---

@@ -2,7 +2,7 @@
 title: "PlatformShortcuts"
 description: "TypeScript signature and members for the PlatformShortcuts public SDK declaration."
 ai_disclosure: true
-order: 66
+order: 71
 aliases:
   - references/PlatformShortcuts
 ---

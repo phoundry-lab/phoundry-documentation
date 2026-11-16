@@ -2,7 +2,7 @@
 title: "ThumbnailContentAccess"
 description: "TypeScript signature and members for the ThumbnailContentAccess public SDK declaration."
 ai_disclosure: true
-order: 131
+order: 136
 aliases:
   - references/ThumbnailContentAccess
 ---

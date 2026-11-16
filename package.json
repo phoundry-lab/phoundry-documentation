@@ -29,7 +29,7 @@
 		"phoundry-ui": "file:vendor/phoundry-ui-9ced5a4.tgz"
 	},
 	"devDependencies": {
-		"@phoundry/phials-plugin-sdk": "3.0.0",
+		"@phoundry/phials-plugin-sdk": "3.1.0",
 		"@shikijs/rehype": "^4.0.2",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.67.0",

@@ -2,7 +2,7 @@
 title: "SUPPORTED_PLUGIN_API_VERSION"
 description: "TypeScript signature and members for the SUPPORTED_PLUGIN_API_VERSION public SDK declaration."
 ai_disclosure: true
-order: 130
+order: 135
 aliases:
   - references/SUPPORTED_PLUGIN_API_VERSION
 ---

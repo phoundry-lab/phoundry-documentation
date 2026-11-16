@@ -2,7 +2,7 @@
 title: "ThumbnailNativeResult"
 description: "TypeScript signature and members for the ThumbnailNativeResult public SDK declaration."
 ai_disclosure: true
-order: 138
+order: 143
 aliases:
   - references/ThumbnailNativeResult
 ---

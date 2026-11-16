@@ -2,7 +2,7 @@
 title: "PluginDatabaseSchemaOperations"
 description: "TypeScript signature and members for the PluginDatabaseSchemaOperations public SDK declaration."
 ai_disclosure: true
-order: 76
+order: 81
 aliases:
   - references/PluginDatabaseSchemaOperations
 ---

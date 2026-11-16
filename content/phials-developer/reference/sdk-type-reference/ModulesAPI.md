@@ -2,7 +2,7 @@
 title: "ModulesAPI"
 description: "TypeScript signature and members for the ModulesAPI public SDK declaration."
 ai_disclosure: true
-order: 58
+order: 63
 aliases:
   - references/ModulesAPI
 ---

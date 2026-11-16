@@ -2,7 +2,7 @@
 title: "PluginDatabaseTransaction"
 description: "TypeScript signature and members for the PluginDatabaseTransaction public SDK declaration."
 ai_disclosure: true
-order: 77
+order: 82
 aliases:
   - references/PluginDatabaseTransaction
 ---

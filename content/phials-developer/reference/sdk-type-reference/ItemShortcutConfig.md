@@ -2,7 +2,7 @@
 title: "ItemShortcutConfig"
 description: "TypeScript signature and members for the ItemShortcutConfig public SDK declaration."
 ai_disclosure: true
-order: 39
+order: 44
 aliases:
   - references/ItemShortcutConfig
 ---

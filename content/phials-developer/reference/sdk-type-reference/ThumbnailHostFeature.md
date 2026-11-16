@@ -2,7 +2,7 @@
 title: "ThumbnailHostFeature"
 description: "TypeScript signature and members for the ThumbnailHostFeature public SDK declaration."
 ai_disclosure: true
-order: 134
+order: 139
 aliases:
   - references/ThumbnailHostFeature
 ---

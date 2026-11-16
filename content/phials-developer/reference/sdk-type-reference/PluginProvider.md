@@ -2,7 +2,7 @@
 title: "PluginProvider"
 description: "TypeScript signature and members for the PluginProvider public SDK declaration."
 ai_disclosure: true
-order: 99
+order: 104
 aliases:
   - references/PluginProvider
 ---

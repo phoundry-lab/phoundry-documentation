@@ -2,7 +2,7 @@
 title: "PERMISSION_DESCRIPTIONS"
 description: "TypeScript signature and members for the PERMISSION_DESCRIPTIONS public SDK declaration."
 ai_disclosure: true
-order: 63
+order: 68
 aliases:
   - references/PERMISSION_DESCRIPTIONS
 ---

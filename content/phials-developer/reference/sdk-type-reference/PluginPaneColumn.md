@@ -2,7 +2,7 @@
 title: "PluginPaneColumn"
 description: "TypeScript signature and members for the PluginPaneColumn public SDK declaration."
 ai_disclosure: true
-order: 88
+order: 93
 aliases:
   - references/PluginPaneColumn
 ---

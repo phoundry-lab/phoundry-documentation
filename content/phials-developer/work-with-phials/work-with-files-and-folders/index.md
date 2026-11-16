@@ -39,6 +39,7 @@ Permissions gate the supported Plugin API. They do not make arbitrary filesystem
 4. [Create, rename, and trash files and folders](create-rename-and-trash-files-and-folders.md)
 5. [Watch folders for changes](watch-folders-for-changes.md)
 6. [Open and reveal files and folders](open-and-reveal-files-and-folders.md)
+7. [Inspect Git repositories](inspect-git-repositories.md)
 
 ## Keep ownership clear
 

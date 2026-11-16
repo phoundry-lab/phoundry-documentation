@@ -2,7 +2,7 @@
 title: "PluginFileErrorCode"
 description: "TypeScript signature and members for the PluginFileErrorCode public SDK declaration."
 ai_disclosure: true
-order: 82
+order: 87
 aliases:
   - references/PluginFileErrorCode
 ---

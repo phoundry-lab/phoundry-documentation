@@ -14,7 +14,7 @@ Its boundary is default-deny: a type, field, method, host command, callback
 behavior, or runtime guarantee is supported only when the public SDK package or
 this documentation explicitly exposes it.
 
-The current starter pins `@phoundry/phials-plugin-sdk` to `3.0.0` and targets
+The current starter pins `@phoundry/phials-plugin-sdk` to `3.1.0` and targets
 Plugin API `3.0.0`. The package version identifies the installed SDK artifact;
 `pluginApiVersion` identifies the runtime contract. Check both when updating a
 plugin, rather than inferring host compatibility from an npm install.
@@ -83,7 +83,7 @@ SDK and reference documentation, and test your plugin against the host versions
 you declare. For the current starter dependency:
 
 ```bash
-npm install --save-dev --save-exact @phoundry/phials-plugin-sdk@3.0.0
+npm install --save-dev --save-exact @phoundry/phials-plugin-sdk@3.1.0
 ```
 
 Commit the package and lockfile changes together. Do not copy application

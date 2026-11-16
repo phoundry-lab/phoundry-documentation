@@ -2,7 +2,7 @@
 title: "ModulePosition"
 description: "TypeScript signature and members for the ModulePosition public SDK declaration."
 ai_disclosure: true
-order: 55
+order: 60
 aliases:
   - references/ModulePosition
 ---

@@ -2,7 +2,7 @@
 title: "PluginPaneWorkspaceFolder"
 description: "TypeScript signature and members for the PluginPaneWorkspaceFolder public SDK declaration."
 ai_disclosure: true
-order: 95
+order: 100
 aliases:
   - references/PluginPaneWorkspaceFolder
 ---

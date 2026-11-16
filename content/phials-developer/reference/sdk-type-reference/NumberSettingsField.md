@@ -2,7 +2,7 @@
 title: "NumberSettingsField"
 description: "TypeScript signature and members for the NumberSettingsField public SDK declaration."
 ai_disclosure: true
-order: 60
+order: 65
 aliases:
   - references/NumberSettingsField
 ---

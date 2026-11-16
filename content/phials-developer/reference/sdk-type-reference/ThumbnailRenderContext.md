@@ -2,7 +2,7 @@
 title: "ThumbnailRenderContext"
 description: "TypeScript signature and members for the ThumbnailRenderContext public SDK declaration."
 ai_disclosure: true
-order: 141
+order: 146
 aliases:
   - references/ThumbnailRenderContext
 ---

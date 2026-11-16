@@ -2,7 +2,7 @@
 title: "PluginTableDefinition"
 description: "TypeScript signature and members for the PluginTableDefinition public SDK declaration."
 ai_disclosure: true
-order: 107
+order: 112
 aliases:
   - references/PluginTableDefinition
 ---

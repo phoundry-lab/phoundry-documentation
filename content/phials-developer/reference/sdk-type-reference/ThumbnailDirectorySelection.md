@@ -2,7 +2,7 @@
 title: "ThumbnailDirectorySelection"
 description: "TypeScript signature and members for the ThumbnailDirectorySelection public SDK declaration."
 ai_disclosure: true
-order: 133
+order: 138
 aliases:
   - references/ThumbnailDirectorySelection
 ---

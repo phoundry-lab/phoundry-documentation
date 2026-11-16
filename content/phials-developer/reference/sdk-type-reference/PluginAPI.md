@@ -2,7 +2,7 @@
 title: "PluginAPI"
 description: "TypeScript signature and members for the PluginAPI public SDK declaration."
 ai_disclosure: true
-order: 67
+order: 72
 aliases:
   - references/PluginAPI
 ---

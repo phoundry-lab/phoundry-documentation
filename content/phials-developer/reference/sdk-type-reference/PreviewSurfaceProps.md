@@ -2,7 +2,7 @@
 title: "PreviewSurfaceProps"
 description: "TypeScript signature and members for the PreviewSurfaceProps public SDK declaration."
 ai_disclosure: true
-order: 116
+order: 121
 aliases:
   - references/PreviewSurfaceProps
 ---

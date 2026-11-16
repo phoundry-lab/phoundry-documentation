@@ -2,7 +2,7 @@
 title: "ThumbnailProvider"
 description: "TypeScript signature and members for the ThumbnailProvider public SDK declaration."
 ai_disclosure: true
-order: 139
+order: 144
 aliases:
   - references/ThumbnailProvider
 ---

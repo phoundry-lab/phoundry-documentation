@@ -2,7 +2,7 @@
 title: "PluginSettingsSubscription"
 description: "TypeScript signature and members for the PluginSettingsSubscription public SDK declaration."
 ai_disclosure: true
-order: 105
+order: 110
 aliases:
   - references/PluginSettingsSubscription
 ---

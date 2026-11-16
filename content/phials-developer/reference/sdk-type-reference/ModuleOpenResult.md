@@ -2,7 +2,7 @@
 title: "ModuleOpenResult"
 description: "TypeScript signature and members for the ModuleOpenResult public SDK declaration."
 ai_disclosure: true
-order: 54
+order: 59
 aliases:
   - references/ModuleOpenResult
 ---

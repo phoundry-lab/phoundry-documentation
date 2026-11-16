@@ -2,7 +2,7 @@
 title: "PluginPaneSelection"
 description: "TypeScript signature and members for the PluginPaneSelection public SDK declaration."
 ai_disclosure: true
-order: 92
+order: 97
 aliases:
   - references/PluginPaneSelection
 ---

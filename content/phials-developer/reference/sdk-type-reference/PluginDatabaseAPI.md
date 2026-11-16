@@ -2,7 +2,7 @@
 title: "PluginDatabaseAPI"
 description: "TypeScript signature and members for the PluginDatabaseAPI public SDK declaration."
 ai_disclosure: true
-order: 73
+order: 78
 aliases:
   - references/PluginDatabaseAPI
 ---

@@ -2,7 +2,7 @@
 title: "LayoutSettledReason"
 description: "TypeScript signature and members for the LayoutSettledReason public SDK declaration."
 ai_disclosure: true
-order: 43
+order: 48
 aliases:
   - references/LayoutSettledReason
 ---

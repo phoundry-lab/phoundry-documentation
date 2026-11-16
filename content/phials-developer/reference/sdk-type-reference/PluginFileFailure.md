@@ -2,7 +2,7 @@
 title: "PluginFileFailure"
 description: "TypeScript signature and members for the PluginFileFailure public SDK declaration."
 ai_disclosure: true
-order: 83
+order: 88
 aliases:
   - references/PluginFileFailure
 ---

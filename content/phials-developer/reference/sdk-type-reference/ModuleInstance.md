@@ -2,7 +2,7 @@
 title: "ModuleInstance"
 description: "TypeScript signature and members for the ModuleInstance public SDK declaration."
 ai_disclosure: true
-order: 53
+order: 58
 aliases:
   - references/ModuleInstance
 ---

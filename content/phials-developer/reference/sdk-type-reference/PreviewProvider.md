@@ -2,7 +2,7 @@
 title: "PreviewProvider"
 description: "TypeScript signature and members for the PreviewProvider public SDK declaration."
 ai_disclosure: true
-order: 113
+order: 118
 aliases:
   - references/PreviewProvider
 ---

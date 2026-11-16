@@ -2,7 +2,7 @@
 title: "MetadataProvider"
 description: "TypeScript signature and members for the MetadataProvider public SDK declaration."
 ai_disclosure: true
-order: 47
+order: 52
 aliases:
   - references/MetadataProvider
 ---

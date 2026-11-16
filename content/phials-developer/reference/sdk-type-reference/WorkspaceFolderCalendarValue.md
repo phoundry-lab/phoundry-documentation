@@ -2,7 +2,7 @@
 title: "WorkspaceFolderCalendarValue"
 description: "TypeScript signature and members for the WorkspaceFolderCalendarValue public SDK declaration."
 ai_disclosure: true
-order: 151
+order: 156
 aliases:
   - references/WorkspaceFolderCalendarValue
 ---

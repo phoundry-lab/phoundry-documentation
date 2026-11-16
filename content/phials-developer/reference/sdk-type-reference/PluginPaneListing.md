@@ -2,7 +2,7 @@
 title: "PluginPaneListing"
 description: "TypeScript signature and members for the PluginPaneListing public SDK declaration."
 ai_disclosure: true
-order: 90
+order: 95
 aliases:
   - references/PluginPaneListing
 ---

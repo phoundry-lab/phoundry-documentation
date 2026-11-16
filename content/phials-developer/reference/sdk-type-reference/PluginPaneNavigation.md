@@ -2,7 +2,7 @@
 title: "PluginPaneNavigation"
 description: "TypeScript signature and members for the PluginPaneNavigation public SDK declaration."
 ai_disclosure: true
-order: 91
+order: 96
 aliases:
   - references/PluginPaneNavigation
 ---

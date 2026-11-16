@@ -2,7 +2,7 @@
 title: "PluginManifest"
 description: "TypeScript signature and members for the PluginManifest public SDK declaration."
 ai_disclosure: true
-order: 87
+order: 92
 aliases:
   - references/PluginManifest
 ---

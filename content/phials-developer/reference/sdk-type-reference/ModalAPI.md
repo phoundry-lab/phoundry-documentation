@@ -2,7 +2,7 @@
 title: "ModalAPI"
 description: "TypeScript signature and members for the ModalAPI public SDK declaration."
 ai_disclosure: true
-order: 51
+order: 56
 aliases:
   - references/ModalAPI
 ---

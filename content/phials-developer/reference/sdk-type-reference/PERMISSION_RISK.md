@@ -2,7 +2,7 @@
 title: "PERMISSION_RISK"
 description: "TypeScript signature and members for the PERMISSION_RISK public SDK declaration."
 ai_disclosure: true
-order: 64
+order: 69
 aliases:
   - references/PERMISSION_RISK
 ---

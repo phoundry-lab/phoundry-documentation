@@ -2,7 +2,7 @@
 title: "MetadataSchemaField"
 description: "TypeScript signature and members for the MetadataSchemaField public SDK declaration."
 ai_disclosure: true
-order: 50
+order: 55
 aliases:
   - references/MetadataSchemaField
 ---

@@ -2,7 +2,7 @@
 title: "MetadataSchema"
 description: "TypeScript signature and members for the MetadataSchema public SDK declaration."
 ai_disclosure: true
-order: 49
+order: 54
 aliases:
   - references/MetadataSchema
 ---

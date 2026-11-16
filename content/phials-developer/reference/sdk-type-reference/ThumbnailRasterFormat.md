@@ -2,7 +2,7 @@
 title: "ThumbnailRasterFormat"
 description: "TypeScript signature and members for the ThumbnailRasterFormat public SDK declaration."
 ai_disclosure: true
-order: 140
+order: 145
 aliases:
   - references/ThumbnailRasterFormat
 ---

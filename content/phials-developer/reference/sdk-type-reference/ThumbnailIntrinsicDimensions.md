@@ -2,7 +2,7 @@
 title: "ThumbnailIntrinsicDimensions"
 description: "TypeScript signature and members for the ThumbnailIntrinsicDimensions public SDK declaration."
 ai_disclosure: true
-order: 136
+order: 141
 aliases:
   - references/ThumbnailIntrinsicDimensions
 ---

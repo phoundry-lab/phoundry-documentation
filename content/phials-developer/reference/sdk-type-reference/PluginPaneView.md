@@ -2,7 +2,7 @@
 title: "PluginPaneView"
 description: "TypeScript signature and members for the PluginPaneView public SDK declaration."
 ai_disclosure: true
-order: 94
+order: 99
 aliases:
   - references/PluginPaneView
 ---

@@ -2,7 +2,7 @@
 title: "LayoutSettledPayload"
 description: "TypeScript signature and members for the LayoutSettledPayload public SDK declaration."
 ai_disclosure: true
-order: 42
+order: 47
 aliases:
   - references/LayoutSettledPayload
 ---

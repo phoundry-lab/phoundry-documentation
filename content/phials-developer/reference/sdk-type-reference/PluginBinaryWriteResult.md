@@ -2,7 +2,7 @@
 title: "PluginBinaryWriteResult"
 description: "TypeScript signature and members for the PluginBinaryWriteResult public SDK declaration."
 ai_disclosure: true
-order: 69
+order: 74
 aliases:
   - references/PluginBinaryWriteResult
 ---

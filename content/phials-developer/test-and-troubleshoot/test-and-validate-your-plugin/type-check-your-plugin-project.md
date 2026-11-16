@@ -18,7 +18,7 @@ The check covers TypeScript and Svelte source using the project’s compiler con
 
 ## Use the published public SDK
 
-The example depends on `@phoundry/phials-plugin-sdk` at exactly `3.0.0` from npm. There is no local `sdk/` folder to synchronize or edit. Import public types and manifest helpers from that package.
+The example depends on `@phoundry/phials-plugin-sdk` at exactly `3.1.0` from npm. There is no local `sdk/` folder to synchronize or edit. Import public types and manifest helpers from that package.
 
 When adopting a newer SDK, update the dependency deliberately, commit the resulting lockfile, and review any source changes the new contract requires. Set `pluginApiVersion` in `src/plugin.manifest.ts` to the contract you actually target and test with a Phials build that supports it.
 

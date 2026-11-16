@@ -2,7 +2,7 @@
 title: "GitInfo"
 description: "TypeScript signature and members for the GitInfo public SDK declaration."
 ai_disclosure: true
-order: 38
+order: 42
 aliases:
   - references/GitInfo
 ---

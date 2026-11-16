@@ -2,7 +2,7 @@
 title: "PluginPathOutcome"
 description: "TypeScript signature and members for the PluginPathOutcome public SDK declaration."
 ai_disclosure: true
-order: 96
+order: 101
 aliases:
   - references/PluginPathOutcome
 ---

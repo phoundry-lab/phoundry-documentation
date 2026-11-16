@@ -2,7 +2,7 @@
 title: "PluginIndexDefinition"
 description: "TypeScript signature and members for the PluginIndexDefinition public SDK declaration."
 ai_disclosure: true
-order: 86
+order: 91
 aliases:
   - references/PluginIndexDefinition
 ---

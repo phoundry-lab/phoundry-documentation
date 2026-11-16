@@ -2,7 +2,7 @@
 title: "PreviewToolbarEditorState"
 description: "TypeScript signature and members for the PreviewToolbarEditorState public SDK declaration."
 ai_disclosure: true
-order: 118
+order: 123
 aliases:
   - references/PreviewToolbarEditorState
 ---

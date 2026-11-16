@@ -2,7 +2,7 @@
 title: "PluginDatabaseMigration"
 description: "TypeScript signature and members for the PluginDatabaseMigration public SDK declaration."
 ai_disclosure: true
-order: 74
+order: 79
 aliases:
   - references/PluginDatabaseMigration
 ---

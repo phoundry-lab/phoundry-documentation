@@ -2,7 +2,7 @@
 title: "PluginDirectoryReadResult"
 description: "TypeScript signature and members for the PluginDirectoryReadResult public SDK declaration."
 ai_disclosure: true
-order: 78
+order: 83
 aliases:
   - references/PluginDirectoryReadResult
 ---

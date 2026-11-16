@@ -2,7 +2,7 @@
 title: "PluginPaneSort"
 description: "TypeScript signature and members for the PluginPaneSort public SDK declaration."
 ai_disclosure: true
-order: 93
+order: 98
 aliases:
   - references/PluginPaneSort
 ---

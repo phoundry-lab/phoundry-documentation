@@ -2,7 +2,7 @@
 title: "JsonValue"
 description: "TypeScript signature and members for the JsonValue public SDK declaration."
 ai_disclosure: true
-order: 40
+order: 45
 aliases:
   - references/JsonValue
 ---

@@ -2,7 +2,7 @@
 title: "parseManifest"
 description: "TypeScript signature and members for the parseManifest public SDK declaration."
 ai_disclosure: true
-order: 61
+order: 66
 aliases:
   - references/parseManifest
 ---

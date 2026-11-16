@@ -2,7 +2,7 @@
 title: "MetadataAPI"
 description: "TypeScript signature and members for the MetadataAPI public SDK declaration."
 ai_disclosure: true
-order: 45
+order: 50
 aliases:
   - references/MetadataAPI
 ---

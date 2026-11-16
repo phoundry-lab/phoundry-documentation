@@ -2,7 +2,7 @@
 title: "PluginPermission"
 description: "TypeScript signature and members for the PluginPermission public SDK declaration."
 ai_disclosure: true
-order: 97
+order: 102
 aliases:
   - references/PluginPermission
 ---

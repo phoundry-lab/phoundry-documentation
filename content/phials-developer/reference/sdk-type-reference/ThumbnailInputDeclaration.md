@@ -2,7 +2,7 @@
 title: "ThumbnailInputDeclaration"
 description: "TypeScript signature and members for the ThumbnailInputDeclaration public SDK declaration."
 ai_disclosure: true
-order: 135
+order: 140
 aliases:
   - references/ThumbnailInputDeclaration
 ---

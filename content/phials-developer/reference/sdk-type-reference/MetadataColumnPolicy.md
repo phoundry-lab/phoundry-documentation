@@ -2,7 +2,7 @@
 title: "MetadataColumnPolicy"
 description: "TypeScript signature and members for the MetadataColumnPolicy public SDK declaration."
 ai_disclosure: true
-order: 46
+order: 51
 aliases:
   - references/MetadataColumnPolicy
 ---

@@ -2,7 +2,7 @@
 title: "validateManifest"
 description: "TypeScript signature and members for the validateManifest public SDK declaration."
 ai_disclosure: true
-order: 144
+order: 149
 aliases:
   - references/validateManifest
 ---
