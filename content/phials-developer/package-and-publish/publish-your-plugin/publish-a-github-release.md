@@ -14,7 +14,7 @@ so an older or draft release is not a usable public install source.
 
 ## Confirm the release candidate
 
-From the clean plugin repository, rerun the non-mutating release check:
+The build automatically created `release/release-inventory.json`. From the clean plugin repository, rerun the non-mutating release check:
 
 ```bash
 npm run release:verify
@@ -29,7 +29,7 @@ Confirm:
 - the artifact inventory still matches every file; and
 - the release notes describe this exact candidate.
 
-Do not rebuild between this check and upload. A rebuild can change generated
+`release:verify` compares existing artifact bytes and bundled manifest with the recorded inventory; it does not rebuild or rewrite them. Do not rebuild between this check and upload. A rebuild can change generated
 bytes even when the source appears unchanged.
 
 ## Create and push the version tag

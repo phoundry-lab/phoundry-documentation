@@ -8,8 +8,8 @@ ai_disclosure: true
 
 Validate a plugin in layers. Each layer catches a different class of failure:
 
-1. [Type-check your plugin project](type-check-your-plugin-project.md) against Svelte and the synchronized public SDK.
-2. [Test plugin logic and interfaces](test-plugin-logic-and-interfaces.md) with deterministic logic, provider, component, accessibility, and representative-file tests.
+1. [Type-check your plugin project](type-check-your-plugin-project.md) against Svelte and the published npm SDK.
+2. [Test plugin logic and interfaces](test-plugin-logic-and-interfaces.md) with Node-based logic tests and capability-specific checks you add.
 3. [Build and validate release artifacts](build-and-validate-release-artifacts.md) as the exact files Phials will install.
 4. [Verify permissions and runtime compatibility](verify-permissions-and-runtime-compatibility.md) in an isolated Phials Home with both compatible and deliberately incompatible manifests.
 
@@ -17,12 +17,12 @@ Run the complete source and artifact gate from the plugin project root:
 
 ```bash
 npm run check
-npm run test:run
+npm test
 npm run build
-npm run validate
+npm run release:verify
 ```
 
-A clean run proves that the source agrees with the public SDK, deterministic behavior passes, and the release artifact set is structurally valid. It does not prove that the plugin activates with its real permissions and compatibility declarations. The installed-runtime checks provide that final evidence.
+A clean run checks source types, the tests you have, manifest and basic bundle identity, and the recorded artifact bytes. The example does not include a provider or lifecycle harness. It does not prove that the plugin activates with its real permissions and compatibility declarations. The installed-runtime checks provide that final evidence.
 
 ## Match tests to plugin capabilities
 

@@ -7,7 +7,7 @@ order: 1
 
 # Add a theme to a plugin
 
-Add a theme by placing a `theme.json` and `theme.css` pair in the starter’s convention-based `themes/` directory. Phials discovers the pair automatically when the plugin activates.
+Author a `theme.json` and `theme.css` pair, emit it as flat release assets, and install the plugin. Phials discovers complete pairs beneath the installed plugin’s `themes/` directory when the plugin activates. The starter does not automatically scan your source `themes/` directory; add the explicit build step in [Package and test theme release artifacts](package-and-test-theme-release-artifacts.md).
 
 ## Create the theme directory
 
@@ -15,10 +15,11 @@ Start from the [plugin starter repo](../../get-started/build-your-first-plugin/c
 
 ```text
 example-theme-plugin/
-├── public/
-│   └── manifest.json
+├── package.json
+├── vite.config.ts
 ├── src/
-│   └── main.ts
+│   ├── main.ts
+│   └── plugin.manifest.ts
 └── themes/
     └── slate-dark/
         ├── theme.json
@@ -49,36 +50,41 @@ The theme ID is independent of the directory slug. Namespace it beneath the plug
 
 ## Add the theme CSS
 
-Create `themes/slate-dark/theme.css` from the complete working file in [Style a theme with Phoundry UI tokens](style-a-theme-with-phoundry-ui-tokens.md). A theme must define the complete required token set; a partial palette has no fallback values.
+Create `themes/slate-dark/theme.css` using the example in [Style a theme with Phoundry UI tokens](style-a-theme-with-phoundry-ui-tokens.md). A single `--ph-accent` override is enough to start: the selected light or dark foundation supplies the other values. There is no required token checklist.
 
 ## Keep the plugin entry point minimal
 
-A plugin that contributes only themes still exports a valid [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md). It does not need a theme provider:
+A plugin that contributes only themes still exports a valid [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md). It does not need a theme provider.
+
+Keep the starter’s source manifest in `src/plugin.manifest.ts`. Set its ID to `example.theme-pack`, update its name and repository, and retain its `version` import from `../package.json`. Change the release version in `package.json`, not in a separate public manifest.
+
+A minimal `src/main.ts` retains the exports expected by the starter build:
 
 ```typescript
-export default function createPlugin(): PhialsPlugin {
-	return {
-		id: "example.theme-pack",
-		name: "Example theme pack",
-		version: "1.0.0",
-		providers: [],
-	};
-}
+import { definePlugin } from "@phoundry/phials-plugin-sdk/manifest";
+import { pluginManifest } from "./plugin.manifest";
+
+export { mount, unmount } from "svelte";
+export { pluginManifest as manifest } from "./plugin.manifest";
+
+export default definePlugin(pluginManifest, {
+	providers: [],
+});
 ```
 
-Keep the same plugin ID, name, and version in the release manifest. A theme-only plugin normally declares an empty `permissions` array because discovery does not use a permission-gated Plugin API operation.
+The build generates `dist/manifest.json` from the bundled named `manifest` export and checks that the plugin definition matches. A theme-only plugin normally declares an empty `permissions` array because discovery does not use a permission-gated Plugin API operation.
 
 ## Build and install the pair locally
 
-Run the starter checks:
+First configure the [theme asset build step](package-and-test-theme-release-artifacts.md#emit-theme-assets-with-vite), then run the starter checks:
 
 ```bash
 npm run check
 npm run build
-npm run validate
+npm run release:verify
 ```
 
-The theme build stages each source pair as flat release assets. For this example:
+With that build step in place, Vite emits each source pair as flat release assets. For this example:
 
 ```text
 dist/
@@ -88,7 +94,7 @@ dist/
 └── theme-slate-dark.css
 ```
 
-Install the development plugin as described in [Install a development plugin locally](../../test-and-troubleshoot/run-your-plugin-locally/install-a-development-plugin-locally.md). Its installed shape is:
+Run `npm run dev:install` to build and install into your normal Phials home, then reload the plugin in **Settings → Plugins**. The installer respects `PHIALS_HOME` and the optional `--phials-home` flag; use the same home when launching Phials. See [Install a development plugin locally](../../test-and-troubleshoot/run-your-plugin-locally/install-a-development-plugin-locally.md) for details. Its installed shape is:
 
 ```text
 example.theme-pack/

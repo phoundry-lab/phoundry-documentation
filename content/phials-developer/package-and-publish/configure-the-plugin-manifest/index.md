@@ -22,19 +22,16 @@ It does not register capabilities or contain plugin settings. Those belong to th
 
 ## Start from the plugin starter
 
-Keep the authored manifest at:
+Author `src/plugin.manifest.ts` with helpers from
+`@phoundry/phials-plugin-sdk/manifest`. It imports `version` from
+`../package.json`, the sole release-version source. The current starter pins
+`@phoundry/phials-plugin-sdk` to `3.0.0`.
 
-```text
-public/manifest.json
-```
-
-The starter build validates it, synchronizes the release version, and writes:
-
-```text
-dist/manifest.json
-```
-
-Edit the source manifest and package metadata. Never patch `dist/manifest.json` by hand.
+`src/main.ts` exports the source manifest as `manifest`, exports Svelte
+`mount` and `unmount`, and uses `definePlugin(pluginManifest, …)` for its
+default export. The build derives `dist/manifest.json` and
+`release/release-inventory.json` from that same bundle. Never patch these
+outputs by hand; there is no separate authored JSON manifest or sync step.
 
 ## Configure it in order
 
@@ -52,34 +49,28 @@ Edit the source manifest and package metadata. Never patch `dist/manifest.json` 
   "name": "Review Tools",
   "version": "1.2.0",
   "minAppVersion": "1.4.0",
-  "pluginApiVersion": "1.0.0",
+  "pluginApiVersion": "3.0.0",
   "author": "Acme",
   "description": "Adds review commands and file annotations.",
   "authorUrl": "https://acme.example",
   "repository": "https://github.com/acme/review-tools",
-  "icons": [
-    "phoundry-mono:check",
-    "phoundry-mono:circle-info"
-  ],
-  "permissions": [
-    "filesystem.write"
-  ]
+  "icons": ["phoundry-mono:check", "phoundry-mono:circle-info"],
+  "permissions": []
 }
 ```
 
-Every field has one job. Do not add provider declarations, arbitrary configuration, release notes, or undocumented metadata.
+This is an example of the emitted JSON, not a second file to author. Every field has one job. Do not add provider declarations, arbitrary configuration, release notes, or undocumented metadata.
 
 ## Keep the release identities aligned
 
 One release has one identity and version across:
 
 ```text
-package.json
-public/manifest.json
-dist/manifest.json
-default PhialsPlugin export
-installed directory name
-release tag and assets
+package.json.version → src/plugin.manifest.ts → bundled manifest export
+                                            → default PhialsPlugin export
+                                            → dist/manifest.json
+                                            → release inventory and tag
+plugin ID → installed directory name
 ```
 
 The plugin ID is permanent. The version changes for releases. A mismatch is a validation or load failure, not a migration mechanism.

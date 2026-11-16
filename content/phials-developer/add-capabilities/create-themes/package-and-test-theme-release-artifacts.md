@@ -25,14 +25,66 @@ theme-slate-dark.css
 
 The JSON and CSS filenames must use the exact same lowercase kebab-case slug.
 
-## Build and validate the release set
+## Emit theme assets with Vite
+
+The starter does not scan `themes/` or copy `public/` files: its Vite configuration sets `publicDir: false`. Add an explicit asset-emission plugin to the existing `vite.config.ts`.
+
+Add `readFileSync` and the `Plugin` type to its imports, keeping the existing `resolve` import and other configuration:
+
+```typescript
+import { readFileSync } from "node:fs";
+import type { Plugin } from "vite";
+```
+
+Define the plugin above the existing `defineConfig` call:
+
+```typescript
+function themeAssets(): Plugin {
+	const slugs = ["slate-dark"];
+
+	return {
+		name: "theme-assets",
+		apply: "build",
+		generateBundle() {
+			for (const slug of slugs) {
+				for (const extension of ["json", "css"]) {
+					const sourcePath = resolve(
+						import.meta.dirname,
+						"themes",
+						slug,
+						`theme.${extension}`,
+					);
+					this.addWatchFile(sourcePath);
+					this.emitFile({
+						type: "asset",
+						fileName: `theme-${slug}.${extension}`,
+						source: readFileSync(sourcePath, "utf8"),
+					});
+				}
+			}
+		},
+	};
+}
+```
+
+Insert it into the existing plugins array, retaining the starter’s Svelte and artifact plugins:
+
+```typescript
+plugins: [svelte(), themeAssets(), pluginArtifacts(import.meta.dirname)],
+```
+
+Keep the rest of the starter configuration, including `publicDir: false` and its library build settings. Add each source directory slug to `slugs`. This example reads plain CSS verbatim; if you choose a CSS preprocessor, emit its compiled output instead.
+
+Vite emits these assets during `generateBundle`. The starter’s artifact plugin then writes `dist/manifest.json` and automatically generates `release/release-inventory.json` in `writeBundle`, after the emitted files are on disk. Do not hand-edit either generated file or add a separate inventory command.
+
+## Build and verify the release set
 
 Run the starter’s release checks:
 
 ```bash
 npm run check
 npm run build
-npm run validate
+npm run release:verify
 ```
 
 A theme-only plugin release contains:
@@ -47,14 +99,17 @@ dist/
 
 If the plugin also contributes Svelte interfaces, it may include `styles.css`. Theme CSS always remains in its own `theme-<slug>.css` asset; do not merge it into `styles.css`.
 
-For every theme pair, validation checks:
+The starter’s build and `release:verify` check the release file set, paired asset names, bundled plugin exports, plugin identity and version agreement, and inventory checksums. A slug starts with a lowercase letter or number and otherwise uses lowercase letters, numbers, and hyphens. `release:verify` checks the existing built bytes without rebuilding them.
 
-- both files exist and use the same slug
-- the slug contains only lowercase letters, numbers, and hyphens
-- `theme.json` parses and contains a unique `id`, `name`, and light or dark `mode`
-- optional author and preview fields have valid shapes
-- `theme.css` defines every required Phoundry UI token
-- the manifest, `main.js`, and plugin definition share one plugin ID and version
+When Phials activates the installed plugin, theme discovery checks:
+
+- each discovered theme has both `theme.json` and `theme.css`
+- metadata parses as an object containing only supported fields
+- the trimmed theme ID starts with `<plugin-id>.` and does not collide with another theme
+- the name is non-empty and the mode is exactly `light` or `dark`
+- optional author and preview fields are valid, including all three CSS colors when preview is supplied
+
+Phials checks this metadata when discovering the installed theme. You can override only the public hooks you need; omitted values use the foundation defaults. Test the rendered theme for valid CSS, contrast, and effects on the rest of the interface.
 
 Follow [Build and validate release artifacts](../../test-and-troubleshoot/test-and-validate-your-plugin/build-and-validate-release-artifacts.md) for the complete source and output checks.
 
@@ -78,7 +133,9 @@ Use [Build a complete release artifact set](../../package-and-publish/prepare-a-
 
 ## Verify the installed shape
 
-Install the exact release candidate through the supported development or published-install path. Phials writes the flat assets into:
+For normal development, run `npm run dev:install`. It builds first and installs into your normal Phials home unless `PHIALS_HOME` or `--phials-home` selects another home. Reload the plugin in **Settings → Plugins**; watch mode alone does not install or reload it.
+
+For a frozen release candidate, do not use `dev:install` as a copy-only command: it would rebuild. Preserve the existing `dist/` files and `release/release-inventory.json`, run `npm run release:verify`, and test those exact bytes. You can copy the existing files into a test Phials home’s `plugins/<plugin-id>/` directory, mapping each flat theme asset into the layout below, or install the same attached files through the published-install path. Launch Phials with that test home when using one. The installed layout is:
 
 ```text
 <plugin-id>/
@@ -110,6 +167,8 @@ Test the exact installed files, not only the source directory:
 8. Install an update with the same IDs and slugs; user selections should continue to refer to the updated themes.
 9. Remove the plugin; its theme files and picker entries should be removed, with the same persistent built-in same-mode fallback.
 
-Also test an incomplete pair, duplicate ID, unknown metadata key, invalid preview color, and missing or invalid required token. Activation must fail with the owning file and field/token in its diagnostic, unregister any themes already staged by that activation, and preserve the previously active release and theme preference during update rollback.
+Check an incomplete pair, duplicate ID, unknown metadata key, and invalid preview color separately from your final candidate. An unpaired flat release asset is rejected by release-set checks; malformed installed pairs and metadata fail host discovery. Confirm failed updates preserve the previous release and theme preference rather than leaving partial registrations.
+
+A theme with only `--ph-accent` is valid and should use foundation defaults for other hooks. Missing token declarations are not an activation failure. Invalid CSS values may be ignored by the browser or produce unintended appearance, so inspect the rendered result as well as the metadata.
 
 For final publication checks, continue with [Verify a release candidate](../../package-and-publish/prepare-a-release/verify-a-release-candidate.md) and [Verify the published installation](../../package-and-publish/publish-your-plugin/verify-the-published-installation.md).

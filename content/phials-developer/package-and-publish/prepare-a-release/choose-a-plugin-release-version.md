@@ -11,11 +11,11 @@ Choose the next semantic version from what changes for users and the plugin’s 
 
 ## Classify the release
 
-| Increment | Use it for |
-| --- | --- |
-| Patch | Backward-compatible fixes, performance work, and presentation corrections |
-| Minor | Backward-compatible capabilities, settings, formats, and workflows |
-| Major | Removed or incompatible behavior, identifiers, settings, data, or integration contracts |
+| Increment | Use it for                                                                              |
+| --------- | --------------------------------------------------------------------------------------- |
+| Patch     | Backward-compatible fixes, performance work, and presentation corrections               |
+| Minor     | Backward-compatible capabilities, settings, formats, and workflows                      |
+| Major     | Removed or incompatible behavior, identifiers, settings, data, or integration contracts |
 
 Phials-specific examples:
 
@@ -33,20 +33,13 @@ For a `0.x` plugin, document the project’s pre-1.0 versioning policy. SemVer p
 
 ## Set one version everywhere
 
-Use the starter’s version command:
+Set the version in `package.json`, the example’s sole version source. For example:
 
 ```bash
-npm run version:set -- 1.3.0
+npm version 1.3.0 --no-git-tag-version
 ```
 
-It updates:
-
-- `package.json`
-- the package lockfile
-- the source plugin manifest
-- the exported `PhialsPlugin.version`
-
-Build output then carries the same version into `dist/manifest.json`. Use:
+This also updates the package lockfile. `src/plugin.manifest.ts` imports the package version, and the exported plugin uses that manifest identity. The build carries it into `dist/manifest.json` and `main.js`. Use:
 
 ```text
 Package version:  1.3.0
@@ -56,19 +49,19 @@ Git tag:          v1.3.0
 Release title:    1.3.0
 ```
 
-Run the version command before the final build. Do not edit `dist/manifest.json` or bundled `main.js` to repair a mismatch.
+Update the package version before the final build. Do not edit `dist/manifest.json` or bundled `main.js` to repair a mismatch.
 
 ## Keep compatibility versions separate
 
 These fields answer different questions:
 
-| Value | Meaning |
-| --- | --- |
-| `version` | Version of this plugin release |
-| `minAppVersion` | Oldest Phials release supported by the plugin |
-| `pluginApiVersion` | Public SDK contract targeted by the plugin |
+| Value              | Meaning                                       |
+| ------------------ | --------------------------------------------- |
+| `version`          | Version of this plugin release                |
+| `minAppVersion`    | Oldest Phials release supported by the plugin |
+| `pluginApiVersion` | Public SDK contract targeted by the plugin    |
 
-A plugin `2.0.0` can still target Plugin API `1.0.0`. A patch release can raise neither boundary unless the actual code requires it and the release classification and notes account for the lost compatibility.
+A plugin `3.0.0` can target Plugin API `2.0.0`. A patch release can raise neither boundary unless the actual code requires it and the release classification and notes account for the lost compatibility.
 
 ## Never reuse a released version
 

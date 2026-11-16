@@ -31,14 +31,13 @@ Keep the command ID stable. IDs identify commands across reloads and user config
 
 ## Rebuild and reinstall
 
-Run the same validation gate against the changed source, then replace the installed development artifacts:
+Build and replace the installed development files:
 
 ```bash
-npm run check
-npm run build
-npm run validate
 npm run dev:install
 ```
+
+The command builds before installing. Run `npm run check` and `npm test` when you want to check the source and automated tests too.
 
 If you installed into an isolated Phials Home, pass the same location again:
 
@@ -46,7 +45,7 @@ If you installed into an isolated Phials Home, pass the same location again:
 npm run dev:install -- --phials-home /absolute/path/to/phials-plugin-dev
 ```
 
-The build and install commands update files on disk. The old module remains activated in the running Phials process until you explicitly reload it.
+The install command builds and updates files on disk. The old module remains activated in the running Phials process until you explicitly reload it.
 
 ## Reload in Phials
 
@@ -62,7 +61,7 @@ Phials performs the plugin reload lifecycle:
 
 The starter does not preserve reload state, so this first reload simply replaces the command and file surface. Durable settings and plugin data follow their own storage contracts and are not deleted by deactivation.
 
-If the new release cannot load or activate, Phials reports the reload error and restores the prior activated development release. Correct the source, rerun the four commands, and choose **Reload** again.
+If the new release cannot load or activate, Phials reports the reload error and restores the prior activated development release. Correct the source, rerun `npm run dev:install`, and choose **Reload** again.
 
 ## Verify the new code
 

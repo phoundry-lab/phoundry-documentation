@@ -43,7 +43,6 @@ Before changing runtime state, run the starter preflight:
 ```bash
 npm run check
 npm run build
-npm run validate
 ```
 
 If those commands pass, continue from the installed plugin card in

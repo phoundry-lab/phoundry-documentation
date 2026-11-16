@@ -86,7 +86,8 @@ repository and release notes until that product contract exists.
 ## Unlist from the registry
 
 Unlisting marks the entry `listed: false` and removes its release projection.
-Use the registry command so the reviewed identity remains machine-restorable:
+Run the registry command in the registry repository, not in the plugin
+starter, so the reviewed identity remains machine-restorable:
 
 ```bash
 npm run registry:unlist -- acme.review-tools

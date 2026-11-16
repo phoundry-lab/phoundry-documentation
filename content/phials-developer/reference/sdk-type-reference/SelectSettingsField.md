@@ -2,7 +2,7 @@
 title: "SelectSettingsField"
 description: "TypeScript signature and members for the SelectSettingsField public SDK declaration."
 ai_disclosure: true
-order: 122
+order: 124
 aliases:
   - references/SelectSettingsField
 ---

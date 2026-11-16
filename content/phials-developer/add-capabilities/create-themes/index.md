@@ -11,9 +11,9 @@ aliases:
 Create a theme when you want to add a complete light or dark appearance to Phials. A theme is a pair of files:
 
 - `theme.json` supplies stable identity and picker metadata.
-- `theme.css` supplies the complete Phoundry UI token set for one light or dark appearance.
+- `theme.css` supplies plain CSS for one light or dark appearance, from a single color override to a full design. The selected foundation supplies defaults for omitted hooks.
 
-Phials discovers theme pairs from an activated plugin. The plugin does not register a provider or call the Plugin API for each theme.
+Phials discovers theme pairs from an activated plugin’s installed directory. The plugin does not register a provider or call the Plugin API for each theme. Author the pair in your project, then explicitly emit the flat `theme-<slug>.json` and `.css` assets described in [Package and test theme release artifacts](package-and-test-theme-release-artifacts.md). The starter does not scan source theme directories or copy `public/` files automatically.
 
 ```text
 themes/
@@ -38,10 +38,12 @@ Theme CSS controls the application appearance while that theme is active. It is 
 Installation makes the theme files available but does not register them. When the plugin is enabled, loaded, and activated, Phials:
 
 1. discovers complete theme pairs beneath `themes/`
-2. validates their metadata
+2. validates their metadata and checks for theme ID collisions
 3. adds them to the matching light or dark theme list
 4. applies one if it is the selected theme for the current color scheme
 
 Deactivation unregisters every theme contributed by that plugin. If one was active, Phials switches to an available theme for the same light or dark scheme. Re-enabling the plugin discovers the pairs again.
+
+Theme CSS has no required token set or selector policy. Metadata and complete file pairs remain required; test CSS appearance and global effects yourself.
 
 Theme plugins normally need no plugin permissions. They still use the standard plugin manifest, compatibility declarations, `main.js`, installation, enablement, and activation lifecycle.

@@ -72,7 +72,7 @@ namespace is rejected before delivery.
 
 ## Declaration merging
 
-The synchronized SDK declares an empty ambient [PluginEvents](../../reference/sdk-type-reference/PluginEvents.md) interface.
+The public SDK declares an empty ambient [PluginEvents](../../reference/sdk-type-reference/PluginEvents.md) interface.
 Producers and TypeScript consumers extend it with the full event ID:
 
 ```ts

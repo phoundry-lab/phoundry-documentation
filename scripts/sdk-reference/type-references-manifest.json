@@ -1,5 +1,5 @@
 {
-	"pluginApiVersion": "1.0.0",
+	"pluginApiVersion": "3.0.0",
 	"categories": [
 		{
 			"id": "container",
@@ -53,7 +53,17 @@
 				"PreviewToolbarContributionProps",
 				"PreviewDestinationCapabilities",
 				"ThumbnailIntrinsicDimensions",
-				"ThumbnailProviderProps",
+				"ThumbnailProvider",
+				"ThumbnailRenderContext",
+				"ThumbnailRenderResult",
+				"ThumbnailNativeResult",
+				"ThumbnailNativeAccess",
+				"ThumbnailDirectorySelection",
+				"ThumbnailInputDeclaration",
+				"ThumbnailContentAccess",
+				"ThumbnailContentSnapshot",
+				"ThumbnailRasterFormat",
+				"ThumbnailHostFeature",
 				"EditorHistoryHandle",
 				"PreviewToolbarEditorState"
 			],
@@ -99,9 +109,59 @@
 					"sincePluginApiVersion": "1.0.0"
 				},
 				{
-					"name": "ThumbnailProviderProps",
-					"alias": "references/ThumbnailProviderProps",
-					"sincePluginApiVersion": "1.0.0"
+					"name": "ThumbnailProvider",
+					"alias": "references/ThumbnailProvider",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailRenderContext",
+					"alias": "references/ThumbnailRenderContext",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailRenderResult",
+					"alias": "references/ThumbnailRenderResult",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailNativeResult",
+					"alias": "references/ThumbnailNativeResult",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailNativeAccess",
+					"alias": "references/ThumbnailNativeAccess",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailDirectorySelection",
+					"alias": "references/ThumbnailDirectorySelection",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailInputDeclaration",
+					"alias": "references/ThumbnailInputDeclaration",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailContentAccess",
+					"alias": "references/ThumbnailContentAccess",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailContentSnapshot",
+					"alias": "references/ThumbnailContentSnapshot",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailRasterFormat",
+					"alias": "references/ThumbnailRasterFormat",
+					"sincePluginApiVersion": "2.0.0"
+				},
+				{
+					"name": "ThumbnailHostFeature",
+					"alias": "references/ThumbnailHostFeature",
+					"sincePluginApiVersion": "2.0.0"
 				},
 				{
 					"name": "EditorHistoryHandle",
@@ -402,12 +462,14 @@
 				"PluginSettingsChange",
 				"PluginSettingsSubscription",
 				"PluginStorageAPI",
+				"PluginSecretsAPI",
 				"PluginDatabaseAPI",
 				"DatabaseExecuteResult",
 				"ReadonlyAppSettings",
 				"ModalAPI",
 				"NotifyAPI",
 				"FileUtilsAPI",
+				"PluginPreparedWrite",
 				"PluginTextFileSnapshot",
 				"PluginTextWriteResult",
 				"PluginBinaryFileSnapshot",
@@ -479,6 +541,11 @@
 					"sincePluginApiVersion": "1.0.0"
 				},
 				{
+					"name": "PluginSecretsAPI",
+					"alias": "references/PluginSecretsAPI",
+					"sincePluginApiVersion": "1.1.0"
+				},
+				{
 					"name": "PluginDatabaseAPI",
 					"alias": "references/PluginDatabaseAPI",
 					"sincePluginApiVersion": "1.0.0"
@@ -506,6 +573,11 @@
 				{
 					"name": "FileUtilsAPI",
 					"alias": "references/FileUtilsAPI",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "PluginPreparedWrite",
+					"alias": "references/PluginPreparedWrite",
 					"sincePluginApiVersion": "1.0.0"
 				},
 				{
@@ -723,30 +795,17 @@
 			"id": "commands",
 			"title": "Commands",
 			"types": [
-				"ToolbarContext",
-				"ToolbarSubToolbarProps",
 				"CommandContextKey",
 				"CommandContext",
 				"CommandShortcut",
 				"CommandPlacementArea",
 				"CommandPlacementBase",
-				"ToolbarPlacementConfig",
 				"ContextMenuPlacementConfig",
 				"CommandPlacement",
 				"Command",
 				"CommandProvider"
 			],
 			"entries": [
-				{
-					"name": "ToolbarContext",
-					"alias": "references/ToolbarContext",
-					"sincePluginApiVersion": "1.0.0"
-				},
-				{
-					"name": "ToolbarSubToolbarProps",
-					"alias": "references/ToolbarSubToolbarProps",
-					"sincePluginApiVersion": "1.0.0"
-				},
 				{
 					"name": "CommandContextKey",
 					"alias": "references/CommandContextKey",
@@ -770,11 +829,6 @@
 				{
 					"name": "CommandPlacementBase",
 					"alias": "references/CommandPlacementBase",
-					"sincePluginApiVersion": "1.0.0"
-				},
-				{
-					"name": "ToolbarPlacementConfig",
-					"alias": "references/ToolbarPlacementConfig",
 					"sincePluginApiVersion": "1.0.0"
 				},
 				{

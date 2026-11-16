@@ -14,12 +14,18 @@ aliases:
 ## Signature
 
 ```typescript
-type PluginFileErrorCode = "aborted" | "already-exists" | "conflict" | "invalid-path" | "is-directory" | "not-directory" | "not-found" | "permission-denied" | "unsupported" | "io-error";
+type PluginFileErrorCode = "aborted" | "cancelled" | "retired" | "not-ready" | "unavailable" | "outcome-unknown" | "invalid-data" | "already-exists" | "conflict" | "invalid-path" | "is-directory" | "not-directory" | "not-found" | "permission-denied" | "unsupported" | "io-error";
 ```
 
 ## Union members
 
 - `aborted`
+- `cancelled`
+- `retired`
+- `not-ready`
+- `unavailable`
+- `outcome-unknown`
+- `invalid-data`
 - `already-exists`
 - `conflict`
 - `invalid-path`

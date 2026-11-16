@@ -2,7 +2,7 @@
 title: "PluginStorageAPI"
 description: "TypeScript signature and members for the PluginStorageAPI public SDK declaration."
 ai_disclosure: true
-order: 104
+order: 106
 aliases:
   - references/PluginStorageAPI
 ---

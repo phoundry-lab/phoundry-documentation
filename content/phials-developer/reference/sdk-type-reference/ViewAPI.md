@@ -2,7 +2,7 @@
 title: "ViewAPI"
 description: "TypeScript signature and members for the ViewAPI public SDK declaration."
 ai_disclosure: true
-order: 139
+order: 148
 aliases:
   - references/ViewAPI
 ---

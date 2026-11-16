@@ -63,7 +63,7 @@ Use `author` when attribution helps users identify the source. Keep plugin-level
 - `"light"` registers a light theme.
 - `"dark"` registers a dark theme.
 
-A theme cannot target both. Phials stores separate selected theme IDs for light and dark color schemes, so each variant must be a complete registration.
+A theme declares one mode. Phials stores separate selected theme IDs for light and dark color schemes, so each variant has its own registration. Applying the theme sets `data-theme-mode` and uses the matching light or dark foundation; you do not need to redefine its defaults or set `color-scheme` yourself.
 
 For a paired family:
 
@@ -77,7 +77,7 @@ themes/
     └── theme.css
 ```
 
-Do not make one CSS file switch values with `prefers-color-scheme`. The selected light and dark themes are independent user choices.
+The selected light and dark themes are independent user choices. If you use `prefers-color-scheme` in your CSS, account for the fact that the user may explicitly select a mode rather than follow the system preference.
 
 ## Define preview swatches
 
@@ -93,17 +93,11 @@ Do not make one CSS file switch values with `prefers-color-scheme`. The selected
 }
 ```
 
-Match them to the final values of:
+Choose swatches representative of the finished appearance: a main surface, readable foreground text, and the accent. For example, these might match `--ph-surface-3`, `--ph-text-primary`, and `--ph-accent` if your CSS overrides them.
 
-| Preview field | Theme token |
-| --- | --- |
-| `background` | `--surface-base` |
-| `foreground` | `--text-primary` |
-| `accent` | `--accent-primary` |
+Preview swatches are optional. When omitted, the picker uses a generic light or dark fallback, not colors extracted from your CSS. Listing an unselected theme does not parse its stylesheet or render it offscreen. Use explicit, self-contained CSS colors to represent the theme accurately in the picker, and preserve enough contrast for the small preview.
 
-Preview swatches are optional. When omitted, Phials derives them from those three tokens. Explicit swatches are useful when CSS expressions such as `color-mix()` make static release validation or preview extraction less predictable.
-
-Use valid CSS colors and preserve enough contrast for the small picker preview. Preview metadata is not a substitute for defining the corresponding required tokens in `theme.css`.
+If `preview` is present, all three fields are required. Unknown metadata keys are rejected; keep the sidecar to `id`, `name`, `mode`, optional `author`, and optional `preview`. The ID must be trimmed and begin with the plugin ID followed by a dot. `name` and a supplied `author` must be non-empty strings.
 
 ## Validate variants independently
 
@@ -111,8 +105,8 @@ For every metadata file, verify:
 
 - the ID is unique across the plugin and remains stable between releases
 - the name distinguishes the variant
-- the mode matches the CSS appearance and `color-scheme` declaration
-- all three preview values are valid CSS colors
+- the mode matches the intended CSS appearance
+- all three preview values, when supplied, are valid CSS colors
 - the neighboring `theme.css` belongs to the same variant
 
 If a plugin supplies both variants, test each one directly rather than assuming that mirrored color values produce equivalent contrast and states.

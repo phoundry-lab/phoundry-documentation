@@ -67,7 +67,7 @@ acme.quick-note.commands
 acme.quick-note.show-status
 ```
 
-Run this example from the plugin starter, which supplies the synchronized ambient SDK declarations and build setup. The complete first build and activation workflow is in [Build your first plugin](../build-your-first-plugin/index.md).
+Run this example from the plugin starter, which supplies the public SDK package and ambient declarations and build setup. The complete first build and activation workflow is in [Build your first plugin](../build-your-first-plugin/index.md).
 
 ## Let each provider describe one capability
 

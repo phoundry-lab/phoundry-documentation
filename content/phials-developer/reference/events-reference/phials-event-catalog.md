@@ -10,7 +10,7 @@ order: 1
 Phials owns every event ID beginning with `core.`. Plugins can subscribe to the
 events in this catalog but cannot register or emit them.
 
-All events on this page are available in Plugin API `1.0.0`. A plugin must also
+These event types were introduced in Plugin API `1.0.0` and remain in the current API 2 contract. A plugin must also
 set `minAppVersion` to the first Phials release in its test matrix that
 implements every event behavior it uses.
 
@@ -36,34 +36,34 @@ Handler ordering and asynchronous completion are defined in the
 
 ## Navigation and selection
 
-| Event | Payload | Delivered when | Ordering |
-| --- | --- | --- | --- |
-| `core.navigation.changed` | `{ path: string; paneId: string }` | A pane commits a different browsed path and the new navigation state is ready. Refreshing the same path does not count as navigation. | Exactly once per successful path commit; ordered per `paneId`. |
-| `core.selection.changed` | `{ paths: string[]; paneId: string }` | A pane commits a different file selection. `paths` is the complete deduplicated selection snapshot; an empty array means cleared selection. | Exactly once per logical selection commit; ordered per `paneId`. |
+| Event                     | Payload                               | Delivered when                                                                                                                              | Ordering                                                         |
+| ------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `core.navigation.changed` | `{ path: string; paneId: string }`    | A pane commits a different browsed path and the new navigation state is ready. Refreshing the same path does not count as navigation.       | Exactly once per successful path commit; ordered per `paneId`.   |
+| `core.selection.changed`  | `{ paths: string[]; paneId: string }` | A pane commits a different file selection. `paths` is the complete deduplicated selection snapshot; an empty array means cleared selection. | Exactly once per logical selection commit; ordered per `paneId`. |
 
 `path` and every entry in `paths` are absolute paths. A listener must use
 `paneId` rather than assuming the active pane caused the event.
 
 ## Tabs
 
-| Event | Payload | Delivered when | Ordering |
-| --- | --- | --- | --- |
-| `core.tab.created` | `{ tabId: string }` | A new tab has been created and can be addressed by its stable ID. | When creation also activates the tab, `created` precedes `switched`. |
-| `core.tab.closed` | `{ tabId: string }` | A tab has been removed from the tab layout. | When closing the active tab selects a replacement, `closed` precedes `switched`. |
-| `core.tab.switched` | `{ tabId: string; previousTabId: string }` | The active tab changes from one existing tab to another. | Ordered by committed active-tab changes. Both IDs identify the state transition; the event is not emitted for a no-op switch. |
+| Event               | Payload                                    | Delivered when                                                    | Ordering                                                                                                                      |
+| ------------------- | ------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `core.tab.created`  | `{ tabId: string }`                        | A new tab has been created and can be addressed by its stable ID. | When creation also activates the tab, `created` precedes `switched`.                                                          |
+| `core.tab.closed`   | `{ tabId: string }`                        | A tab has been removed from the tab layout.                       | When closing the active tab selects a replacement, `closed` precedes `switched`.                                              |
+| `core.tab.switched` | `{ tabId: string; previousTabId: string }` | The active tab changes from one existing tab to another.          | Ordered by committed active-tab changes. Both IDs identify the state transition; the event is not emitted for a no-op switch. |
 
 Creating the first tab emits `core.tab.created`; it does not require a
 `core.tab.switched` event because there is no previous tab.
 
 ## Files
 
-| Event | Payload | Delivered when | Ordering |
-| --- | --- | --- | --- |
-| `core.file.created` | `{ path: string }` | A supported Phials operation creates a file and the created path is available. | After the filesystem commit and before any later open event for the same operation. |
-| `core.file.opened` | `{ path: string }` | A supported file-open action successfully opens the file in its resolved destination. | After open succeeds; ordered by completed open actions. |
-| `core.file.saved` | `{ path: string }` | A supported editor or Plugin API write durably saves file content. | After the write commits. A later save produces another event even when the path is unchanged. |
-| `core.file.renamed` | `{ oldPath: string; newPath: string }` | A file rename commits and Phials reconciles the affected path state. | After commit; a multi-file rename emits one event per file in committed mapping order. |
-| `core.file.deleted` | `{ paths: string[] }` | One supported operation moves or deletes one or more files and reconciles affected state. | One event per committed operation; `paths` preserves that operation's deterministic input order. |
+| Event                  | Payload                                                     | Delivered when                                                                                | Ordering                                                                                             |
+| ---------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `core.file.created`    | `{ path: string }`                                          | A supported Phials operation creates a file and the created path is available.                | After the filesystem commit and before any later open event for the same operation.                  |
+| `core.file.opened`     | `{ path: string }`                                          | A supported file-open action successfully opens the file in its resolved destination.         | After open succeeds; ordered by completed open actions.                                              |
+| `core.file.saved`      | `{ path: string }`                                          | A supported editor or Plugin API write durably saves file content.                            | After the write commits. A later save produces another event even when the path is unchanged.        |
+| `core.file.renamed`    | `{ oldPath: string; newPath: string }`                      | A file rename commits and Phials reconciles the affected path state.                          | After commit; a multi-file rename emits one event per file in committed mapping order.               |
+| `core.file.deleted`    | `{ paths: string[] }`                                       | One supported operation moves or deletes one or more files and reconciles affected state.     | One event per committed operation; `paths` preserves that operation's deterministic input order.     |
 | `core.file-note.saved` | `{ path: string; workspacePath: string; hasNote: boolean }` | Persisted File Note content is created, updated, or removed for a file in a Workspace Folder. | After the note write commits. `hasNote` is false when the persisted content is empty after trimming. |
 
 File events describe operations Phials owns or observes through a documented
@@ -72,22 +72,19 @@ Directory operations use the separate directory events.
 
 ## Workspace Folder configuration and values
 
-| Event | Payload | Delivered when | Ordering |
-| --- | --- | --- | --- |
-| `core.workspace-page-config.changed` | `{ workspacePath: string; page: WorkspacePageConfig }` | The portable Page configuration for one Workspace Folder is persisted and adopted. | Ordered by successful configuration commits for `workspacePath`. |
-| `core.workspace-values.changed` | `WorkspaceValuesChangedEvent` | Canonical Workspace Folder property values change, or a scoped compatibility refresh is required because exact cell deltas are unavailable. | Delta events follow committed mutation-version order. A batch publishes primary cells in commit order. |
-| `core.workspace-properties.changed` | `{ workspaceIds: string[]; sourcePaneId: string }` | A Workspace Folder Property schema change commits, including a paired Relation. | After the schema commit. `workspaceIds` lists every Workspace Folder whose schema changed. |
-| `core.workspace-formula-output-types.changed` | `{ workspaceId?: string; workspacePath: string; propertyIds: string[]; savedViews: SavedWorkspaceView[]; sourcePaneId: string }` | A formula property's output type changes and saved-view consumers are normalized. | After that normalization commits. `propertyIds` lists the retyped properties. |
+| Event                                         | Payload                                                                                                                          | Delivered when                                                                                                                              | Ordering                                                                                               |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `core.workspace-page-config.changed`          | `{ workspacePath: string; page: WorkspacePageConfig }`                                                                           | The portable Page configuration for one Workspace Folder is persisted and adopted.                                                          | Ordered by successful configuration commits for `workspacePath`.                                       |
+| `core.workspace-values.changed`               | `WorkspaceValuesChangedEvent`                                                                                                    | Canonical Workspace Folder property values change, or a scoped compatibility refresh is required because exact cell deltas are unavailable. | Delta events follow committed mutation-version order. A batch publishes primary cells in commit order. |
+| `core.workspace-properties.changed`           | `{ workspaceIds: string[]; sourcePaneId: string }`                                                                               | A Workspace Folder Property schema change commits, including a paired Relation.                                                             | After the schema commit. `workspaceIds` lists every Workspace Folder whose schema changed.             |
+| `core.workspace-formula-output-types.changed` | `{ workspaceId?: string; workspacePath: string; propertyIds: string[]; savedViews: SavedWorkspaceView[]; sourcePaneId: string }` | A formula property's output type changes and saved-view consumers are normalized.                                                           | After that normalization commits. `propertyIds` lists the retyped properties.                          |
 
 `WorkspacePageConfig` is:
 
 ```ts
 interface WorkspacePageConfig {
   propertyOrder?: string[];
-  propertyVisibility?: Record<
-    string,
-    "always" | "not-empty" | "hidden"
-  >;
+  propertyVisibility?: Record<string, "always" | "not-empty" | "hidden">;
   compactProperties?: boolean;
   fullWidth?: boolean;
 }
@@ -138,28 +135,28 @@ item in the stated Workspace Folder scope. `sourcePaneId` lets the initiating
 pane avoid replaying work it has already applied.
 
 `PropertyValue` is the public Workspace Folder property value shape supplied by
-the synchronized SDK. Consumers must branch on the relevant property
+the public SDK package. Consumers must branch on the relevant property
 definition rather than assuming every optional value field is present.
 
 ## Directories
 
-| Event | Payload | Delivered when | Ordering |
-| --- | --- | --- | --- |
-| `core.directory.created` | `{ path: string }` | A supported Phials operation creates a directory and the created path is available. | After filesystem commit and affected-pane reconciliation. |
-| `core.directory.renamed` | `{ oldPath: string; newPath: string }` | A directory rename commits and Phials reconciles affected paths. | After commit; a multi-directory rename emits one event per directory in committed mapping order. |
-| `core.directory.deleted` | `{ path: string }` | A supported operation moves or deletes a directory and reconciles affected state. | After commit; batch operations preserve committed input order across emitted directory events. |
-| `core.directory.changed` | `{ path: string; paneId: string }` | The listed contents of `path` change because entries were added, removed, or modified, and that pane adopts the refreshed listing. | Changes can be coalesced into one invalidation; ordered per `paneId` and `path`. |
+| Event                    | Payload                                | Delivered when                                                                                                                     | Ordering                                                                                         |
+| ------------------------ | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `core.directory.created` | `{ path: string }`                     | A supported Phials operation creates a directory and the created path is available.                                                | After filesystem commit and affected-pane reconciliation.                                        |
+| `core.directory.renamed` | `{ oldPath: string; newPath: string }` | A directory rename commits and Phials reconciles affected paths.                                                                   | After commit; a multi-directory rename emits one event per directory in committed mapping order. |
+| `core.directory.deleted` | `{ path: string }`                     | A supported operation moves or deletes a directory and reconciles affected state.                                                  | After commit; batch operations preserve committed input order across emitted directory events.   |
+| `core.directory.changed` | `{ path: string; paneId: string }`     | The listed contents of `path` change because entries were added, removed, or modified, and that pane adopts the refreshed listing. | Changes can be coalesced into one invalidation; ordered per `paneId` and `path`.                 |
 
 `core.directory.changed` is a broad invalidation. Its payload does not identify
 which children changed and does not imply recursive changes beneath `path`.
 
 ## Settings and known Workspace Folders
 
-| Event | Payload | Delivered when | Ordering |
-| --- | --- | --- | --- |
-| `core.settings.changed` | `{ key: string; value: unknown }` | A public app setting commits a different value. | Ordered by successful setting commits. No event is emitted for a rejected write. |
-| `core.known-workspaces.changed` | `{ paths: string[] }` | The known Workspace Folder list changes. `paths` is the complete presentation-order snapshot. | After the list is persisted and its derived indexes are invalidated. |
-| `core.config.hidden-globs.changed` | `{ globs: string[] }` | Explorer always-hide globs are normalized, persisted, and adopted. | Ordered by committed configuration changes; `globs` is the complete current list. |
+| Event                              | Payload                           | Delivered when                                                                                | Ordering                                                                          |
+| ---------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `core.settings.changed`            | `{ key: string; value: unknown }` | A public app setting commits a different value.                                               | Ordered by successful setting commits. No event is emitted for a rejected write.  |
+| `core.known-workspaces.changed`    | `{ paths: string[] }`             | The known Workspace Folder list changes. `paths` is the complete presentation-order snapshot. | After the list is persisted and its derived indexes are invalidated.              |
+| `core.config.hidden-globs.changed` | `{ globs: string[] }`             | Explorer always-hide globs are normalized, persisted, and adopted.                            | Ordered by committed configuration changes; `globs` is the complete current list. |
 
 For `core.settings.changed`, `key` is a setting name exposed by the public SDK.
 The `value` remains `unknown`; narrow it according to that setting's documented
@@ -167,11 +164,11 @@ type. An event does not expose undocumented configuration keys.
 
 ## Audio
 
-| Event | Payload | Delivered when | Ordering |
-| --- | --- | --- | --- |
-| `core.audio.queue.changed` | `{ trackIds: string[]; length: number }` | The global audio queue membership or order changes. `trackIds` is the complete queue snapshot. | When one operation also changes the current track, `queue.changed` precedes `track.changed`. |
-| `core.audio.track.changed` | `{ trackId: string \| null; path: string \| null; index: number }` | The current global audio track or its queue index changes. Null IDs and path with index `-1` mean there is no current track. | Ordered by committed current-track transitions. |
-| `core.audio.playback.error` | `{ trackId: string \| null; message: string }` | Playback enters an error state because the current source cannot be loaded, decoded, or played. | Emitted after the error state commits. It does not imply a queue or track change. |
+| Event                       | Payload                                                            | Delivered when                                                                                                               | Ordering                                                                                     |
+| --------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `core.audio.queue.changed`  | `{ trackIds: string[]; length: number }`                           | The global audio queue membership or order changes. `trackIds` is the complete queue snapshot.                               | When one operation also changes the current track, `queue.changed` precedes `track.changed`. |
+| `core.audio.track.changed`  | `{ trackId: string \| null; path: string \| null; index: number }` | The current global audio track or its queue index changes. Null IDs and path with index `-1` mean there is no current track. | Ordered by committed current-track transitions.                                              |
+| `core.audio.playback.error` | `{ trackId: string \| null; message: string }`                     | Playback enters an error state because the current source cannot be loaded, decoded, or played.                              | Emitted after the error state commits. It does not imply a queue or track change.            |
 
 The queue and track events describe identity, not playback position, duration,
 volume, pause state, or buffering progress.

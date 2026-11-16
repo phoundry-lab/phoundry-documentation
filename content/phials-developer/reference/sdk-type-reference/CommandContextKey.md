@@ -18,7 +18,7 @@ maintains the current set of active keys based on app state.
 ## Signature
 
 ```typescript
-type CommandContextKey = "hasSelection" | "hasSingleSelection" | "hasMultiSelection" | "selectionIsFile" | "selectionIsDirectory" | "selectionIsMixed" | "inWorkspace" | "hasWorkspaceSelection" | "hasClipboard" | "clipboardIsCut" | "clipboardIsCopy" | "clipboardIsCopySymlink" | "canGoBack" | "canGoForward" | "always";
+type CommandContextKey = "hasSelection" | "hasSingleSelection" | "hasMultiSelection" | "selectionIsFile" | "selectionIsDirectory" | "selectionIsMixed" | "inWorkspace" | "hasWorkspaceSelection" | "hasClipboard" | "clipboardIsCut" | "clipboardIsCopy" | "clipboardIsCopySymlink" | "canGoBack" | "canGoForward" | "inFileExplorer" | "always";
 ```
 
 ## Union members
@@ -37,4 +37,5 @@ type CommandContextKey = "hasSelection" | "hasSingleSelection" | "hasMultiSelect
 - `clipboardIsCopySymlink`
 - `canGoBack`
 - `canGoForward`
+- `inFileExplorer`
 - `always`

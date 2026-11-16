@@ -7,105 +7,63 @@ order: 3
 
 # Build and validate release artifacts
 
-Build the production output, then validate the exact files that will be installed or attached to a plugin release:
+From the plugin project root:
 
 ```bash
 npm run build
-npm run validate
+npm run release:verify
 ```
 
-`build` creates a clean `dist/` and synchronizes release metadata. `validate` checks the complete artifact set without relying on source files that will not be installed.
+The example’s build produces `dist/main.js`, `dist/manifest.json`, optional `dist/styles.css`, and automatically writes `release/release-inventory.json`. Watch builds through `npm run dev` also produce output and an inventory; use a completed production build for a release.
 
-## Know the supported release files
-
-Every plugin requires:
-
-```text
-dist/
-├── manifest.json
-└── main.js
-```
-
-The complete supported set is:
+## Know the release files
 
 | Artifact | When present |
 | --- | --- |
 | `manifest.json` | Always |
 | `main.js` | Always |
-| `styles.css` | When the plugin contributes compiled global CSS |
-| `theme-<slug>.json` | Once for each contributed theme |
+| `styles.css` | When the plugin emits interface CSS |
+| `theme-<slug>.json` | For a contributed theme |
 | `theme-<slug>.css` | Paired with the matching theme JSON |
 
-Release assets are individual files, not one plugin archive. Development source, source maps, test fixtures, local configuration, and dependency directories are not release artifacts.
+Attach installable files individually, not as a plugin archive. Source, source maps, test fixtures, local configuration, dependencies, and the release inventory are not plugin release assets.
 
-## Validate the manifest and identity
+Theme assets use flat release filenames with matching lowercase kebab-case slugs. See [Package and test theme release artifacts](../../add-capabilities/create-themes/package-and-test-theme-release-artifacts.md) if your plugin adds themes.
 
-The release validator checks:
+## Understand the build checks
 
-- strict manifest schema with no unknown fields
-- valid stable plugin ID and semantic version
-- `minAppVersion` and `pluginApiVersion`
-- known permission names with no duplicates
-- package, manifest, and exported plugin versions agree
-- install directory, manifest, and exported plugin IDs agree
+The build validates the manifest and checks basic module identity by importing its own bundle. `package.json` is the sole version source, imported by `src/plugin.manifest.ts` and carried into the bundled plugin and generated manifest.
 
-The starter synchronizes `dist/manifest.json` from the source manifest and package version during the build. Do not edit the generated `dist` copy to make validation pass; correct the source metadata and rebuild.
+This import executes plugin module code in Node. It is **not a sandbox** and does not provide a broad provider or lifecycle harness. It does not prove activation, permission enforcement, UI behavior, or persistence in Phials.
 
-Use [Validate a plugin manifest](../../package-and-publish/configure-the-plugin-manifest/validate-a-plugin-manifest.md) for field-specific diagnosis.
+Test your styles and theme contributions in Phials too. Build checks do not assess layout, contrast, or the effects of global CSS on the surrounding interface.
 
-## Validate the JavaScript module
+Correct metadata or source and rebuild when checks fail. Do not hand-edit `dist/manifest.json` or `main.js`.
 
-`main.js` must:
+## Verify the existing candidate
 
-- be a loadable ES module
-- have one default export that produces a [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md)
-- bundle runtime dependencies needed by the plugin
-- contain no unresolved relative imports or missing split chunks
-- export the Svelte `mount` and `unmount` runtime when the plugin contributes Svelte components
-- match the manifest ID and version
+The inventory records artifact names, byte sizes, and SHA-256 checksums. After building:
 
-The validator imports the artifact in an isolated plugin harness, constructs the plugin definition, inspects every provider, and deactivates it after validation. It does not grant filesystem, clipboard, or network permissions during this structural check.
-
-## Validate optional CSS and themes
-
-When `styles.css` exists, validation parses it and reports:
-
-- missing or malformed CSS
-- broad global selectors that can affect unrelated Phials interfaces
-- unresolved local asset imports
-- fixed theme values where semantic tokens are expected
-
-Theme assets must form exact flat pairs:
-
-```text
-theme-slate-light.json
-theme-slate-light.css
-theme-slate-dark.json
-theme-slate-dark.css
+```bash
+npm run release:verify
 ```
 
-The matching slug must be lowercase kebab-case. Each metadata sidecar and CSS file is validated against the theme contract. See [Package and test theme release artifacts](../../add-capabilities/create-themes/package-and-test-theme-release-artifacts.md).
+This compares the existing artifact bytes and bundled manifest against the inventory without rebuilding or rewriting it. It detects changes to a recorded candidate; it is not a substitute for source checks or installed-runtime testing.
 
-## Inspect the validator result
-
-A successful run ends with:
-
-```text
-validate-dist: OK
-```
-
-Treat warnings as release work when they identify unsupported imports, unscoped CSS, missing theme tokens, or metadata drift. Do not publish a locally hand-edited artifact set.
-
-For reproducible release evidence:
+For a release, run:
 
 ```bash
 npm ci
 npm run check
-npm run test:run
+npm test
 npm run build
-npm run validate
+npm run release:verify
 ```
 
-Run those commands from a clean checkout. Then install that same `dist/` output through [Install a development plugin locally](../run-your-plugin-locally/install-a-development-plugin-locally.md). Rebuilding after validation creates a different release candidate and requires another validation run.
+## Install without changing the candidate
 
-Release versioning and publication continue under [Prepare a release](../../package-and-publish/prepare-a-release/index.md).
+For routine development, `npm run dev:install` builds first and installs into your normal Phials home. An optional `--phials-home` argument or `PHIALS_HOME` environment variable selects another home.
+
+Do **not** use that command to install a frozen release candidate: it always rebuilds. Instead copy the exact `dist/manifest.json`, `dist/main.js`, and optional `dist/styles.css` into `<Phials home>/plugins/<id>/`. Map each flat `theme-<slug>.json` and `.css` pair to `themes/<slug>/theme.json` and `themes/<slug>/theme.css` inside that plugin directory. Check the copied bytes against the inventory, then test loading and activation in Phials.
+
+A rebuild or artifact edit creates a new candidate. Continue with [Prepare a release](../../package-and-publish/prepare-a-release/index.md).

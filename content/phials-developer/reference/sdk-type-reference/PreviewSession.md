@@ -2,7 +2,7 @@
 title: "PreviewSession"
 description: "TypeScript signature and members for the PreviewSession public SDK declaration."
 ai_disclosure: true
-order: 112
+order: 114
 aliases:
   - references/PreviewSession
 ---

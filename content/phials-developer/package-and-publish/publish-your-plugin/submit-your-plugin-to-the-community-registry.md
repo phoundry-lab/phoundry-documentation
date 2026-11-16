@@ -94,11 +94,7 @@ do; do not use the registry entry as release notes.
 
 From the registry repository:
 
-```bash
-npm run validate
-npm run test:run
-npm run validate:remote
-```
+Follow the registry repository’s README for its current local tests and remote-release checks. These are registry tooling, not scripts supplied by the plugin example.
 
 Validation checks:
 

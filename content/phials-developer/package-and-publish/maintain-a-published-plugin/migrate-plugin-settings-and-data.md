@@ -183,19 +183,20 @@ Use one migration step for one durable transition. Keep old columns or tables un
 Migrate settings and key-value storage at the beginning of activation:
 
 ```typescript
-export default function createPlugin(): PhialsPlugin {
-  return {
-    id: "acme.reports",
-    name: "Reports",
-    version: "2.0.0",
-    database: reportDatabase,
-    async onActivate(api) {
-      await migrateOwnedState(api);
-      await startReportServices(api);
-    },
-    providers: [],
-  };
-}
+import { definePlugin } from "@phoundry/phials-plugin-sdk/manifest";
+import { pluginManifest } from "./plugin.manifest";
+
+export { mount, unmount } from "svelte";
+export { pluginManifest as manifest } from "./plugin.manifest";
+
+export default definePlugin(pluginManifest, {
+  database: reportDatabase,
+  async onActivate(api) {
+    await migrateOwnedState(api);
+    await startReportServices(api);
+  },
+  providers: [],
+});
 ```
 
 Phials prepares and migrates the declared database before `onActivate`. If database preparation or `migrateOwnedState()` fails, activation fails and no plugin capabilities become available.

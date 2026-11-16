@@ -11,6 +11,6 @@ Use these pages when you need an exact compatibility rule, lifecycle guarantee, 
 - [Plugin contract and compatibility](./plugin-contract-and-compatibility/index.md) defines the supported SDK surface, runtime lifecycle, version boundaries, and community-plugin trust model.
 - [Manifest and permissions reference](./manifest-and-permissions-reference/index.md) lists manifest fields, permissions, gated Plugin API operations, and approved host commands.
 - [Events reference](./events-reference/index.md) catalogs supported Phials events and defines plugin event naming, delivery, and cleanup.
-- [SDK type reference](./sdk-type-reference/index.md) provides generated pages for the synchronized public TypeScript declarations.
+- [SDK type reference](./sdk-type-reference/index.md) provides generated pages for the published SDK package.
 
-The public SDK is default-deny: only synchronized declarations and explicitly documented contracts are supported for plugin authors.
+The public SDK is default-deny: only public SDK declarations and explicitly documented contracts are supported for plugin authors.

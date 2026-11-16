@@ -55,13 +55,22 @@ Run the complete release gate:
 
 ```bash
 npm ci
-npm run sdk:verify
 npm run check
-npm run test:run
+npm test
 npm run build
-npm run validate
-npm run release:inventory
+npm run release:verify
 ```
+
+`npm test` runs the starter tests once using Node’s test runner. The build
+emits both `dist/manifest.json` and `release/release-inventory.json` from the
+bundled manifest. `release:verify` checks exact candidate bytes and the full
+emitted manifest against that bundle; it does not rebuild, run a sandbox, or
+audit CSS policy.
+
+Bump only `package.json.version` (for example,
+`npm version patch --no-git-tag-version`). The source manifest imports that
+value. When updating the SDK, install the intended exact package version and
+review its public contract; there is no copied SDK folder to synchronize.
 
 Write release notes that call out:
 
@@ -80,7 +89,11 @@ Use an isolated Phials Home:
 1. Install the previous public release through its normal artifact path.
 2. Enable and activate it.
 3. Create representative settings, key-value data, database rows, and plugin-owned files.
-4. Install the candidate as an update without clearing the old data.
+4. Install the candidate as an update without clearing the old data. For a
+   frozen local candidate, copy the existing `dist/` files into
+   `<test-home>/plugins/<plugin-id>/` using the supported installed layout.
+   Do not run `dev:install`: it builds again before installing. Its default
+   destination is the normal Phials Home, not an isolated test Home.
 5. Complete permission review if the exact permission set changed.
 6. Confirm the plugin loads and activates.
 7. Verify migration results and every representative capability.

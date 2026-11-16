@@ -1,167 +1,109 @@
 ---
 title: "Install a development plugin locally"
-description: "Uses an isolated Phials Home when appropriate, places matching development release artifacts under the plugin ID, and confirms installed, enabled, loaded, and activated states separately."
+description: "Builds and installs a plugin into the normal Phials home, with optional environment and directory overrides."
 ai_disclosure: true
 order: 1
 ---
 
 # Install a development plugin locally
 
-Build and validate the starter release, install it into one Phials Home, then enable it from the matching Phials process. Keep the plugin ID, version, directory name, and exported definition aligned.
+From your plugin project, run:
 
-## Choose a Phials Home
-
-For routine interface work, you can use your normal Phials Home. For lifecycle, permissions, data, or failure testing, choose a dedicated absolute path:
-
-```text
-/Users/me/Phials/plugin-dev
-C:\Users\me\Phials\plugin-dev
+```bash
+npm run dev:install
 ```
 
-`PHIALS_HOME` points to that directory itself, not to its `plugins` child.
+The installer builds the plugin, generates its metadata, and installs it into your normal Phials home. You do not need to find the home directory, publish a release, or prepare a release inventory first.
 
-Launch Phials with the environment variable set at process start.
+## Where the plugin is installed
+
+The destination is:
+
+```text
+<Phials home>/plugins/<plugin-id>/
+```
+
+The installer reports the full path. It chooses the home in this order:
+
+1. `--phials-home <directory>`, if provided.
+2. `PHIALS_HOME`, if set in the installer's environment.
+3. The platform default below.
+
+| Platform | Default Phials home |
+| --- | --- |
+| macOS | `~/Library/Application Support/com.phials` |
+| Windows | `%LOCALAPPDATA%\com.phials` |
+| Linux | `$XDG_DATA_HOME/com.phials`, or `~/.local/share/com.phials` when `XDG_DATA_HOME` is unset or not absolute |
+
+Without an override, launch Phials normally. Use **Reveal Phials home folder** in the Command Bar to check which home the app is using.
+
+## What installation does
+
+The command:
+
+1. Builds the plugin into `dist/` and generates `release/release-inventory.json`.
+2. Stages the supported files under the plugin's ID.
+3. Replaces a previous installation of that ID, with rollback if replacement fails.
+
+`main.js` and `manifest.json` are required; `styles.css` is included when emitted. Optional flat theme assets are installed into their corresponding theme folders. Source files, SDK declarations, and `node_modules` are not installed.
+
+The plugin ID in `src/plugin.manifest.ts`, the built manifest, the exported definition, and the installation directory must agree. The version comes from `package.json`. Fix source metadata and rebuild rather than editing generated files.
+
+Installing files does not enable or reload the plugin. If a first installation is not discovered in an already-running app, restart Phials.
+
+## Enable and try the plugin
+
+In Phials:
+
+1. Open **Settings → Plugins → Community plugins**.
+2. Turn off **Community plugins safe mode** and accept the trust warning if needed.
+3. Find the plugin in **Installed**.
+4. Review permissions if prompted, then enable it.
+5. Try one of its capabilities.
+
+Safe mode defaults to on in a new home. Community plugins run trusted JavaScript, so enable only code you trust. The starter's command and preview do not need privileged permissions.
+
+Check each stage separately:
+
+- **Installed:** the plugin appears with the expected identity and version.
+- **Enabled:** you have allowed it to run.
+- **Loaded:** its JavaScript module imports successfully.
+- **Activated:** activation completes and the capability works.
+
+If a stage fails, use **Copy diagnostics** on the plugin card. See [Fix a plugin that will not load or activate](../debug-plugin-failures/fix-a-plugin-that-will-not-load-or-activate.md).
+
+## Optionally use a separate home
+
+A separate home is useful for first-run, permission, settings, or data tests. It is not required for routine development.
+
+```bash
+npm run dev:install -- --phials-home /absolute/path/to/phials-plugin-dev
+```
+
+The path names the home itself, not its `plugins` child. Launch a fresh Phials process with that same home.
 
 macOS:
 
 ```bash
-PHIALS_HOME=/Users/me/Phials/plugin-dev \
+PHIALS_HOME="$HOME/Phials/plugin-dev" \
   /Applications/Phials.app/Contents/MacOS/Phials
 ```
 
-Linux:
+Linux, using the executable path for your installation:
 
 ```bash
-PHIALS_HOME=/home/me/Phials/plugin-dev phials
+PHIALS_HOME="$HOME/Phials/plugin-dev" /path/to/Phials
 ```
 
-Windows PowerShell:
+Windows PowerShell, using the executable path for your installation:
 
 ```powershell
 $env:PHIALS_HOME = "C:\Users\me\Phials\plugin-dev"
-& "C:\Program Files\Phials\Phials.exe"
+& "C:\path\to\Phials.exe"
 ```
 
-A Phials app launched from Finder, the Dock, Start, or another desktop launcher does not automatically inherit a terminal's temporary environment variable.
+Set the variable before launching Phials. An already-running process does not change homes when you set a variable in a terminal, and desktop launchers do not automatically inherit a terminal's temporary environment.
 
-In the launched app, run **Reveal Phials home folder** from the Command Bar. Confirm it opens the isolated path before installing or changing data.
-
-## Build and validate the release
-
-From the plugin project:
-
-```bash
-npm run check
-npm run build
-npm run validate
-```
-
-The validated development release contains:
-
-```text
-dist/
-├── main.js
-├── manifest.json
-└── styles.css
-```
-
-`main.js` and `manifest.json` are required. `styles.css` is included when the plugin imports a global entry stylesheet. Theme assets can add their documented release files.
-
-Before installation, these identities must agree:
-
-| Location | Value |
-| --- | --- |
-| `public/manifest.json` | permanent plugin ID |
-| `dist/manifest.json` | same plugin ID and built version |
-| default [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md) export | same plugin ID and version |
-| install directory | same plugin ID |
-
-Run validation after every source-manifest or package-version change. Do not edit `dist/manifest.json` by hand.
-
-## Install atomically
-
-Install the validated artifacts into the same isolated home:
-
-```bash
-npm run dev:install -- \
-  --phials-home /Users/me/Phials/plugin-dev
-```
-
-On Windows:
-
-```powershell
-npm run dev:install -- `
-  --phials-home "C:\Users\me\Phials\plugin-dev"
-```
-
-The starter reads the ID from the validated manifest and atomically replaces:
-
-```text
-<PHIALS_HOME>/plugins/<plugin-id>/
-```
-
-It copies only supported release artifacts and reports the resolved destination. Do not copy `src/`, `node_modules/`, the SDK, or source maps into the installed directory.
-
-Atomic replacement matters when Phials is running: it never observes a directory containing a new `main.js` and an old manifest.
-
-Installing files does not enable or reload the plugin.
-
-## Enable the plugin
-
-In the Phials process using that home:
-
-1. Open **Settings → Plugins → Community plugins**.
-2. Turn off **Community plugins safe mode** and accept the trust warning.
-3. Open **Installed** and find the expected plugin ID and version.
-4. Review requested permissions when prompted.
-5. Choose **Enable**.
-
-Safe mode defaults to on in a new Phials Home. While it is on, community plugins cannot be enabled and previously enabled community plugins are deactivated.
-
-If the manifest's permissions changed since the last approved build, Phials marks the plugin for **permission review** and keeps it disabled until the current set is approved.
-
-## Verify each state separately
-
-Use this order:
-
-1. **Installed** — the Installed card appears with the expected ID and version.
-2. **Enabled** — the card shows Enabled after trust and permission review.
-3. **Loaded** — no load failure reports invalid JavaScript, missing default export, incompatible runtime, or ID mismatch.
-4. **Activated** — `onActivate` completes and one representative capability works.
-
-A useful temporary activation probe is:
-
-```ts
-onActivate(api) {
-  api.notify.info("acme.review-tools activated");
-}
-```
-
-The probe proves the hook ran. Also verify a capability, such as finding and executing one namespaced command. That proves provider registration survived activation.
-
-Remove noisy lifecycle notifications before publishing.
-
-## Diagnose the first failed boundary
-
-| Symptom | First check |
-| --- | --- |
-| No Installed card | Wrong Phials Home, wrong install directory, or invalid/missing manifest. |
-| Installed but cannot enable | Safe mode, pending permission review, or compatibility failure. |
-| Enabled with load failure | `main.js` syntax/import, missing default export, or artifact identity. |
-| Loaded with activation failure | Provider validation, database initialization, or `onActivate`. |
-| Activated but capability absent | Provider matching, context, placement, or visible verification path. |
-
-Continue with [Fix a plugin that will not load or activate](../debug-plugin-failures/fix-a-plugin-that-will-not-load-or-activate.md) or [Fix missing or unavailable plugin capabilities](../debug-plugin-failures/fix-missing-or-unavailable-plugin-capabilities.md) for the full recovery sequence.
-
-## Keep the home isolated
-
-An isolated Phials Home contains real durable state. Reusing it is useful for migration and restart tests; replacing it gives you a clean first-run profile.
-
-Do not point `PHIALS_HOME` at:
-
-- the plugin project
-- its `dist` directory
-- the normal `~/.phials` directory when you intend isolation
-- a shared folder used by another running Phials process
+You can also set `PHIALS_HOME` when running `npm run dev:install`; the explicit `--phials-home` flag takes precedence if both are supplied.
 
 Next, [rebuild and reload plugin changes](rebuild-and-reload-plugin-changes.md).

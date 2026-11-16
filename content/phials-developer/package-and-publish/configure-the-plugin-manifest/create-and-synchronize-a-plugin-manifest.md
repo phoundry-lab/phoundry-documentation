@@ -16,14 +16,15 @@ icon preload declarations.
 Replace the starter values in `src/plugin.manifest.ts`:
 
 ```ts
-import { definePluginManifest } from "../sdk/manifest-schema";
+import { definePluginManifest } from "@phoundry/phials-plugin-sdk/manifest";
+import { version } from "../package.json";
 
 export const pluginManifest = definePluginManifest({
   id: "acme.review-tools",
   name: "Review Tools",
-  version: "0.1.0",
+  version,
   minAppVersion: "1.4.0",
-  pluginApiVersion: "2.0.0",
+  pluginApiVersion: "3.0.0",
   author: "Acme",
   description: "Adds review commands and file annotations.",
   repository: "https://github.com/acme/review-tools",
@@ -32,16 +33,23 @@ export const pluginManifest = definePluginManifest({
 });
 ```
 
-Keep `package.json.version` equal to the source manifest. It is a validated
-package projection, not a second authority.
+`package.json.version` is the sole release-version source. The manifest imports
+it rather than repeating it. Change it by editing `package.json` or running:
+
+```bash
+npm version patch --no-git-tag-version
+```
 
 ## Derive the runtime definition
 
 Use `definePlugin()` so runtime identity is generated from the same source:
 
 ```ts
-import { definePlugin } from "../sdk/manifest-schema";
+import { definePlugin } from "@phoundry/phials-plugin-sdk/manifest";
 import { pluginManifest } from "./plugin.manifest";
+
+export { mount, unmount } from "svelte";
+export { pluginManifest as manifest } from "./plugin.manifest";
 
 export default definePlugin(pluginManifest, {
   providers: [],
@@ -59,35 +67,52 @@ npm run build
 
 The build:
 
-1. validates `src/plugin.manifest.ts` with field-specific errors;
-2. checks `package.json.version` against the source manifest;
-3. generates the data-only `public/manifest.json`;
-4. builds the plugin's ES module and CSS;
-5. copies the generated projection to `dist/manifest.json`.
+1. bundles the plugin as `dist/main.js` with any emitted `styles.css`;
+2. imports that bundle and checks its manifest and default export, matching ID
+   and version, and providers array;
+3. emits `dist/manifest.json` from the bundled `manifest` export;
+4. writes `release/release-inventory.json` with the candidate filenames, sizes,
+   and checksums.
+
+Both metadata files describe the same bundle. There is no authored JSON
+manifest or separate manifest-sync command.
 
 Inspect the generated release:
 
 ```bash
-npm run validate
+npm run release:verify
 ```
 
-Do not edit either generated JSON manifest. A later source-manifest sync replaces
-it.
+Do not edit the emitted manifest or inventory. Rebuild from source when the
+candidate changes. Verification checks the exact candidate bytes and compares
+the complete emitted manifest with the bundled export; it does not rebuild.
 
-## Keep development install atomic
+## Install a development build
 
-The starter development installer reads the ID from the validated release manifest and places the artifact set at:
+`npm run dev:install` builds first, then installs the artifact set under the
+normal Phials Home by default. An optional `--phials-home` argument or
+`PHIALS_HOME` environment override selects a separate Home:
+
+```bash
+npm run dev:install -- --phials-home /absolute/path/to/test-home
+```
+
+For this example, the installed files are:
 
 ```text
 <PHIALS_HOME>/plugins/acme.review-tools/
 ├── main.js
 ├── manifest.json
-└── styles.css
+└── styles.css  # when emitted
 ```
 
 The directory name, release manifest ID, and exported plugin ID must agree. See [Install a development plugin locally](../../test-and-troubleshoot/run-your-plugin-locally/install-a-development-plugin-locally.md).
 
-Do not rename the install folder independently or copy a manifest from another build.
+Do not rename the install folder independently or copy a manifest from another
+build. To test a frozen release candidate, copy the already-built `dist/` files
+to `<test-home>/plugins/acme.review-tools/` instead of using `dev:install`,
+which would rebuild them. Theme assets, when present, need the supported
+installed layout described in the release-artifact guide.
 
 ## Provide screenshots and a README
 
@@ -121,10 +146,11 @@ in executable artifact verification and never enables Plugin code.
 The typed source manifest projects one identity graph:
 
 ```text
-src/plugin.manifest.ts
-├─ definePlugin() → runtime identity
-├─ generation → public/manifest.json → dist/manifest.json
-└─ validation → package version, release tag, registry, candidate checksum
+package.json.version
+└─ src/plugin.manifest.ts
+   ├─ definePlugin() → runtime identity
+   └─ bundled manifest export → dist/manifest.json
+                              → release/release-inventory.json
 ```
 
 Generation does not:
@@ -134,13 +160,15 @@ Generation does not:
 - invent public metadata
 - change the permanent plugin ID
 
-You own those decisions, and validation verifies them.
+You own those decisions. Build and release verification check structure and
+artifact consistency, not whether permissions or compatibility bounds correctly
+cover every workflow.
 
 ## Update one source, then rebuild
 
 | Change                                      | Source to edit                   | Follow-up                                                        |
 | ------------------------------------------- | -------------------------------- | ---------------------------------------------------------------- |
-| Plugin version                              | `src/plugin.manifest.ts`         | Set the matching package version, then rebuild and validate.     |
+| Plugin version                              | `package.json`                  | Bump the version, then rebuild and verify.                       |
 | ID, name, author, description, links, icons | `src/plugin.manifest.ts`         | Rebuild and validate all identity projections.                   |
 | Permissions                                 | `src/plugin.manifest.ts`         | Rebuild, validate, and test first-install or changed-set review. |
 | Minimum Phials or Plugin API version        | `src/plugin.manifest.ts`         | Rebuild and test compatible and incompatible versions.           |

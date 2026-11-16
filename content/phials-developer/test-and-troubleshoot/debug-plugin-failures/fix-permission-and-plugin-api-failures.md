@@ -19,7 +19,7 @@ operation before changing the manifest.
 | --- | --- | --- | --- |
 | The installed card says **Permissions need review** | An install or update changed the requested permission set | Review the complete current set and approve or deny it | Approval clears the review state and permits activation |
 | A typed operation reports permission denied | The required permission is absent or not approved | Map the method to the permission reference and add only that permission | After rebuild, reinstall, and approval, the same operation succeeds |
-| TypeScript says an API member does not exist | The code and synchronized public SDK differ, or the member is unsupported | Update from the current starter SDK and use the documented typed service | `npm run check` passes without a cast |
+| TypeScript says an API member does not exist | The code and installed SDK package differ, or the member is unsupported | Update the SDK dependency and use the documented typed service | `npm run check` passes without a cast |
 | `api.invoke` rejects a host command | The command is not approved or its required permission is absent | Use a typed Plugin API service when one exists; otherwise verify the approved command reference | The supported call succeeds with the declared permission |
 | An API works in activation but is unavailable in a provider callback or component | Code is using the wrong runtime scope or a retained API from a deactivated activation | Use the API passed to the current callback or activation | The operation runs only while the current plugin activation is active |
 | A permitted operation reaches the OS but still fails | The path, file state, network, clipboard, or operating-system policy rejected the request | Handle the runtime error as an operation failure rather than requesting broader permissions | The user receives a specific recoverable message |
@@ -52,8 +52,6 @@ After changing permissions:
 
 ```bash
 npm run check
-npm run build
-npm run validate
 npm run dev:install
 ```
 
@@ -81,7 +79,7 @@ found in host source or console output is not a public contract.
 
 Do not repair a missing member with `as unknown as`, a hand-written ambient
 declaration, or a deep import from Phials. Those changes hide the compatibility
-failure until runtime. Sync the current starter SDK, use the generated type
+failure until runtime. Update the `@phoundry/phials-plugin-sdk` dependency, use the generated type
 reference, and declare the `pluginApiVersion` that contains the contract your
 release actually uses.
 
@@ -105,7 +103,7 @@ and guard asynchronous completion against stale instances. See
 
 ## Keep compatibility declarations truthful
 
-If the synchronized SDK exposes a member but the running Phials build does not,
+If the installed SDK exposes a member but the running Phials build does not,
 verify both version boundaries:
 
 - `minAppVersion` is the oldest Phials release the plugin supports.

@@ -41,11 +41,10 @@ Use the stable code to route the first failing boundary:
 | `PLUGIN_RELEASE_ASSET_MISMATCH` | Registry and GitHub release inventory |
 | `PLUGIN_MODULE_LOAD_FAILED` | ES-module import |
 | `PLUGIN_DEFINITION_INVALID` | Plugin or provider shape |
-| `PLUGIN_CSS_UNSAFE` | Global CSS scope or host-token override |
 | `PLUGIN_ACTIVATION_FAILED` | Capability registration or lifecycle |
 | `PLUGIN_ROLLBACK_FAILED` | Restoration of the prior working release |
 
-If the plugin cannot be discovered, run the starter validator and begin a
+If the plugin cannot be discovered, run `npm run build` and begin a
 manual report with the source manifest instead.
 
 ## Add one exact reproduction
@@ -79,13 +78,12 @@ From the plugin project, capture the command and the first failure:
 ```bash
 npm run check
 npm run build
-npm run validate
 ```
 
 Include:
 
 - the first relevant type-check or build error, not only the final summary;
-- complete validator output;
+- complete build or release-verification output;
 - the exact installed `manifest.json`, after privacy review;
 - the first plugin-owned stack frame and its error message;
 - whether the failure occurs during load, activation, provider selection,

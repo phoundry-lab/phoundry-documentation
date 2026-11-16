@@ -36,7 +36,6 @@ From the plugin project:
 ```bash
 npm run check
 npm run build
-npm run validate
 ```
 
 Validation should confirm that the release contains:
@@ -77,9 +76,9 @@ The following values must identify the same plugin:
 - the `id` and `version` in `dist/manifest.json`;
 - the `id` and `version` on the default-exported [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md);
 - the directory selected by the development install command; and
-- the identity intended by the package's manifest synchronization settings.
+- the identity in `src/plugin.manifest.ts`, with its version imported from `package.json`.
 
-Use a stable lowercase ID such as `com.example.review-tools`. Do not repair a
+Use a stable lowercase ID such as `example.review-tools`. Do not repair a
 mismatch by renaming only the installed directory: correct the source identity,
 rebuild, validate, and reinstall so the next release remains consistent.
 
@@ -113,7 +112,7 @@ When the card shows **Activation failed**, copy the exact error before another
 reload. Classify it by the earliest failed boundary:
 
 - **Import or dependency error:** make the production build self-contained and
-  rerun `npm run validate`.
+  rerun `npm run build`.
 - **Missing default export:** default-export a plugin factory or
   [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md) definition.
 - **Plugin identity mismatch:** regenerate the release and runtime definition
@@ -135,8 +134,6 @@ After each change:
 
 ```bash
 npm run check
-npm run build
-npm run validate
 npm run dev:install
 ```
 

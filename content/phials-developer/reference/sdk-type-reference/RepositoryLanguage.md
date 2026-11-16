@@ -2,7 +2,7 @@
 title: "RepositoryLanguage"
 description: "TypeScript signature and members for the RepositoryLanguage public SDK declaration."
 ai_disclosure: true
-order: 120
+order: 122
 aliases:
   - references/RepositoryLanguage
 ---

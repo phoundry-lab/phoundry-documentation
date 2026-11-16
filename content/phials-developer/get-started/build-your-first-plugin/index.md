@@ -8,7 +8,7 @@ aliases:
 
 # Build your first plugin
 
-The official plugin starter is the shortest supported route to a working Phials plugin. It already contains the synchronized public SDK, a Svelte 5 and TypeScript build, Phoundry UI, manifest validation, and two small capabilities you can inspect after activation.
+The official plugin starter is the shortest supported route to a working Phials plugin. It already contains the public SDK npm package, a Svelte 5 and TypeScript build, Phoundry UI, manifest validation, and two small capabilities you can inspect after activation.
 
 Follow these articles in order:
 

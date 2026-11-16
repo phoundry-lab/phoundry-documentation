@@ -26,7 +26,7 @@ interface PhialsPlugin {
     database?: PluginDatabaseSchema;
     onActivate?: (api: PluginAPI) => void | Promise<void>;
     onDeactivate?: () => void | Promise<void>;
-    onBeforeReload?: () => unknown | Promise<unknown>;
+    onBeforeReload?: () => unknown;
     onAfterReload?: (state: unknown) => void | Promise<void>;
     providers: PluginProvider[];
 }
@@ -44,6 +44,6 @@ interface PhialsPlugin {
 | `database` | [`PluginDatabaseSchema`](PluginDatabaseSchema.md) | no | Database schema for plugin-owned SQL tables |
 | `onActivate` | `(api: `[`PluginAPI`](PluginAPI.md)`) => void &#124; Promise<void>` | no | Called when the plugin is activated |
 | `onDeactivate` | `() => void &#124; Promise<void>` | no | Called when the plugin is deactivated |
-| `onBeforeReload` | `() => unknown &#124; Promise<unknown>` | no | Called before the plugin is reloaded. Return any state that should be preserved across the reload. |
+| `onBeforeReload` | `() => unknown` | no | Called before the plugin is reloaded. Return any state that should be preserved across the reload. |
 | `onAfterReload` | `(state: unknown) => void &#124; Promise<void>` | no | Called after the plugin is reloaded. Receives the state that was returned from onBeforeReload. |
 | `providers` | [`PluginProvider`](PluginProvider.md)`[]` | yes | Providers contributed by this plugin |

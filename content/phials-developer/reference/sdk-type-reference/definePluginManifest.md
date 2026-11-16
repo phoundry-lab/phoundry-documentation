@@ -21,8 +21,8 @@ export function definePluginManifest<const T extends PluginManifest>(manifest: T
     }
     return Object.freeze({
         ...manifest,
-        permissions: manifest.permissions ?
-            Object.freeze([...manifest.permissions])
+        permissions: manifest.permissions
+            ? Object.freeze([...manifest.permissions])
             : undefined,
         icons: manifest.icons ? Object.freeze([...manifest.icons]) : undefined,
     }) as Readonly<T>;

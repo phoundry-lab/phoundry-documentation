@@ -20,9 +20,13 @@ declare class PluginFileError extends Error {
     readonly name: "PluginFileError";
     readonly code: PluginFileErrorCode;
     readonly path?: string;
+    readonly details?: unknown;
+    readonly outcome?: "rejected" | "unknown";
     constructor(code: PluginFileErrorCode, message: string, options?: {
         path?: string;
         cause?: unknown;
+        details?: unknown;
+        outcome?: "rejected" | "unknown";
     });
 }
 ```

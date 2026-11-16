@@ -2,7 +2,7 @@
 title: "PluginProvider"
 description: "TypeScript signature and members for the PluginProvider public SDK declaration."
 ai_disclosure: true
-order: 98
+order: 99
 aliases:
   - references/PluginProvider
 ---
@@ -16,12 +16,13 @@ Union type for all provider types
 ## Signature
 
 ```typescript
-type PluginProvider = PreviewProvider | MetadataProvider | FileBrowserViewProvider | ModuleProvider | CommandProvider;
+type PluginProvider = PreviewProvider | ThumbnailProvider | MetadataProvider | FileBrowserViewProvider | ModuleProvider | CommandProvider;
 ```
 
 ## Related declarations
 
 - [`PreviewProvider`](PreviewProvider.md)
+- [`ThumbnailProvider`](ThumbnailProvider.md)
 - [`MetadataProvider`](MetadataProvider.md)
 - [`FileBrowserViewProvider`](FileBrowserViewProvider.md)
 - [`ModuleProvider`](ModuleProvider.md)

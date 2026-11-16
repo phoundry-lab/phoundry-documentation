@@ -571,7 +571,7 @@ function main() {
 		"",
 		"# SDK type reference",
 		"",
-		`This machine-owned reference is generated from the curated Plugin API \`${PLUGIN_API_VERSION}\` declaration graph synchronized with the plugin starter.`,
+		`This reference documents the public types and helpers for Plugin API \`${PLUGIN_API_VERSION}\`, provided by the \`@phoundry/phials-plugin-sdk\` package.`,
 		"",
 		"Use the workflow guides for permissions, lifecycle consequences, and complete examples. Every declaration below has one canonical page and one owning category.",
 		"",

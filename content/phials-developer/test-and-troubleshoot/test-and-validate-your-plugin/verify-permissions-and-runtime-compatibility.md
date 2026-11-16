@@ -20,14 +20,14 @@ Use explicit versions and the least permission set:
 
 ```json
 {
-	"id": "example.report-tools",
-	"name": "Report tools",
-	"version": "1.2.0",
-	"minAppVersion": "0.1.9",
-	"pluginApiVersion": "1.0.0",
-	"author": "Example Studio",
-	"description": "Build and organize local reports.",
-	"permissions": ["filesystem.write"]
+  "id": "example.report-tools",
+  "name": "Report tools",
+  "version": "1.2.0",
+  "minAppVersion": "0.1.9",
+  "pluginApiVersion": "2.0.0",
+  "author": "Example Studio",
+  "description": "Build and organize local reports.",
+  "permissions": ["filesystem.write"]
 }
 ```
 
@@ -39,13 +39,13 @@ Use [Declare Phials and Plugin API compatibility](../../package-and-publish/conf
 
 List every permission-gated operation and test it with its real manifest:
 
-| Operation | Expected permission |
-| --- | --- |
-| Read a file or folder | `filesystem.read` or `filesystem.write` |
-| Create, modify, rename, or trash a file | `filesystem.write` |
-| Read clipboard text | `clipboard.read` |
-| Write clipboard text | `clipboard.write` |
-| Use `api.fetch` | `network.fetch` |
+| Operation                               | Expected permission                     |
+| --------------------------------------- | --------------------------------------- |
+| Read a file or folder                   | `filesystem.read` or `filesystem.write` |
+| Create, modify, rename, or trash a file | `filesystem.write`                      |
+| Read clipboard text                     | `clipboard.read`                        |
+| Write clipboard text                    | `clipboard.write`                       |
+| Use `api.fetch`                         | `network.fetch`                         |
 
 The exact catalog remains in [Permission-gated Plugin API operations](../../reference/manifest-and-permissions-reference/permission-gated-plugin-api-operations.md).
 
@@ -75,15 +75,16 @@ Permission order alone is not a change. Adding, removing, or replacing a permiss
 
 ## Test compatible and incompatible versions
 
-Use the starter’s runtime matrix:
+Use this manual runtime matrix; the example does not automate these checks:
 
-| Case | Manifest | Expected result |
-| --- | --- | --- |
-| Oldest supported Phials | `minAppVersion` equals the running version | Activates |
-| Newer compatible Phials | Running version is greater than `minAppVersion` and supports the API version | Activates |
-| App too old | `minAppVersion` is greater than the running version | Compatibility failure before activation |
-| API too new | `pluginApiVersion` is greater than the supported contract | Compatibility failure before activation |
-| Current explicit API | `pluginApiVersion` equals the supported contract | Activates |
+| Case                    | Manifest                                                                     | Expected result                         |
+| ----------------------- | ---------------------------------------------------------------------------- | --------------------------------------- |
+| Oldest supported Phials | `minAppVersion` equals the running version                                   | Activates                               |
+| Newer compatible Phials | Running version is greater than `minAppVersion` and supports the API version | Activates                               |
+| App too old             | `minAppVersion` is greater than the running version                          | Compatibility failure before activation |
+| API too new             | `pluginApiVersion` is greater than the supported contract                    | Compatibility failure before activation |
+| Different API major     | API 1 manifest on an API 2 Host                                              | Compatibility failure before activation |
+| Current explicit API    | `pluginApiVersion` equals the supported contract                             | Activates                               |
 
 For incompatible cases, confirm:
 
@@ -122,6 +123,6 @@ For a release candidate, record:
 - one representative workflow for every permission
 - expected failure result from each incompatible case
 
-Keep the compatible and incompatible manifests as generated test variants; do not publish them as separate releases.
+Keep compatible and incompatible manifests in separate development test copies; do not alter the frozen candidate or publish those variants as separate releases.
 
 When a gate fails unexpectedly, use [Fix permission and Plugin API failures](../debug-plugin-failures/fix-permission-and-plugin-api-failures.md).

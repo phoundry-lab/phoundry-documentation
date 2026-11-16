@@ -2,7 +2,7 @@
 title: "validateIdentityProjections"
 description: "TypeScript signature and members for the validateIdentityProjections public SDK declaration."
 ai_disclosure: true
-order: 134
+order: 143
 aliases:
   - references/validateIdentityProjections
 ---

@@ -15,12 +15,9 @@ Start from a clean checkout of the intended release commit:
 
 ```bash
 npm ci
-npm run sdk:verify
 npm run check
-npm run test:run
+npm test
 npm run build
-npm run validate
-npm run release:inventory
 npm run release:verify
 ```
 
@@ -41,13 +38,13 @@ Do not change or rebuild `dist/` after recording the inventory.
 
 - [ ] The release commit is reviewed and the worktree is clean.
 - [ ] Dependencies install from the committed lockfile.
-- [ ] The synchronized SDK matches `pluginApiVersion`.
+- [ ] The npm SDK dependency and `pluginApiVersion` target the intended public contract.
 - [ ] Type checks and deterministic tests pass.
 - [ ] Release notes match the candidate’s behavior.
 
 ### Artifacts
 
-- [ ] `npm run validate` passes without release-blocking warnings.
+- [ ] The build’s manifest and basic module identity checks pass.
 - [ ] `manifest.json` and `main.js` are present.
 - [ ] Only supported optional CSS and theme assets are present.
 - [ ] Package, manifest, exported plugin, tag, and release versions match.
@@ -57,11 +54,11 @@ Do not change or rebuild `dist/` after recording the inventory.
 
 ### Installation and activation
 
-Install the exact candidate into an isolated Phials Home:
+Copy the exact candidate files into `<Phials home>/plugins/<id>/`: `dist/manifest.json`, `dist/main.js`, and `dist/styles.css` if present. For themes, copy each flat `dist/theme-<slug>.json` and `.css` pair to `themes/<slug>/theme.json` and `themes/<slug>/theme.css` inside that plugin directory. Remove stale artifacts from a previous candidate, without deleting plugin data.
 
-```bash
-npm run dev:install -- --phials-home /absolute/path/to/release-candidate-home
-```
+Do not use `npm run dev:install` for this step: it **always builds first**, so it does not preserve a frozen candidate unchanged. For routine development it installs into the normal Phials home by default; `--phials-home` or `PHIALS_HOME` can optionally select another home.
+
+Launch Phials with the home you chose and verify the copied bytes against the inventory. `npm run release:verify` checks the source candidate; it does not inspect the installed directory.
 
 - [ ] Installation succeeds without using source files.
 - [ ] Safe mode blocks enablement as expected.

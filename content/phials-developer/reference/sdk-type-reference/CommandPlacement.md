@@ -16,10 +16,9 @@ Union of all placement configurations.
 ## Signature
 
 ```typescript
-type CommandPlacement = ToolbarPlacementConfig | ContextMenuPlacementConfig;
+type CommandPlacement = ContextMenuPlacementConfig;
 ```
 
 ## Related declarations
 
-- [`ToolbarPlacementConfig`](ToolbarPlacementConfig.md)
 - [`ContextMenuPlacementConfig`](ContextMenuPlacementConfig.md)

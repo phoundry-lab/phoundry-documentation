@@ -17,6 +17,7 @@ Props passed to module components
 
 ```typescript
 interface ModuleProviderProps {
+    presented?: boolean;
     pane?: PluginPaneContext;
     moduleInstance: ModuleInstance;
     updateState(state: unknown): void;
@@ -28,6 +29,7 @@ interface ModuleProviderProps {
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
+| `presented` | `boolean` | no | Whether this retained surface is currently presented. Omitted by older hosts. Release presentation resources while false, retaining working state and drafts. |
 | `pane` | [`PluginPaneContext`](PluginPaneContext.md) | no | The pane context (for pane-scoped modules) |
 | `moduleInstance` | [`ModuleInstance`](ModuleInstance.md) | yes | The module instance configuration |
 | `updateState` | `(state: unknown) => void` | yes | Replace this instance's opaque state and schedule center-session persistence. |

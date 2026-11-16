@@ -11,8 +11,6 @@ aliases:
 
 **Since Plugin API:** `1.0.0`
 
-File utilities API
-
 ## Signature
 
 ```typescript
@@ -27,6 +25,14 @@ interface FileUtilsAPI {
     }): Promise<string | null>;
     readDirectory(path: string): Promise<PluginDirectoryReadResult>;
     readText(path: string): Promise<PluginTextFileSnapshot>;
+    prepareTextWrite(path: string, content: string, options: {
+        expectedRevision: string | null;
+        overwrite?: boolean;
+    }): PluginPreparedWrite<PluginTextWriteResult>;
+    prepareBinaryWrite(path: string, content: Uint8Array, options: {
+        expectedRevision: string | null;
+        overwrite?: boolean;
+    }): PluginPreparedWrite<PluginBinaryWriteResult>;
     writeText(path: string, content: string, options: {
         expectedRevision: string | null;
         overwrite?: boolean;
@@ -59,6 +65,8 @@ interface FileUtilsAPI {
 | `pickDirectory` | `(options?: { … }) => Promise<string &#124; null>` | yes | - |
 | `readDirectory` | `(path: string) => Promise<`[`PluginDirectoryReadResult`](PluginDirectoryReadResult.md)`>` | yes | - |
 | `readText` | `(path: string) => Promise<`[`PluginTextFileSnapshot`](PluginTextFileSnapshot.md)`>` | yes | - |
+| `prepareTextWrite` | `(path: string, content: string, options: { … }) => `[`PluginPreparedWrite`](PluginPreparedWrite.md)`<`[`PluginTextWriteResult`](PluginTextWriteResult.md)`>` | yes | - |
+| `prepareBinaryWrite` | `(path: string, content: Uint8Array, options: { … }) => `[`PluginPreparedWrite`](PluginPreparedWrite.md)`<`[`PluginBinaryWriteResult`](PluginBinaryWriteResult.md)`>` | yes | - |
 | `writeText` | `(path: string, content: string, options: { … }) => Promise<`[`PluginTextWriteResult`](PluginTextWriteResult.md)`>` | yes | - |
 | `createDirectory` | `(path: string) => Promise<void>` | yes | - |
 | `renamePath` | `(source: string, destination: string) => Promise<void>` | yes | - |

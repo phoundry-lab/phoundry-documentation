@@ -27,6 +27,6 @@ interface PluginPaneListing {
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `loading` | `boolean` | yes | - |
-| `entries` | `readonly `[`FileEntry`](FileEntry.md)`[]` | yes | - |
+| `entries` | `readonly `[`FileEntry`](FileEntry.md)`[]` | yes | Current arranged entries, including search and filtered results. May include a parent row. |
 | `failures` | `readonly `[`PluginFileFailure`](PluginFileFailure.md)`[]` | yes | - |
 | `refresh` | `() => Promise<void>` | yes | - |

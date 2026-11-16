@@ -19,7 +19,9 @@ Check the same public path Phials uses:
 2. Confirm its tag is the intended plugin version.
 3. Download the public `manifest.json`, `main.js`, and optional artifacts.
 4. Compare their checksums with the verified release inventory.
-5. Run release validation against those downloaded files.
+5. In a separate candidate checkout, place those downloaded files in `dist/`
+   alongside the recorded `release/release-inventory.json`, then run
+   `npm run release:verify` without rebuilding.
 6. Test a clean install and an upgrade from the previous public release.
 
 Classify the failure:
@@ -60,14 +62,20 @@ The correction can restore the previous good code, apply a narrow fix, or repair
 
 ```bash
 npm ci
-npm run sdk:verify
 npm run check
-npm run test:run
+npm test
 npm run build
-npm run validate
-npm run release:inventory
 npm run release:verify
 ```
+
+The build emits the manifest and inventory from the same bundle. Verification
+checks candidate bytes and the complete manifest, not sandbox safety or CSS
+policy. `npm test` runs once with Node’s test runner.
+
+Test the frozen candidate by copying its existing artifacts into the isolated
+Home’s plugin directory using the supported installed layout. Do not use
+`dev:install` for that check: it builds first and defaults to the normal Home
+unless an optional flag or environment override selects another location.
 
 Verify:
 
@@ -83,8 +91,8 @@ Publish the new immutable release and confirm GitHub returns it as latest. Do no
 
 ## Request temporary unlisting when needed
 
-If a safe correction cannot be published quickly, use the registry's
-machine-supported unlisting command and open a pull request:
+If a safe correction cannot be published quickly, run the following in the
+registry repository (not the plugin starter), then open a pull request:
 
 ```bash
 npm run registry:unlist -- acme.review-tools

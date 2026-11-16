@@ -8,7 +8,7 @@ aliases:
 
 # SDK type reference
 
-This machine-owned reference is generated from the curated Plugin API `1.0.0` declaration graph synchronized with the plugin starter.
+This reference documents the public types and helpers for Plugin API `3.0.0`, provided by the `@phoundry/phials-plugin-sdk` package.
 
 Use the workflow guides for permissions, lifecycle consequences, and complete examples. Every declaration below has one canonical page and one owning category.
 
@@ -32,7 +32,17 @@ Use the workflow guides for permissions, lifecycle consequences, and complete ex
 - [`PreviewToolbarContributionProps`](PreviewToolbarContributionProps.md)
 - [`PreviewDestinationCapabilities`](PreviewDestinationCapabilities.md)
 - [`ThumbnailIntrinsicDimensions`](ThumbnailIntrinsicDimensions.md)
-- [`ThumbnailProviderProps`](ThumbnailProviderProps.md)
+- [`ThumbnailProvider`](ThumbnailProvider.md)
+- [`ThumbnailRenderContext`](ThumbnailRenderContext.md)
+- [`ThumbnailRenderResult`](ThumbnailRenderResult.md)
+- [`ThumbnailNativeResult`](ThumbnailNativeResult.md)
+- [`ThumbnailNativeAccess`](ThumbnailNativeAccess.md)
+- [`ThumbnailDirectorySelection`](ThumbnailDirectorySelection.md)
+- [`ThumbnailInputDeclaration`](ThumbnailInputDeclaration.md)
+- [`ThumbnailContentAccess`](ThumbnailContentAccess.md)
+- [`ThumbnailContentSnapshot`](ThumbnailContentSnapshot.md)
+- [`ThumbnailRasterFormat`](ThumbnailRasterFormat.md)
+- [`ThumbnailHostFeature`](ThumbnailHostFeature.md)
 - [`EditorHistoryHandle`](EditorHistoryHandle.md)
 - [`PreviewToolbarEditorState`](PreviewToolbarEditorState.md)
 
@@ -101,12 +111,14 @@ Use the workflow guides for permissions, lifecycle consequences, and complete ex
 - [`PluginSettingsChange`](PluginSettingsChange.md)
 - [`PluginSettingsSubscription`](PluginSettingsSubscription.md)
 - [`PluginStorageAPI`](PluginStorageAPI.md)
+- [`PluginSecretsAPI`](PluginSecretsAPI.md)
 - [`PluginDatabaseAPI`](PluginDatabaseAPI.md)
 - [`DatabaseExecuteResult`](DatabaseExecuteResult.md)
 - [`ReadonlyAppSettings`](ReadonlyAppSettings.md)
 - [`ModalAPI`](ModalAPI.md)
 - [`NotifyAPI`](NotifyAPI.md)
 - [`FileUtilsAPI`](FileUtilsAPI.md)
+- [`PluginPreparedWrite`](PluginPreparedWrite.md)
 - [`PluginTextFileSnapshot`](PluginTextFileSnapshot.md)
 - [`PluginTextWriteResult`](PluginTextWriteResult.md)
 - [`PluginBinaryFileSnapshot`](PluginBinaryFileSnapshot.md)
@@ -152,14 +164,11 @@ Use the workflow guides for permissions, lifecycle consequences, and complete ex
 
 ## Commands
 
-- [`ToolbarContext`](ToolbarContext.md)
-- [`ToolbarSubToolbarProps`](ToolbarSubToolbarProps.md)
 - [`CommandContextKey`](CommandContextKey.md)
 - [`CommandContext`](CommandContext.md)
 - [`CommandShortcut`](CommandShortcut.md)
 - [`CommandPlacementArea`](CommandPlacementArea.md)
 - [`CommandPlacementBase`](CommandPlacementBase.md)
-- [`ToolbarPlacementConfig`](ToolbarPlacementConfig.md)
 - [`ContextMenuPlacementConfig`](ContextMenuPlacementConfig.md)
 - [`CommandPlacement`](CommandPlacement.md)
 - [`Command`](Command.md)

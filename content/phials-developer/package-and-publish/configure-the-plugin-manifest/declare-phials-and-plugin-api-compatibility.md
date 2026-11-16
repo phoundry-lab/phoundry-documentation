@@ -12,7 +12,7 @@ Declare two different runtime boundaries:
 ```json
 {
   "minAppVersion": "1.4.0",
-  "pluginApiVersion": "1.0.0"
+  "pluginApiVersion": "3.0.0"
 }
 ```
 
@@ -37,17 +37,18 @@ Do not lower it without testing the complete release in the older app.
 
 ## Set the Plugin API version
 
-Use the Plugin API version synchronized with the SDK against which you build:
+Use the Plugin API version exposed by the SDK package against which you build:
 
 ```json
 {
-  "pluginApiVersion": "1.0.0"
+  "pluginApiVersion": "3.0.0"
 }
 ```
 
 Raise it when the built plugin uses a public type, method, field, lifecycle guarantee, or manifest behavior introduced in a newer Plugin API contract.
 
-Keep it explicit even though an omitted field defaults to `1.0.0`. Explicit metadata makes release review and diagnostics unambiguous.
+The field is required. The current starter targets `3.0.0`. A plugin targeting
+a different API major cannot activate on an API 3 host.
 
 Do not use the package version of `phoundry-ui`, Svelte, or the plugin itself as `pluginApiVersion`. They are separate version domains.
 
@@ -58,16 +59,19 @@ A Phials build can activate the plugin only when:
 ```text
 current Phials version ≥ minAppVersion
 and
+major(supported Plugin API version) = major(pluginApiVersion)
+and
 supported Plugin API version ≥ pluginApiVersion
 ```
 
 Example:
 
-| Current Phials | Supported API | Manifest minimum | Manifest API | Result |
-| --- | --- | --- | --- | --- |
-| `1.6.0` | `1.0.0` | `1.4.0` | `1.0.0` | Compatible |
-| `1.3.2` | `1.0.0` | `1.4.0` | `1.0.0` | Phials too old |
-| `1.6.0` | `1.0.0` | `1.4.0` | `1.1.0` | Plugin API too old |
+| Current Phials | Supported API | Manifest minimum | Manifest API | Result              |
+| -------------- | ------------- | ---------------- | ------------ | ------------------- |
+| `1.6.0`        | `3.0.0`       | `1.4.0`          | `3.0.0`      | Compatible          |
+| `1.3.2`        | `3.0.0`       | `1.4.0`          | `3.0.0`      | Phials too old      |
+| `1.6.0`        | `3.0.0`       | `1.4.0`          | `3.1.0`      | Plugin API too old  |
+| `1.6.0`        | `3.0.0`       | `1.4.0`          | `2.0.0`      | Different API major |
 
 Compatibility is checked before activation. A compatible comparison does not prove that your plugin is correct; it proves only that the declared lower bounds are satisfied.
 

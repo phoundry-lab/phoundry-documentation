@@ -2,7 +2,7 @@
 title: "PreviewToolbarContributionProps"
 description: "TypeScript signature and members for the PreviewToolbarContributionProps public SDK declaration."
 ai_disclosure: true
-order: 115
+order: 117
 aliases:
   - references/PreviewToolbarContributionProps
 ---

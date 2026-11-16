@@ -20,7 +20,7 @@ interface CommandProvider {
     type: "command";
     id: string;
     name: string;
-    commands: Command[];
+    commands: Command[] | ((api: PluginAPI) => Command[]);
 }
 ```
 
@@ -31,4 +31,4 @@ interface CommandProvider {
 | `type` | `"command"` | yes | - |
 | `id` | `string` | yes | Provider identifier |
 | `name` | `string` | yes | Human-readable name |
-| `commands` | [`Command`](Command.md)`[]` | yes | Commands contributed by this provider |
+| `commands` | [`Command`](Command.md)`[] &#124; (api: `[`PluginAPI`](PluginAPI.md)`) => `[`Command`](Command.md)`[]` | yes | Reactive contributions. The factory receives this plugin's scoped API. |

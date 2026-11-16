@@ -15,14 +15,15 @@ The plugin starter makes the SDK declarations ambient, so types such as [Preview
 
 Each component slot has a specific contract:
 
-| Plugin interface | Public props |
-| --- | --- |
-| File viewer or editor | [PreviewSurfaceProps](../../reference/sdk-type-reference/PreviewSurfaceProps.md) |
+| Plugin interface          | Public props                                                                                             |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| File viewer or editor     | [PreviewSurfaceProps](../../reference/sdk-type-reference/PreviewSurfaceProps.md)                         |
 | File toolbar contribution | [PreviewToolbarContributionProps](../../reference/sdk-type-reference/PreviewToolbarContributionProps.md) |
-| File thumbnail | [ThumbnailProviderProps](../../reference/sdk-type-reference/ThumbnailProviderProps.md) |
-| File view | [FileBrowserViewProps](../../reference/sdk-type-reference/FileBrowserViewProps.md) |
-| Panel or center tab | [ModuleProviderProps](../../reference/sdk-type-reference/ModuleProviderProps.md) |
-| Custom plugin settings | [PluginSettingsComponentProps](../../reference/sdk-type-reference/PluginSettingsComponentProps.md) |
+| File view                 | [FileBrowserViewProps](../../reference/sdk-type-reference/FileBrowserViewProps.md)                       |
+| Panel or center tab       | [ModuleProviderProps](../../reference/sdk-type-reference/ModuleProviderProps.md)                         |
+| Custom plugin settings    | [PluginSettingsComponentProps](../../reference/sdk-type-reference/PluginSettingsComponentProps.md)       |
+
+Thumbnails use a function receiving [ThumbnailRenderContext](../../reference/sdk-type-reference/ThumbnailRenderContext.md) and returning static image data or a sanitized HTML fragment, rather than a mounted component. See [Add thumbnails and toolbar controls](../../add-capabilities/build-file-viewers-and-editors/add-thumbnails-and-toolbar-controls.md).
 
 Destructure the complete props type with `$props()`. This catches a misspelled field and makes optional host input visible at the component boundary.
 
@@ -112,14 +113,14 @@ Register the component in the provider that owns the file viewing capability:
 import TextSurface from "./TextSurface.svelte";
 
 const textSurfaceProvider: PreviewProvider = {
-	type: "preview",
-	id: "example.text-surface",
-	name: "Text surface",
-	extensions: [".txt"],
-	surface: TextSurface,
-	destinations: {
-		pageTab: true,
-	},
+  type: "preview",
+  id: "example.text-surface",
+  name: "Text surface",
+  extensions: [".txt"],
+  surface: TextSurface,
+  destinations: {
+    pageTab: true,
+  },
 };
 ```
 
@@ -192,4 +193,4 @@ A public plugin component should depend on:
 
 Avoid assumptions about a host DOM ancestor, a fixed element ID, the active window, or undocumented fields that happen to exist on an object at runtime. The [public SDK support contract](../../reference/plugin-contract-and-compatibility/public-sdk-support-contract.md) defines the supported boundary.
 
-Run `npm run check` in the starter project after changing a component. This validates Svelte markup, component props, and the synchronized public SDK together.
+Run `npm run check` in the starter project after changing a component. This validates Svelte markup, component props, and the installed public SDK types together.

@@ -2,7 +2,7 @@
 title: "ShortcutDefinition"
 description: "TypeScript signature and members for the ShortcutDefinition public SDK declaration."
 ai_disclosure: true
-order: 126
+order: 128
 aliases:
   - references/ShortcutDefinition
 ---

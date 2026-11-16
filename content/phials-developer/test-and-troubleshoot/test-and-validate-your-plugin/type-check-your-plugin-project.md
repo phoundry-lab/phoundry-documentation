@@ -1,86 +1,45 @@
 ---
 title: "Type-check your plugin project"
-description: "Runs the starter’s Svelte and TypeScript checks against plugin source and the synchronized public SDK."
+description: "Runs the starter’s Svelte and TypeScript checks against plugin source and the public SDK package."
 ai_disclosure: true
 order: 1
 ---
 
 # Type-check your plugin project
 
-Run the starter’s source check before building:
-
-```bash
-npm run check
-```
-
-The check covers:
-
-- TypeScript under `src/`
-- Svelte component markup, props, events, and runes
-- the committed declarations under `sdk/`
-- imports and compiler options used by the production build
-
-A successful check exits with status `0` and no Svelte or TypeScript errors.
-
-## Keep the synchronized public SDK intact
-
-The starter’s `sdk/` directory is generated public contract material. It includes plugin, provider, file, command, shortcut, event, pane-context, and manifest declarations. Do not edit generated files to make an error disappear.
-
-When adopting a newer public SDK:
-
-```bash
-npm run sdk:sync
-npm run check
-```
-
-Review the synchronized diff before committing it. Then set `pluginApiVersion` to the contract version the plugin actually targets and test against a Phials build that supports it.
-
-If a type exists only in Phials application source and is absent from the synchronized SDK, it is not a supported plugin dependency. Use the public type or request a public contract instead of copying an internal declaration.
-
-## Fix the contract mismatch
-
-Treat a check failure according to its owner:
-
-| Failure | Correct response |
-| --- | --- |
-| Provider property or callback no longer matches | Update the provider to the synchronized SDK |
-| Component receives the wrong prop shape | Update the component and its provider together |
-| Svelte rune or snippet error | Correct the component using the starter’s Svelte 5 conventions |
-| Manifest helper import fails | Re-synchronize the complete SDK, including manifest tooling |
-| A required public type is absent | Stop depending on the unsupported type |
-| Generated SDK file has a local edit | Revert the edit and fix plugin source |
-
-Do not add broad casts such as `as any` at the plugin boundary. A cast can hide the exact mismatch that would otherwise fail during activation or provider invocation.
-
-## Check the production entry path
-
-The type check must include the same entry files and generated declarations used by the build. Keep source inside the starter’s included paths and avoid a second relaxed `tsconfig` for release code.
-
-When a test file intentionally creates incomplete fixtures, keep the relaxation local:
-
-```typescript
-const file = {
-	name: "report.pdf",
-	path: "/fixtures/report.pdf",
-	is_file: true,
-	is_dir: false,
-} satisfies Pick<FileEntry, "name" | "path" | "is_file" | "is_dir">;
-```
-
-Do not weaken production compiler options to accommodate a test double.
-
-## Reproduce the check in a clean environment
-
-Before release:
+Use Node 24 and install the locked dependencies, then run the example’s source check:
 
 ```bash
 npm ci
-npm run sdk:verify
 npm run check
 ```
 
-`sdk:verify` confirms that generated SDK files match the declared `pluginApiVersion` and have no local edits. `npm ci` confirms the committed lockfile can reproduce the dependency graph.
+The check covers TypeScript and Svelte source using the project’s compiler configuration. A successful run exits with status `0` and no Svelte or TypeScript errors. An editor showing no diagnostics is not a substitute for this command.
 
-Run the same commands in continuous integration. A local editor showing no diagnostics is not a substitute for the project check.
+## Use the published public SDK
 
-For Svelte-specific component patterns, use [Build plugin components with Svelte 5](../../get-started/use-svelte-and-phoundry-ui/build-plugin-components-with-svelte-5.md).
+The example depends on `@phoundry/phials-plugin-sdk` at exactly `3.0.0` from npm. There is no local `sdk/` folder to synchronize or edit. Import public types and manifest helpers from that package.
+
+When adopting a newer SDK, update the dependency deliberately, commit the resulting lockfile, and review any source changes the new contract requires. Set `pluginApiVersion` in `src/plugin.manifest.ts` to the contract you actually target and test with a Phials build that supports it.
+
+A type available only in Phials application source is not a supported plugin dependency. Use a public type or request a public contract instead of copying internal declarations.
+
+## Fix the contract mismatch
+
+| Failure | Correct response |
+| --- | --- |
+| Provider property or callback no longer matches | Update the provider to the installed SDK |
+| Component receives the wrong props | Update the component and provider together |
+| Svelte rune or snippet error | Correct the component’s Svelte 5 usage |
+| Public import fails | Check the installed package version and exported entry points |
+| Required public type is absent | Stop depending on the unsupported type |
+
+Do not use broad casts such as `as any` to hide a boundary mismatch or weaken production compiler options for a test double. Prefer narrow local interfaces for the dependencies your logic actually calls.
+
+## Keep build and checks aligned
+
+Keep production source inside the configured paths and use the same entry path for checks and builds. The package version is imported into `src/plugin.manifest.ts`; do not duplicate it in source or repair it by editing generated output.
+
+Run `npm run check` in continuous integration as well as locally. Continue with [Test plugin logic and interfaces](test-plugin-logic-and-interfaces.md).
+
+For component patterns, see [Build plugin components with Svelte 5](../../get-started/use-svelte-and-phoundry-ui/build-plugin-components-with-svelte-5.md).

@@ -11,19 +11,15 @@ A source edit, a build, an install, and a reload are separate events. Phials kee
 
 ## Use the explicit loop
 
-For a change that affects source, dependencies, the manifest, or styles:
+After editing source, dependencies, the manifest, or styles:
 
 ```bash
-npm run check
-npm run build
-npm run validate
-npm run dev:install -- \
-  --phials-home /absolute/path/to/phials-plugin-dev
+npm run dev:install
 ```
 
-Then open **Settings → Plugins → Community plugins → Installed** and choose **Reload** on the plugin.
+The installer builds first and uses your normal Phials home, or `PHIALS_HOME` when set. To install elsewhere, add `-- --phials-home /absolute/path/to/phials-plugin-dev` and run Phials with that same home.
 
-This is the safest loop because every reload uses a fully checked release. Use it before commits and whenever identity, permissions, dependencies, or release shape changes.
+Then open **Settings → Plugins → Community plugins → Installed** and choose **Reload** on the plugin. Run `npm run check` and `npm test` as well when checking types or behavior covered by automated tests.
 
 ## Use watch mode while editing
 
@@ -33,25 +29,23 @@ Keep the starter's watch build running in one terminal:
 npm run dev
 ```
 
-The watcher rebuilds `dist/main.js`, `dist/styles.css`, and the synchronized development manifest after source changes. Wait for a successful build before installing.
+The watcher rebuilds `dist/main.js`, optional `dist/styles.css`, the generated manifest, and the release inventory after source changes. It provides build feedback while you edit.
 
-In another terminal, validate and install the current output:
+When you are ready to try a change, run this in another terminal:
 
 ```bash
-npm run validate
-npm run dev:install -- \
-  --phials-home /absolute/path/to/phials-plugin-dev
+npm run dev:install
 ```
 
-Then choose **Reload**. Repeat the last three actions after each successful watch build:
+Then choose **Reload** in Phials. The installer performs its own fresh build even if watch mode is running. Watch mode is optional: it does not install files, eliminate that build, or hot-reload a running plugin.
+
+The everyday loop is:
 
 ```text
-validate → install → reload
+edit → dev:install → Reload in Phials → try the change
 ```
 
-Do not reload while the watcher reports an error. The activated old release remains the useful baseline while you fix the source.
-
-Watch mode shortens the build step; it does not bypass validation, install artifacts automatically, or hot-replace a running plugin module.
+If a build fails, fix the source before reinstalling. A failed build does not replace the installed plugin.
 
 ## Understand true reload
 

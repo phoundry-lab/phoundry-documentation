@@ -16,5 +16,5 @@ Areas where commands can be placed in the UI.
 ## Signature
 
 ```typescript
-type CommandPlacementArea = "toolbar" | "contextMenu";
+type CommandPlacementArea = "contextMenu";
 ```

@@ -2,7 +2,7 @@
 title: "WorkspaceFolderFileRef"
 description: "TypeScript signature and members for the WorkspaceFolderFileRef public SDK declaration."
 ai_disclosure: true
-order: 143
+order: 152
 aliases:
   - references/WorkspaceFolderFileRef
 ---

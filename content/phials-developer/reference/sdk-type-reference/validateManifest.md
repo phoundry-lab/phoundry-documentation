@@ -2,7 +2,7 @@
 title: "validateManifest"
 description: "TypeScript signature and members for the validateManifest public SDK declaration."
 ai_disclosure: true
-order: 135
+order: 144
 aliases:
   - references/validateManifest
 ---
@@ -50,8 +50,8 @@ export function validateManifest(manifest: unknown): ValidationResult {
     if (typeof m.pluginApiVersion !== "string" || !m.pluginApiVersion.trim()) {
         errors.push('Missing or invalid "pluginApiVersion" field');
     }
-    else if (m.pluginApiVersion !== SUPPORTED_PLUGIN_API_VERSION) {
-        errors.push(`Invalid "pluginApiVersion": expected exactly "${SUPPORTED_PLUGIN_API_VERSION}"`);
+    else if (!validateSemver(m.pluginApiVersion)) {
+        errors.push('Invalid "pluginApiVersion" format. Must be semver (e.g., "2.0.0")');
     }
     if (typeof m.author !== "string" || !m.author.trim()) {
         errors.push('Missing or invalid "author" field');
@@ -98,6 +98,32 @@ export function validateManifest(manifest: unknown): ValidationResult {
             }
         }
     }
+    if (m.thumbnailProviders !== undefined) {
+        if (!Array.isArray(m.thumbnailProviders) ||
+            m.thumbnailProviders.length > 128)
+            errors.push('Invalid "thumbnailProviders" declaration');
+        else {
+            const seen = new Set<string>();
+            for (const item of m.thumbnailProviders) {
+                if (!item || typeof item !== "object" || Array.isArray(item)) {
+                    errors.push("Invalid Thumbnail provider declaration");
+                    continue;
+                }
+                const declaration = item as Record<string, unknown>;
+                if (Object.keys(declaration).some((key) => !["id", "rendererVersion"].includes(key)) ||
+                    typeof declaration.id !== "string" ||
+                    !declaration.id.trim() ||
+                    declaration.id.length > 256 ||
+                    typeof declaration.rendererVersion !== "string" ||
+                    !declaration.rendererVersion.trim() ||
+                    declaration.rendererVersion.length > 256 ||
+                    seen.has(declaration.id))
+                    errors.push("Invalid or duplicate Thumbnail provider declaration");
+                else
+                    seen.add(declaration.id);
+            }
+        }
+    }
     if (m.permissions !== undefined) {
         if (!Array.isArray(m.permissions)) {
             errors.push('Invalid "permissions" field - must be an array');
@@ -132,5 +158,4 @@ export function validateManifest(manifest: unknown): ValidationResult {
 - [`ValidationResult`](ValidationResult.md)
 - [`validatePluginId`](validatePluginId.md)
 - [`validateSemver`](validateSemver.md)
-- [`SUPPORTED_PLUGIN_API_VERSION`](SUPPORTED_PLUGIN_API_VERSION.md)
 - [`PluginPermission`](PluginPermission.md)

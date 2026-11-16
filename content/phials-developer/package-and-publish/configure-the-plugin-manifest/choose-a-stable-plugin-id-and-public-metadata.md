@@ -119,10 +119,7 @@ List the Iconify identifiers the host must preload before or while activating th
 
 ```json
 {
-  "icons": [
-    "phoundry-mono:check",
-    "phoundry-mono:circle-info"
-  ]
+  "icons": ["phoundry-mono:check", "phoundry-mono:circle-info"]
 }
 ```
 
@@ -137,14 +134,15 @@ release `manifest.json` is generated from this declaration:
 
 ```ts
 import { PhiIcons } from "phoundry-ui/icons";
-import { definePluginManifest } from "../../sdk/manifest-schema";
+import { definePluginManifest } from "@phoundry/phials-plugin-sdk/manifest";
+import { version } from "../package.json";
 
 export const pluginManifest = definePluginManifest({
   id: "acme.review-tools",
   name: "Review Tools",
-  version: "1.0.0",
+  version,
   minAppVersion: "0.1.0",
-  pluginApiVersion: "1.0.0",
+  pluginApiVersion: "3.0.0",
   author: "Acme",
   description: "Adds review commands and file annotations.",
   icons: [PhiIcons.check, PhiIcons.info],

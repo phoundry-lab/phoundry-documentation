@@ -2,7 +2,7 @@
 title: "ReadonlyAppSettings"
 description: "TypeScript signature and members for the ReadonlyAppSettings public SDK declaration."
 ai_disclosure: true
-order: 119
+order: 121
 aliases:
   - references/ReadonlyAppSettings
 ---

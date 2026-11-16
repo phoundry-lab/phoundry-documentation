@@ -2,7 +2,7 @@
 title: "validateSemver"
 description: "TypeScript signature and members for the validateSemver public SDK declaration."
 ai_disclosure: true
-order: 137
+order: 146
 aliases:
   - references/validateSemver
 ---

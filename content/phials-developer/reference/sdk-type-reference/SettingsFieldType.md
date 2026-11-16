@@ -2,7 +2,7 @@
 title: "SettingsFieldType"
 description: "TypeScript signature and members for the SettingsFieldType public SDK declaration."
 ai_disclosure: true
-order: 125
+order: 127
 aliases:
   - references/SettingsFieldType
 ---

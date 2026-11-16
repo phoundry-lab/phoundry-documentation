@@ -16,12 +16,12 @@ From the plugin project root:
 ```bash
 npm ci
 npm run check
-npm run test:run
+npm test
 npm run build
-npm run validate
+npm run release:verify
 ```
 
-`build` creates a clean `dist/`; `validate` checks the exact output. Do not copy an older artifact forward or hand-edit generated output.
+`build` produces `dist/` and automatically writes `release/release-inventory.json`; `release:verify` checks those existing files without rebuilding or rewriting them. Do not copy an older artifact forward or hand-edit generated output.
 
 ## Include the required files
 
@@ -73,28 +73,21 @@ Release notes belong in the GitHub release body. Images used by those notes may 
 
 ## Verify the artifact set as one unit
 
-The validator confirms:
+The build validates the manifest and checks basic module identity by importing the plugin’s own bundle. It also records artifact sizes and SHA-256 checksums in the release inventory. This is not a sandbox or a provider and lifecycle test harness; installed behavior still needs testing.
 
-- required and optional filenames
-- no unsupported files
-- manifest, package, module identity, and version alignment
-- compatibility and permission fields
-- loadable single-entry ES-module shape
-- Svelte runtime exports when components are present
-- CSS parsing and global-scope rules
-- complete theme pairs and required theme tokens
+Review optional styles and theme pairs yourself. The example does not enforce a CSS policy.
 
 Use [Build and validate release artifacts](../../test-and-troubleshoot/test-and-validate-your-plugin/build-and-validate-release-artifacts.md) for the detailed checks.
 
 ## Freeze the candidate
 
-Record an immutable inventory:
+The build has already written `release/release-inventory.json`, containing artifact filenames, byte sizes, and SHA-256 checksums. Review it and keep it with your release records; do not upload it as a plugin asset.
 
 ```bash
-npm run release:inventory
+npm run release:verify
 ```
 
-The command records each artifact filename, byte size, and SHA-256 checksum without modifying `dist/`. Review the inventory and keep it with the release verification record.
+This compares the existing inventory with the artifact bytes and bundled manifest without rebuilding or rewriting anything.
 
 Attach files directly from the verified `dist/`. If a later command rewrites, minifies, renames, signs, or otherwise changes an artifact, it is a new candidate and needs a new validation and inventory.
 

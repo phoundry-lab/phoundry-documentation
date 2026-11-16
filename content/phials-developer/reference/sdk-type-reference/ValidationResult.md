@@ -2,7 +2,7 @@
 title: "ValidationResult"
 description: "TypeScript signature and members for the ValidationResult public SDK declaration."
 ai_disclosure: true
-order: 138
+order: 147
 aliases:
   - references/ValidationResult
 ---

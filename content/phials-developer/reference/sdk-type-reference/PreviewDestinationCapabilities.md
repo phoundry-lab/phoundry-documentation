@@ -2,7 +2,7 @@
 title: "PreviewDestinationCapabilities"
 description: "TypeScript signature and members for the PreviewDestinationCapabilities public SDK declaration."
 ai_disclosure: true
-order: 110
+order: 112
 aliases:
   - references/PreviewDestinationCapabilities
 ---

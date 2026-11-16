@@ -2,7 +2,7 @@
 title: "PreviewDestination"
 description: "TypeScript signature and members for the PreviewDestination public SDK declaration."
 ai_disclosure: true
-order: 109
+order: 111
 aliases:
   - references/PreviewDestination
 ---

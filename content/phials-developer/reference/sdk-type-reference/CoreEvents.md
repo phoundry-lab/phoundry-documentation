@@ -128,7 +128,7 @@ interface CoreEvents {
 | `"core.file.deleted"` | `{ … }` | yes | Files deleted |
 | `"core.file.saved"` | `{ … }` | yes | File saved |
 | `"core.file-note.saved"` | `{ … }` | yes | Persisted File Note content was created, updated, or removed |
-| `"core.workspace-page-config.changed"` | `{ … }` | yes | Portable Page visibility/order changed for one Workspace. |
+| `"core.workspace-page-config.changed"` | `{ … }` | yes | Page visibility/order changed for one Workspace. |
 | `"core.workspace-values.changed"` | `WorkspaceValuesChangedEvent` | yes | Canonical cell deltas or a filtered compatibility refetch for one Workspace. |
 | `"core.workspace-properties.changed"` | `{ … }` | yes | Workspace Folder Property schemas changed, including paired Relations. |
 | `"core.workspace-formula-output-types.changed"` | `{ … }` | yes | Formula output types changed; every pane must normalize its consumers. |

@@ -8,12 +8,12 @@ aliases:
 
 # Use Svelte and Phoundry UI
 
-Svelte 5 and Phoundry UI are the recommended stack for plugin interfaces. The [plugin starter repo](../build-your-first-plugin/create-a-plugin-project-from-the-starter.md) already includes Svelte, TypeScript, Vite, Tailwind CSS, the synchronized public SDK, and the `phoundry-ui` package. Start there so your components use the same compilation and packaging contract that Phials expects.
+Svelte 5 and Phoundry UI are the recommended stack for plugin interfaces. The [plugin starter repo](../build-your-first-plugin/create-a-plugin-project-from-the-starter.md) already includes Svelte, TypeScript, Vite, the public SDK npm package, and `phoundry-ui`. Phials supplies the shared UI styles and active theme; you can use component CSS without installing Tailwind. Start there so your components use the same compilation and packaging contract that Phials expects.
 
 Phials mounts a plugin component into several kinds of host-owned space:
 
 - a responsive file viewer or editor
-- a file thumbnail or toolbar contribution
+- a file toolbar contribution
 - a file view
 - a left, right, or bottom panel
 - a center tab
@@ -25,7 +25,7 @@ The public SDK declares the props for each surface. Your component owns its mark
 
 1. [Build plugin components with Svelte 5](build-plugin-components-with-svelte-5.md) to learn the component boundary, props, state, and cleanup patterns used by plugin capabilities.
 2. [Use Phoundry UI components](use-phoundry-ui-components.md) for controls that should match Phials interaction and accessibility behavior.
-3. [Style and theme plugin interfaces](style-and-theme-plugin-interfaces.md) with scoped styles, semantic theme tokens, and the starter’s CSS pipeline.
+3. [Style and theme plugin interfaces](style-and-theme-plugin-interfaces.md) using component CSS and the active theme.
 4. [Design responsive and accessible plugin surfaces](design-responsive-and-accessible-plugin-surfaces.md) for narrow panels, wide center tabs, keyboard use, focus, and assistive technology.
 
 These articles explain the Phials-specific working contract rather than general Svelte development. The [Svelte documentation](https://svelte.dev/docs/svelte/overview) remains the source for the language and framework as a whole.

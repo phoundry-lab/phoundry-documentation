@@ -2,7 +2,7 @@
 title: "SUPPORTED_PLUGIN_API_VERSION"
 description: "TypeScript signature and members for the SUPPORTED_PLUGIN_API_VERSION public SDK declaration."
 ai_disclosure: true
-order: 128
+order: 130
 aliases:
   - references/SUPPORTED_PLUGIN_API_VERSION
 ---
@@ -17,5 +17,5 @@ Keep in sync with `SUPPORTED_PLUGIN_API_VERSION` in `src-tauri/src/lib.rs`.
 ## Signature
 
 ```typescript
-export const SUPPORTED_PLUGIN_API_VERSION = "1.0.0" as const;
+export const SUPPORTED_PLUGIN_API_VERSION = "3.0.0" as const;
 ```

@@ -2,7 +2,7 @@
 title: "SettingsFieldBase"
 description: "TypeScript signature and members for the SettingsFieldBase public SDK declaration."
 ai_disclosure: true
-order: 124
+order: 126
 aliases:
   - references/SettingsFieldBase
 ---

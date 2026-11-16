@@ -2,7 +2,7 @@
 title: "PluginSettings"
 description: "TypeScript signature and members for the PluginSettings public SDK declaration."
 ai_disclosure: true
-order: 99
+order: 101
 aliases:
   - references/PluginSettings
 ---
@@ -38,5 +38,5 @@ interface PluginSettings {
 | `getStored` | `(key: string) => unknown` | yes | Read the unvalidated durable value for migration or recovery. |
 | `unset` | `(key: string) => Promise<void>` | yes | Remove one durable value and reveal the schema default. |
 | `reset` | `() => Promise<void>` | yes | Remove every durable value and reveal all schema defaults. |
-| `open` | `() => Promise<void>` | yes | Open the Phials settings window directly to this plugin's settings page. |
+| `open` | `() => Promise<void>` | yes | Open Settings in the current main window directly to this plugin's settings page. |
 | `onChange` | `(handler: (change: `[`PluginSettingsChange`](PluginSettingsChange.md)`) => void) => `[`PluginSettingsSubscription`](PluginSettingsSubscription.md) | yes | - |

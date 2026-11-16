@@ -1,36 +1,21 @@
 ---
 title: "Style and theme plugin interfaces"
-description: "Covers scoped component styles, the starter’s selected Phoundry UI and Tailwind imports, theme tokens, global styles.css risk, and icons."
+description: "Style plugin interfaces with host-supplied Phoundry UI styles, semantic theme hooks, scoped CSS, and optional styling tools."
 ai_disclosure: true
 order: 3
 ---
 
 # Style and theme plugin interfaces
 
-Style a plugin interface with scoped component CSS, Phoundry UI’s semantic tokens, and complete Tailwind utility names. This lets the interface follow the active Phials theme without taking ownership of application-wide styling.
+Style a plugin interface with ordinary CSS and Phoundry UI’s public `--ph-*` theme hooks. Component-scoped styles are a useful default for following the active Phials theme while keeping layout changes local.
 
 The plugin starter compiles CSS into the optional `styles.css` release artifact. Phials loads that file into the application document, so every unscoped selector can affect more than your plugin.
 
-## Keep the starter style imports
+## Use the host’s shared styles
 
-The starter’s `src/app.css` imports the selected styling layers:
+Phials imports `phoundry-ui/styles` and supplies the active theme. Phoundry UI uses plain CSS; its shared styles include foundation colors, control dimensions, semantic primitives, and a low-priority native-element reset. A plugin does not need to import another copy of those global styles or a fixed light or dark theme.
 
-```css
-@import "tailwindcss";
-@import "phoundry-ui/styles/theme.css";
-@import "phoundry-ui/styles/tokens.css";
-@import "phoundry-ui/styles/components.css";
-@import "phoundry-ui/styles/utils.css";
-```
-
-These imports provide:
-
-- Tailwind CSS utilities used by your source
-- semantic Tailwind aliases such as `bg-surface-base` and `text-txt-secondary`
-- component-level Phoundry UI tokens
-- shared component and utility styles
-
-Keep the imports in the global entry stylesheet and import that stylesheet once from `src/main.ts`. Do not import a fixed light or dark theme into a component. Phials supplies the active theme values.
+The starter has no `src/app.css` and no Tailwind setup by default. Add component styles or your own stylesheet when needed. Tailwind and other styling tools are optional, plugin-owned build choices, not requirements for Phoundry UI.
 
 ## Prefer scoped component styles
 
@@ -47,70 +32,41 @@ A `<style>` block in a Svelte component is scoped to that component. Use it for 
 		display: grid;
 		gap: 0.5rem;
 		padding: 1rem;
-		border: 1px solid var(--border-muted);
+		border: 1px solid var(--ph-border-muted);
 		border-radius: 0.5rem;
-		background: var(--surface-base);
-		color: var(--text-primary);
+		background: var(--ph-surface-3);
+		color: var(--ph-text-primary);
 	}
 
 	.summary p {
 		margin: 0;
-		color: var(--text-secondary);
+		color: var(--ph-text-secondary);
 	}
 </style>
 ```
 
-Reserve `app.css` for package imports and rules that genuinely must be global. Prefix any plugin-owned global class or custom property with the plugin ID:
+For shared plugin rules, a plugin-specific wrapper or prefixed class helps make the intended scope clear. Local theme-hook overrides are valid; setting a public `--ph-*` property on a wrapper customizes inheriting descendants without intentionally changing the whole document.
 
-```css
-.example-labels-visually-clipped {
-	overflow: clip;
-}
-
-:root {
-	--example-labels-chart-gap: 0.75rem;
-}
-```
-
-Avoid broad selectors such as `button`, `input`, `h1`, `[role="tab"]`, or `*` in global CSS. Do not redefine Phoundry UI tokens on `:root`; that would change Phials and every other loaded plugin.
+You can use Svelte `:global(...)`, standard CSS selectors, and theme-hook overrides. Choose their scope deliberately: global rules and root-level overrides can affect Phials and other plugins. A component or wrapper selector is usually the best starting point when styling only your own interface.
 
 ## Use semantic theme tokens
 
-Semantic tokens describe a role rather than a fixed color. Prefer these families:
+Semantic hooks describe a role rather than a fixed color. Useful families include:
 
-| Purpose | CSS variables | Tailwind examples |
-| --- | --- | --- |
-| Surfaces | `--surface-deep`, `--surface-sunken`, `--surface-base`, `--surface-raised`, `--surface-overlay` | `bg-surface-base`, `bg-surface-raised` |
-| Text | `--text-primary`, `--text-secondary`, `--text-tertiary`, `--text-on-accent` | `text-txt-primary`, `text-txt-secondary` |
-| Borders | `--border-muted`, `--border-default`, `--border-emphasis` | `border-border-muted`, `border-border-default` |
-| Accent | `--accent-primary`, `--accent-primary-hover`, `--accent-secondary` | `bg-accent-primary`, `text-accent-secondary` |
-| Status | `--semantic-success`, `--semantic-warning`, `--semantic-error`, `--semantic-info` | `text-semantic-error`, `bg-semantic-warning/10` |
-| Selection and focus | `--selection-bg`, `--selection-text`, `--focus-ring` | `bg-selection-bg`, `ring-focus-ring` |
+| Purpose | CSS custom properties |
+| --- | --- |
+| Surfaces | `--ph-surface-0` through `--ph-surface-7`, deepest to highest elevation |
+| Text | `--ph-text-primary`, `--ph-text-secondary`, `--ph-text-tertiary`, `--ph-text-disabled`, `--ph-text-link` |
+| Borders | `--ph-border-muted`, `--ph-border-default`, `--ph-border-emphasis` |
+| Controls | `--ph-control-bg`, `--ph-control-bg-hover`, `--ph-control-bg-pressed` |
+| Solid accent | `--ph-accent`, `--ph-accent-hover`, `--ph-accent-pressed`, `--ph-accent-fg` |
+| Status | `--ph-success-fg`, `--ph-warning-fg`, `--ph-danger-fg`, `--ph-info-fg`, with corresponding `-bg` and `-border` hooks |
+| Selected items | `--ph-item-bg-selected`, `--ph-item-bg-selected-hover`, `--ph-item-fg-selected` |
+| Selected text | `--ph-text-selection-bg`, `--ph-text-selection-fg` |
 
-Use CSS variables in component styles and the corresponding semantic aliases in Tailwind classes:
+These hooks have foundation defaults; a theme need not define every one. Typography hooks include `--ph-font-sans`, `--ph-font-serif`, and `--ph-font-mono`. Shared control dimensions use `--ph-comp-*` hooks.
 
-```svelte
-<div
-	class={[
-		"rounded-lg border border-border-muted bg-surface-base p-3",
-		"text-txt-primary",
-		hasError && "border-semantic-error",
-	]}
->
-	<p class="text-sm text-txt-secondary">Import status</p>
-	<strong>{hasError ? "Needs attention" : "Ready"}</strong>
-</div>
-```
-
-Tailwind discovers utility classes as source text. Keep every possible utility as a complete literal. Do not construct class names such as `` `text-${tone}` ``; use a typed map or explicit condition instead.
-
-```typescript
-const statusClass = {
-	success: "text-semantic-success",
-	warning: "text-semantic-warning",
-	error: "text-semantic-error",
-} as const;
-```
+See the [Phoundry UI theming guide](/phoundry-ui/guides/theming) for the full public contract. If you add a utility framework, configure its aliases and source discovery yourself; Phoundry UI does not require a utility compiler or supply Tailwind color aliases.
 
 ## Let components own component visuals
 
@@ -122,15 +78,9 @@ Phoundry UI components expose typed variants and sizes. Prefer those props to co
 </Button>
 ```
 
-Additive classes are appropriate for placement:
+Use additive classes for placement, with your own CSS defining their layout. For visual customization, use public `--ph-*` hooks and documented theme-relevant part selectors. Public component roots use `ph-*`, with variant and size axes expressed by `data-variant` and `data-size`.
 
-```svelte
-<Button class="self-end" variant="secondary">
-	Cancel
-</Button>
-```
-
-If a component does not expose a visual contract you need, use a native element with semantic tokens or choose another shared component. Do not target a Phoundry UI component’s private descendants or generated Svelte scope attributes.
+Undocumented descendants, generated Svelte scope attributes, and `--_ph-*` properties are internal implementation details. DOM nesting is not guaranteed; target documented parts without assuming their immediate parent.
 
 ## Use icons as semantic interface elements
 
@@ -146,6 +96,6 @@ Before packaging:
 2. Check normal, hover, focus, selected, disabled, warning, and error states.
 3. Confirm text and icons remain legible over each semantic surface.
 4. Enable reduced motion and confirm the interface remains understandable without transition cues.
-5. Inspect `dist/styles.css` for accidental broad selectors and fixed theme values.
+5. If the build emits `dist/styles.css`, inspect global rules and theme overrides for effects outside the intended plugin surface.
 
 If the plugin supplies a complete theme rather than merely consuming the active theme, follow [Create themes](../../add-capabilities/create-themes/index.md).

@@ -9,7 +9,7 @@ aliases:
 
 # Understand the public SDK and trust boundary
 
-Build against the synchronized public SDK and treat it as the complete supported contract between a plugin and Phials. Community plugins run as trusted JavaScript in the Phials renderer; permissions gate supported Plugin API operations and approved host commands, but they do not create a JavaScript sandbox.
+Build against the published `@phoundry/phials-plugin-sdk` package and treat its public surface as the complete supported contract between a plugin and Phials. Community plugins run as trusted JavaScript in the Phials renderer; permissions gate supported Plugin API operations and approved host commands, but they do not create a JavaScript sandbox.
 
 Both parts of that statement matter. The SDK tells you what Phials supports. The trust model tells users what installing the JavaScript permits in practice.
 
@@ -23,9 +23,30 @@ The public SDK includes:
 - the plugin manifest schema, permission names, and validation helpers;
 - the generated SDK type reference and the written support contract.
 
-The plugin starter contains a synchronized `sdk/` directory. Use those declarations instead of importing files from a Phials source checkout. The declarations are available to the starter project as ambient types, so plugin source can use names such as [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md), [PluginAPI](../../reference/sdk-type-reference/PluginAPI.md), and [CommandProvider](../../reference/sdk-type-reference/CommandProvider.md) directly.
+The current plugin starter pins `@phoundry/phials-plugin-sdk` to `3.0.0`.
+Install and update that dependency rather than copying declarations or importing
+files from a Phials source checkout. There is no starter-local SDK directory or
+SDK-sync step.
 
-The support boundary is default-deny: if a host object, command, field, or behavior is not exposed by the synchronized SDK or named by the public support contract, a plugin cannot rely on it. A value that happens to exist at runtime is not a compatibility promise.
+The root `env.d.ts` enables ambient public types:
+
+```ts
+/// <reference types="@phoundry/phials-plugin-sdk" />
+```
+
+Plugin source can then use names such as
+[PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md),
+[PluginAPI](../../reference/sdk-type-reference/PluginAPI.md), and
+[CommandProvider](../../reference/sdk-type-reference/CommandProvider.md)
+directly. Import runtime manifest helpers from
+`@phoundry/phials-plugin-sdk/manifest`.
+
+The starter demonstrates a command and a Preview provider without privileged
+permissions. A Thumbnail provider is an optional additional capability, not a
+starter feature; its supported file access requires `filesystem.read` (or the
+superseding `filesystem.write`).
+
+The support boundary is default-deny: if a host object, command, field, or behavior is not exposed by the public SDK package or named by the public support contract, a plugin cannot rely on it. A value that happens to exist at runtime is not a compatibility promise.
 
 When the SDK does not cover a general plugin-author need, define the missing outcome and propose an additive public contract. Do not reach through an untyped object, import app source, or depend on a private command as a shortcut.
 

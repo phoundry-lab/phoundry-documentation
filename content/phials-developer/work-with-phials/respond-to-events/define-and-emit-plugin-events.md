@@ -51,7 +51,7 @@ interface PluginEvents {
 }
 ```
 
-The synchronized SDK declares an empty [PluginEvents](../../reference/sdk-type-reference/PluginEvents.md) interface specifically for declaration merging. [EventMap](../../reference/sdk-type-reference/EventMap.md) combines it with the supported Phials events, so the new ID becomes available to `on`, `once`, and `emit`.
+The public SDK declares an empty [PluginEvents](../../reference/sdk-type-reference/PluginEvents.md) interface specifically for declaration merging. [EventMap](../../reference/sdk-type-reference/EventMap.md) combines it with the supported Phials events, so the new ID becomes available to `on`, `once`, and `emit`.
 
 Keep the declaration in the shared package or source folder used by every producer and consumer. Do not repeat slightly different payload definitions in separate components.
 

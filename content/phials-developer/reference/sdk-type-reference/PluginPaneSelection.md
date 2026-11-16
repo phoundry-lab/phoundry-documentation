@@ -29,6 +29,6 @@ interface PluginPaneSelection {
 |------|------|----------|-------------|
 | `entries` | `readonly `[`FileEntry`](FileEntry.md)`[]` | yes | - |
 | `paths` | `readonly string[]` | yes | - |
-| `set` | `(paths: readonly string[]) => void` | yes | - |
+| `set` | `(paths: readonly string[]) => void` | yes | Replace selection from current selectable listing entries; unknown paths are ignored. |
 | `selectAll` | `() => void` | yes | - |
 | `clear` | `() => void` | yes | - |

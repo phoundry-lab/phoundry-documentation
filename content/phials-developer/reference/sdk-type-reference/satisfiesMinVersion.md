@@ -2,7 +2,7 @@
 title: "satisfiesMinVersion"
 description: "TypeScript signature and members for the satisfiesMinVersion public SDK declaration."
 ai_disclosure: true
-order: 121
+order: 123
 aliases:
   - references/satisfiesMinVersion
 ---

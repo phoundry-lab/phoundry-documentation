@@ -1,171 +1,117 @@
 ---
 title: "Style a theme with Phoundry UI tokens"
-description: "Defines required CSS tokens, validates contrast and component states, and avoids leaking unrelated global styles."
+description: "Customize plain CSS themes with optional public hooks, component selectors, and practical contrast and interaction checks."
 ai_disclosure: true
 order: 3
 ---
 
 # Style a theme with Phoundry UI tokens
 
-Define every required Phoundry UI token in `theme.css`. The tokens describe semantic roles such as an elevated surface, primary text, an error, or a focus ring. Components consume those roles without knowing the theme’s literal colors.
+Theme CSS is ordinary CSS. Phials already supplies `phoundry-ui/styles`, including complete light and dark foundations, shared control dimensions, component styles, and a low-priority native-element reset. Your theme can override only what it needs.
 
-The shared base theme layer does not provide fallback palette values. An omitted token can therefore make text, borders, states, or editor syntax disappear.
+There is no mandatory token set, token-completeness validator, or CSS selector policy. A theme can use custom properties, component rules, fonts, effects, and CSS imports. Tailwind and other CSS build tools are optional, not part of the theme contract.
 
-## Start from a complete theme file
+## Start with one override
 
-This dark theme defines the complete required set:
-
-```css
-:root {
-	color-scheme: dark;
-
-	/* Surface elevation: recessed to elevated */
-	--surface-deep: #101218;
-	--surface-sunken: #171a21;
-	--surface-base: #1c2029;
-	--surface-dim: #222733;
-	--surface-raised: #29303d;
-	--surface-overlay: #343d4d;
-
-	/* Borders */
-	--border-muted: #343b49;
-	--border-default: #4a5568;
-	--border-emphasis: #718096;
-
-	/* Text */
-	--text-primary: #f4f6fb;
-	--text-secondary: #c5cada;
-	--text-tertiary: #9ba4b8;
-	--text-on-accent: #101218;
-
-	/* Accent states */
-	--accent-primary: #8fb3ff;
-	--accent-primary-hover: #a8c4ff;
-	--accent-primary-active: #739cf2;
-	--accent-secondary: #b89cff;
-
-	/* Semantic status */
-	--semantic-success: #69d49a;
-	--semantic-warning: #f6c76f;
-	--semantic-error: #ff8d9b;
-	--semantic-info: #7fc8ff;
-
-	/* Selection and focus */
-	--selection-bg: #8fb3ff;
-	--selection-text: #101218;
-	--focus-ring: #b8ceff;
-
-	/* Syntax */
-	--syntax-keyword: #d7a8ff;
-	--syntax-string: #82d9a6;
-	--syntax-number: #ffb4c8;
-	--syntax-comment: #a4adbf;
-	--syntax-function: #8fc7ff;
-	--syntax-variable: #ffc38b;
-
-	/* Option colors */
-	--option-red: #ff7b89;
-	--option-orange: #f7a76c;
-	--option-yellow: #e6c861;
-	--option-green: #68cf91;
-	--option-cyan: #62ced5;
-	--option-blue: #75a7f7;
-	--option-purple: #a990ef;
-	--option-pink: #ed8fca;
-	--option-gray: #9da6b8;
-
-	/* Option tints */
-	--option-orange-light: #ffc69d;
-	--option-yellow-light: #f5dc89;
-	--option-green-light: #98e2b5;
-	--option-cyan-light: #96e2e7;
-	--option-blue-light: #a9c8ff;
-	--option-purple-light: #cbb8ff;
-	--option-pink-light: #f7b9df;
-
-	/* Elevated panel shadow */
-	--shadow-panel: 0 12px 32px rgb(0 0 0 / 28%);
-}
-```
-
-Set `color-scheme: light` in a light theme so native controls and browser-provided chrome use the corresponding appearance.
-
-Do not define `--surface-*-transparent` values. Phoundry UI derives those aliases from the six opaque surface tokens.
-
-## Preserve semantic relationships
-
-### Surfaces and borders
-
-The surface ladder runs from most recessed to most elevated:
-
-```text
-deep → sunken → base → dim → raised → overlay
-```
-
-In a dark theme, elevation usually becomes lighter. In a light theme, the luminance direction often reverses, but the semantic order remains the same. Inputs and wells must still read as sunken, while menus and floating controls must still read as overlays.
-
-Muted, default, and emphasis borders should remain distinguishable against every adjacent surface without becoming the strongest element on the page.
-
-### Text, accent, and selection
-
-Check these pairs explicitly:
-
-- primary, secondary, and tertiary text on base, sunken, raised, and overlay surfaces
-- text on accent against primary, hover, and active accent states
-- selection text against the selection background
-- focus ring against both the control and the surrounding surface
-
-Aim for at least 4.5:1 contrast for normal text and 3:1 for large text, focus indicators, control boundaries, and meaningful non-text graphics. Do not use tertiary text for essential low-size content if it cannot meet the normal-text target.
-
-Hover and active values must remain recognizably related to the primary accent while still producing a visible state change. Do not communicate selection, warning, or error state by color alone.
-
-### Status, syntax, and option colors
-
-Semantic status tokens communicate meaning across notifications, validation, and badges. Verify each status on the surfaces where it appears and pair it with text or an icon.
-
-Syntax colors must remain distinguishable in both editor surfaces and code blocks. Comments still need readable contrast even though they are intentionally quieter.
-
-Option colors appear in user-defined labels and metadata. Treat the base and light variants as a coordinated family, not as a decorative rainbow with interchangeable roles.
-
-## Override component tokens deliberately
-
-Phoundry UI derives component tokens such as `--button-bg`, `--input-bg`, and `--modal-bg` from the required semantic tokens. Most themes should keep those mappings.
-
-You may override a documented component token when the theme needs a consistent component-level decision:
+For a theme whose metadata declares `"mode": "dark"`, this is a sufficient `theme.css`:
 
 ```css
 :root {
-	--button-radius: 0.25rem;
-	--input-radius: 0.25rem;
-	--modal-radius: 0.375rem;
+	--ph-accent: #8fb3ff;
 }
 ```
 
-Retest every variant and state of the affected component. A component override should not compensate for a broken semantic palette.
+The selected foundation supplies every other library value. When Phials applies a theme, the theme manager commits its stylesheet and `data-theme-mode` together. The foundation also sets the browser’s `color-scheme` for native controls.
 
-## Keep theme CSS within its scope
+The accent is the exact solid fill you choose. Hover, pressed, and subtle treatments have derived defaults, but foreground contrast and visual quality remain your responsibility. There is no automatic contrast-selection engine.
 
-Theme CSS is application-wide while the theme is active. Keep most rules in the `:root` token block. Do not target undocumented Phials markup, generated Svelte attributes, or broad elements such as `button`, `input`, and `*`.
-
-Use additional selectors only for stable web-platform behavior that is part of the theme:
+For more individual treatment, add explicit overrides:
 
 ```css
-::selection {
-	background: var(--selection-bg);
-	color: var(--selection-text);
+:root {
+	--ph-accent: #8fb3ff;
+	--ph-accent-fg: #101218;
+	--ph-accent-hover: #a8c4ff;
+	--ph-accent-pressed: #739cf2;
+	--ph-surface-3: #1c2029;
+	--ph-text-primary: #f4f6fb;
+	--ph-item-bg-selected: #343d4d;
 }
 ```
 
-Do not import a reset, utility framework, component library, remote font, or another complete theme. A theme release should be deterministic, usable offline, and limited to the appearance it owns.
+Explicit values remain fixed when input colors change. Other defaults continue deriving from the effective inputs. To design a full palette, use Default Dark or Default Light as a reference rather than treating every hook as required.
 
-## Test the whole state system
+## Choose public hooks by role
 
-Verify the theme in representative Phials surfaces:
+The [Phoundry UI theming guide](/phoundry-ui/guides/theming) describes the full public CSS contract. Common optional hooks include:
+
+| Role | Hooks |
+| --- | --- |
+| Surfaces | `--ph-surface-0` through `--ph-surface-7`, deepest to highest elevation |
+| Text | `--ph-text-primary`, `--ph-text-secondary`, `--ph-text-tertiary`, `--ph-text-disabled`, `--ph-text-link` |
+| Borders | `--ph-border-muted`, `--ph-border-default`, `--ph-border-emphasis` |
+| Controls | `--ph-control-bg`, `--ph-control-bg-hover`, `--ph-control-bg-pressed` |
+| Solid accent | `--ph-accent`, `--ph-accent-hover`, `--ph-accent-pressed`, `--ph-accent-fg` |
+| Subtle accent | `--ph-accent-subtle-bg`, `--ph-accent-subtle-bg-hover`, `--ph-accent-subtle-bg-pressed`, `--ph-accent-subtle-fg` |
+| Selected items | `--ph-item-bg-selected`, `--ph-item-bg-selected-hover`, `--ph-item-fg-selected` |
+| Selected text | `--ph-text-selection-bg`, `--ph-text-selection-fg` |
+| Status | `--ph-{success,warning,danger,info}-{fg,bg,border}` |
+| Named hues | `--ph-hue-{red,orange,yellow,green,cyan,blue,purple,pink,gray}` |
+| Syntax | `--ph-syntax-{keyword,string,number,comment,function,variable}` |
+| Panel shadow | `--ph-shadow-panel` |
+
+Braces abbreviate separate names. Surfaces describe elevation, not a mandatory brightness progression. Choose a treatment appropriate to the surface’s role instead of assuming every dark theme becomes lighter at every step.
+
+Changing the accent does not recolor status, named-hue, or syntax families unless you override them. Pressed controls, persistent item selection, and selected text are independent treatments.
+
+Typography uses `--ph-font-sans`, `--ph-font-serif`, `--ph-font-mono`, and `--ph-font-logo`. Shared control geometry includes the `--ph-comp-h-xs/sm/md/lg` height hooks and `--ph-comp-icon-xs/sm/md/lg` icon-size hooks. Consult the component documentation before changing geometry or motion hooks.
+
+## Customize component visuals
+
+Phoundry UI components own unlayered vanilla CSS. Public component roots use `ph-*` classes, with `data-variant` and `data-size` for their variant and size axes. Public `--ph-*` custom properties and documented theme-relevant part selectors are available for customization:
+
+```css
+:root .ph-btn {
+	box-shadow: none;
+}
+
+:root .ph-btn .ph-btn-icon {
+	opacity: 0.9;
+}
+```
+
+Normal CSS specificity and source order apply. The example targets a documented part without assuming its immediate parent. Undocumented descendants, generated Svelte scope attributes, and `--_ph-*` properties are internal; DOM nesting is not guaranteed.
+
+Keyboard focus shares the hover treatment by default, without a focus-ring token or default rings. A theme can provide its own focus appearance. Check that keyboard users can identify the focused control, including chrome-free variants and controls over different surfaces.
+
+## Consider application-wide effects
+
+Theme CSS applies to the whole document while selected. `:root`, `html`, `body`, broad element selectors, token overrides, and global rules are available, not validation failures. Local wrapper overrides are also valid when only part of the interface should change.
+
+Prefer public hooks and documented selectors for changes intended to survive component updates. Broad rules or selectors tied to Phials internals can affect unrelated surfaces; inspect those effects deliberately. Phials already supplies the shared reset, so another reset or utility framework may change more than the theme’s colors.
+
+CSS imports and fonts are allowed, but plan their delivery. The plugin release format contains flat theme pairs, not arbitrary asset directories. Inline supporting resources when needed, and test offline behavior if you rely on remote resources. No theme CSS compiler is required; if you add one, make sure the emitted theme asset contains its output.
+
+## Test contrast and the whole state system
+
+Check these relationships in the running application:
+
+- primary, secondary, and tertiary text against the surfaces where each appears
+- accent foreground against normal, hover, and pressed accent fills
+- selected-item foreground against its selected background
+- selected text against its selection background
+- borders and focus treatments against both controls and surrounding surfaces
+- status colors with readable text or icons, not color alone
+- syntax colors, including quieter comments, on editor and code-block surfaces
+
+Aim for at least 4.5:1 contrast for normal text and 3:1 for large text and meaningful non-text graphics. These are visual and accessibility checks you perform, not token-validation gates.
+
+Verify representative Phials surfaces:
 
 - app chrome, Explorer, settings, menus, popovers, dialogs, and notifications
 - inputs, buttons, links, tabs, tables, and tree rows
-- normal, hover, active, selected, disabled, focus-visible, warning, and error states
+- normal, hover, pressed, selected, disabled, keyboard focus, warning, and error states
 - code blocks and editors with representative syntax
 - narrow layouts, increased text size, and reduced motion
 
-Test the theme itself in light or dark mode, then switch the color scheme to confirm Phials selects the separately configured theme for the other mode.
+Manage motion introduced by your theme and test it with reduced-motion preferences. Switch the application color scheme to confirm Phials selects the separately configured theme for the other mode.

@@ -2,7 +2,7 @@
 title: "PreviewAPI"
 description: "TypeScript signature and members for the PreviewAPI public SDK declaration."
 ai_disclosure: true
-order: 108
+order: 110
 aliases:
   - references/PreviewAPI
 ---

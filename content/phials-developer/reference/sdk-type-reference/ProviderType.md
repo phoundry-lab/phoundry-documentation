@@ -2,7 +2,7 @@
 title: "ProviderType"
 description: "TypeScript signature and members for the ProviderType public SDK declaration."
 ai_disclosure: true
-order: 117
+order: 119
 aliases:
   - references/ProviderType
 ---
@@ -16,12 +16,13 @@ Provider type discriminator
 ## Signature
 
 ```typescript
-type ProviderType = "preview" | "metadata" | "view" | "module" | "command";
+type ProviderType = "preview" | "thumbnail" | "metadata" | "view" | "module" | "command";
 ```
 
 ## Union members
 
 - `preview`
+- `thumbnail`
 - `metadata`
 - `view`
 - `module`

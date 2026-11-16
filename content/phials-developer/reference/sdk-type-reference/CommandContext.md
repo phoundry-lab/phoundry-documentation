@@ -18,7 +18,7 @@ Built from the active pane's current state.
 
 ```typescript
 interface CommandContext {
-    pane: PluginPaneContext;
+    pane: PluginPaneContext | null;
     selectedFiles: FileEntry[];
     targetFile: FileEntry | null;
     currentPath: string;
@@ -32,7 +32,7 @@ interface CommandContext {
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `pane` | [`PluginPaneContext`](PluginPaneContext.md) | yes | The active pane (always available) |
+| `pane` | [`PluginPaneContext`](PluginPaneContext.md)` &#124; null` | yes | The invocation pane, or null when no eligible Explorer is available |
 | `selectedFiles` | [`FileEntry`](FileEntry.md)`[]` | yes | Selected files (empty if none) |
 | `targetFile` | [`FileEntry`](FileEntry.md)` &#124; null` | yes | The "target" file (for context menu: right-clicked file; otherwise: first selected) |
 | `currentPath` | `string` | yes | Current directory path |

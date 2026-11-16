@@ -43,4 +43,4 @@ interface FileBrowserViewProvider {
 | `columns` | [`ViewColumnDefinition`](ViewColumnDefinition.md)`[]` | no | Optional: custom column configuration for this view |
 | `collectionOnly` | `boolean` | no | If true, this view is only available in collections (workspaces) |
 | `defaultItemSizePreset` | [`ViewItemSizePreset`](ViewItemSizePreset.md) | no | Default item size when a folder has no per-folder override (`itemSize` null). Details family uses row-height ticks; Thumbnails, Masonry, and Gallery each have their own S/M/L grid ticks; Boards uses its column-width ticks. |
-| `getConfigurationItems` | `(pane: `[`PluginPaneContext`](PluginPaneContext.md)`, api: `[`ViewAPI`](ViewAPI.md)`) => import("phoundry-ui").MenuItem[]` | no | Optional inline view configuration items (phoundry-ui menu row contract). `api` is scoped to the plugin that registered this view. |
+| `getConfigurationItems` | `(pane: `[`PluginPaneContext`](PluginPaneContext.md)`, api: `[`ViewAPI`](ViewAPI.md)`) => import("phoundry-ui").MenuItem[]` | no | Inline view configuration items for the active pane. |

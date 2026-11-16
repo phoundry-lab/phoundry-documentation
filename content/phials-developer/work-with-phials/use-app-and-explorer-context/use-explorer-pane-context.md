@@ -1,6 +1,6 @@
 ---
 title: "Use Explorer pane context"
-description: "Uses the synchronized PluginPaneContext contract without depending on untyped host fields."
+description: "Uses the public PluginPaneContext contract without depending on untyped host fields."
 ai_disclosure: true
 order: 2
 ---

@@ -15,11 +15,9 @@ Record the previous and proposed values:
 
 ```json
 {
-  "permissions": [
-    "filesystem.read"
-  ],
+  "permissions": ["filesystem.read"],
   "minAppVersion": "1.4.0",
-  "pluginApiVersion": "1.0.0"
+  "pluginApiVersion": "3.0.0"
 }
 ```
 
@@ -61,6 +59,8 @@ Keep the boundaries separate:
 ```text
 current Phials version ≥ minAppVersion
 and
+major(supported Plugin API version) = major(pluginApiVersion)
+and
 supported Plugin API version ≥ pluginApiVersion
 ```
 
@@ -90,7 +90,7 @@ Release notes should use explicit sections:
 ### Compatibility
 
 - Requires Phials 1.6.0 or later because Export uses revision-aware file writes.
-- Targets Plugin API 1.1.0.
+- Targets Plugin API 3.0.0.
 ```
 
 State “No permission changes” or “No compatibility changes” when that helps users verify an update.
@@ -99,16 +99,16 @@ State “No permission changes” or “No compatibility changes” when that he
 
 Test the exact candidate in an isolated Phials Home:
 
-| Case | Expected result |
-| --- | --- |
-| Previous release, previous approved permissions | Activates |
-| Updated release, changed permission set not reviewed | Does not activate |
-| Updated release, current set approved | Activates and gated workflows pass |
-| Updated release with one required permission removed | Gated operation fails clearly |
-| Phials exactly at `minAppVersion` | Activates |
-| Phials below `minAppVersion` | Update is not installed |
-| Host supports declared `pluginApiVersion` | Activates |
-| Host supports an older Plugin API version | Update is not installed |
+| Case                                                 | Expected result                    |
+| ---------------------------------------------------- | ---------------------------------- |
+| Previous release, previous approved permissions      | Activates                          |
+| Updated release, changed permission set not reviewed | Does not activate                  |
+| Updated release, current set approved                | Activates and gated workflows pass |
+| Updated release with one required permission removed | Gated operation fails clearly      |
+| Phials exactly at `minAppVersion`                    | Activates                          |
+| Phials below `minAppVersion`                         | Update is not installed            |
+| Host supports declared `pluginApiVersion`            | Activates                          |
+| Host supports an older Plugin API version            | Update is not installed            |
 
 Verify the incompatible cases preserve the previous compatible release and its durable data.
 

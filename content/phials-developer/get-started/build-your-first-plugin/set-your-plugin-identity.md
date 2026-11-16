@@ -1,29 +1,19 @@
 ---
 title: "Set your plugin identity"
-description: "Replaces the example ID, name, version, and manifest identity consistently before local installation."
+description: "Sets a stable plugin ID and public metadata, with package.json as the single source of the plugin version."
 ai_disclosure: true
 order: 2
 ---
 
 # Set your plugin identity
 
-Give the project its permanent plugin identity before the first local installation. Phials uses the plugin ID to locate release artifacts, store enablement and permission decisions, namespace plugin data, and verify the JavaScript module against its manifest. Changing it later creates a different plugin rather than renaming the installed one.
+Choose your plugin's identity before installing it. Phials uses the ID to locate the plugin and associate its settings, data, and permission decisions. Changing the ID creates a different plugin rather than renaming the installed one.
 
-This article uses:
+This tutorial uses `acme.hello-phials` and the name **Hello Phials**. Replace those values with your own.
 
-| Field | Example value |
-| --- | --- |
-| Plugin ID | `acme.hello-phials` |
-| Name | `Hello Phials` |
-| Version | `0.1.0` |
-| Author | `Acme` |
-| Repository | `https://github.com/acme/hello-phials` |
+## Set the package name and version
 
-Replace the example values with your own. A plugin ID is a lowercase vendor and plugin name separated by a period, such as `acme.hello-phials`. It must match `^[a-z][a-z0-9]*\.[a-z][a-z0-9-]*[a-z0-9]$`. The `phials.` namespace is reserved.
-
-## Update the package and manifest
-
-Set the npm project name and version in `package.json`:
+Edit these fields in `package.json`, keeping its scripts and dependencies:
 
 ```json
 {
@@ -34,94 +24,90 @@ Set the npm project name and version in `package.json`:
 }
 ```
 
-Keep the existing scripts and dependencies in the file. The build reads `package.json` as the source of the release version.
+`package.json` is the single source of the plugin version. The source manifest imports it; you do not need to update a second version field.
 
-Then replace `public/manifest.json` with your plugin metadata:
+## Set the manifest metadata
 
-```json
-{
-  "id": "acme.hello-phials",
-  "name": "Hello Phials",
-  "version": "0.1.0",
-  "minAppVersion": "0.1.0",
-  "pluginApiVersion": "1.0.0",
-  "author": "Acme",
-  "description": "Adds a small hello command and example file viewer to Phials.",
-  "repository": "https://github.com/acme/hello-phials",
-  "permissions": []
-}
+Edit `src/plugin.manifest.ts`:
+
+```ts
+import { definePluginManifest } from "@phoundry/phials-plugin-sdk/manifest";
+import { version } from "../package.json";
+
+export const pluginManifest = definePluginManifest({
+  id: "acme.hello-phials",
+  name: "Hello Phials",
+  version,
+  minAppVersion: "0.1.0",
+  pluginApiVersion: "3.0.0",
+  author: "Acme",
+  description: "Adds a hello command and example file preview to Phials.",
+  repository: "https://github.com/acme/hello-phials",
+  icons: ["mdi:hand-wave", "phoundry-mono:general-check"],
+  permissions: [],
+});
+
+export default pluginManifest;
 ```
 
-`version` remains in the source manifest so the file is understandable on its own, but the build synchronizes it from `package.json` when it writes `dist/manifest.json`. `minAppVersion` names the oldest Phials release you support. `pluginApiVersion` names the public SDK contract you target. They are different compatibility boundaries; the dedicated [version and compatibility reference](../../reference/plugin-contract-and-compatibility/version-and-compatibility-reference.md) explains how to choose them for a release.
+Use a lowercase vendor and plugin name separated by a period, such as `acme.hello-phials`. The `phials.` namespace is reserved.
 
-The starter's command and notification APIs require no plugin permissions, so leave `permissions` empty for this tutorial.
+`minAppVersion` is the oldest Phials version you support. `pluginApiVersion` identifies the public API contract your plugin requires. Installing a newer SDK does not by itself migrate your code to a different API major. See the [version and compatibility reference](../../reference/plugin-contract-and-compatibility/version-and-compatibility-reference.md).
 
-## Update the plugin definition
+The example command and preview do not need privileged permissions. Add permissions only when you add operations that require them.
 
-In `src/main.ts`, replace every `example.community-demo` namespace with `acme.hello-phials`, then update the plugin and provider names. The important identity-bearing parts should read:
+## Update the command and provider IDs
+
+In `src/main.ts`, replace the `example.community-demo` namespace with `acme.hello-phials` and update the names and notification:
 
 ```ts
 const helloCommand: Command = {
-	id: "acme.hello-phials.hello",
-	label: "Hello from Phials",
-	description: "Shows a notification from the Hello Phials plugin",
-	icon: "mdi:hand-wave",
-	category: "View",
-	contextKeys: ["always"],
-	action: () => {
-		api?.notify.success("Hello from acme.hello-phials");
-	},
+  id: "acme.hello-phials.hello",
+  label: "Hello from Phials",
+  description: "Shows a notification from the Hello Phials plugin",
+  icon: "mdi:hand-wave",
+  category: "View",
+  contextKeys: ["always"],
+  action: () => {
+    api?.notify.success("Hello from acme.hello-phials");
+  },
 };
 
 const commandProvider: CommandProvider = {
-	type: "command",
-	id: "acme.hello-phials.commands",
-	name: "Hello Phials commands",
-	commands: [helloCommand],
+  type: "command",
+  id: "acme.hello-phials.commands",
+  name: "Hello Phials commands",
+  commands: [helloCommand],
 };
 
 const previewProvider: PreviewProvider = {
-	type: "preview",
-	id: "acme.hello-phials.preview",
-	name: "Hello Phials file viewer",
-	canHandle: (file) => file.name.endsWith(".phials-demo-preview.txt"),
-	thumbnail: ExamplePreview,
-	surface: ExamplePreview,
-	destinations: { pageTab: true },
+  type: "preview",
+  id: "acme.hello-phials.preview",
+  name: "Hello Phials file preview",
+  canHandle: (file) => file.name.endsWith(".phials-demo-preview.txt"),
+  surface: ExamplePreview,
+  destinations: { pageTab: true },
 };
 ```
 
-The returned plugin definition must use the same identity and version:
+Keep the existing component imports, `api` variable, activation/deactivation hooks, and default `definePlugin(pluginManifest, ...)` export. Keep these named exports too:
 
 ```ts
-return {
-	id: "acme.hello-phials",
-	name: "Hello Phials",
-	version: "0.1.0",
-	onActivate: (pluginApi: PluginAPI) => {
-		api = pluginApi;
-		pluginApi.notify.info("acme.hello-phials activated");
-	},
-	onDeactivate: () => {
-		api = null;
-	},
-	providers: [commandProvider, previewProvider],
-};
+export { mount, unmount } from "svelte";
+export { pluginManifest as manifest } from "./plugin.manifest";
 ```
 
-Keep the existing `createPlugin` function, `api` variable, CSS import, component import, and default export around these blocks. Provider and command IDs are namespaced beneath the plugin ID so they remain unique when several plugins are activated.
+`definePlugin` derives the definition's identity from the manifest. The build uses the exported manifest to write `dist/manifest.json`; there is no separate public manifest to maintain. Provider and command IDs use the plugin namespace so they remain unique alongside other plugins.
 
-The starter's artifact validator derives the expected ID, name, and version from the source manifest and package metadata. You do not need to put your plugin ID in a validation script.
+## Check for leftover example metadata
 
-## Check for leftover starter identity
-
-From the project root, search the authored project files:
+Search the authored files:
 
 ```bash
 rg -n 'example\.community-demo|Community plugin example|phials-plugin-example' \
-  package.json public src scripts
+  package.json src
 ```
 
-The command should produce no output. References inside `.git/`, historical commits, or the generated `dist/` directory do not describe the current source. Rebuild `dist/` in the next step instead of editing it.
+Update any remaining example identity or repository values. Generated `dist/` files will be replaced by the next build.
 
-For a detailed explanation of every manifest field, continue later to [Configure the plugin manifest](../../package-and-publish/configure-the-plugin-manifest/index.md). For now, [build and run your plugin locally](./build-and-run-your-plugin-locally.md).
+Continue to [build and run your plugin locally](./build-and-run-your-plugin-locally.md). For the complete metadata reference, see [Configure the plugin manifest](../../package-and-publish/configure-the-plugin-manifest/index.md).

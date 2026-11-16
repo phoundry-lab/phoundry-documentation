@@ -7,168 +7,95 @@ order: 2
 
 # Test plugin logic and interfaces
 
-Test the smallest stable unit first, then add provider and component tests around its public behavior. Run the starter suite once with:
+Run the example’s tests with:
 
 ```bash
-npm run test:run
+npm test
 ```
 
-Use `npm test` while developing when you want watch mode.
+This runs Node’s test runner with `tsx` once, not in watch mode. The included tests cover installation-path selection and release integrity. Test your own providers, components, and lifecycle behavior separately. Add focused tests for your plugin’s meaningful behavior.
 
 ## Test pure logic without Phials
 
-Move parsing, matching, formatting, ordering, and state transitions into `.logic.ts` modules. Pure tests are fast and make edge cases explicit:
+Keep parsing, matching, formatting, and state transitions separate from host integration. For example, if your plugin has a `normalizePriority` helper, a test could use:
 
 ```typescript
-import { describe, expect, it } from "vitest";
-import { normalizePriority } from "./task.logic";
+import assert from "node:assert/strict";
+import test from "node:test";
+import { normalizePriority } from "../src/task.logic.ts";
 
-describe("normalizePriority", () => {
-	it.each([
-		["low", 0],
-		["medium", 1],
-		["high", 2],
-		["unknown", 1],
-	])("maps %s to %i", (input, expected) => {
-		expect(normalizePriority(input)).toBe(expected);
-	});
+test("normalizes priorities and handles unknown values", () => {
+  for (const [input, expected] of [
+    ["low", 0],
+    ["medium", 1],
+    ["high", 2],
+    ["unknown", 1],
+  ] as const) {
+    assert.equal(normalizePriority(input), expected);
+  }
 });
 ```
 
-Include empty input, malformed input, boundary values, and a representative normal case. Avoid tests that only restate the implementation.
+Place tests in the paths matched by your test script. Include a normal case and meaningful malformed, empty, or boundary input rather than tests that merely restate the implementation.
 
-## Test provider behavior through the public contract
+## Use small local mocks
 
-Build provider fixtures from public SDK shapes and invoke callbacks directly:
+Give your own logic a narrow dependency interface and provide local mocks for the calls it uses. For example, a report loader could accept a `readText` callback:
 
 ```typescript
-import { describe, expect, it } from "vitest";
-import { createFileEntry, createPluginApi } from "@phials/plugin-test";
-import { reportMetadataProvider } from "./report-metadata.provider";
+import assert from "node:assert/strict";
+import test from "node:test";
+import { loadReport } from "../src/report.logic.ts";
 
-describe("report metadata", () => {
-	it("extracts namespaced values from a supported report", async () => {
-		const file = createFileEntry({
-			name: "quarterly.report.json",
-			path: "/fixtures/quarterly.report.json",
-		});
-		const api = createPluginApi({
-			files: {
-				readText: async () =>
-					JSON.stringify({ title: "Q3", pages: 12 }),
-			},
-		});
+test("loads a report through the supplied reader", async () => {
+  const paths: string[] = [];
+  const readText = async (path: string): Promise<string> => {
+    paths.push(path);
+    return JSON.stringify({ title: "Q3", pages: 12 });
+  };
 
-		expect(await reportMetadataProvider.canHandle?.(file)).toBe(true);
-		await expect(
-			reportMetadataProvider.extract(file, {}, api.metadata),
-		).resolves.toEqual({
-			"example.reports:title": "Q3",
-			"example.reports:pages": 12,
-		});
-	});
+  const report = await loadReport("/fixtures/q3.report.json", readText);
+  assert.deepEqual(report, { title: "Q3", pages: 12 });
+  assert.deepEqual(paths, ["/fixtures/q3.report.json"]);
+});
+
+test("propagates a read failure", async () => {
+  const readText = async (_path: string): Promise<string> => {
+    throw new Error("read failed");
+  };
+
+  await assert.rejects(
+    loadReport("/fixtures/q3.report.json", readText),
+    /read failed/,
+  );
 });
 ```
 
-Test the provider’s visible decisions:
+These are illustrative tests for helpers you implement, not functions supplied by the example or SDK. Match expected failure handling to your actual contract.
 
-- supported and unsupported files
-- priority or availability boundaries
-- empty, malformed, and partially readable input
-- expected Plugin API calls and parameters
-- permission or I/O rejection
-- cleanup, finalization, or retry behavior where the provider owns it
+For providers, invoke callbacks through the public SDK shapes where practical and check supported input, availability, expected calls, rejection, and cleanup. Avoid constructing private Phials managers or pretending a local mock proves host permission enforcement.
 
-Use the public test fixtures rather than constructing host managers or registries.
+## Test interfaces separately
 
-## Test Svelte component states
+The example does not bundle a DOM environment, component-testing library, accessibility scanner, or Vitest. You may add tools such as Svelte Testing Library and an appropriate runner if your UI needs automated interaction tests; configure those separately rather than assuming `npm test` renders Svelte components.
 
-Render plugin components with the same public props Phials supplies:
+Whether automated or manual, focus on behavior:
 
-```typescript
-import { fireEvent, render, screen } from "@testing-library/svelte";
-import { describe, expect, it, vi } from "vitest";
-import ReportToolbar from "./ReportToolbar.svelte";
+- loading, empty, populated, and error states;
+- disabled and pending actions;
+- keyboard activation, focus order, and focus restoration;
+- useful labels and error association;
+- remounting and recovery after failure; and
+- increased text size and narrow containers.
 
-describe("ReportToolbar", () => {
-	it("requests save when the edited report is dirty", async () => {
-		const onSave = vi.fn();
-		render(ReportToolbar, {
-			props: { dirty: true, saving: false, onSave },
-		});
+Query by role and accessible name in component tests rather than generated classes or private UI-library descendants. Automated accessibility scans supplement, but do not replace, keyboard and focus checks.
 
-		const button = screen.getByRole("button", { name: "Save report" });
-		expect(button).toBeEnabled();
-		await fireEvent.click(button);
-		expect(onSave).toHaveBeenCalledOnce();
-	});
-});
-```
-
-Cover states that change behavior, not only the default render:
-
-- loading, empty, populated, and error
-- normal, hover-independent, disabled, and saving
-- narrow and wide container inputs when the component adapts
-- remount with retained session or instance state
-- failed action with recovery
-
-Query by role, accessible name, label, or visible text. Avoid generated Svelte classes and private Phoundry UI descendants.
-
-## Check accessibility
-
-Automate baseline accessibility checks and keep interaction assertions explicit:
-
-```typescript
-import { render } from "@testing-library/svelte";
-import { axe } from "vitest-axe";
-import ReportToolbar from "./ReportToolbar.svelte";
-
-it("has no automated accessibility violations", async () => {
-	const { container } = render(ReportToolbar, {
-		props: { dirty: true, saving: false, onSave: () => {} },
-	});
-
-	expect(await axe(container)).toHaveNoViolations();
-});
-```
-
-Also test what an automated scan cannot prove:
-
-- logical keyboard order
-- visible focus
-- keyboard activation and escape behavior
-- focus restoration after a dialog or menu
-- useful labels and error association
-- status changes announced when needed
-- behavior at increased text size and reduced motion
-
-Use [Design responsive and accessible plugin surfaces](../../get-started/use-svelte-and-phoundry-ui/design-responsive-and-accessible-plugin-surfaces.md) for the shared interaction contract.
+See [Design responsive and accessible plugin surfaces](../../get-started/use-svelte-and-phoundry-ui/design-responsive-and-accessible-plugin-surfaces.md).
 
 ## Use representative files
 
-Keep small, reviewable fixtures under `tests/fixtures/`:
-
-```text
-tests/fixtures/reports/
-├── empty.report.json
-├── malformed.report.json
-├── minimal.report.json
-├── typical.report.json
-└── unsupported.txt
-```
-
-Choose fixtures from behaviors the provider promises:
-
-- smallest valid input
-- common real-world input
-- malformed or truncated input
-- missing optional data
-- unsupported extension or MIME type
-- large-enough input to exercise bounded work without committing a huge binary
-
-For binary or privacy-sensitive formats, generate a deterministic synthetic fixture or commit the smallest redistributable sample. Record the fixture’s origin and expected behavior.
+Keep small, reviewable fixtures under `tests/fixtures/`. Cover the smallest valid input, typical input, malformed or truncated input, missing optional data, and unsupported formats. For binary or sensitive formats, generate a deterministic synthetic fixture or use a small redistributable sample.
 
 ## Keep runtime coverage
 
-Unit and component tests do not replace installed-plugin tests. After the deterministic suite passes, install the exact release artifacts and verify activation, provider registration, permission failures, persistence, reload, and deactivation through [Run your plugin locally](../run-your-plugin-locally/index.md).
+Unit tests do not replace installed-plugin testing. Verify activation, provider registration, permission failures, persistence, reload, and deactivation in Phials. For a frozen release candidate, copy the exact built files rather than running the development installer, which rebuilds first. Follow [Build and validate release artifacts](build-and-validate-release-artifacts.md).

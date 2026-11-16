@@ -2,7 +2,7 @@
 title: "PluginSettingsComponentProps"
 description: "TypeScript signature and members for the PluginSettingsComponentProps public SDK declaration."
 ai_disclosure: true
-order: 101
+order: 103
 aliases:
   - references/PluginSettingsComponentProps
 ---

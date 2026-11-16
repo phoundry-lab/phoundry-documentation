@@ -28,6 +28,10 @@ export interface PluginManifest {
     repository?: string;
     icons?: string[];
     permissions?: PluginPermission[];
+    thumbnailProviders?: {
+        id: string;
+        rendererVersion: string;
+    }[];
 }
 ```
 
@@ -46,3 +50,4 @@ export interface PluginManifest {
 | `repository` | `string` | no | GitHub repository URL |
 | `icons` | `string[]` | no | Iconify icons to preload |
 | `permissions` | [`PluginPermission`](PluginPermission.md)`[]` | no | Required permissions |
+| `thumbnailProviders` | `{ … }[]` | no | Optional complete Thumbnail contribution catalog used by the owning Host to retire obsolete renderers. Introduced in Plugin API 2.0.0. |

@@ -6,11 +6,13 @@ ai_disclosure: true
 
 # Run your plugin locally
 
-Use the starter's development workflow to test the same release artifacts Phials will eventually install for users. A reliable loop has four gates:
+Use the starter's development workflow to test the same release artifacts Phials will eventually install for users. The everyday loop is:
 
 ```text
-check and build → validate and install → reload → verify
+edit → npm run dev:install → Reload in Phials → try the change
 ```
+
+`dev:install` builds before installing and uses your normal Phials home by default. Run `npm run check` and `npm test` when you want type checking and automated tests too.
 
 Do not treat a successful build, an Enabled badge, or a notification by itself as proof that the complete plugin is running.
 
@@ -20,7 +22,7 @@ If you have not run a plugin yet, follow [Build your first plugin](../../get-sta
 
 Return here for the complete loop:
 
-1. [Install a development plugin locally](install-a-development-plugin-locally.md), preferably in an isolated Phials Home.
+1. [Install a development plugin locally](install-a-development-plugin-locally.md) into your normal home, or optionally choose a separate home for isolated tests.
 2. [Rebuild and reload plugin changes](rebuild-and-reload-plugin-changes.md) without restarting the app.
 3. [Test activation, restart, and persisted state](test-activation-restart-and-persisted-state.md) across lifecycle boundaries.
 
@@ -37,7 +39,7 @@ Each later state depends on the earlier ones. A plugin can be installed but disa
 
 ## Use one active Phials Home
 
-`PHIALS_HOME` selects the portable profile containing plugin artifacts, enablement, permission approvals, settings, storage, databases, and session state. The install command and the running Phials process must use the same absolute path.
+Phials home contains plugin files, settings, and app data. Normally the installer and Phials both use the platform default, so no setup is needed. If you choose another home with `PHIALS_HOME` or `--phials-home`, make sure the installer and Phials use the same directory.
 
 Use an isolated home when testing:
 

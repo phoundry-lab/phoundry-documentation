@@ -19,7 +19,7 @@ api.events.emit(eventId, payload);
 api.events.register(localId, description);
 ```
 
-[EventMap](../../reference/sdk-type-reference/EventMap.md) connects each event ID to its payload type. TypeScript checks the ID, handler payload, and emitted payload against the synchronized Public SDK.
+[EventMap](../../reference/sdk-type-reference/EventMap.md) connects each event ID to its payload type. TypeScript checks the ID, handler payload, and emitted payload against the installed public SDK.
 
 No plugin permission is required for the Events API. Event availability can still depend on the Phials and Plugin API versions declared by the plugin.
 

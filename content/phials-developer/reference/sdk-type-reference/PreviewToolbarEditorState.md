@@ -2,7 +2,7 @@
 title: "PreviewToolbarEditorState"
 description: "TypeScript signature and members for the PreviewToolbarEditorState public SDK declaration."
 ai_disclosure: true
-order: 116
+order: 118
 aliases:
   - references/PreviewToolbarEditorState
 ---
@@ -22,7 +22,7 @@ interface PreviewToolbarEditorState {
     saving?: boolean;
     onSave: () => void | Promise<void>;
     onFinalize?: () => Promise<boolean>;
-    onRevert?: () => void;
+    onRevert?: () => void | Promise<void>;
     history?: EditorHistoryHandle;
     saveLabel?: string;
     saveSavingLabel?: string;
@@ -44,7 +44,7 @@ interface PreviewToolbarEditorState {
 | `saving` | `boolean` | no | - |
 | `onSave` | `() => void &#124; Promise<void>` | yes | - |
 | `onFinalize` | `() => Promise<boolean>` | no | Await autosave finalization before replacing the current document. |
-| `onRevert` | `() => void` | no | - |
+| `onRevert` | `() => void &#124; Promise<void>` | no | - |
 | `history` | [`EditorHistoryHandle`](EditorHistoryHandle.md) | no | - |
 | `saveLabel` | `string` | no | - |
 | `saveSavingLabel` | `string` | no | - |

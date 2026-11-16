@@ -1,6 +1,6 @@
 ---
 title: "Use Phoundry UI components"
-description: "Explains the recommended component library, compatible dependency pinning, and how shared components follow Phials chrome and behavior."
+description: "Use shared controls, host-supplied styles, compatible dependencies, and accessible icons in plugin interfaces."
 ai_disclosure: true
 order: 2
 ---
@@ -9,7 +9,7 @@ order: 2
 
 Use Phoundry UI for common controls and presentation patterns in a plugin interface. Its components share Phials sizing, semantic colors, focus treatment, and interaction conventions, which reduces the amount of behavior your plugin must recreate.
 
-The npm package name is `phoundry-ui`. The plugin starter already includes it and its Svelte and Iconify peer dependencies.
+The npm package name is `phoundry-ui`. The plugin starter already includes it and its Svelte and Iconify peer dependencies. Phials supplies `phoundry-ui/styles` and the active theme, so plugin components can use the shared controls without importing another global stylesheet or reset. Phoundry UI uses plain CSS; Tailwind is optional and is not configured in the starter.
 
 ## Keep the package set compatible
 
@@ -20,7 +20,7 @@ Treat these dependencies as one compatibility set:
 - `@iconify/svelte`
 - the Svelte Vite plugin used by the starter
 
-Keep the versions supplied by the current plugin starter when creating a project. When adopting a newer Phoundry UI release, update from the supported version range, rebuild the release artifacts, run `npm run check`, and test the interface in the oldest Phials version declared by `minAppVersion`.
+Use the current starter’s dependencies as a starting point. You can update them or use local dependency overrides when developing against a local Phoundry UI build; neither the starter nor the host enforces an exact `phoundry-ui` dependency string. Compatibility still matters: rebuild the release artifacts, run `npm run check`, and test in the oldest Phials version declared by `minAppVersion`. Check that the component APIs and CSS hooks you use are available in that host’s shared styles.
 
 Import only from public package exports:
 
@@ -51,6 +51,7 @@ Phoundry UI controls use Svelte 5 callback props and snippets. Keep the state in
 		FormField,
 		TextInput,
 	} from "phoundry-ui";
+	import { PhiIcons } from "phoundry-ui/icons";
 
 	let label = $state("");
 	let savedLabels = $state<string[]>([]);
@@ -106,33 +107,21 @@ Phoundry UI controls use Svelte 5 callback props and snippets. Keep the state in
 </section>
 ```
 
-Prefer the component’s typed props for supported visual states. For example, use `Button`’s `variant`, `size`, `active`, `loading`, `disabled`, and `fullWidth` props instead of replacing its internal background, spacing, or focus classes.
+Prefer the component’s typed props for supported visual states. For example, use `Button`’s `variant`, `size`, `active`, `loading`, `disabled`, and `fullWidth` props for the behavior and appearance they describe.
 
-The `class` prop is useful for additive layout such as width, alignment, or surrounding margin. It is not a guarantee that a conflicting Tailwind utility overrides component-owned styling.
+Components own unlayered vanilla CSS. The `class` prop is useful for additive layout such as width, alignment, or surrounding margin. Customize visuals through public `--ph-*` hooks and documented theme-relevant part selectors; undocumented descendants and `--_ph-*` properties are internal, and DOM nesting is not guaranteed. Local overrides are valid. Ordinary cascade rules determine which styles win, including any optional utility CSS you configure. See [Style and theme plugin interfaces](style-and-theme-plugin-interfaces.md) for theme hooks and practical scoping advice.
 
 ## Register and preload icons
 
 Phoundry UI exports a curated `PhiIcons` map and two Iconify collections: `phoundry-mono` for interface glyphs and `phoundry-colored` for file artwork. Register the collections once in your plugin entry before a plugin component renders:
 
 ```typescript
-import {
-	PhiIcons,
-	registerPhoundryIcons,
-} from "phoundry-ui/icons";
+import { registerPhoundryIcons } from "phoundry-ui/icons";
 
 registerPhoundryIcons();
-
-export default function createPlugin(): PhialsPlugin {
-	return {
-		id: "example.labels",
-		name: "Labels",
-		version: "1.0.0",
-		providers: [
-			// Provider registrations
-		],
-	};
-}
 ```
+
+The starter’s `src/manifest-icons.ts` helper already registers packaged Phoundry collections from the manifest; keep that initialization rather than duplicating it.
 
 List icons used in provider metadata in `pluginManifest.icons` so Phials can
 preload them before it imports plugin code and renders host-owned chrome.

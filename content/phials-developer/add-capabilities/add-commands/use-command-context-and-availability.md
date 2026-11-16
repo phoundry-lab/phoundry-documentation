@@ -23,7 +23,7 @@ Phials passes the current [CommandContext](../../reference/sdk-type-reference/Co
 
 Use `targetFile` for an action aimed at the context-menu subject. Use `selectedFiles` for a batch action. Do not assume those values are interchangeable: the target identifies where the gesture began, while the selection defines the complete batch.
 
-Use only fields declared by the synchronized [PluginPaneContext](../../reference/sdk-type-reference/PluginPaneContext.md). Prefer the direct [CommandContext](../../reference/sdk-type-reference/CommandContext.md) fields when they already describe the action's need.
+Use only fields declared by the public [PluginPaneContext](../../reference/sdk-type-reference/PluginPaneContext.md). Prefer the direct [CommandContext](../../reference/sdk-type-reference/CommandContext.md) fields when they already describe the action's need.
 
 ## Filter with context keys first
 

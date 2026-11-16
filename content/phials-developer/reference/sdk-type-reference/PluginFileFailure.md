@@ -18,6 +18,8 @@ interface PluginFileFailure {
     readonly code: PluginFileErrorCode;
     readonly message: string;
     readonly path?: string;
+    readonly details?: unknown;
+    readonly outcome?: "rejected" | "unknown";
 }
 ```
 
@@ -28,3 +30,5 @@ interface PluginFileFailure {
 | `code` | [`PluginFileErrorCode`](PluginFileErrorCode.md) | yes | - |
 | `message` | `string` | yes | - |
 | `path` | `string` | no | - |
+| `details` | `unknown` | no | - |
+| `outcome` | `"rejected" &#124; "unknown"` | no | - |
