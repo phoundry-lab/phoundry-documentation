@@ -1,0 +1,116 @@
+---
+title: Drag & Drop
+order: 5
+description: >-
+  Svelte 5 attachment-based sortable lists with a shared ghost and drop
+  indicator. Cross-list moves use onRemove / onReceive. OS file drops use the
+  DropZone component.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Svelte 5 attachment-based sortable lists with a shared ghost and drop indicator. Cross-list moves use onRemove / onReceive. OS file drops use the DropZone component.
+
+```ts
+import { dndList, dndItem, DndGhost, DndIndicator } from "phoundry-ui";
+```
+
+## Sortable list
+
+<Example name="utilities/drag-drop/sortable-list" />
+
+## Cross-list transfer
+
+<Example name="utilities/drag-drop/cross-list-transfer" />
+
+<section class="space-y-2 rounded border border-border-muted bg-surface-sunken/50 p-4">
+	<h3 class="text-sm font-medium text-txt-primary">OS file drops</h3>
+	<p class="text-xs text-txt-secondary">
+		Use <code>DropZone</code> from phoundry-ui for file pick / drag-in uploads -
+		it is separate from list reordering DnD.
+	</p>
+</section>
+
+---
+
+## DndListOptions
+
+<ApiTable
+	of="DndListOptions"
+	include={[
+		"id",
+		"axis",
+		"acceptFrom",
+		"sourceOnly",
+		"showZoneIndicator",
+		"onReorder",
+		"onReceive",
+		"onRemove",
+	]}
+	notes={{
+		id: "Unique list id (also `data-dnd-list`).",
+		axis: "Primary axis for insertion hints (horizontal tabs vs vertical lists).",
+		acceptFrom:
+			"Source list ids allowed to drop here. Omit for unrestricted cross-list drops.",
+		sourceOnly:
+			"If true, items can be dragged out but this list does not accept reorder/drops.",
+		showZoneIndicator:
+			"Dashed outline on list hover during drag; set false for compact chrome (tabs, sidebars).",
+		onReorder: "Same-list reorder after drop.",
+		onReceive:
+			"Cross-list: item landed in this list (pair with source `onRemove`).",
+		onRemove: "Cross-list: item left this list toward another registered list.",
+	}}
+/>
+
+---
+
+## DndItemOptions
+
+<ApiTable
+	of="DndItemOptions"
+	include={[
+		"id",
+		"data",
+		"disabled",
+		"dragHandle",
+		"dragThreshold",
+		"onClickWithoutDrag",
+		"onDragStart",
+	]}
+	notes={{
+		id: "Stable item id (`data-dnd-item`).",
+		data: "Payload passed to receivers (defaults to `{ id }`).",
+		disabled: "If true, item does not start a drag.",
+		dragHandle:
+			"CSS selector for the drag handle within the item. Omit to drag from the whole item.",
+		dragThreshold: "Pointer movement (px) before a drag starts.",
+		onClickWithoutDrag:
+			"Called on pointer up when movement stayed below dragThreshold (also when disabled).",
+		onDragStart: "Called once when dragThreshold is crossed and a drag begins.",
+	}}
+/>
+
+## Usage notes
+
+- Mount `DndGhost` and `DndIndicator` once per layout surface that uses this kit (the docs page mounts them below the examples).
+- Attach `dndList` on the scroll/container that wraps draggable rows; attach `dndItem` on each row (up to three levels of wrapper depth are considered when resolving drop slots).
+- Interactive controls inside a row (buttons, inputs, links) block drag initiation unless wrapped outside the hit-tested subtree per `dndItem` rules.
+- `KanbanBoard` composes these attachments for multi-column cards.
+
+Touch input does not initiate the shared desktop drag session. Native touch scrolling and contextual holds remain available; `onClickWithoutDrag` applies only to supported drag-session pointers.
+
+## CSS styling
+
+`.ph-dnd-ghost` is the stable identification hook for Drag-and-drop previews. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+The insertion indicator uses `.ph-dnd-indicator`. Measured coordinates cross into CSS through private custom properties. Existing drag/drop attachments and callbacks remain available.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.
+
+Drag state uses `data-ph-dnd-active="true"` on the body and
+`data-ph-dnd-dragging="true"` on the dragged source. Replace custom selectors
+that used `.dnd-active` or `.dnd-dragging`. Drag transitions use shared motion
+tokens and stop under reduced motion. The unused `.phi-dnd-poof` helper was
+removed.

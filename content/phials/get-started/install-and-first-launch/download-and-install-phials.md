@@ -8,7 +8,7 @@ ai_disclosure: true
 
 # Download and install Phials
 
-Install the Phials build made for your computer, then open the app to choose a trial or activate a license.
+Install the Phials build made for your computer, then open the app. Local use is free and requires no Account or activation.
 
 ## Choose the correct download
 
@@ -41,4 +41,4 @@ The macOS download is architecture-specific. If the app does not open because th
 
 The Windows release is an x64 build. Phials does not provide a Windows ARM build.
 
-When Phials opens, continue with [Start a trial or activate a license](./start-a-trial-or-activate-a-license.md).
+When Phials opens, continue with [Local use and Remote Access](./start-a-trial-or-activate-a-license.md).

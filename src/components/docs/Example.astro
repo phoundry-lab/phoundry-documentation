@@ -1,0 +1,96 @@
+---
+import { Code } from "@astrojs/starlight/components";
+import DemoHost from "./DemoHost.svelte";
+interface Props {
+	name: string;
+	title?: string;
+	isolated?: boolean;
+	height?: number;
+	codeOpen?: boolean;
+	files?: string[];
+}
+const {
+	name,
+	title,
+	isolated = false,
+	height = 400,
+	codeOpen = false,
+	files: extraFiles = [],
+} = Astro.props;
+const files = import.meta.glob("/content/phoundry-ui/_examples/**/*.svelte", {
+	query: "?raw",
+	import: "default",
+	eager: true,
+});
+const sources = [name, ...extraFiles].map((file) => {
+	const code = files[`/content/phoundry-ui/_examples/${file}.svelte`] as
+		string | undefined;
+	if (!code) throw new Error(`Unknown runnable example source: ${file}`);
+	return { file, code };
+});
+---
+
+<section class="docs-example not-content" data-example={name}>
+	{title && <h3>{title}</h3>}
+	{isolated ? (
+		<iframe
+			class="example-frame"
+			src={`/examples/${name}`}
+			title={title ?? `${name} example`}
+			loading="lazy"
+			height={height}
+			data-isolated-example
+		/>
+	) : (
+		<div class="example-preview">
+			<DemoHost name={name} client:visible />
+		</div>
+	)}
+	<details open={codeOpen} class="example-source">
+		<summary>View source</summary>
+		{sources.map(({ file, code }) => (
+			<Code
+				code={code.trim()}
+				lang="svelte"
+				title={`${file.split("/").at(-1)}.svelte`}
+			/>
+		))}
+	</details>
+</section>
+
+<script>
+	const updateFrames = () => {
+		for (const frame of document.querySelectorAll<HTMLIFrameElement>(
+			"iframe[data-isolated-example]",
+		)) {
+			frame.contentWindow?.postMessage(
+				{
+					type: "phoundry-docs-theme",
+					theme: document.documentElement.dataset.theme,
+				},
+				location.origin,
+			);
+		}
+	};
+	document.addEventListener("load", updateFrames, true);
+	new MutationObserver(updateFrames).observe(document.documentElement, {
+		attributes: true,
+		attributeFilter: ["data-theme"],
+	});
+	window.addEventListener("message", (event) => {
+		if (
+			event.origin !== location.origin ||
+			event.data?.type !== "phoundry-docs-example-height"
+		)
+			return;
+		for (const frame of document.querySelectorAll<HTMLIFrameElement>(
+			"iframe[data-isolated-example]",
+		)) {
+			if (
+				frame.contentWindow === event.source &&
+				Number.isFinite(event.data.height)
+			)
+				frame.height = String(Math.max(200, Math.min(1400, event.data.height)));
+		}
+	});
+</script>

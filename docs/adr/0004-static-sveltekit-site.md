@@ -1,5 +1,6 @@
 ---
-status: accepted
+status: superseded
+superseded-by: 0006-starlight-and-composable-ui-documentation
 ---
 
 # Build the public docs as a static SvelteKit site

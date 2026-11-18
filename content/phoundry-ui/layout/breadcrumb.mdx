@@ -1,0 +1,83 @@
+---
+title: Breadcrumb
+order: 4
+description: >-
+  Navigation breadcrumb trail with overflow collapsing. Supports icons, custom
+  separators, and click or href navigation per item.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Navigation breadcrumb trail with overflow collapsing. Supports icons, custom separators, and click or href navigation per item.
+
+```ts
+import { Breadcrumb } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="layout/breadcrumb/basic" />
+
+## With Icons
+
+<Example name="layout/breadcrumb/with-icons" />
+
+## Collapsed Overflow (maxVisible=3)
+
+<Example name="layout/breadcrumb/collapsed-overflow-maxvisible-3" />
+
+## Separator + larger size
+
+<Example name="layout/breadcrumb/separator-larger-size" />
+
+## Links vs buttons
+
+<Example name="layout/breadcrumb/links-vs-buttons" />
+
+---
+
+## API
+
+<ApiTable
+	of="Breadcrumb"
+	include={["items", "onnavigate", "separator", "maxVisible", "size", "class"]}
+	notes={{
+		items: "Breadcrumb segments in order.",
+		onnavigate: "Called when a breadcrumb is clicked.",
+		separator: "Separator character between items.",
+		maxVisible:
+			"Max segments to show before collapsing middle items into a dropdown.",
+		size: "Text and icon size.",
+		class: "Additional CSS classes.",
+	}}
+/>
+
+## BreadcrumbItem
+
+<ApiTable
+	of="BreadcrumbItem"
+	include={["id", "label", "icon", "href"]}
+	notes={{
+		id: "Unique identifier.",
+		label: "Display text.",
+		icon: "Iconify icon string.",
+		href: "Renders as a link instead of a button.",
+	}}
+/>
+
+## Usage tips
+
+- The last item renders as plain text (non-clickable) to indicate the current page.
+- Use `maxVisible` to keep the breadcrumb compact - middle items collapse into a "…" dropdown.
+- Items with `href` render as `<a>` tags; otherwise they render as buttons that call `onnavigate`.
+- Set `separator` to `"›"` or `">"` for alternative visual styles.
+- The overflow menu relies on `--z-dropdown` from `components.css`; define it if you override the theme stack.
+
+## CSS styling
+
+`.ph-breadcrumb` is the stable identification hook for Breadcrumb. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+The existing `sm` and `md` typography is preserved; icons consume the corresponding `--ph-comp-icon-*` tokens.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

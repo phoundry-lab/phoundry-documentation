@@ -1,0 +1,69 @@
+---
+title: DropZone
+order: 5
+description: >-
+  File drop target that wraps arbitrary content. Shows an overlay on drag-over
+  with optional file type validation via the accept prop.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+File drop target that wraps arbitrary content. Shows an overlay on drag-over with optional file type validation via the accept prop.
+
+```ts
+import { DropZone } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="layout/drop-zone/basic" />
+
+## With Accept Filter (images only)
+
+<Example name="layout/drop-zone/with-accept-filter-images-only" />
+
+## Disabled
+
+<Example name="layout/drop-zone/disabled" />
+
+## Custom active overlay
+
+<Example name="layout/drop-zone/custom-active-overlay" />
+
+---
+
+## API
+
+<ApiTable
+	of="DropZone"
+	include={[
+		"ondrop",
+		"accept",
+		"disabled",
+		"class",
+		"style",
+		"children",
+		"active",
+	]}
+	notes={{
+		ondrop: "Called with accepted files on drop.",
+		accept: "MIME types or extensions to accept (e.g. ['image/*', '.pdf']).",
+		disabled: "Disable the drop zone.",
+		class: "Additional CSS classes on the wrapper.",
+		style: "Inline styles on the stable component root.",
+		children: "Default content inside the drop zone.",
+		active: "Custom overlay content shown during drag-over.",
+	}}
+/>
+
+## Usage tips
+
+- The default overlay shows "Drop to upload" on valid drag and "Invalid file type" when files don't match `accept`.
+- Use the `active` snippet to fully customize the drag-over overlay.
+- The `accept` array supports MIME types (`'image/*'`), exact MIME (`'application/pdf'`), and extensions (`'.csv'`).
+- Files that don't match `accept` are silently filtered out of the `ondrop` callback.
+
+## Styling
+
+`.ph-drop-zone` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. The root exposes `data-dragging`, `data-invalid`, and `aria-disabled`. CSS owns valid/invalid overlay colors, while drag counters, accept filtering, drop callbacks, and the optional active snippet retain their existing behavior. Overlay text uses the Theme’s on-accent foreground; reduced motion removes its color transition. Internal part selectors and `--_ph-*` properties remain implementation details.

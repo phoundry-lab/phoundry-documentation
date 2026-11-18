@@ -13,4 +13,5 @@
 ## Plans
 
 - [Documentation repository migration](../plans/documentation-repository-migration.md) — consolidate the existing doc sets and generators, then cut over offline Help and the public site
+- [Starlight migration](../plans/starlight-migration.md) — replace the website shell and make UI articles independently composed, with runnable source examples and generated API facts
 

@@ -1,0 +1,78 @@
+---
+title: StarRating
+order: 1
+description: >-
+  Interactive star rating with hover preview, half-star support, keyboard
+  navigation (arrow keys, Home/End), and click-to-toggle.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Interactive star rating with hover preview, half-star support, keyboard navigation (arrow keys, Home/End), and click-to-toggle.
+
+```ts
+import { StarRating } from "phoundry-ui";
+```
+
+## Interactive
+
+<Example name="ratings-tags/star-rating/interactive" />
+
+## Half Stars
+
+<Example name="ratings-tags/star-rating/half-stars" />
+
+## Readonly
+
+<Example name="ratings-tags/star-rating/readonly" />
+
+## Custom max (10 stars)
+
+<Example name="ratings-tags/star-rating/custom-max-10-stars" />
+
+## Sizes
+
+<Example name="ratings-tags/star-rating/sizes" />
+
+---
+
+## API
+
+<ApiTable
+	of="StarRating"
+	include={[
+		"rating",
+		"readonly",
+		"size",
+		"max",
+		"allowHalf",
+		"onchange",
+		"class",
+	]}
+	notes={{
+		rating: "Current rating value.",
+		readonly: "Disable interaction.",
+		size: "Star size (12/16/20/24px). xs uses tighter padding for dense readonly rows.",
+		max: "Total number of stars.",
+		allowHalf: "Enable half-star increments.",
+		onchange: "Called when the rating changes.",
+		class: "Additional CSS classes.",
+	}}
+/>
+
+## Usage tips
+
+- Click a star to set the rating; click the same star again to reset to 0.
+- With `allowHalf`, clicking the left half of a star sets a half-star value.
+- Use `readonly` for display-only ratings (e.g. product reviews, averages).
+- Use `size="xs"` for dense readonly rows (thumbnail captions, compact table cells); it uses tighter padding than larger sizes.
+- Keyboard: Arrow keys adjust by 1 (or 0.5 with `allowHalf`), Home = 0, End = max.
+
+## CSS styling
+
+`.ph-star-rating` is the stable identification hook for StarRating. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+The rating-specific icon scale remains `xs` 0.75rem, `sm` 1rem, `md` 1.25rem, and `lg` 1.5rem. Rating and keyboard behavior are unchanged.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

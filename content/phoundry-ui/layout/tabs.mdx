@@ -1,0 +1,106 @@
+---
+title: Tabs
+order: 2
+description: >-
+  Tab bar with keyboard navigation, closable tabs, and three visual variants
+  (default, pills, underline). Supports horizontal/vertical orientation and
+  panel rendering via snippets.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Tab bar with keyboard navigation, closable tabs, and three visual variants (default, pills, underline). Supports horizontal/vertical orientation and panel rendering via snippets.
+
+```ts
+import { Tabs } from "phoundry-ui";
+```
+
+## Default Variant
+
+<Example name="layout/tabs/default-variant" />
+
+## Pills Variant
+
+<Example name="layout/tabs/pills-variant" />
+
+## Vertical tab list
+
+<Example name="layout/tabs/vertical-tab-list" />
+
+## Underline Variant
+
+<Example name="layout/tabs/underline-variant" />
+
+## Panel without View Transitions
+
+<Example name="layout/tabs/panel-without-view-transitions" />
+
+## With Panel Content
+
+<Example name="layout/tabs/with-panel-content" />
+
+---
+
+## API
+
+<ApiTable
+	of="Tabs"
+	include={[
+		"items",
+		"value",
+		"onchange",
+		"onclose",
+		"orientation",
+		"variant",
+		"size",
+		"viewTransition",
+		"class",
+		"tab",
+		"panel",
+	]}
+	notes={{
+		items: "Array of tab definitions.",
+		value: "Active tab id.",
+		onchange: "Called when active tab changes.",
+		onclose: "Called when a closable tab is closed.",
+		orientation: "Tab list direction.",
+		variant: "Visual style.",
+		size: "Tab trigger height aligned to Button `sm` (1.5rem) / `md` (1.75rem).",
+		viewTransition:
+			"Use the View Transition API to cross-fade panel content on tab change (where supported).",
+		class: "Additional CSS classes on the tab list.",
+		tab: "Custom tab renderer snippet.",
+		panel: "Panel content rendered below the active tab.",
+	}}
+/>
+
+## TabItem
+
+<ApiTable
+	of="TabItem"
+	include={["id", "label", "icon", "closable", "disabled"]}
+	notes={{
+		id: "Unique tab identifier.",
+		label: "Tab display text.",
+		icon: "Iconify icon string.",
+		closable: "Show close button on tab.",
+		disabled: "Disable tab interaction.",
+	}}
+/>
+
+## Usage tips
+
+- Arrow keys navigate between tabs; Home/End jump to first/last.
+- Use `variant="underline"` for content-area tab bars and `"pills"` for sidebar navigation.
+- The `panel` snippet receives the active `TabItem` - render different content per tab inside it.
+- Provide `onclose` to enable the close button on tabs marked `closable: true`.
+- Panel content has built-in top padding and cross-fades via the View Transition API. Pass `viewTransition={false}` to opt out.
+
+## CSS styling
+
+`.ph-tabs` is the stable identification hook for Tabs. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Consumer `class` values still target the tab list. Sizes select `--ph-comp-h-sm` and `--ph-comp-h-md` (1.5rem and 1.75rem); the former `sm` height was 1.375rem. Variant, size, and orientation are independent attributes. Selected tabs use `aria-selected`.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

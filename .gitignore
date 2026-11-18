@@ -1,5 +1,8 @@
 node_modules/
 .svelte-kit/
+.astro/
+src/lib/generated/ui-api.json
+src/lib/generated/doc-icons.json
 build/
 dist-package/
 static/pagefind/

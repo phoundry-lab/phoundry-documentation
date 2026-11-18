@@ -1,0 +1,85 @@
+---
+title: DatePicker
+order: 2
+description: >-
+  DatePicker is a read-only text field that opens the calendar in a popover
+  (single or range). For an inline calendar with time and toggles, see
+  DatePickerAdvanced.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+DatePicker is a read-only text field that opens the calendar in a popover (single or range). For an inline calendar with time and toggles, see DatePickerAdvanced.
+
+```ts
+import { DatePicker } from "phoundry-ui";
+```
+
+## Single date
+
+<Example name="advanced/date-picker/single-date" />
+
+## Date range
+
+<Example name="advanced/date-picker/date-range" />
+
+## Trigger size
+
+<Example name="advanced/date-picker/trigger-size" />
+
+## Bounds, Monday week, placeholder
+
+<Example name="advanced/date-picker/bounds-monday-week-placeholder" />
+
+---
+
+## DatePicker props
+
+<ApiTable
+	of="DatePicker"
+	include={[
+		"value",
+		"rangeStart",
+		"rangeEnd",
+		"mode",
+		"onchange",
+		"onrangechange",
+		"minDate",
+		"maxDate",
+		"disabled",
+		"weekStartsOn",
+		"placeholder",
+		"inputSize",
+		"class",
+	]}
+	notes={{
+		value: "Selected date (single mode).",
+		rangeStart: "Range start date (range mode).",
+		rangeEnd: "Range end date (range mode).",
+		mode: "Selection mode.",
+		onchange: "Called when a single date is selected.",
+		onrangechange: "Called when a range is completed.",
+		minDate: "Earliest selectable date.",
+		maxDate: "Latest selectable date.",
+		disabled: "Disable the input and picker.",
+		weekStartsOn: "First day of week: 0 = Sunday, 1 = Monday.",
+		placeholder: "Placeholder when empty.",
+		inputSize: "Size of the read-only trigger field (passed to TextInput).",
+		class: "Additional CSS classes on the wrapper.",
+	}}
+/>
+
+## Usage tips
+
+- Use `minDate` and `maxDate` to constrain selectable dates.
+- In `range` mode, the first click sets the start and the second click sets the end.
+- Set `weekStartsOn={1}` for Monday-first calendars (ISO standard).
+
+## CSS styling
+
+`.ph-date-picker` is the stable identification hook for DatePicker. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+`inputSize` continues to select the nested TextInput control size. Date formatting, range selection, and callbacks are unchanged.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

@@ -1,0 +1,84 @@
+---
+title: Focus Trap
+order: 3
+description: >-
+  Constrains Tab/Shift+Tab focus cycling within a container element. Useful for
+  dialogs, sidebars, and any overlay that should capture keyboard focus.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Constrains Tab/Shift+Tab focus cycling within a container element. Useful for dialogs, sidebars, and any overlay that should capture keyboard focus.
+
+```ts
+import { createFocusTrap } from "phoundry-ui";
+```
+
+<div class="max-w-3xl space-y-8">
+	## Interactive Focus Trap
+
+<Example name="utilities/focus-trap/interactive-focus-trap" />
+
+---
+
+## FocusTrapOptions
+
+<ApiTable
+	of="FocusTrapOptions"
+	include={[
+		"autoFocus",
+		"returnFocusOnDeactivate",
+		"escapeDeactivates",
+		"onEscape",
+	]}
+	notes={{
+		autoFocus:
+			"Auto-focus the first focusable element when the trap activates.",
+		returnFocusOnDeactivate:
+			"Return focus to the previously focused element on deactivation.",
+		escapeDeactivates: "Allow Escape key to deactivate the trap.",
+		onEscape: "Called when Escape is pressed (if escapeDeactivates is true).",
+	}}
+/>
+
+---
+
+## Return Value
+
+<ApiTable
+	of="createFocusTrap.return"
+	include={["action", "activate", "deactivate", "active"]}
+	notes={{
+		action:
+			"Svelte action: use:trap.action or use:trap.action={{ enabled: boolean }}. When enabled is false, Tab capture is off (e.g. stacked modals not on top) without restoring focus.",
+		activate:
+			"Manually activate the trap (called automatically by the action when enabled).",
+		deactivate:
+			"Manually deactivate. Pass restoreFocus: false to pause without moving focus (stacked overlays). Defaults to the trap’s returnFocusOnDeactivate when omitted.",
+		active: "Whether the trap is currently active.",
+	}}
+/>
+
+---
+
+## FocusTrapActionParams (use:trap.action parameter)
+
+<ApiTable
+	of="FocusTrapActionParams"
+	include={["enabled"]}
+	notes={{
+		enabled:
+			"When false, the action does not activate Tab capture until set true again (see action update).",
+	}}
+/>
+
+</div>
+
+## Usage tips
+
+- Used internally by `Modal` and the modal manager overlay - you only need this directly for custom dialogs or sidebar panels.
+- The action activates the trap when applied (if `enabled` is not false) and cleans up on `destroy`.
+- Focus returns to the previously focused element when the trap deactivates (unless `returnFocusOnDeactivate` is false).
+- Only visible, non-disabled focusable elements participate in the cycle.
+- Set `escapeDeactivates: true` and provide an `onEscape` callback to handle closing.

@@ -1,0 +1,358 @@
+---
+title: Context Menu
+order: 3
+description: >-
+  Right-click and touch-hold context menu overlay with nested submenus, optional
+  horizontal icon groups, shortcuts, boolean toggles, radio selection, and
+  danger actions.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Right-click and touch-hold context menu overlay with nested submenus, optional horizontal icon groups, shortcuts, boolean toggles, radio selection, and danger actions.
+
+```ts
+import { useContextMenuAPI, contextMenu } from "phoundry-ui";
+```
+
+## Programmatic Open
+
+<Example name="overlays/context-menu/programmatic-open" />
+
+## Right-Click Area (Attachment)
+
+<Example name="overlays/context-menu/right-click-area-attachment" />
+
+Context Menu panels and items are the styling reference for the shared floating panel and option rows used by Popover, Select, and Combobox. Each retains its own roles, focus behavior, dismissal rules, and state.
+
+---
+
+## OpenMenuOptions (4th argument to api.open)
+
+<ApiTable
+	of="OpenMenuOptions"
+	include={["ariaLabel", "anchor", "side", "stacked", "searchable", "onClose", "trigger"]}
+	notes={{
+		ariaLabel:
+			'Accessible name for the menu panel. Defaults to `"Context menu"`.',
+		anchor:
+			"Alignment across the opening side relative to the open point. Center places the middle of the panel on that point.",
+		side: "Which edge of the trigger the menu opens from. Defaults to `'bottom'`.",
+		stacked:
+			"Default to stacked submenu navigation for this session. Overrides the provider default; individual submenu items can override it. Sheets always stack; narrow touch menus still adapt automatically.",
+		searchable:
+			"Show a label filter in every menu level for this session. Defaults to false; queries reset on opening.",
+		onClose:
+			"Called when the menu closes (Escape, backdrop, or after an action).",
+		trigger: "Optional trigger reference for callers that track menu origin.",
+	}}
+/>
+
+## Searchable sessions
+
+Opt in with `api.open(items, x, y, { searchable: true })`, or the `searchable` prop on `ButtonDropdown`. Each level has an independent search input. Queries match a case-insensitive, trimmed substring of row labels, preserving internal spaces. Submenu triggers match their own label, not descendant labels; open a submenu to search its contents. Radio options and toolbar children are filtered individually. Custom rows match `ariaLabel`, falling back to `id`. Section headings are retained only with matching rows, and empty or redundant separators are removed. No matches displays “No results found”.
+
+The root search field receives focus on opening, and keyboard-opened submenus focus their own search field. Up/Down navigate enabled rows; Enter in the input activates the first enabled result. Spaces and text-editing keys remain native in the input. Escape closes the current level; Left Arrow still returns from child rows but edits text normally in the search input. Back remains available even with no matches. Editing a level's query closes its open descendants. Returning to a mounted parent preserves its query, while every new `api.open()` resets all queries.
+
+## ActionMenuItem
+
+<ApiTable
+	of="ActionMenuItem"
+	include={[
+		"type",
+		"id",
+		"label",
+		"icon",
+		"shortcut",
+		"pluginId",
+		"danger",
+		"disabled",
+		"selected",
+		"preventClose",
+		"action",
+	]}
+	notes={{
+		type: "Menu item that triggers a callback.",
+		id: "Stable key for shortcuts / analytics.",
+		label: "Display text.",
+		icon: "Iconify icon string.",
+		shortcut: "Display-only shortcut hint.",
+		pluginId:
+			"Optional plugin scope for shortcut manager lookups (`pluginId.id`).",
+		danger: "Red danger styling.",
+		disabled: "Non-interactive row.",
+		selected: "Decorates the row as checked/active where supported.",
+		preventClose: "Keep the overlay open after invoking the action.",
+		action: "Handler run when the row is activated.",
+	}}
+/>
+
+## BooleanMenuItem
+
+<ApiTable
+	of="BooleanMenuItem"
+	include={[
+		"type",
+		"label",
+		"icon",
+		"pluginId",
+		"preventClose",
+		"value",
+		"onchange",
+	]}
+	notes={{
+		type: "Toggle row with checkbox on the right.",
+		label: "Display text.",
+		icon: "Iconify icon string.",
+		pluginId: "Plugin ID (same role as on action items).",
+		preventClose: "Keep the menu open after toggling.",
+		value: "Checked state.",
+		onchange: "Called with the new value after the user toggles the row.",
+	}}
+/>
+
+## RadioMenuItem
+
+<ApiTable
+	of="RadioMenuItem"
+	include={[
+		"type",
+		"id",
+		"label",
+		"items",
+		"value",
+		"onchange",
+		"preventClose",
+		"disabled",
+	]}
+	notes={{
+		type: "Inline list of mutually exclusive menu options.",
+		id: "Stable group key.",
+		label: "Accessible group name. Defaults to id; does not render a heading.",
+		items:
+			"Options with id, label, and the same presentation fields as action rows: description, icon, shortcut, pluginId, danger, and disabled. Option ids must be unique within the panel.",
+		value:
+			"Selected option id. An unmatched value leaves every option unchecked.",
+		onchange:
+			"Called when a different enabled option is activated. Update the Consumer state here.",
+		preventClose:
+			"Keep the menu open and refresh its item source after selection.",
+		disabled: "Disables every option in the group.",
+	}}
+/>
+
+## SubmenuMenuItem
+
+<ApiTable
+	of="SubmenuMenuItem"
+	include={["type", "label", "stacked", "items"]}
+	notes={{
+		type: "Nested submenu container.",
+		label: "Submenu trigger label.",
+		stacked:
+			"Override the session default for this submenu only: true slides inside the parent surface with Back; false opens a separate cascading panel. Omit to use the session default. Sheets always stack.",
+		items: "Child menu items.",
+	}}
+/>
+
+## GroupMenuItem
+
+<ApiTable
+	of="GroupMenuItem"
+	include={["type", "id", "items", "disabled"]}
+	notes={{
+		type: "Horizontal row of icon-only controls.",
+		id: "Stable key (see MenuItemBase).",
+		items:
+			"Toolbar row: **`action`** and **`boolean`** as icon-only `Button`s (labels via tooltip / `aria-label`); **`separator`** as a vertical rule.",
+		disabled: "Disables all controls in the group.",
+	}}
+/>
+
+## SeparatorMenuItem
+
+<ApiTable
+	of="SeparatorMenuItem"
+	include={["type"]}
+	notes={{
+		type: "Horizontal rule between groups.",
+	}}
+/>
+
+## LabelMenuItem
+
+<ApiTable
+	of="LabelMenuItem"
+	include={["type", "label"]}
+	notes={{
+		type: "Non-interactive heading row.",
+		label: "Muted caption text.",
+	}}
+/>
+
+## CustomMenuItem
+
+<ApiTable
+	of="CustomMenuItem"
+	include={["type", "id", "render", "disabled"]}
+	notes={{
+		type: "Fully custom row body via snippet.",
+		id: "Stable key.",
+		render:
+			"Snippet rendered inside the menu row. The optional context can open a descendant panel from one of the snippet controls or close the current panel.",
+		disabled: "Skip pointer interaction.",
+	}}
+/>
+
+### Exclusive radio selection
+
+Use `type: 'radio'` for an inline list with one selected option. Each option uses the same row presentation as an action, including icons, descriptions, shortcut hints, disabled state, and a check mark for the selected option. Selection uses `bg-surface-overlay-active` and `hover:bg-surface-overlay-active-hover`. Radio groups can appear in root menus and submenus; horizontal `group` toolbars continue to accept actions, booleans, and separators.
+
+```svelte
+<script lang="ts">
+	import { PhiIcons, useContextMenuAPI, type MenuItem } from "phoundry-ui";
+
+	const api = useContextMenuAPI();
+	let sort = $state("ascending");
+
+	function buildItems(): MenuItem[] {
+		return [
+			{
+				type: "radio",
+				id: "sort",
+				label: "Sort order",
+				value: sort,
+				preventClose: true,
+				items: [
+					{ id: "ascending", label: "Ascending", icon: PhiIcons.sortAsc },
+					{ id: "descending", label: "Descending", icon: PhiIcons.sortDesc },
+				],
+				onchange: (nextValue) => {
+					sort = nextValue;
+				},
+			},
+		];
+	}
+
+	function openMenu(event: MouseEvent) {
+		api.open(buildItems, event.clientX, event.clientY);
+	}
+</script>
+
+<button onclick={openMenu}>Choose sort order</button>
+```
+
+The Consumer owns `value`; options use their `id` as the selection value. Pass a function item source when `preventClose` is enabled so the refreshed menu reads the updated selection. Activating the selected option leaves it selected and does not call `onchange`. By default, activation closes the menu before calling `onchange`, matching action rows. With `preventClose`, the menu refreshes after the callback finishes. Arrow keys, Home, and End move between enabled options in the normal menu order; Enter and Space select the focused option. Each option exposes `role="menuitemradio"` and `aria-checked`.
+
+## Presentation and submenu navigation
+
+Panel placement and submenu navigation are independent. The default `presentation: 'popover'` anchors the menu at its open point. Set `stacked: true` to show one level at a time at that same anchor, with a Back control in each child level:
+
+```ts
+// Opt in for one menu.
+api.open(items, event.clientX, event.clientY, { stacked: true });
+
+// Or make stacked navigation the app default during root layout initialization.
+setupOverlays({ contextMenu: { stacked: true } });
+// Equivalent granular setup: provideContextMenu({ stacked: true });
+```
+
+For right-click and touch-hold targets, pass the same option to the attachment:
+
+```svelte
+<div {@attach contextMenu({ api, items, stacked: true })}>
+	Contextual target
+</div>
+```
+
+`stacked` defaults to `false`. An `api.open()` or attachment option overrides the provider default for that session; the next menu inherits the provider default again. Each `SubmenuMenuItem` can override that session default with its own `stacked` option:
+
+```ts
+const items: MenuItem[] = [
+	{
+		type: "submenu",
+		id: "edit",
+		label: "Edit",
+		stacked: true,
+		items: editItems,
+	},
+	{
+		type: "submenu",
+		id: "export",
+		label: "Export",
+		stacked: false,
+		items: exportItems,
+	},
+	{ type: "submenu", id: "more", label: "More", items: moreItems },
+];
+
+api.open(items, event.clientX, event.clientY, { stacked: true });
+```
+
+Here Edit and More use stacked navigation; Export opens a separate cascading panel. An item's override applies only to opening that submenu. Deeper items without an override use the session default, so stacked and cascading navigation can alternate at any depth. A stacked submenu replaces its parent level within the same surface and provides Back; a cascading submenu opens beside its trigger and keeps its parent visible. Ancestor content remains mounted when navigating within a stacked surface.
+
+Below 520 CSS pixels, touch interaction defaults to stacked navigation even when the session's `stacked` is `false`. An explicit item-level `stacked: false` overrides this automatic touch default.
+
+Stacked submenus open on click, tap, Right Arrow, or Enter rather than hover. Opening and closing the whole menu use the same fade/scale transition as cascading menus, with the initial size applied immediately and size changes frozen during dismissal. One floating surface remains mounted as levels slide horizontally: forward navigation brings the child in from the right; Back slides it out to reveal its parent. While open, the surface smoothly resizes to the active level's width and height using `--ph-motion-fast` (100ms by default), including custom items and controls that resize while open. Ancestor content stays mounted to preserve custom control state but is inert and hidden from assistive technology while inactive. Oversized levels scroll within the available viewport. Reduced-motion preferences make navigation and resizing immediate.
+
+Opening a stacked child focuses the Consumer's first enabled item, or its first interactive control for custom content. If no Consumer item is enabled, focus falls back to Back. Back uses the normal menu-item height, radius, hover and active backgrounds, icon sizing, and roving focus, with a Phoundry left chevron and secondary color for both icon and label. Arrow keys include Back in the row order; Home reaches Back, End reaches the last enabled row, and Enter or Space activates Back. Back, Left Arrow, or Escape in the child returns one level and restores focus to its trigger. Moving the pointer away does not unwind stacked navigation; outside activation still closes the whole session.
+
+`presentation: 'sheet'` changes placement to edge-to-edge, square-cornered, bottom-anchored panels and **always** uses stacked navigation, including when `stacked: false`. The sheet slides up from and down to its bottom edge instead of using the scale fade. A grab bar at the top of the sheet resizes it when dragged with a mouse or touch, between a minimum height and the available viewport height. A quick downward flick on the grab bar closes the whole menu; a slow drag only resizes it. The chosen height persists across levels until the menu closes. The grab bar is pointer-only; Escape and Back remain the keyboard paths. Configure it with `setupOverlays({ contextMenu: { presentation: 'sheet' } })` or `provideContextMenu({ presentation: 'sheet' })`. Normal popovers can use stacked navigation without becoming sheets.
+
+### Custom menu descendants
+
+Custom rows show a row highlight only while the row itself has visible keyboard focus. Focusing an embedded editor control or opening its picker leaves the editor background neutral.
+
+The snippet context exposes `openSubmenu(item, trigger, intent?)` and `closePanel()`. Use `openSubmenu` when an editor rendered by a `CustomMenuItem` needs another menu level, such as an option-level editor. Pass the control element for focus restoration and, in cascading mode, child panel placement. In stacked mode the child slides inside the existing surface. Use `intent: 'keyboard'` for keyboard activation or `'touch'` for immediate touch navigation.
+
+Descendants opened this way stay in the same menu session and use its default navigation mode unless the passed submenu item overrides `stacked`. Pointer opens preserve neutral focus in cascading menus; stacked menus and keyboard opens focus the Consumer's first enabled item or its first interactive control. Back is the fallback when a stacked level has no enabled Consumer items. Arrow Left or Escape closes the current child panel and returns focus to its trigger. `closePanel()` closes only the panel containing that custom item (or the root session when called at the root).
+
+## Touch and custom contextual callbacks
+
+`contextMenu({ api, items })` opens on a stationary single-finger hold as well as right-click. It uses the exported `longPress` attachment, which can also invoke custom or asynchronous contextual callbacks directly:
+
+```svelte
+<script lang="ts">
+	import { longPress, useContextMenuAPI } from "phoundry-ui";
+	const api = useContextMenuAPI();
+	function openOptions(event: MouseEvent, trigger: HTMLElement) {
+		api.open(buildItems(), event.clientX, event.clientY, { trigger });
+	}
+</script>
+
+<div {@attach longPress({ onLongPress: openOptions })}>Contextual target</div>
+```
+
+`onLongPress(event, trigger)` receives the original touch `PointerEvent` and attached element. The event's `currentTarget` is no longer available when the hold completes; use `trigger` for anchoring. The default hold duration is 500 milliseconds and movement tolerance is 10 CSS pixels, configurable through `delay` and `movementTolerance`.
+
+Movement, scrolling, pointer cancellation, another touch, window blur, and attachment teardown cancel recognition. A recognized hold consumes its release click and native context menu. Normal taps and scrolling stay native. Inputs, textareas, selects, editable/textbox regions, selectable `.select-text` regions, and nested interactive controls are excluded; mark other native selection or preview regions with `data-native-touch`.
+
+Tap a submenu to open it immediately. Touch does not depend on hover or pointer-leave timers. Below 520 CSS pixels, touch navigation presents the deepest panel with a Back control that returns to its parent. Panels remain within the viewport and scroll when their contents are taller than the screen. An outside click or completed touch tap dismisses the session and consumes that gesture, so the underlying content is not activated. A cancelled touch leaves the menu open; another tap or Back can still dismiss it.
+
+## Semantic Back
+
+`api.back()` closes the deepest open submenu and returns focus to its trigger. With no submenu open, it closes the root session; with no menu open, it returns `false`. `api.close()` always closes the whole session. Each `api.open()` starts a fresh session, including when replacing an existing menu or reopening during its exit transition; live item-source updates and `bumpTick()` retain the current submenu branch.
+
+For application Back handling across menus and Popovers, import `getContextualDismissal` from `phoundry-ui`. Its reactive `active` property reports mounted contextual owners, and `back()` asks the most recently mounted owner to dismiss one level, returning whether it consumed Back. Call it before dismissing the underlying application surface. Owners release registration when they close or unmount. The interface does not manage browser history, dialogs, or comboboxes.
+
+## Usage tips
+
+- `provideContextMenu()` must be called in the root layout, and `ContextMenuOverlay` must be rendered there - or call `setupOverlays()` once to initialize all overlay managers together.
+- The menu auto-positions to stay within the viewport.
+- Pass `setupOverlays({ contextMenu: { presentation: 'sheet' } })` to present every context menu as an edge-to-edge, bottom-anchored sheet with one level visible at a time, a Back control, and a draggable grab bar at its top. The setting applies to all menus in the session; `x`, `y`, and `anchor` are ignored in sheet mode.
+- Arrow keys, Home, and End move the highlighted row; Enter and Space activate it. Escape closes the menu. The active row uses the same background as hover; focus returns to the element that opened the menu.
+- Pointer hover highlights only the row under the pointer and does not move focus. Moving into custom content or between rows clears any keyboard highlight; keyboard navigation restores a persistent highlight. Selected and checked states remain independent of navigation.
+- Nested overlays opened from custom menu content (a dialog popover, Select dropdown, or similar) do not dismiss the child panel while the pointer is over them.
+- `api.open` accepts either a static array or `() => MenuItem[]` so menus can read live state (as with the attachment demo). Pass `ariaLabel` in the fourth argument when the default `"Context menu"` label is too generic.
+- For click-based dropdowns from a button, use `ButtonDropdown` instead.
+
+Context menus and both Popover forms portal their roots to `document.body`. Opening or promoting an owner places its root after existing contextual owners so paint order follows Back ownership.
+
+## CSS styling
+
+`.ph-context-menu-session` is the stable identification hook for ContextMenu. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Floating panels use `.ph-context-menu-panel`. Replace old `phi-*` and utility-class queries. Menu roles, keyboard navigation, and dismissal behavior remain available.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

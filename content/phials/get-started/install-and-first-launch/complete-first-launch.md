@@ -8,7 +8,7 @@ ai_disclosure: true
 
 # Complete first launch
 
-Finish the platform access decision, take the welcome tutorial, and choose the first location you want to browse. Phials opens these first-run surfaces only after a trial or license grants access to the app.
+Finish the platform access decision, take the welcome tutorial, and choose the first location you want to browse. Local use is free and requires no Account, license, or trial.
 
 ## Respond to the macOS access reminder
 

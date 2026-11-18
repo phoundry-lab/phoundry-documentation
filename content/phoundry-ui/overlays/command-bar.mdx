@@ -1,0 +1,136 @@
+---
+title: Command Bar
+order: 4
+description: >-
+  Searchable command palette with categories, icons, shortcuts, recent commands,
+  and optional subgroups (nested lists or custom snippet panels).
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Searchable command palette with categories, icons, shortcuts, recent commands, and optional subgroups (nested lists or custom snippet panels).
+
+```ts
+import { CommandBar, getCommandBarState } from "phoundry-ui";
+```
+
+## Basic Usage
+
+<Example name="overlays/command-bar/basic-usage" />
+
+## Recent commands
+
+<Example name="overlays/command-bar/recent-commands" />
+
+## Subgroups
+
+<Example name="overlays/command-bar/subgroups" />
+
+---
+
+## CommandBar Props
+
+<ApiTable
+	of="CommandBar"
+	include={[
+		"commands",
+		"config",
+		"subgroups",
+		"recentCommandIds",
+		"placeholder",
+	]}
+	notes={{
+		commands: "Commands shown, filtered, and grouped by `category`.",
+		config:
+			"`onExecute` runs after a command is chosen; optional `onTrackRecent` persists usage for `recentCommandIds`.",
+		subgroups:
+			"Subgroup rows in the root list; each opens a nested list (`items`) or a custom snippet (`content`).",
+		recentCommandIds:
+			"Ordered ids surfaced under the **Recent** heading when the query is empty (commands only).",
+		placeholder: "Placeholder on the filter input.",
+	}}
+/>
+
+## CommandBarConfig
+
+<ApiTable
+	of="CommandBarConfig"
+	include={["onExecute", "onTrackRecent"]}
+	notes={{
+		onExecute: "Runs after the user confirms a command.",
+		onTrackRecent:
+			"Optional hook to persist recency - wire into storage, then feed ids back via `recentCommandIds`.",
+	}}
+/>
+
+## CommandBarCommand
+
+<ApiTable
+	of="CommandBarCommand"
+	include={["id", "label", "description", "icon", "category", "shortcut"]}
+	notes={{
+		id: "Unique identifier.",
+		label: "Display label.",
+		description: "Optional description shown below the label.",
+		icon: "Iconify icon string.",
+		category: "Category for grouping.",
+		shortcut: "Keyboard shortcut hint.",
+	}}
+/>
+
+## CommandBarSubgroup
+
+<ApiTable
+	of="CommandBarSubgroup"
+	include={[
+		"id",
+		"label",
+		"description",
+		"icon",
+		"category",
+		"items",
+		"content",
+	]}
+	notes={{
+		id: "Stable key for the subgroup row.",
+		label: "Root list label.",
+		description: "Optional muted line in the root list.",
+		icon: "Iconify icon string.",
+		category: "Category for grouping in the root list.",
+		items: "Commands shown inside the subgroup (exclusive with `content`).",
+		content:
+			"Custom panel inside the subgroup (exclusive with `items`); use `{@render content(ctx)}` pattern from a snippet prop.",
+	}}
+/>
+
+## CommandBarSubgroupContentContext
+
+<ApiTable
+	of="CommandBarSubgroupContentContext"
+	include={["query", "subgroupId", "back", "close"]}
+	notes={{
+		query: "Current search string (same as the palette input).",
+		subgroupId: "Opened subgroup id.",
+		back: "Return to the root list without closing.",
+		close: "Close the command bar.",
+	}}
+/>
+
+## Usage tips
+
+- Call `getCommandBarState()` to get the singleton - it works from any component.
+- The mounted `CommandBar` registers `config` on the shared state - avoid mounting multiple instances with different configs at once.
+- Pass `recentCommandIds` plus `config.onTrackRecent` to populate the Recent section (top-level commands only).
+- **Root list:** ↑↓ navigate, ↵ runs a command or opens a subgroup.
+- **Inside a subgroup with commands:** same navigation; ↵ executes the selected command.
+- **Custom subgroup:** arrow navigation is disabled; esc or the back button returns to the root list.
+- **Esc** from the root list closes the palette; from a subgroup it goes back first.
+
+## CSS styling
+
+`.ph-command-bar` is the stable identification hook for CommandBar. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Panel, search, results, and decorative edge styles are local to the overlay. Search and command execution behavior are unchanged.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

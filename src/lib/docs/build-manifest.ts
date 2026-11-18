@@ -200,10 +200,10 @@ function groupByDir(setId: DocSetId, projectRoot: string, files: string[]): Map<
 			front: data as Record<string, unknown>,
 			body: content ?? ''
 		};
-		if (base === 'index.md') {
+		if (base === 'index.md' || base === 'index.mdx') {
 			if (bucket.index) throw new Error(`Duplicate index in ${setId} ${dirKey || '(root)'}`);
 			bucket.index = source;
-		} else if (base === 'readme.md') {
+		} else if (base === 'readme.md' || base === 'readme.mdx') {
 			if (bucket.readme) throw new Error(`Duplicate README in ${setId} ${dirKey || '(root)'}`);
 			bucket.readme = source;
 		} else {
@@ -227,7 +227,7 @@ function buildPagesForSet(
 			pages.set(page.slug, page);
 		}
 		for (const source of bucket.others) {
-			const slug = source.relp.replace(/\.md$/i, '');
+			const slug = source.relp.replace(/\.mdx?$/i, '');
 			const page = toPage(setId, slug, source, strict, false);
 			if (pages.has(page.slug)) throw new Error(`Duplicate slug ${page.slug} in ${setId}`);
 			pages.set(page.slug, page);
@@ -324,7 +324,7 @@ function flattenNavigation(
 export function buildSet(projectRoot: string, meta: DocSetMeta, setId: DocSetId): DocSet {
 	const setPrefix = `content/${setId}/`.replaceAll('\\', '/');
 	const markdownFiles = fg
-		.sync('content/**/*.md', { cwd: projectRoot, onlyFiles: true, dot: false })
+		.sync('content/**/*.{md,mdx}', { cwd: projectRoot, onlyFiles: true, dot: false })
 		.map((file) => file.replaceAll('\\', '/'))
 		.filter((file) => file.startsWith(setPrefix))
 		.filter((file) =>

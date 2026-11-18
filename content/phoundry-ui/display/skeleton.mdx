@@ -1,0 +1,62 @@
+---
+title: Skeleton
+order: 5
+description: >-
+  Animated placeholder for loading states. Renders as a rectangle, circle, or
+  multi-line text block with a pulse animation.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Animated placeholder for loading states. Renders as a rectangle, circle, or multi-line text block with a pulse animation.
+
+```ts
+import { Skeleton } from "phoundry-ui";
+```
+
+## Rectangle
+
+<Example name="display/skeleton/rectangle" />
+
+## Circle
+
+<Example name="display/skeleton/circle" />
+
+## Text Lines
+
+<Example name="display/skeleton/text-lines" />
+
+## Card Composition
+
+<Example name="display/skeleton/card-composition" />
+
+---
+
+## API
+
+<ApiTable
+	of="Skeleton"
+	include={["variant", "width", "height", "lines", "class", "style"]}
+	notes={{
+		variant: "Shape of the placeholder.",
+		width: "CSS width value. Defaults to 100% for rect/text, 40px for circle.",
+		height:
+			"CSS height value. Defaults to 20px for rect, matches width for circle.",
+		lines: 'Number of text lines (only for variant="text").',
+		class: "Additional CSS classes.",
+		style: "Inline styles on the stable component root.",
+	}}
+/>
+
+## Usage tips
+
+- Compose multiple skeletons to mirror the layout of the content being loaded.
+- The last line in `variant="text"` is automatically shorter (75%) for a natural look.
+- Use fixed `width`/`height` to prevent layout shift when content loads.
+- Add utility classes via `class` (e.g. rounded corners) to mirror cards or avatar stacks.
+- Animation follows global motion preferences via the theme stylesheet - no extra props required.
+
+## Styling
+
+`.ph-skeleton` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. The root emits `data-variant`. `width` and `height` remain CSS-length props; defaults retain the 2.5rem circle, 1.25rem rectangle height, and 0.75rem text-line height. Text mode still ignores `height` and shortens the last line to 75%. Pulse animation uses `--ph-motion-pulse` (2000ms), and stops under reduced-motion preferences. Internal part selectors and `--_ph-*` properties remain implementation details.

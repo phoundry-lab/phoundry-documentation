@@ -20,23 +20,23 @@ general filesystem, clipboard, network, or host-command access.
 
 ## File operations
 
-| Operation | Permission | Result or consequence |
-| --- | --- | --- |
-| `api.files.getExtension(filename)` | None | Lowercase extension without the period, or `""` |
-| `api.files.getBasename(path)` | None | Last path segment |
-| `api.files.getDirname(path)` | None | Parent path |
-| `api.files.joinPath(...parts)` | None | Joined portable path string |
-| `api.files.pickDirectory(options?)` | None | User-selected path or `null` |
-| `api.explorer.getActivePane()` / `getPane(id)` | None | Explicitly acquires a reactive Public Explorer pane facade |
-| `pane.navigation.openPath(path)` | None | Opens through the exact pane's supported primary Phials action |
-| `api.files.revealPath(path)` | None | Reveals the path in the native file manager |
-| `api.files.readDirectory(path)` | `filesystem.read` or `filesystem.write` | Entries plus ordered child-materialization failures |
-| `api.files.toAssetUrl(path)` | `filesystem.read` or `filesystem.write` | Trusted-renderer asset URL for one absolute file path |
-| `api.files.readBinary(path)` | `filesystem.read` or `filesystem.write` | Raw-byte snapshot plus opaque revision |
-| `api.files.getFolderSummary(path, { signal })` | `filesystem.read` or `filesystem.write` | Cancellable recursive counts and byte total |
+| Operation                                      | Permission                              | Result or consequence                                                                                                   |
+| ---------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `api.files.getExtension(filename)`             | None                                    | Lowercase extension without the period, or `""`                                                                         |
+| `api.files.getBasename(path)`                  | None                                    | Last path segment                                                                                                       |
+| `api.files.getDirname(path)`                   | None                                    | Parent path                                                                                                             |
+| `api.files.joinPath(...parts)`                 | None                                    | Joined portable path string                                                                                             |
+| `api.files.pickDirectory(options?)`            | None                                    | User-selected path or `null`                                                                                            |
+| `api.explorer.getActivePane()` / `getPane(id)` | None                                    | Explicitly acquires a reactive Public Explorer pane facade                                                              |
+| `pane.navigation.openPath(path)`               | None                                    | Opens through the exact pane's supported primary Phials action                                                          |
+| `api.files.revealPath(path)`                   | None                                    | Reveals the path in the native file manager                                                                             |
+| `api.files.readDirectory(path)`                | `filesystem.read` or `filesystem.write` | Entries plus ordered child-materialization failures                                                                     |
+| `api.files.toAssetUrl(path)`                   | `filesystem.read` or `filesystem.write` | Trusted-renderer asset URL for one absolute file path                                                                   |
+| `api.files.readBinary(path)`                   | `filesystem.read` or `filesystem.write` | Raw-byte snapshot plus opaque revision                                                                                  |
+| `api.files.getFolderSummary(path, { signal })` | `filesystem.read` or `filesystem.write` | Cancellable recursive counts and byte total                                                                             |
 | `api.git.getInfo(path)` / `getLanguages(path)` / `status(path)` / `diff(path, options?)` / `log(path, options?)` / `listBranches(path)` / `readBlob(path, revision, file)` | `filesystem.read` or `filesystem.write` | [Read-only repository inspection](../../work-with-phials/work-with-files-and-folders/inspect-git-repositories.md) on the captured Host; Git CLI queries require installed Git |
-| `api.files.readText(path)` | `filesystem.read` or `filesystem.write` | [PluginTextFileSnapshot](../../reference/sdk-type-reference/PluginTextFileSnapshot.md) with content and opaque revision |
-| `api.files.watchDirectory(path, handler)` | `filesystem.read` or `filesystem.write` | [PluginDirectoryWatch](../../reference/sdk-type-reference/PluginDirectoryWatch.md); `unsubscribe()` releases it |
+| `api.files.readText(path)`                     | `filesystem.read` or `filesystem.write` | [PluginTextFileSnapshot](../../reference/sdk-type-reference/PluginTextFileSnapshot.md) with content and opaque revision |
+| `api.files.watchDirectory(path, handler)`      | `filesystem.read` or `filesystem.write` | [PluginDirectoryWatch](../../reference/sdk-type-reference/PluginDirectoryWatch.md); `unsubscribe()` releases it         |
 
 `MetadataProvider.extract` receives target-bound `api.readFile()` and
 `api.readTextFile()` methods that require no filesystem permission. They accept
@@ -52,24 +52,28 @@ the permission-gated `api.files` methods above.
 because the user chooses a path; reading the selected directory or its files is
 separately gated.
 
+## Thumbnail renderer reads
+
+`ThumbnailRenderContext.content` reads and snapshots require approved `filesystem.read` (or the implied reads from `filesystem.write`) on the captured owning Host. Source and auxiliary reads, bounded directory selections and declared inputs participate in cache freshness. Phials owns publication; a Plugin does not need `filesystem.write` to receive automatic Thumbnail caching. Native helpers retain their documented format/platform capabilities and existing built-in exceptions; declaring a provider does not grant another Plugin's native authority.
+
 ## Clipboard and network
 
-| Operation | Permission | Result |
-| --- | --- | --- |
-| `api.clipboard.readText()` | `clipboard.read` | Current clipboard text |
+| Operation                       | Permission        | Result                   |
+| ------------------------------- | ----------------- | ------------------------ |
+| `api.clipboard.readText()`      | `clipboard.read`  | Current clipboard text   |
 | `api.clipboard.writeText(text)` | `clipboard.write` | `void` after replacement |
-| `api.fetch(input, init?)` | `network.fetch` | Standard `Response` |
+| `api.fetch(input, init?)`       | `network.fetch`   | Standard `Response`      |
 
 Clipboard permissions do not imply each other. `network.fetch` gates only the
 supported Plugin API wrapper; it is not a renderer network sandbox.
 
 ## Workspace Folder operations
 
-| Operation group | Permission | Result |
-| --- | --- | --- |
-| `api.workspaceFolders` schema, value, tag, rating, known-folder, and existing-Page reads | `workspace-folders.read` or `workspace-folders.write` | Typed immutable Workspace Folder projections |
-| `api.workspaceFolders` property, tag, rating, and schema mutations | `workspace-folders.write` | Validated atomic changes |
-| `api.workspaceFolders.openPage` with implicit creation | `workspace-folders.write` | Host-mediated confirmation, creation, reconciliation, and opening |
+| Operation group                                                                          | Permission                                            | Result                                                            |
+| ---------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
+| `api.workspaceFolders` schema, value, tag, rating, known-folder, and existing-Page reads | `workspace-folders.read` or `workspace-folders.write` | Typed immutable Workspace Folder projections                      |
+| `api.workspaceFolders` property, tag, rating, and schema mutations                       | `workspace-folders.write`                             | Validated atomic changes                                          |
+| `api.workspaceFolders.openPage` with implicit creation                                   | `workspace-folders.write`                             | Host-mediated confirmation, creation, reconciliation, and opening |
 
 `workspace-folders.write` implies protected reads. Do not pair it with
 `workspace-folders.read`.
@@ -79,16 +83,16 @@ supported Plugin API wrapper; it is not a renderer network sandbox.
 These operations are always available only in the provider callback or surface
 scope that declares them:
 
-| Operation | Manifest permission | Scope |
-| --- | --- | --- |
-| `MetadataAPI.readFile()` | None | Reads only the exact host-selected extraction target as `Uint8Array` |
-| `MetadataAPI.readTextFile()` | None | Reads only the exact host-selected extraction target as UTF-8 text |
-| `PreviewAPI.getMetadata(file)` | None | Preview-specific factories receiving [PreviewAPI](../../reference/sdk-type-reference/PreviewAPI.md) |
-| `PreviewAPI.openFullscreen(file)` | None | Preview-specific factories receiving [PreviewAPI](../../reference/sdk-type-reference/PreviewAPI.md) |
-| `PreviewAPI.navigateTo(path)` | None | Preview-specific factories receiving [PreviewAPI](../../reference/sdk-type-reference/PreviewAPI.md) |
-| `FileMatchAPI.matchesExtension(file, extensions)` | None | Provider matching callbacks receiving [FileMatchAPI](../../reference/sdk-type-reference/FileMatchAPI.md) |
-| `FileMatchAPI.matchesMime(file, mimeTypes)` | None | Provider matching callbacks receiving [FileMatchAPI](../../reference/sdk-type-reference/FileMatchAPI.md) |
-| `FileMatchAPI.matchesCategory(file, categories)` | None | Provider matching callbacks receiving [FileMatchAPI](../../reference/sdk-type-reference/FileMatchAPI.md) |
+| Operation                                         | Manifest permission | Scope                                                                                                    |
+| ------------------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------- |
+| `MetadataAPI.readFile()`                          | None                | Reads only the exact host-selected extraction target as `Uint8Array`                                     |
+| `MetadataAPI.readTextFile()`                      | None                | Reads only the exact host-selected extraction target as UTF-8 text                                       |
+| `PreviewAPI.getMetadata(file)`                    | None                | Preview-specific factories receiving [PreviewAPI](../../reference/sdk-type-reference/PreviewAPI.md)      |
+| `PreviewAPI.openFullscreen(file)`                 | None                | Preview-specific factories receiving [PreviewAPI](../../reference/sdk-type-reference/PreviewAPI.md)      |
+| `PreviewAPI.navigateTo(path)`                     | None                | Preview-specific factories receiving [PreviewAPI](../../reference/sdk-type-reference/PreviewAPI.md)      |
+| `FileMatchAPI.matchesExtension(file, extensions)` | None                | Provider matching callbacks receiving [FileMatchAPI](../../reference/sdk-type-reference/FileMatchAPI.md) |
+| `FileMatchAPI.matchesMime(file, mimeTypes)`       | None                | Provider matching callbacks receiving [FileMatchAPI](../../reference/sdk-type-reference/FileMatchAPI.md) |
+| `FileMatchAPI.matchesCategory(file, categories)`  | None                | Provider matching callbacks receiving [FileMatchAPI](../../reference/sdk-type-reference/FileMatchAPI.md) |
 
 Do not retain a specialized API beyond its documented lifetime or cast a base
 [PluginAPI](../../reference/sdk-type-reference/PluginAPI.md) to obtain it.
@@ -100,10 +104,10 @@ activation deactivates.
 Plugin-owned settings and data are namespaced by the activated plugin ID and do
 not require manifest permissions:
 
-| Service | Always-available operations |
-| --- | --- |
-| `api.settings` | `get`, `set`, `getAll`, `getStored`, `unset`, `reset`, `onChange`, `open` |
-| `api.storage` | `get`, `set`, `delete`, `keys`, `clear` |
+| Service        | Always-available operations                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| `api.settings` | `get`, `set`, `getAll`, `getStored`, `unset`, `reset`, `onChange`, `open`                    |
+| `api.storage`  | `get`, `set`, `delete`, `keys`, `clear`                                                      |
 | `api.database` | `query`, `execute`, `insert`, `update`, `deleteFrom`, `selectAll` for declared plugin tables |
 
 `api.database` throws when the exported [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md) has no database schema.
@@ -114,14 +118,14 @@ storage namespace, or declared database tables.
 
 These base Plugin API operations require no manifest permission:
 
-| Service | Always-available operations |
-| --- | --- |
-| `api.appSettings` | Read `thumbnailsEnabled`, `thumbnailSize`, `thumbnailQuality`, `showHiddenFiles`, and `showParentDirectory` |
-| `api.modules` | `openCenter(moduleProviderId, state, options?)` for an activated center-capable [ModuleProvider](../../reference/sdk-type-reference/ModuleProvider.md) |
-| `api.events` | `on`, `once`, `emit`, `register`; subscriptions remain subject to lifecycle cleanup |
-| `api.modal` | `confirm`, `prompt`, `alert`, `choose` |
-| `api.notify` | `info`, `success`, `warning`, `error` |
-| `api.openSettings()` | Opens Settings on this plugin's settings page. `api.settings.open()` is the same navigation |
+| Service              | Always-available operations                                                                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `api.appSettings`    | Read `thumbnailsEnabled`, `thumbnailSize`, `thumbnailQuality`, `showHiddenFiles`, and `showParentDirectory`                                            |
+| `api.modules`        | `openCenter(moduleProviderId, state, options?)` for an activated center-capable [ModuleProvider](../../reference/sdk-type-reference/ModuleProvider.md) |
+| `api.events`         | `on`, `once`, `emit`, `register`; subscriptions remain subject to lifecycle cleanup                                                                    |
+| `api.modal`          | `confirm`, `prompt`, `alert`, `choose`                                                                                                                 |
+| `api.notify`         | `info`, `success`, `warning`, `error`                                                                                                                  |
+| `api.openSettings()` | Opens Settings on this plugin's settings page. `api.settings.open()` is the same navigation                                                            |
 
 No permission makes an unknown module provider, event, database table, or app
 setting available.

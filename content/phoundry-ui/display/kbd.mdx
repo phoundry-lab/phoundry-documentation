@@ -1,0 +1,62 @@
+---
+title: Kbd
+order: 3
+description: >-
+  Keyboard shortcut display that renders key combinations with
+  platform-appropriate symbols. Accepts a '+' separated key string.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Keyboard shortcut display that renders key combinations with platform-appropriate symbols. Accepts a '+' separated key string.
+
+```ts
+import { Kbd } from "phoundry-ui";
+```
+
+## Basic Shortcuts
+
+<Example name="display/kbd/basic-shortcuts" />
+
+## Modifier Combos
+
+<Example name="display/kbd/modifier-combos" />
+
+## Arrow keys
+
+<Example name="display/kbd/arrow-keys" />
+
+## Sizes
+
+<Example name="display/kbd/sizes" />
+
+## Variants
+
+<Example name="display/kbd/variants" />
+
+---
+
+## API
+
+<ApiTable
+	of="Kbd"
+	include={["keys", "size", "variant", "class", "style"]}
+	notes={{
+		keys: 'Key combo string with "+" separator, e.g. "Mod+Shift+K".',
+		size: "Keycap height from shared control tokens: sm 1.5rem, md 1.75rem.",
+		variant: "Filled keycaps or a transparent ghost treatment.",
+		class: "Additional CSS classes.",
+		style: "Inline styles on the stable component root.",
+	}}
+/>
+
+## Usage tips
+
+- `Mod` resolves to ⌘ on macOS and Ctrl on other platforms.
+- Keys are automatically uppercased and mapped to platform glyphs (e.g. ⇧ for Shift on Mac).
+- Pair with command palette items, menu labels, or tooltip descriptions to show shortcuts inline.
+
+## Styling
+
+`.ph-kbd` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. `variant="filled"` is the default and retains the current translucent keycap style. `variant="ghost"` removes the fill and text shadow while retaining the same keycap geometry. The root always emits `data-size` and `data-variant`. Keycap heights now consume `--ph-comp-h-sm` (1.5rem, previously 1.25rem) and `--ph-comp-h-md` (1.75rem). Platform-specific key formatting and PC separator labels are unchanged. `KbdVariant` is exported from `phoundry-ui`. Internal part selectors and `--_ph-*` properties remain implementation details.

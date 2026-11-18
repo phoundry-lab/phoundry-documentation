@@ -1,0 +1,67 @@
+---
+title: Badge
+order: 1
+description: >-
+  Compact label for status, categories, or counts. Supports theme option colors,
+  an optional icon, and a dot-only mode for minimal status indicators.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Compact label for status, categories, or counts. Supports theme option colors, an optional icon, and a dot-only mode for minimal status indicators.
+
+```ts
+import { Badge } from "phoundry-ui";
+```
+
+## Variants
+
+<Example name="display/badge/variants" />
+
+## Sizes
+
+<Example name="display/badge/sizes" />
+
+## With Icon
+
+<Example name="display/badge/with-icon" />
+
+## Icon Only
+
+<Example name="display/badge/icon-only" />
+
+## Dot Mode
+
+<Example name="display/badge/dot-mode" />
+
+---
+
+## API
+
+<ApiTable
+	of="Badge"
+	include={["color", "size", "icon", "dot", "class", "style", "children"]}
+	notes={{
+		color: "Theme option color.",
+		size: "Shared control size: xs 1.25rem, sm 1.5rem, md 1.75rem; defaults to xs.",
+		icon: "Iconify icon string shown before the label.",
+		dot: "Render as a small colored dot instead of a label.",
+		class: "Additional CSS classes.",
+		style: "Inline styles on the stable component root.",
+		children: "Badge label content.",
+	}}
+/>
+
+## Usage tips
+
+- Use `dot` mode for compact status indicators next to labels or avatars.
+- In `dot` mode, only `color` and `size` apply - children and `icon` are ignored.
+- The `icon` prop accepts any Iconify string (or `PhiIcons` entries) and scales with `size`.
+- Combine badges with other components - e.g. inside table cells, card headers, or list items.
+
+## Styling
+
+`.ph-badge` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. Sizes are now `xs | sm | md`, defaulting to `xs`. The normal badge uses shared `--ph-comp-h-xs/sm/md` heights (1.25rem / 1.5rem / 1.75rem), corresponding `--ph-comp-icon-*` sizes, and Button-aligned typography. Icon-only badges are square. Dots retain their distinct 0.5rem (`xs`) and 0.625rem (`sm` / `md`) dimensions. The root emits `data-size`, `data-color`, `data-dot`, and `data-icon-only`; colors use the active Theme’s option tokens. Internal part selectors and `--_ph-*` properties remain implementation details.
+
+When upgrading, rename old `sm → xs`, `md → sm`, and `lg → md` at call sites and in typed size maps. The default changes from `sm` to `xs`. The new dimensions follow the shared control tokens rather than preserving the old badge geometry. Replace `.phi-badge` and `.phi-badge-dot` hooks with `.ph-badge` and their corresponding state attributes.

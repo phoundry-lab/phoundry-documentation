@@ -1,0 +1,89 @@
+---
+title: ButtonGroup
+order: 3
+description: >-
+  Groups related buttons in a secondary, outline, or ghost strip with inset
+  segments and a moving active indicator.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Groups related buttons in a secondary, outline, or ghost strip with inset segments and a moving active indicator.
+
+```ts
+import {
+	ButtonGroup,
+	type ButtonGroupItem,
+	type ButtonGroupVariant,
+} from "phoundry-ui";
+```
+
+## Toggle group
+
+<Example name="buttons/button-group/toggle-group" />
+
+## Outline variant
+
+<Example name="buttons/button-group/outline-variant" />
+
+## Ghost variant
+
+<Example name="buttons/button-group/ghost-variant" />
+
+## Sizes
+
+<Example name="buttons/button-group/sizes" />
+
+## Icons and labels
+
+<Example name="buttons/button-group/icons-and-labels" />
+
+## Disabled, loading, stable keys
+
+<Example name="buttons/button-group/disabled-loading-stable-keys" />
+
+---
+
+## API
+
+<ApiTable
+	of="ButtonGroup"
+	include={["items", "variant", "size", "class"]}
+	notes={{
+		items:
+			"Segment entries with optional label, icon, active, disabled, loading, class, onclick, and other native button attributes. An icon or spinner without a non-empty label uses icon-only layout; provide aria-label or title for its accessible name.",
+		variant:
+			"Button-aligned surfaces: secondary uses the base surface and button shadow; outline uses a transparent shell with the default border; ghost uses a transparent shell without a visible border or shadow. The moving indicator uses the corresponding Button active color.",
+		size: "Outer border-box height from --ph-comp-h-sm, --ph-comp-h-md, or --ph-comp-h-lg. The inner segments fill the remaining height after the border and inset; they do not add to the group height. Typography and icons follow the same named Button size.",
+		class:
+			'Additive classes on the outer role="group" container. Width is intrinsic by default. Use style="width: 100%" to stretch the shell in a layout.',
+	}}
+/>
+
+**Other native attributes:** Forwarded to the outer `role="group"` wrapper (`aria-label`, `data-*`, etc.).
+
+## Usage tips
+
+- Set one item's `active` value to reflect selection. Each button exposes this state through `aria-pressed`; selecting an item is controlled by the Consumer's `onclick` handler.
+- `secondary` and `outline` use `surface-overlay-active` for the selected segment. `ghost` uses `surface-overlay-hover`, matching `Button variant="ghost"`. Inactive hover colors also follow the corresponding Button variant.
+- Items support `icon`, optional `label`, tooltip-based `title`, native button attributes, and additive classes and styles. Omit `label` (or use an empty string) for a square icon-only item; layout is derived from an icon or loading spinner without label text. Supply `aria-label` or `title` for its accessible name. The `iconOnly` item prop has been removed. Links are not supported.
+- Loading replaces the item content with a spinner and disables its action. Disabled items cannot activate through the component's click handler.
+- `sm`, `md`, and `lg` have outer heights of 1.5rem, 1.75rem, and 2rem with the shared defaults. Insets and borders stay inside those heights, so a group aligns with the same-sized Button or ButtonDropdown.
+
+```svelte
+<ButtonGroup
+	items={[
+		{ icon: PhiIcons.add, "aria-label": "Add", onclick: addItem },
+		{ icon: PhiIcons.check, label: "Apply", onclick: applyChanges },
+	]}
+/>
+```
+
+## Styling hooks
+
+The stable root selector is `.ph-btn-group`, with `data-variant` and `data-size` axes. Consumer `class`, `style`, and remaining div attributes apply to this root; item classes, styles, and native attributes apply to each button. Part selectors are internal.
+
+The group consumes shared `--ph-comp-h-sm` / `md` / `lg` height tokens, `--ph-comp-icon-sm` / `md` / `lg` icon tokens, and `--ph-btn-radius`. It shares Button's `--ph-button-shadow`, `--ph-button-specular`, `--ph-button-shading`, and `--ph-text-shadow` tokens.
+
+Indicator movement uses `--ph-motion-normal` (200ms), hover uses `--ph-motion-fast` (100ms), and both use `--ph-motion-ease-out`. Loading uses `--ph-motion-spin` (1000ms). Reduced-motion preferences disable movement, transitions, and spinner animation.

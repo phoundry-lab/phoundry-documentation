@@ -53,7 +53,7 @@ The static web build generated from the **documentation source** and served at `
 _Avoid_: the existing host-aware phoundry-website docs routes after cutover; using the site build as Phials' offline input; redefining core navigation or validation in a web projection.
 
 **Static documentation site**:
-A fully prerendered SvelteKit site whose canonical pages and redirects are emitted as static files, while interactive navigation and Phoundry UI demos hydrate in the browser.
+A fully prerendered Astro Starlight site whose canonical pages and redirects are emitted as static files, while focused Svelte examples hydrate in the browser. The root hub links to three independent documentation areas with their own sidebars.
 _Avoid_: using static to mean JavaScript-free; retaining an SSR server solely for documentation; requiring runtime filesystem or manifest generation.
 
 **Static alias redirect**:
@@ -105,7 +105,7 @@ The versioned `@phoundry/phials-plugin-sdk` package produced by Phials from its 
 _Avoid_: reading unversioned Phials source from a sibling checkout; treating generated Markdown as the SDK contract; moving Phials-internal extraction transforms into the documentation repository.
 
 **Phoundry UI documentation target**:
-The phoundry-ui Git revision resolved by the documentation lockfile and used to compile live demos and validate API guidance; it may represent unreleased API work.
+The exact phoundry-ui package version or immutable revision resolved by the documentation lockfile and used for both live examples and generated API facts; it may represent unreleased API work. The current input is `phoundry-ui@0.4.21`.
 _Avoid_: requiring an npm release before documenting an API; calling the target latest without identifying a revision; unrepeatable sibling-checkout state in CI.
 
 **Same-change documentation contract**:
@@ -134,15 +134,17 @@ _Avoid_: merging unrelated product histories into the documentation repository; 
 - Only **published documentation** moves; **contributor documentation** remains in its owning product repository.
 - The **documentation content license** and **documentation tooling license** apply to separate repository paths, with clear notices at their boundary.
 - The **documentation source** produces both the **documentation artifact** and the **documentation site**.
-- The **documentation artifact** includes only `phials` and `phials-developer`; the mdsvex-dependent `phoundry-ui` set remains a static-site input only.
+- The **documentation artifact** includes only `phials` and `phials-developer`; the MDX and live examples in `phoundry-ui` remain website inputs only.
 - Phials integrates only through the **documentation artifact API**; the exact package version and compile/build tests enforce compatibility.
 - The artifact exposes the complete **documentation manifest** eagerly and provides discoverable dynamic imports for **offline page modules**; SvelteKit/Vite owns chunking and loading.
 - One **documentation manifest** supplies the hierarchy and metadata used by both delivery paths.
 - Phials pins one **documentation artifact** version and may opt into a **local documentation override** during development.
 - The **Phials Help adapter** remains application-owned and consumes the artifact without duplicating canonical content.
 - The **documentation site** derives a **web documentation projection** without redefining the shared manifest.
-- The **documentation site** is a **static documentation site** built with SvelteKit, `adapter-static`, and mdsvex.
-- Every page-owned alias becomes a **static alias redirect** generated from the manifest during the SvelteKit build.
+- The **documentation site** is a **static documentation site** built with Astro Starlight and its Svelte integration. Starlight owns the website shell; the shared manifest supplies section navigation and aliases.
+- Every page-owned alias becomes a **static alias redirect** generated from the manifest during the Astro build, preserving query and fragment state.
+- Phoundry UI MDX articles explicitly compose prose, individual runnable Svelte examples, and selected API members. The same example file supplies its rendered preview and displayed source.
+- UI API tables extract facts from the installed library with `svelte-docinfo` and TypeScript. Article notes supply editorial descriptions without duplicating types or defaults.
 - The **public documentation channel** advances on every successful `main` deployment, while the **bundled documentation channel** advances only when Phials updates its exact artifact pin.
 - The public site emits no application-level analytics; **documentation traffic logs** are the only initial traffic signal.
 - A **documentation snapshot** is published locally only when the maintainer wants Phials to advance its bundled documentation.
@@ -187,6 +189,6 @@ _Avoid_: merging unrelated product histories into the documentation repository; 
 - [ADR-0001: Distribute bundled documentation as a versioned package](../../adr/0001-versioned-documentation-artifact.md)
 - [ADR-0002: Generate one consumer-neutral documentation manifest](../../adr/0002-consumer-neutral-documentation-manifest.md)
 - [ADR-0003: Generate SDK references from a versioned public artifact](../../adr/0003-versioned-public-sdk-input.md)
-- [ADR-0004: Build the public docs as a static SvelteKit site](../../adr/0004-static-sveltekit-site.md)
+- [ADR-0006: Use Starlight and composable UI documentation](../../adr/0006-starlight-and-composable-ui-documentation.md) — supersedes the website choice in ADR-0004
 - [ADR-0005: License tooling and content separately](../../adr/0005-separate-code-and-content-licenses.md)
 - [Documentation repository migration](../../plans/documentation-repository-migration.md)

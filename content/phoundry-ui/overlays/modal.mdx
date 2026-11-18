@@ -1,0 +1,162 @@
+---
+title: Modal
+order: 2
+description: >-
+  Stack-based modal system with a programmatic API. Includes built-in confirm,
+  prompt, and alert dialogs, or pass your own Svelte component to open().
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Stack-based modal system with a programmatic API. Includes built-in confirm, prompt, and alert dialogs, or pass your own Svelte component to open().
+
+```ts
+import { useModalManagerAPI, Modal } from "phoundry-ui";
+```
+
+## Confirm Dialog
+
+<Example name="overlays/modal/confirm-dialog" />
+
+## Prompt Dialog
+
+<Example name="overlays/modal/prompt-dialog" />
+
+## Alert Dialog
+
+<Example name="overlays/modal/alert-dialog" />
+
+## Custom modal
+
+<Example
+	name="overlays/modal/custom-modal"
+	files={["_shared/ExampleCustomModal"]}
+/>
+
+---
+
+## Modal Props
+
+<ApiTable
+	of="Modal"
+	include={[
+		"title",
+		"onClose",
+		"closeOnBackdrop",
+		"size",
+		"width",
+		"noTitle",
+		"icon",
+		"iconColor",
+		"children",
+	]}
+	notes={{
+		title: "Modal title displayed in the header.",
+		onClose:
+			"Called when the modal should close (escape, backdrop, close button).",
+		closeOnBackdrop: "Allow closing by clicking the backdrop overlay.",
+		size: "Named size controlling max-width (sm=400, md=560, lg=720, xl=960, full=100%).",
+		width: "CSS inline size when size is omitted, such as 45rem or 90vw.",
+		noTitle: "Hide the title bar for custom header layouts.",
+		icon: "Iconify icon id shown before the title. Ignored when noTitle is true.",
+		iconColor:
+			"CSS color for the leading icon, such as var(--ph-accent). Defaults to the Theme secondary text color.",
+		children: "Modal body content.",
+	}}
+/>
+
+## Confirm Options
+
+<ApiTable
+	of="ConfirmOptions"
+	include={[
+		"title",
+		"message",
+		"confirmLabel",
+		"cancelLabel",
+		"danger",
+		"icon",
+		"iconColor",
+	]}
+	notes={{
+		title: "Dialog heading.",
+		message: "Dialog body text.",
+		confirmLabel: "Label for the confirm button.",
+		cancelLabel: "Label for the cancel button.",
+		danger: "Use danger variant for the confirm button.",
+		icon: "Iconify id for a leading icon.",
+		iconColor:
+			"CSS color for the leading icon. Omit to use the semantic Theme default.",
+	}}
+/>
+
+## Prompt Options
+
+<ApiTable
+	of="PromptOptions"
+	include={[
+		"title",
+		"message",
+		"defaultValue",
+		"placeholder",
+		"confirmLabel",
+		"iconColor",
+	]}
+	notes={{
+		title: "Dialog heading.",
+		message: "Optional help text above the field.",
+		defaultValue: "Initial value for the input.",
+		placeholder: "Input placeholder text.",
+		confirmLabel: "Label for the submit button.",
+		iconColor:
+			"CSS color for the leading icon. Omit to use the semantic Theme default.",
+	}}
+/>
+
+## Alert Options
+
+<ApiTable
+	of="AlertOptions"
+	include={["title", "message", "confirmLabel", "icon", "iconColor"]}
+	notes={{
+		title: "Dialog heading.",
+		message: "Dialog body text.",
+		confirmLabel: "Label for the single action button.",
+		icon: "Iconify id; defaults to an information icon if omitted.",
+		iconColor:
+			"CSS color for the leading icon. Omit to use the semantic Theme default.",
+	}}
+/>
+
+## Usage tips
+
+- Call `setupOverlays()` once in your root layout to initialize all overlay managers together, including the modal stack and `ModalOverlay`.
+- Use `useModalManagerAPI()` inside components (context-based) or `getModalManager()` from non-component code (global singleton).
+- `manager.open(Component, props, options)` returns a `Promise` that resolves when the modal closes, with the value passed to `onClose(result)`.
+- Modals stack - opening a second modal layers it on top. `manager.closeAll()` dismisses the entire stack.
+
+## Mobile keyboard
+
+Set `mobile` once on the overlay in your root layout to keep every modal in the
+visible viewport when the on-screen keyboard opens:
+
+```svelte
+<ModalOverlay mobile={isMobileClient} />
+```
+
+`mobile` defaults to `false`. Enable it from the application's native platform
+identity. The overlay follows visual viewport resize and scroll events, recenters
+the entire modal stack above the keyboard, and leaves pinch zoom to the browser.
+The library `Modal` panel also limits its height to the available space. Custom
+dialogs should use a scrollable body for long content.
+
+## CSS styling
+
+`.ph-modal` is the stable identification hook for Modal. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+The content panel uses `.ph-modal-panel`. AlertDialog, ConfirmDialog, and PromptDialog use `.ph-alert-dialog`, `.ph-confirm-dialog`, and `.ph-prompt-dialog`. Named panel sizes are `sm` 25rem, `md` 35rem, `lg` 45rem, `xl` 60rem, and `full` the window width minus 2rem. Without a named size, `width` accepts a CSS inline size and defaults to 24rem. Class strings are no longer accepted for width or iconColor. All built-in dialogs and manager options accept CSS colors for iconColor, such as `var(--ph-accent)`. `--ph-modal-panel-height` caps panel height; the existing `--phi-modal-panel-height` alias is still accepted.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.
+
+For custom modal content, apply the shared `.ph-dialog-panel` visual surface explicitly. The former `.modal-panel` class remains a compatibility alias.

@@ -1,0 +1,88 @@
+---
+title: Checkbox
+order: 6
+description: >-
+  Checkbox with label and indeterminate state. Accessible via keyboard
+  (Space/Enter) with support for form integration.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Checkbox with label and indeterminate state. Accessible via keyboard (Space/Enter) with support for form integration.
+
+```ts
+import { Checkbox } from "phoundry-ui";
+```
+
+## Basic toggle
+
+<Example name="inputs/checkbox/basic-toggle" />
+
+## With label and description
+
+<Example name="inputs/checkbox/with-label-and-description" />
+
+## Indeterminate state
+
+<Example name="inputs/checkbox/indeterminate-state" />
+
+## Sizes
+
+<Example name="inputs/checkbox/sizes" />
+
+## Form name (hidden input)
+
+<Example name="inputs/checkbox/form-name-hidden-input" />
+
+## Disabled
+
+<Example name="inputs/checkbox/disabled" />
+
+---
+
+## API
+
+<ApiTable
+	of="Checkbox"
+	include={[
+		"checked",
+		"onchange",
+		"indeterminate",
+		"disabled",
+		"size",
+		"label",
+		"description",
+		"class",
+		"style",
+		"id",
+		"name",
+		"element",
+	]}
+	notes={{
+		checked: "Whether the checkbox is checked",
+		onchange: "Called when the checkbox is toggled",
+		indeterminate: "Shows a dash icon instead of a checkmark (mixed state)",
+		disabled: "Prevents interaction",
+		size: "Indicator box (~14px sm / ~16px md display size, not full control height)",
+		label: "Inline label rendered next to the checkbox",
+		description: "Helper text below the label",
+		class: "Additional CSS classes",
+		style: "Inline styles on the component styling target described below.",
+		id: "Element id (auto-generated if omitted)",
+		name: "Form field name - renders a hidden input",
+		element: "Bindable reference to the checkbox button.",
+	}}
+/>
+
+**Other native attributes:** Additional attributes forwarded to the checkbox `<button>` (e.g. `aria-invalid`, `data-testid`).
+
+## Usage tips
+
+- Use `indeterminate` for "select all" patterns where only some children are checked.
+- Pass a `name` prop to render a hidden `<input>` for native form submission.
+- When using without the `label` prop, supply `aria-label` or `aria-labelledby` on the control.
+
+## Styling
+
+`.ph-checkbox` is the stable root identification hook. Styling is component-local vanilla CSS; `data-size` always identifies the selected size. The root is the label wrapper when labelled and the control button otherwise. `class` and `style` apply to that root; native attributes, attachments, and `bind:element` still target the button. Indicator sizes use `--ph-indicator-sm` (0.875rem) and `--ph-indicator-md` (1rem), with `--ph-comp-icon-xs` / `--ph-comp-icon-sm` for icons. Customize the shared icon shadow with `--ph-indicator-icon-filter` and the surface shadow with `--ph-input-shadow`. Internal part selectors and `--_ph-*` properties are implementation details. Filled indicators use the active Theme’s `--text-on-accent` foreground.

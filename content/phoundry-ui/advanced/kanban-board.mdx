@@ -1,0 +1,99 @@
+---
+title: KanbanBoard
+order: 7
+description: >-
+  Drag-and-drop kanban board with columns, cards, labels, and custom card
+  rendering.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Drag-and-drop kanban board with columns, cards, labels, and custom card rendering.
+
+```ts
+import { KanbanBoard } from "phoundry-ui";
+```
+
+## Basic Board
+
+<Example name="advanced/kanban-board/basic-board" />
+
+## Add-card footer & custom header
+
+<Example name="advanced/kanban-board/add-card-footer-custom-header" />
+
+---
+
+## API
+
+<ApiTable
+	of="KanbanBoard"
+	include={["columns", "onmove", "onadd", "columnHeader", "class", "card"]}
+	notes={{
+		columns: "Array of columns with their cards.",
+		onmove:
+			"Called after a reorder or cross-column drop. Omit only for read-only previews.",
+		onadd:
+			"When set, each column shows an “Add card” footer that passes its column id.",
+		columnHeader: "Replace the default header row (dot, title, count).",
+		class: "Additional CSS classes on the horizontal scroller.",
+		card: "Custom card body; you still get drag handles via the outer `dndItem` wrapper.",
+	}}
+/>
+
+## KanbanColumn
+
+<ApiTable
+	of="KanbanColumn"
+	include={["id", "title", "cards", "color"]}
+	notes={{
+		id: "Unique column identifier.",
+		title: "Column header text.",
+		cards: "Cards in this column.",
+		color: "Accent color for the column header.",
+	}}
+/>
+
+## KanbanCard
+
+<ApiTable
+	of="KanbanCard"
+	include={["id", "title", "description", "labels"]}
+	notes={{
+		id: "Unique card identifier.",
+		title: "Card title text.",
+		description: "Optional card description.",
+		labels: "Optional label tags with text and color.",
+	}}
+/>
+
+## KanbanMoveEvent
+
+<ApiTable
+	of="KanbanMoveEvent"
+	include={["card", "fromColumnId", "fromIndex", "toColumnId", "toIndex"]}
+	notes={{
+		card: "The card being moved.",
+		fromColumnId: "Source column ID.",
+		fromIndex: "Original index in source column.",
+		toColumnId: "Target column ID.",
+		toIndex: "Target index in destination column.",
+	}}
+/>
+
+## Usage tips
+
+- The `onmove` handler receives the full move event - you're responsible for updating column state immutably.
+- Use the `card` snippet prop for custom card rendering (e.g. avatars, due dates, priority indicators).
+- Column `color` is rendered as a header accent - use brand or status colors to differentiate lanes.
+- Cards support `labels` for lightweight categorization displayed as tags.
+- `DndGhost` and `DndIndicator` ship inside the component - import bundled styles so drag visuals match other DnD surfaces.
+
+## CSS styling
+
+`.ph-kanban-board` is the stable identification hook for KanbanBoard. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Column and card styling is scoped locally. Consumer-provided card and label colors remain runtime values. Drag-and-drop callbacks are unchanged.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

@@ -1,0 +1,222 @@
+---
+title: Theming
+order: 1
+description: >-
+  Start with complete light or dark defaults, override a few colors, or
+  contribute arbitrary theme CSS. No palette checklist or build step is
+  required.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Start with complete light or dark defaults, override a few colors, or contribute arbitrary theme CSS. No palette checklist or build step is required.
+
+## CSS setup
+
+Import the style files in your app's root layout or CSS entry point:
+
+```css
+@import "phoundry-ui/styles";
+```
+
+Shared styles supply a complete **dark foundation** before any named theme is selected. Set `data-theme-mode="light"` on `<html>` for static light defaults. A named theme stylesheet is optional; `theme.json` metadata is used by ThemeManager rather than interpreted by CSS.
+
+Static light setup can import `phoundry-ui/themes/default-light/theme.css` after the shared styles and set `<html data-theme-mode="light">`. The browser's `color-scheme` follows the selected foundation. Foundations use the low-priority `ph-theme` cascade layer; component CSS remains unlayered.
+
+The bundle includes shared control dimensions, semantic visual primitives, editor styles, and the native-element reset in `ph-reset`. No Tailwind dependency, utility generator, or authoring build command is needed.
+
+## ThemeManager
+
+`getThemeManager()` returns the document singleton. Register a manifest plus a resolved CSS URL, then apply it on the client. One named theme is active per document. Preference storage remains application-owned.
+
+A candidate stylesheet loads with a nonmatching media query, so arbitrary unscoped rules do not affect the current theme prematurely. On successful load, the manager commits CSS, `data-theme`, and `data-theme-mode` together. Failure keeps the previous appearance. Rapid requests return `superseded` for older loads.
+
+`apply` and `applyBasedOnPreference` return a Promise resolving to `{ status: 'applied', themeId }`, `{ status: 'superseded', themeId }`, or `{ status: 'failed', themeId, error }`. `activeThemeId` changes after commitment. `pendingThemeId`, `error`, and `revision` are reactive. Direct `apply` stops tracking previously supplied preferences; `applyBasedOnPreference` enables tracking again.
+
+The first runtime stylesheet is appended to `<head>`. Subsequent switches preserve that insertion point. Your application owns source order, layers, specificity, and explicit overrides.
+
+## Basic usage
+
+<p class="text-xs text-txt-secondary">
+	The ThemeManager ships with built-in themes across many families. Register
+	them all at once, or pick only the ones you need.
+</p>
+
+```ts
+import { getThemeManager, registerBuiltinThemes } from "phoundry-ui";
+
+const tm = getThemeManager();
+registerBuiltinThemes(tm);
+
+// Call on the client. Persistence belongs to your application.
+const result = await tm.applyBasedOnPreference({
+	colorScheme: "system",
+	lightTheme: "phi.default-light",
+	darkTheme: "phi.default-dark",
+});
+if (result.status === "failed") console.error(result.error);
+```
+
+## Built-in themes
+
+<Example name="guides/theming/theme-gallery" isolated height={700} />
+
+---
+
+## ThemeDefinition
+
+<ApiTable
+	of="ThemeDefinition"
+	include={["id", "name", "author", "mode", "cssUrl", "preview"]}
+	notes={{
+		id: "Unique identifier (e.g. 'phi.nord-dark').",
+		name: "Human-readable name shown in theme pickers.",
+		author: "Theme author attribution.",
+		mode: "Which system appearance this theme targets.",
+		cssUrl:
+			"Resolved URL to the named Theme stylesheet; packaged with a theme.json manifest.",
+		preview: "Preview colors for theme picker UI.",
+	}}
+/>
+
+## ThemeManager methods
+
+<ApiTable
+	of="getThemeManager.return"
+	include={[
+		"register",
+		"unregister",
+		"getThemesByMode",
+		"activeThemeId",
+		"apply",
+		"applyBasedOnPreference",
+		"pendingThemeId",
+		"error",
+		"revision",
+		"clearTheme",
+	]}
+	notes={{
+		register: "Register a theme. Replaces existing themes with the same ID.",
+		unregister: "Remove a theme by ID. Clears active theme if it matches.",
+		getThemesByMode: "Get themes that match the light or dark mode.",
+		activeThemeId: "Reactive getter for the currently applied theme ID.",
+		apply:
+			"Load and commit a theme. Stops following a previous system preference.",
+		applyBasedOnPreference:
+			"Load the selected appearance and follow system changes when requested.",
+		pendingThemeId: "Requested theme while its stylesheet loads.",
+		error: "Most recent application failure. The previous theme stays active.",
+		revision:
+			"Reactive committed revision, including reapplication of the same ID and clearing.",
+		clearTheme:
+			"Cancel pending work, remove named CSS and appearance attributes, and return to dark defaults.",
+	}}
+/>
+
+## Author a theme
+
+Keep `theme.css` next to a `theme.json` manifest. A theme targets one appearance:
+
+```json
+{
+	"id": "custom.moss",
+	"name": "Moss",
+	"mode": "dark"
+}
+```
+
+```css
+:root {
+	--ph-accent: #70b88a;
+}
+```
+
+That is sufficient: the selected foundation supplies every other library value. Copy Default Dark or Default Light when you want a full starter palette. Themes can set any custom properties, import CSS, define fonts and effects, or target components and application chrome directly. Registration does not require any particular token declarations.
+
+The author-chosen `--ph-accent` is the exact solid fill. Hover, pressed, and subtle treatments have modest derived defaults. Foreground choice and visual quality remain the author's responsibility. There is no numbered accent ramp or automatic contrast-selection engine.
+
+A more individually tuned theme can add:
+
+```css
+:root {
+	--ph-accent: #70b88a;
+	--ph-accent-fg: #191f1d;
+	--ph-accent-hover: #88c99f;
+	--ph-surface-3: #252b28;
+	--ph-item-bg-selected: #363c38;
+}
+
+:root .ph-btn {
+	box-shadow: none;
+}
+```
+
+Explicit treatment values stay fixed when input colors change. Other defaults continue deriving from the effective inputs. Normal CSS specificity still applies to component rules: `:root .ph-btn` is a useful root override, and `:root .ph-btn .ph-btn-icon` can target a documented part without assuming its immediate parent.
+
+## Optional color hooks
+
+These hooks all have foundation defaults; they are not a checklist a theme must fill in. `THEME_TOKENS` and the `ThemeToken` type catalog the optional color interface.
+
+| Family                | Hooks                                                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Surfaces              | `--ph-surface-0` through `--ph-surface-7`, deepest to highest elevation                                                   |
+| Optional neutral tint | `--ph-neutral`; individual surface, text, and border overrides remain available                                           |
+| Text                  | `--ph-text-primary`, `--ph-text-secondary`, `--ph-text-tertiary`, `--ph-text-disabled`, `--ph-text-link`                  |
+| Borders               | `--ph-border-muted`, `--ph-border-default`, `--ph-border-emphasis`                                                        |
+| Controls              | `--ph-control-bg`, `--ph-control-bg-hover`, `--ph-control-bg-pressed`                                                     |
+| Selected items        | `--ph-item-bg-selected`, `--ph-item-bg-selected-hover`, `--ph-item-fg-selected`                                           |
+| Selected text         | `--ph-text-selection-bg`, `--ph-text-selection-fg`                                                                        |
+| Solid accent          | `--ph-accent`, `--ph-accent-hover`, `--ph-accent-pressed`, `--ph-accent-fg`                                               |
+| Subtle accent         | `--ph-accent-subtle-bg`, `--ph-accent-subtle-bg-hover`, `--ph-accent-subtle-bg-pressed`, `--ph-accent-subtle-fg`          |
+| Status                | `--ph-{success,warning,danger,info}-{fg,bg,border}`; backgrounds are subtle fills                                         |
+| Named hues            | `--ph-hue-{red,orange,yellow,green,cyan,blue,purple,pink,gray}` and existing two-tone highlight colors ending in `-light` |
+| Syntax                | `--ph-syntax-{keyword,string,number,comment,function,variable}`                                                           |
+| Panel shadow          | `--ph-shadow-panel`                                                                                                       |
+
+Braces abbreviate separate token names. The eight surfaces are the neutral background scale; there is no second neutral ramp. Elevation does not enforce a brightness progression. Application places such as a sidebar or editor area can define their own aliases to these hooks.
+
+Changing the accent leaves status, named-hue, and syntax families on their foundation defaults unless the theme overrides them. Pressed controls, persistent item selection, and text selection are independent treatments.
+
+Typography uses `--ph-font-sans`, `--ph-font-serif`, `--ph-font-mono`, and `--ph-font-logo`. Existing shared `--ph-comp-*`, component geometry, and `--ph-motion-*` hooks retain their own roles.
+
+## Preview and resolved colors
+
+A manifest can supply `preview: { background, foreground, accent }` swatches. `getThemePreview(manifest)` returns those colors or a generic light/dark fallback. Listing an unselected theme does not parse CSS or render it offscreen.
+
+For integrations that need concrete channels, `resolveCssColor(value, root?)` asks the browser to resolve variables and supported color functions, returning `{ r, g, b, a }` in sRGB or `null` when unavailable. `cssColorToHex` preserves alpha when formatting that result. Ordinary component CSS keeps the author's original values.
+
+Imperative integrations can use `observeThemeColors(root, callback)` and its returned cleanup. The document's `ph-theme-change` event (`THEME_CHANGE_EVENT`) is dispatched after runtime commit or clear, with `{ themeId, mode }` detail. A stylesheet URL mutation alone is not a completion signal. CodeBlock, CodeEditor, and ColorPicker use this lifecycle so derived colors refresh after successful application.
+
+## Component CSS contracts
+
+Library components own unlayered vanilla CSS. Public roots use `ph-*`; variant and size axes use `data-variant` and `data-size`. Use documented props and public `--ph-*` custom properties for visual customization. Documented theme-relevant part selectors are stable; other parts and `--_ph-*` properties are internal. DOM nesting is not guaranteed. Consumer classes remain additive; any utility CSS framework is configured and owned by the Consumer.
+
+`components.css` owns the shared `--ph-comp-h-xs/sm/md/lg` control heights and `--ph-comp-icon-xs/sm/md/lg` icon sizes. These replace TypeScript class maps as the visual source of truth. The legacy runtime sizing maps and class builders have been removed; ComponentSize, ControlSize, and ControlSizePair remain type exports. CodeEditor's stable root is `.ph-code-editor`; generated CodeMirror markup is styled within that root.
+
+ColorPicker's fixed HSV channel ramps use `--ph-color-space-white`, `--ph-color-space-black`, and `--ph-color-hue-spectrum`. These encode the color-space endpoints and hue spectrum rather than a Theme palette. Keep them intact when changing Theme colors.
+
+The following theme parts are public alongside their roots:
+
+| Root                    | Public theme parts                                                                                                                    |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `.ph-btn`               | `.ph-btn-label`, `.ph-btn-icon`                                                                                                       |
+| `.ph-text-input`        | `.ph-text-input-field`, `.ph-text-input-clear`, `.ph-text-input-affix`                                                                |
+| `.ph-number-input`      | `.ph-number-input-field`, `.ph-number-input-step`                                                                                     |
+| `.ph-select`            | `.ph-select-trigger`, `.ph-select-value`, `.ph-select-clear`, `.ph-select-chevron`                                                    |
+| `.ph-overlay-list-item` | `.ph-overlay-list-item-label`, `.ph-overlay-list-item-description`, `.ph-overlay-list-item-leading`, `.ph-overlay-list-item-trailing` |
+
+Use each component's emitted `data-size`, `data-variant`, native/ARIA states, and documented boolean state attributes. Keyboard focus shares the hover treatment without default rings or a focus-ring token. Chrome-free variants such as `trueGhost` remain clear. Theme CSS can provide its own focus appearance.
+
+## Upgrading from utility-based styling
+
+Replace NumberInput and Modal width classes with CSS lengths (`width="7rem"`).
+Replace modal/dialog `iconColor` text classes with CSS colors
+(`iconColor="var(--ph-accent)"`). Replace runtime sizing-helper imports
+with shared `--ph-comp-*` tokens. The former palette names and `--color-*` aliases have been removed. Old deep/sunken/base/dim/raised/overlay starting colors correspond to `--ph-surface-1` through `--ph-surface-6`, with new endpoints at 0 and 7. Classify each existing use before selecting a treatment role.
+
+Reduced-motion handling belongs to each component. The library no longer
+overrides animations or scrolling on every Consumer element; manage the
+Consumer's own motion alongside its styles.
+
+The old `styles/theme-light.css` and `styles/tokens.css` entrypoints, required-token exports, `ThemeRegistration` type alias, `builtinThemes` alias, and `deriveThemePreview` helper are retired. Use shared `styles`, the appearance attribute, `ThemeDefinition`, `registerBuiltinThemes`/`builtinThemeEntries`, and metadata-driven `getThemePreview`.

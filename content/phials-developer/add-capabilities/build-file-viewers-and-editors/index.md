@@ -23,17 +23,16 @@ This hub follows the complete provider path:
 
 ## The provider contract
 
-A complete provider can contribute five related pieces:
+A Preview provider can contribute four related pieces:
 
-| Provider field | Responsibility |
-| --- | --- |
-| `surface` | The responsive Svelte viewer or editor for one file. |
-| `createSession` | Optional presentation-independent state for that provider and file. |
-| `toolbar` | Optional provider-specific controls placed by the host. |
-| `thumbnail` | Optional bounded representation for thumbnail-capable file views. |
-| `destinations` | Explicit eligibility for Page-tab File mode and inspection-only Markdown embeds. |
+| Provider field  | Responsibility                                                                   |
+| --------------- | -------------------------------------------------------------------------------- |
+| `surface`       | The responsive Svelte viewer or editor for one file.                             |
+| `createSession` | Optional presentation-independent state for that provider and file.              |
+| `toolbar`       | Optional provider-specific controls placed by the host.                          |
+| `destinations`  | Explicit eligibility for Page-tab File mode and inspection-only Markdown embeds. |
 
-The pieces remain independent. A read-only viewer may need only `surface`. An editor normally uses a session so dirty and saving state survive presentation changes. A thumbnail is not a small copy of the full viewer, and a toolbar contribution is not a second shell.
+A separate [ThumbnailProvider](../../reference/sdk-type-reference/ThumbnailProvider.md) contributes a static image or HTML renderer selected independently from Preview and Editor. The pieces remain independent. A read-only viewer may need only `surface`. An editor normally uses a session so dirty and saving state survive presentation changes. A thumbnail is not a small copy of the full viewer, and a toolbar contribution is not a second shell.
 
 The examples use a small JSON-based diagram format and the typed text-file API. The same composition applies to media, documents, canvases, and other file-specific experiences; use the matching data API and release resources in the session or component that owns them.
 

@@ -1,0 +1,175 @@
+---
+title: Select
+order: 3
+description: >-
+  Custom dropdown select with keyboard navigation, option groups, icons,
+  descriptions, clearable state, and validation.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Custom dropdown select with keyboard navigation, option groups, icons, descriptions, clearable state, and validation.
+
+```ts
+import { Select } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="inputs/select/basic" />
+
+## Variants
+
+<Example name="inputs/select/variants" />
+
+## Sizes
+
+<Example name="inputs/select/sizes" />
+
+## Shrink
+
+<Example name="inputs/select/shrink" />
+
+## Clearable
+
+<Example name="inputs/select/clearable" />
+
+## Searchable
+
+Set `searchable` to show a search field inside the dropdown. Search is off by default. Filtering matches option labels using a case-insensitive substring, ignores surrounding whitespace, and hides groups with no matches. It does not change the current selection until an option is chosen. The query resets whenever the dropdown closes.
+
+<Example name="inputs/select/searchable" />
+
+The search field receives focus when opened. Use Arrow Up/Down to navigate matching enabled options and Enter to select. Spaces remain editable text; Escape closes the dropdown and returns focus to the trigger. An empty result set displays “No results found”.
+
+## Disabled
+
+<Example name="inputs/select/disabled" />
+
+## Validation
+
+<Example name="inputs/select/validation" />
+
+## Selected indicator
+
+<Example name="inputs/select/selected-indicator" />
+
+## With Icons
+
+<Example name="inputs/select/with-icons" />
+
+## With Descriptions
+
+<Example name="inputs/select/with-descriptions" />
+
+## Grouped Options
+
+<Example name="inputs/select/grouped-options" />
+
+## Custom Snippet
+
+<Example name="inputs/select/custom-snippet" />
+
+The dropdown shares floating panel and option-row styling with Context Menu. The `size` prop continues to scale only the trigger; selection, clearing, validation presentation, and form submission remain Select behavior.
+
+---
+
+## API
+
+<ApiTable
+	of="Select"
+	include={[
+		"options",
+		"value",
+		"onchange",
+		"placeholder",
+		"size",
+		"disabled",
+		"variant",
+		"shrink",
+		"clearable",
+		"searchable",
+		"invalid",
+		"error",
+		"id",
+		"selectedIndicator",
+		"name",
+		"element",
+		"class",
+		"style",
+	]}
+	notes={{
+		options: "Flat options or option groups to display",
+		value: "Currently selected value",
+		onchange: "Called when selection changes",
+		placeholder: "Placeholder text when no value is selected",
+		size: "Trigger height aligned to Button `sm` / `md` control scale",
+		disabled: "Disables the select",
+		variant:
+			"Visual style of the trigger (`ghost` is the minimal inline style).",
+		shrink: "When true, trigger width fits content instead of full width",
+		clearable: "Shows a clear button when a value is selected",
+		searchable: "Show an option-label search field in the dropdown; defaults to false",
+		invalid: "Applies error styling to the trigger",
+		error: "Error message displayed below the select",
+		id: "HTML id attribute",
+		selectedIndicator: "How the selected option is indicated in the dropdown",
+		name: "Hidden input name for form submission",
+		element: "Bindable reference to the trigger button",
+		class: "Additive classes on the trigger button.",
+		style: "Inline styles on the trigger button.",
+	}}
+/>
+
+**required:** Reserved for HTML semantics - not wired to DOM attributes yet; use `invalid` / `error` for validation UX.
+
+## SelectOption
+
+<ApiTable
+	of="SelectOption"
+	include={["value", "label", "description", "icon", "custom"]}
+	notes={{
+		value: "The value associated with this option",
+		label: "Display text for the option (also used as accessible fallback)",
+		description: "Secondary text shown below the label",
+		icon: "Iconify icon string shown before the label",
+		custom: "Custom rendering config (see below)",
+	}}
+/>
+
+## SelectOptionCustom
+
+<ApiTable
+	of="SelectOptionCustom"
+	include={["snippet", "selectable"]}
+	notes={{
+		snippet: "Svelte snippet that replaces the default option content",
+		selectable:
+			"When false, the option row is non-selectable (renders as a div for interactive content)",
+	}}
+/>
+
+## SelectOptionGroup
+
+<ApiTable
+	of="SelectOptionGroup"
+	include={["label", "options"]}
+	notes={{
+		label: "Group header text",
+		options: "Options within this group",
+	}}
+/>
+
+## Usage tips
+
+- Use `variant="ghost"` when the select is inline within a toolbar or header.
+- Pass `shrink` to prevent the trigger from stretching to full width.
+- Combine `invalid` + `error` for form validation; the error renders below the trigger.
+- The dropdown renders as a portal-based overlay for correct z-index stacking.
+- Full keyboard navigation: Arrow keys, Enter/Space to select, Escape to close.
+- Pass `name` to emit a hidden input for plain HTML forms alongside the visible button trigger.
+
+## Styling
+
+`.ph-select` is the stable root identification hook. Styling is component-local vanilla CSS; `data-size` always identifies the selected size on the trigger. The root wrapper is `.ph-select`; the trigger button is `.ph-select-trigger`. Consumer `class`, `style`, native attributes, attachments, and `bind:element` still target the trigger. The trigger emits `data-size`, `data-variant`, and `data-placeholder`, with open and invalid states represented by `aria-expanded` and `aria-invalid`. The wrapper emits `data-shrink`. Trigger heights use `--ph-comp-h-sm` (1.5rem) and `--ph-comp-h-md` (1.75rem), with `--ph-comp-icon-sm` / `--ph-comp-icon-md` for icons. The shared surface shadow uses `--ph-input-shadow`; the dropdown retains its fixed option scale. Internal part selectors and `--_ph-*` properties are implementation details.

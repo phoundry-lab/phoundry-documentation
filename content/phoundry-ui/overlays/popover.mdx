@@ -1,0 +1,119 @@
+---
+title: Popover
+order: 7
+description: >-
+  Floating panel anchored to a trigger element with auto-positioning, flip
+  behavior, and backdrop dismissal.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Floating panel anchored to a trigger element with auto-positioning, flip behavior, and backdrop dismissal.
+
+```ts
+import { Popover } from "phoundry-ui";
+```
+
+## Basic Popover
+
+<Example name="overlays/popover/basic-popover" />
+
+## Placement Options
+
+<Example name="overlays/popover/placement-options" />
+
+## Offset & flip
+
+<Example name="overlays/popover/offset-flip" />
+
+## Non-dismissible backdrop
+
+<Example name="overlays/popover/non-dismissible-backdrop" />
+
+## Controlled Open
+
+<Example name="overlays/popover/controlled-open" />
+
+## Programmatic overlay
+
+<Example name="overlays/popover/programmatic-overlay" />
+
+Both Popover APIs use the same internal floating surface and Context Menu panel styling. Placement, modal/nonmodal behavior, dismissal, and content ownership continue to use the existing Popover props and manager options.
+
+---
+
+## API
+
+<ApiTable
+	of="Popover"
+	include={[
+		"open",
+		"onOpenChange",
+		"placement",
+		"offset",
+		"flip",
+		"dismissible",
+		"modal",
+		"class",
+		"trigger",
+		"children",
+	]}
+	notes={{
+		open: "Whether the popover is open. Bindable.",
+		onOpenChange: "Callback when open state changes.",
+		placement: "Positioning relative to the trigger element.",
+		offset: "Gap in pixels between trigger and popover.",
+		flip: "Flip to opposite side if there is not enough space.",
+		dismissible: "Close on an outside pointer press, including touch.",
+		modal:
+			"Whether a backdrop blocks interaction outside the panel. Set false for selection toolbars or other controls that keep the page interactive.",
+		class: "Additional CSS classes for the floating panel.",
+		trigger:
+			"Trigger region - receives `toggle`. Optional only if you drive `open` entirely from the outside (unusual).",
+		children: "Popover body content.",
+	}}
+/>
+
+## Usage tips
+
+- The `trigger` snippet receives a `toggle` function - call it on click to open/close.
+- Use `bind:open` for controlled state - you can open/close from external buttons or logic.
+- With `flip: true` (default), the popover repositions if it would overflow the viewport.
+- Set `dismissible: false` to prevent closing on outside clicks (useful for forms).
+- The floating panel uses `role="dialog"`; focus management is minimal - trap focus inside when hosting complex widgets.
+- `Escape` closes the top contextual owner regardless of `dismissible` (handled on `window`).
+
+With the default `modal: true`, outside pointer presses consume the dismissal gesture. With `modal: false`, the page receives those presses normally; `dismissible: true` also closes the panel. Presses within either panel preserve native focus, caret, form submission, and editing behavior.
+
+## Application Back
+
+Declarative `Popover` and programmatic `PopoverOverlay` register their existing close behavior with `getContextualDismissal()` while open. Import it from `phoundry-ui`; read its reactive `active` property when coordinating application focus, and call `back()` before dismissing the application surface beneath it. The call closes only the latest mounted menu level or Popover and returns `true` when consumed. Closing preserves the usual `onOpenChange` or manager callback behavior, and registration is released on close and teardown.
+
+`dismissible: false` controls outside pointer dismissal; Escape and semantic Back still close the Popover. This interface does not manage application navigation, dialogs, or browser history.
+
+Context menus and both Popover forms portal their roots to `document.body`. Opening or promoting an owner places its root after existing contextual owners so paint order follows Back ownership.
+
+## Programmatic anchors
+
+Use the programmatic API for editor selections and other anchors that are not stable trigger children. Mount one `PopoverOverlay` in the application shell; supply a content snippet to `getPopoverManager().open()`.
+
+```ts
+popover.open({
+	anchor: selectionRect,
+	placement: "top",
+	modal: false,
+	ariaLabel: "Text formatting",
+	content: formattingToolbar,
+});
+```
+
+Programmatic popovers accept the same `modal`, `dismissible`, `flip`, and placement options. Nonmodal outside dismissal respects a newer context-menu owner and does not consume the page's pointer event. Escape and application Back close the top contextual owner in either mode. `modal` controls the pointer backdrop, not a focus trap.
+
+## CSS styling
+
+`.ph-popover` is the stable identification hook for Popover. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+The programmatic overlay uses `.ph-popover-overlay`. Surfaces are portalled; do not depend on an ancestor DOM hierarchy for overrides.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

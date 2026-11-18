@@ -1,0 +1,83 @@
+---
+title: Avatar
+order: 2
+description: >-
+  Circular avatar displaying an image, initials, or icon fallback. Supports four
+  sizes and an optional status dot indicator.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Circular avatar displaying an image, initials, or icon fallback. Supports four sizes and an optional status dot indicator.
+
+```ts
+import { Avatar } from "phoundry-ui";
+```
+
+## With Image
+
+<Example name="display/avatar/with-image" />
+
+## Initials
+
+<Example name="display/avatar/initials" />
+
+## Icon Fallback
+
+<Example name="display/avatar/icon-fallback" />
+
+## Image with status
+
+<Example name="display/avatar/image-with-status" />
+
+## Default user glyph
+
+<Example name="display/avatar/default-user-glyph" />
+
+## Sizes
+
+<Example name="display/avatar/sizes" />
+
+## Status Indicators
+
+<Example name="display/avatar/status-indicators" />
+
+---
+
+## API
+
+<ApiTable
+	of="Avatar"
+	include={[
+		"src",
+		"alt",
+		"initials",
+		"icon",
+		"size",
+		"status",
+		"class",
+		"style",
+	]}
+	notes={{
+		src: "Image URL for the avatar.",
+		alt: "Alt text for the image.",
+		initials: "Initials to display when no image is provided.",
+		icon: "Iconify icon string used as fallback when no image or initials.",
+		size: "Avatar size.",
+		status: "Status dot indicator.",
+		class: "Additional CSS classes.",
+		style: "Inline styles on the stable component root.",
+	}}
+/>
+
+## Usage tips
+
+- The avatar falls back gracefully: image → initials → explicit `icon` → default user icon.
+- If the image fails to load, the component automatically switches to the initials or icon fallback.
+- Provide meaningful `alt` text whenever `src` is set; it defaults to an empty string.
+- Use `status` alongside user avatars in chat, team lists, or collaboration UIs.
+
+## Styling
+
+`.ph-avatar` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. Avatar intentionally retains its own scale: `xs` 1.5rem, `sm` 2rem, `md` 2.5rem, and `lg` 3.5rem. It does not consume the shared control-height tokens. Its initials, icon, and status-dot dimensions retain their previous proportions. The root emits `data-size`; the status part emits `data-status`. Image, initials, explicit icon, and default-user fallback precedence is unchanged. Internal part selectors and `--_ph-*` properties remain implementation details.

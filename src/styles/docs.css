@@ -1,0 +1,93 @@
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities" source(none);
+@import "phoundry-ui/styles" layer(phoundry);
+@import "./demo-tokens.css";
+@import "./starlight-theme.css";
+@source '../../content/phoundry-ui/_examples';
+
+.docs-example {
+	margin-block: 1.25rem;
+	border: 1px solid var(--sl-color-gray-5, var(--ph-border-muted));
+	border-radius: 0.65rem;
+	overflow: clip;
+	background: var(--ph-surface-3);
+}
+.docs-example > h3 {
+	margin: 0;
+	padding: 1rem;
+}
+.example-preview {
+	padding: 1.25rem;
+	min-height: 4.5rem;
+	background: var(--ph-surface-3);
+	color: var(--ph-text-primary);
+	font-family: var(--sl-font, system-ui, sans-serif);
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+.example-loading {
+	opacity: 0.65;
+	font-size: 0.875rem;
+}
+.example-source {
+	border-top: 1px solid var(--sl-color-gray-5, var(--ph-border-muted));
+}
+.example-source > summary {
+	cursor: pointer;
+	padding: 0.65rem 1rem;
+	font-size: 0.85rem;
+}
+.example-source .expressive-code {
+	margin: 0;
+}
+.example-frame {
+	display: block;
+	border: 0;
+	width: 100%;
+}
+.isolated-preview {
+	margin: 0;
+	padding: 1rem;
+	background: var(--ph-surface-3);
+	color: var(--ph-text-primary);
+	font:
+		0.875rem/1.5 system-ui,
+		sans-serif;
+}
+.api-scroll {
+	overflow-x: auto;
+}
+.api-reference table {
+	font-size: 0.875rem;
+}
+.api-reference td:nth-child(2) {
+	min-width: 10rem;
+	overflow-wrap: anywhere;
+}
+.api-reference td:last-child {
+	min-width: 13rem;
+}
+.api-reference small {
+	display: block;
+	font-size: 0.7rem;
+	color: var(--sl-color-gray-2);
+}
+.api-provenance {
+	font-size: 0.8rem;
+	color: var(--sl-color-gray-2);
+}
+.docs-article-footer {
+	margin-top: 3rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--sl-color-gray-5);
+	color: var(--sl-color-gray-2);
+	font-size: 0.8rem;
+}
+.docs-article-footer p {
+	margin-block: 0.35rem;
+}
+.docs-notice {
+	border-inline-start: 3px solid var(--sl-color-orange);
+	padding: 0.75rem 1rem;
+	margin-bottom: 1.5rem;
+}

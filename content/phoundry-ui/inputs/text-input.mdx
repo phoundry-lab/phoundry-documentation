@@ -1,0 +1,154 @@
+---
+title: TextInput
+order: 1
+description: >-
+  Single-line text input with optional leading icon, optional prefix text after
+  the icon, and optional trailing suffix. Supports multiple HTML input types,
+  three sizes, four visual variants, and callbacks for both input and change
+  events.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Single-line text input with optional leading icon, optional prefix text after the icon, and optional trailing suffix. Supports multiple HTML input types, three sizes, four visual variants, and callbacks for both input and change events.
+
+```ts
+import { TextInput, PhiIcons } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="inputs/text-input/basic" />
+
+## Full width
+
+<Example name="inputs/text-input/full-width" />
+
+## With Icon
+
+<Example name="inputs/text-input/with-icon" />
+
+## Clearable
+
+<Example name="inputs/text-input/clearable" />
+
+## Suffix
+
+<Example name="inputs/text-input/suffix" />
+
+## Prefix
+
+<Example name="inputs/text-input/prefix" />
+
+## Sizes
+
+<Example name="inputs/text-input/sizes" />
+
+## Read-only & disabled
+
+<Example name="inputs/text-input/read-only-disabled" />
+
+## Types (password, search)
+
+<Example name="inputs/text-input/types-password-search" />
+
+## Variants
+
+<Example name="inputs/text-input/variants" />
+
+## Autocomplete
+
+<Example name="inputs/text-input/autocomplete" />
+
+---
+
+## API
+
+<ApiTable
+	of="TextInput"
+	include={[
+		"value",
+		"onchange",
+		"oninput",
+		"type",
+		"placeholder",
+		"size",
+		"variant",
+		"fullWidth",
+		"disabled",
+		"readonly",
+		"icon",
+		"prefix",
+		"fixedPrefixWidth",
+		"prefixBg",
+		"suffix",
+		"suffixBg",
+		"clearable",
+		"class",
+		"style",
+		"id",
+		"name",
+		"autocomplete",
+		"element",
+	]}
+	notes={{
+		value: "Current input value (`bind:value` friendly).",
+		onchange: "Fires on blur / Enter after value changes",
+		oninput: "Fires on every keystroke",
+		type: "HTML input type",
+		placeholder: "Placeholder text",
+		size: "Shared Button control scale: `sm` 1.5rem, `md` 1.75rem, `lg` 2rem outer height",
+		variant:
+			"Visual style. `trueGhost` has no border, fill, or hover/focus chrome.",
+		fullWidth:
+			"Stretch the whole control to its parent width. Otherwise uses its intrinsic input width.",
+		disabled: "Disables the input",
+		readonly: "Makes the input read-only",
+		icon: "Iconify icon string shown at the leading edge",
+		prefix:
+			"Fixed text after the icon and before the typed value (e.g. currency symbol)",
+		fixedPrefixWidth:
+			"CSS width for the prefix cell (e.g. `5.5rem`). Long text truncates with ellipsis. Requires `prefix`.",
+		prefixBg: "Inset background on the combined icon/prefix region",
+		suffix: "Fixed text after the typed value (e.g. file extension)",
+		suffixBg: "Inset background on the suffix region",
+		clearable: "Shows a trailing clear button when the input has a value",
+		class: "Additional classes on the root shell",
+		style: "Inline styles on the root shell",
+		id: "HTML id attribute",
+		name: "HTML name attribute for forms",
+		autocomplete: "Browser autocomplete hint",
+		element: "Bindable reference to the underlying input element",
+	}}
+/>
+
+**…rest:** Forwarded to the inner `<input>` (e.g. `aria-*`, `inputmode`, `maxlength`).
+
+## Usage tips
+
+- Use `oninput` for real-time feedback (e.g. live search) and `onchange` for commit-on-blur behavior.
+- Set `type="search"` with an icon for a native-feeling search field that shows a clear button in some browsers.
+- Pair with `FormField` to get labels, descriptions, and error messaging for free.
+- Use `variant="trueGhost"` for inline editing where the parent already supplies hover/focus treatment. It has no border, fill, or focus ring — provide your own affordance if the field stands alone.
+
+## Width and styling
+
+`fullWidth` defaults to `false` for plain, clearable, and affixed inputs. Set it when the field should fill its container:
+
+```svelte
+<TextInput fullWidth placeholder="Your name" />
+<TextInput fullWidth icon={PhiIcons.search} clearable placeholder="Search..." />
+```
+
+The stable root hook is `.ph-text-input`. `class` and `style` apply to this shell in every configuration; `element`, native attributes, events, and attachments target the inner input. Do not depend on the internal DOM or part classes.
+
+The root always exposes `data-size`, `data-variant`, and `data-full-width`; boolean states use exact values such as `[data-full-width='true']`. Disabled and read-only state remain native input attributes.
+
+Sizes consume the published `--ph-comp-h-sm`, `--ph-comp-h-md`, and `--ph-comp-h-lg` tokens and corresponding `--ph-comp-icon-*` tokens from `phoundry-ui/styles/components.css`. Color values come from the applied named Theme. Local `--_ph-*` properties are implementation details. Scoped, unlayered styles may take precedence over utility classes; use `fullWidth` for full-width layout and root inline styles for custom dimensions.
+
+When upgrading, replace `size="xs"` with `size="sm"` and add `fullWidth` wherever the previous automatic full width was required. `sm` now uses the shared 1.5rem height (previously 1.375rem). Replace `.text-input` root selectors with `.ph-text-input`. Styles that previously targeted a plain input now target the shell; keep input bindings and native attributes on the component as before. Focus uses the same variant chrome as hover, without a blue or accent-colored focus ring. This includes the clear button. `trueGhost` stays chrome-free.
+
+The shared `.ph-text-field` primitive in `phoundry-ui/styles/components.css` keeps variant chrome and size configuration aligned with NumberInput. All three fields use `--ph-field-radius` (0.5rem) and `--ph-input-shadow` for outline surfaces. Focus and hover share the same appearance; native blue focus rings are suppressed.
+
+`outline` has a quiet translucent background, muted border, and input shadow. `fill` uses the stronger neutral control background with no visible border or shadow; the distinction remains on hover and focus.

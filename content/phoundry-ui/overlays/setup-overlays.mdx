@@ -1,0 +1,97 @@
+---
+title: Overlay setup
+order: 1
+description: >-
+  Call setupOverlays() once in your root layout to register the context menu and
+  modal providers and to create the toast, tooltip, and command bar singletons.
+  Render the overlay components alongside it.
+---
+
+import ApiTable from "@docs/ApiTable.astro";
+
+Call setupOverlays() once in your root layout to register the context menu and modal providers and to create the toast, tooltip, and command bar singletons. Render the overlay components alongside it.
+
+```ts
+import { setupOverlays } from "phoundry-ui";
+```
+
+## Root layout
+
+Call `setupOverlays()` during layout initialization (not in a child or in a module top-level). Match overlay components to the features you use.
+
+```svelte
+<script lang="ts">
+	import {
+		setupOverlays,
+		ContextMenuOverlay,
+		PopoverOverlay,
+		ModalOverlay,
+		TooltipOverlay,
+		ToastOverlay,
+		CommandBar,
+	} from "phoundry-ui";
+
+	setupOverlays();
+
+	const commands = [{ id: "hello", label: "Say hello", category: "Demo" }];
+	const commandBarConfig = {
+		onExecute: (cmd) => console.log(cmd.id),
+	};
+</script>
+
+<ContextMenuOverlay />
+<PopoverOverlay />
+<ModalOverlay />
+<TooltipOverlay />
+<ToastOverlay />
+<CommandBar {commands} config={commandBarConfig} />
+```
+
+## Options and return value
+
+The return object is optional; you can keep using `getToastManager()` and the other getters. The modal API is not on the result - use `useModalManagerAPI()` or `getModalManager()`.
+
+```ts
+const { contextMenu, popover, toast, tooltip, commandBar } = setupOverlays({
+	maxToasts: 8,
+});
+
+// Modal: use useModalManagerAPI() in child components or getModalManager() elsewhere
+```
+
+---
+
+## SetupOverlaysOptions
+
+<ApiTable
+	of="SetupOverlaysOptions"
+	include={["maxToasts", "contextMenu"]}
+	notes={{
+		maxToasts:
+			"Maximum concurrent toasts for the toast singleton. Only applies if no prior getToastManager() ran in this session.",
+		contextMenu:
+			'Context menu placement and navigation defaults. Presentation defaults to "popover"; "sheet" anchors full-width panels at the bottom and always stacks. Set stacked: true for one visible level with Back navigation in normal popovers. Defaults to false, retaining automatic stacking for narrow touch menus. api.open() and the contextMenu attachment can override stacked per menu.',
+	}}
+/>
+
+## SetupOverlaysResult
+
+<ApiTable
+	of="SetupOverlaysResult"
+	include={["contextMenu", "toast", "tooltip", "commandBar", "popover"]}
+	notes={{
+		contextMenu:
+			"Programmatic context menu API (same as useContextMenuAPI() after setup).",
+		toast: "Toast singleton; equivalent to getToastManager().",
+		tooltip: "Tooltip singleton; equivalent to getTooltipManager().",
+		commandBar: "Command palette state; equivalent to getCommandBarState().",
+		popover:
+			"Programmatic popover API; equivalent to getPopoverManager() after setup.",
+	}}
+/>
+
+## Usage tips
+
+- Call `setupOverlays()` only once per app shell; duplicate calls overlap Svelte context the same way duplicate `provideModalManager()` would.
+- Mount `CommandBar` when you use the command palette - pass your command list and a `config` with `onExecute`; open it via `getCommandBarState().open()`.
+- `provideContextMenu()`, `provideModalManager()`, and the individual `get*` functions remain available if you need a different composition.

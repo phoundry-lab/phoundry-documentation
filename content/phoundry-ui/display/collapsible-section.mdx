@@ -1,0 +1,91 @@
+---
+title: CollapsibleSection
+order: 8
+description: >-
+  Expandable/collapsible content section with a clickable header, optional icon,
+  and extra action buttons. Supports both controlled and uncontrolled open
+  state.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Expandable/collapsible content section with a clickable header, optional icon, and extra action buttons. Supports both controlled and uncontrolled open state.
+
+```ts
+import { CollapsibleSection } from "phoundry-ui";
+```
+
+## Basic (Default Open)
+
+<Example name="display/collapsible-section/basic-default-open" />
+
+## Starting Closed
+
+<Example name="display/collapsible-section/starting-closed" />
+
+## With Icon
+
+<Example name="display/collapsible-section/with-icon" />
+
+## Header actions (extraButtons)
+
+<Example name="display/collapsible-section/header-actions-extrabuttons" />
+
+## Controlled
+
+<Example name="display/collapsible-section/controlled" />
+
+---
+
+## API
+
+<ApiTable
+	of="CollapsibleSection"
+	include={[
+		"title",
+		"defaultOpen",
+		"open",
+		"onToggle",
+		"onOpenChange",
+		"children",
+		"icon",
+		"extraButtons",
+		"contentPadding",
+		"fullHeight",
+		"class",
+		"style",
+		"titleVariant",
+		"headerClass",
+	]}
+	notes={{
+		title: "Header text.",
+		defaultOpen: "Initial open state (uncontrolled mode).",
+		open: "Controlled open state - overrides internal state when provided.",
+		onToggle:
+			"Called on toggle. When provided, component becomes fully controlled.",
+		onOpenChange: "Called with the new open state after toggle.",
+		children: "Section content.",
+		icon: "Iconify icon shown before the title.",
+		extraButtons:
+			"Small `Button` instances beside the chevron. `showWhenCollapsed` chooses visibility when the section is collapsed vs expanded.",
+		contentPadding: "Apply default padding to the content area.",
+		fullHeight: "Stretch to fill parent height when open.",
+		class: "Additional CSS classes on the root.",
+		style: "Inline styles on the stable component root.",
+		titleVariant: "Default title or compact sidebar typography.",
+		headerClass: "Additive classes on the header.",
+	}}
+/>
+
+## Usage tips
+
+- The header row uses `role="button"` with keyboard activation - ensure titles stay concise for screen readers.
+- Use uncontrolled mode (just `defaultOpen`) for simple cases; use `open` + `onToggle` for external control.
+- The `extraButtons` prop lets you add action buttons (e.g. "Add", "Edit") to the header row alongside the toggle.
+- Set `contentPadding={false}` when embedding full-bleed content like tables or lists.
+- Use `fullHeight` inside flex layouts where the section should stretch to fill remaining space.
+
+## Styling
+
+`.ph-collapse` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. The header remains the `headerClass` target, exposes `aria-expanded`, and uses `data-title-variant` for default/sidebar typography. The root exposes `data-full-height`; content exposes `data-padded`. Existing controlled/uncontrolled callbacks, extra buttons, padding, and full-height behavior are preserved. Header actions appear on hover or keyboard focus within the header. Reduced motion skips the content transition. Internal part selectors and `--_ph-*` properties remain implementation details.

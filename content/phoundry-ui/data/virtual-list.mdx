@@ -1,0 +1,73 @@
+---
+title: VirtualList
+order: 3
+description: >-
+  Headless virtual scrolling utility. Renders only visible items for lists with
+  thousands of rows.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Headless virtual scrolling utility. Renders only visible items for lists with thousands of rows.
+
+```ts
+import { createVirtualList } from "phoundry-ui";
+```
+
+## 10,000 Items
+
+<Example name="data/virtual-list/10-000-items" />
+
+## Variable row heights
+
+<Example name="data/virtual-list/variable-row-heights" />
+
+---
+
+## Options
+
+<ApiTable
+	of="VirtualListOptions"
+	include={["count", "itemHeight", "overscan"]}
+	notes={{
+		count:
+			"Total logical rows. Use an options object with a `get count()` getter if the backing array length changes - reads rerun whenever scroll geometry updates.",
+		itemHeight: "Fixed height or per-item height function.",
+		overscan: "Extra items rendered above and below the viewport.",
+	}}
+/>
+
+## Returns
+
+<ApiTable
+	of="createVirtualList.return"
+	include={[
+		"items",
+		"totalHeight",
+		"scrollOffset",
+		"containerHeight",
+		"handleScroll",
+		"scrollToIndex",
+		"action",
+	]}
+	notes={{
+		items: "Visible items with index, start position, and size.",
+		totalHeight: "Total scrollable height in pixels.",
+		scrollOffset: "Current scroll offset.",
+		containerHeight: "Measured container height.",
+		handleScroll: "Scroll event handler to attach to the container.",
+		scrollToIndex:
+			"Scroll so the given index is visible; defaults to smart (“auto”) scrolling.",
+		action: "Svelte use:action for the scroll container.",
+	}}
+/>
+
+---
+
+## Usage tips
+
+- This is a headless utility - you provide the container and item markup. Use `use:vl.action` on the scroll container.
+- For variable-height items, pass a function to `itemHeight` - e.g. `(i) => i % 5 === 0 ? 48 : 32`.
+- Increase `overscan` if you see flickering during fast scrolling.
+- Use `scrollToIndex` for keyboard navigation or "scroll to top/bottom" buttons.

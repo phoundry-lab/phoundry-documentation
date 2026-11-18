@@ -1,0 +1,81 @@
+---
+title: FormField
+order: 1
+description: >-
+  Wrapper that adds a label, description or error text, and a required indicator
+  around any input component. Spread the attributes supplied to the children
+  snippet onto the focusable input for automatic label and description/error
+  linkage.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Wrapper that adds a label, description or error text, and a required indicator around any input component. Spread the attributes supplied to the children snippet onto the focusable input for automatic label and description/error linkage.
+
+```ts
+import { FormField, TextInput } from "phoundry-ui";
+```
+
+## Basic with Label
+
+<Example name="form/form-field/basic-with-label" />
+
+## With Description
+
+<Example name="form/form-field/with-description" />
+
+## With Error
+
+<Example name="form/form-field/with-error" />
+
+## Required
+
+<Example name="form/form-field/required" />
+
+## Snippet label
+
+<Example name="form/form-field/snippet-label" />
+
+---
+
+## API
+
+<ApiTable
+	of="FormField"
+	include={[
+		"label",
+		"description",
+		"error",
+		"required",
+		"disabled",
+		"id",
+		"class",
+		"style",
+		"children",
+	]}
+	notes={{
+		label: "Field label text or custom snippet.",
+		description: "Helper text shown below the input.",
+		error: "Error message - replaces description when present.",
+		required: "Shows a red asterisk next to the label.",
+		disabled:
+			"Dims the wrapper only. Pass disabled to the actual control to prevent interaction.",
+		id: "HTML id for the label’s `for` attribute. Auto-generated if omitted.",
+		class: "Additional CSS classes on the wrapper.",
+		style: "Inline styles on the stable component root.",
+		children:
+			"Render one focusable control and spread the supplied id and ARIA attributes onto it.",
+	}}
+/>
+
+## Usage tips
+
+- The `error` prop takes priority over `description` - only one displays at a time.
+- Use `{#snippet children(control)}` and spread `{...control}` onto the focusable input. This links the label, helper/error text, invalid state, and required semantics, including when `id` is generated.
+- Pass a Snippet for `label` when you need custom markup (e.g. an icon next to the label text).
+- Wrap any input component - `TextInput`, `Select`, `Textarea`, etc.
+
+## Styling
+
+`.ph-form-field` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. Label and description/error IDs remain linked through the `children(control)` snippet. Spread those supplied attributes onto the one focusable input. Generated IDs are stable across server rendering and hydration. `disabled` dims the wrapper; disable the actual control separately. The wrapper emits `data-disabled`; helper text emits `data-error`. Internal part selectors and `--_ph-*` properties remain implementation details.

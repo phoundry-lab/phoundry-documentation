@@ -17,7 +17,7 @@ Quit Phials before copying or restoring app data. This is the consistency bounda
 | Goal | Include | Usually exclude |
 | --- | --- | --- |
 | Restore global Phials settings and state | Complete Phials Home | OS caches |
-| Restore all Phials work on another installation | Complete Phials Home, all ordinary content locations, and every portable Workspace Folder including `.phials` | OS caches; transferable license or trial assumptions |
+| Restore all Phials work on another installation | Complete Phials Home, all ordinary content locations, and every portable Workspace Folder including `.phials` | OS caches and Account credentials in the operating system credential store |
 | Protect one locally stored Workspace Folder | Its ordinary content folder, its complete bundle under `Phials Home/vials/`, and the matching registry in `data/app.db` | OS caches |
 | Protect one portable Workspace Folder | The complete content folder, including hidden `.phials` | Phials Home, unless you also want app-wide settings and current registration |
 | Restore community plugins and their data | Complete `plugins/`, `data/plugins.db`, `state/plugin-data.json`, and plugin settings in `state/session.json`; copying all of Phials Home is safer | Plugin staging leftovers and OS caches |
@@ -45,7 +45,7 @@ Whole-app backup normally excludes [caches and temporary data](./caches-and-temp
 3. Restore the complete Phials Home to the same resolved location, or configure the intended `PHIALS_HOME` before launch.
 4. Start Phials only after every related copy is in place.
 5. Reconnect an unavailable locally stored Workspace Folder with **Locate Folder…** when its content folder now has a different path.
-6. Reinstall or reactivate anything that is device-specific. A copied `license.json` or `trial.json` is not a promise that access transfers to another machine.
+6. Reinstall device-specific components and sign in again for Remote Access. Account credentials live in the operating system credential store and do not transfer with Phials Home. Local use requires no activation.
 
 Do not combine a restored Workspace Folder bundle with a newly created bundle for the same folder. Restore the original bundle and registry together so its stable identity, file identities, notes, and Relations remain aligned.
 

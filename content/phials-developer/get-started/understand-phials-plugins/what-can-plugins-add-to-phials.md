@@ -11,15 +11,15 @@ Plugins add capabilities to an existing Phials workflow. A plugin can contribute
 
 Choose the capability that directly produces the outcome you need. The public SDK name in the second column is the typed registration contract you will use after the concept is clear.
 
-| Outcome | Public SDK entry point | Continue with |
-| --- | --- | --- |
-| Add actions to the Command Bar, Path Bar, context menus, and keyboard shortcuts | [CommandProvider](../../reference/sdk-type-reference/CommandProvider.md) | [Add commands](../../add-capabilities/add-commands/index.md) |
-| View or edit supported files, optionally with thumbnails and toolbar controls | [PreviewProvider](../../reference/sdk-type-reference/PreviewProvider.md) | [Build file viewers and editors](../../add-capabilities/build-file-viewers-and-editors/index.md) |
-| Extract structured information from files and make it available to Phials | [MetadataProvider](../../reference/sdk-type-reference/MetadataProvider.md) | [Extract file metadata](../../add-capabilities/extract-file-metadata/index.md) |
-| Add another presentation of an Explorer tab's current location | [FileBrowserViewProvider](../../reference/sdk-type-reference/FileBrowserViewProvider.md) | [Build file views](../../add-capabilities/build-file-views/index.md) |
-| Add a tool surface to a left, right, or bottom dock or to a center tab | [ModuleProvider](../../reference/sdk-type-reference/ModuleProvider.md) | [Add panels and tabs](../../add-capabilities/add-panels-and-tabs/index.md) |
-| Let users configure plugin behavior | `PhialsPlugin.settings` and optional `settingsComponent` | [Add plugin settings](../../add-capabilities/add-plugin-settings/index.md) |
-| Supply a light or dark appearance for Phials | Plugin theme assets | [Create themes](../../add-capabilities/create-themes/index.md) |
+| Outcome                                                                         | Public SDK entry point                                                                   | Continue with                                                                                    |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Add actions to the Command Bar, Path Bar, context menus, and keyboard shortcuts | [CommandProvider](../../reference/sdk-type-reference/CommandProvider.md)                 | [Add commands](../../add-capabilities/add-commands/index.md)                                     |
+| View or edit supported files, optionally with toolbar controls                  | [PreviewProvider](../../reference/sdk-type-reference/PreviewProvider.md)                 | [Build file viewers and editors](../../add-capabilities/build-file-viewers-and-editors/index.md) |
+| Extract structured information from files and make it available to Phials       | [MetadataProvider](../../reference/sdk-type-reference/MetadataProvider.md)               | [Extract file metadata](../../add-capabilities/extract-file-metadata/index.md)                   |
+| Add another presentation of an Explorer tab's current location                  | [FileBrowserViewProvider](../../reference/sdk-type-reference/FileBrowserViewProvider.md) | [Build file views](../../add-capabilities/build-file-views/index.md)                             |
+| Add a tool surface to a left, right, or bottom dock or to a center tab          | [ModuleProvider](../../reference/sdk-type-reference/ModuleProvider.md)                   | [Add panels and tabs](../../add-capabilities/add-panels-and-tabs/index.md)                       |
+| Let users configure plugin behavior                                             | `PhialsPlugin.settings` and optional `settingsComponent`                                 | [Add plugin settings](../../add-capabilities/add-plugin-settings/index.md)                       |
+| Supply a light or dark appearance for Phials                                    | Plugin theme assets                                                                      | [Create themes](../../add-capabilities/create-themes/index.md)                                   |
 
 These capabilities compose. For example, a plugin for a specialized document format might contribute:
 
@@ -29,6 +29,8 @@ These capabilities compose. For example, a plugin for a specialized document for
 - settings for default display behavior.
 
 That is still one plugin. Users install, review, enable, update, and remove it as one artifact.
+
+For static File artwork, register a separate [ThumbnailProvider](../../reference/sdk-type-reference/ThumbnailProvider.md). Its renderer receives captured inputs and automatic owning-Host persistence independently of Preview or Editor selection. See [Add thumbnails and toolbar controls](../../add-capabilities/build-file-viewers-and-editors/add-thumbnails-and-toolbar-controls.md).
 
 ## Connect capabilities to Phials services
 

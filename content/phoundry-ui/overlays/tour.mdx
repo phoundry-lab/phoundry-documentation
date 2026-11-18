@@ -1,0 +1,128 @@
+---
+title: Tour
+order: 8
+status: experimental
+description: >-
+  A multi-step guided tour overlay that highlights target elements and displays
+  positioned popover cards with navigation controls.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+A multi-step guided tour overlay that highlights target elements and displays positioned popover cards with navigation controls.
+
+```ts
+import { Tour } from "phoundry-ui";
+import type { TourStepDef } from "phoundry-ui";
+```
+
+## Basic Tour
+
+<Example name="overlays/tour/basic-tour" />
+
+## Placement
+
+<Example name="overlays/tour/placement" />
+
+## Non-modal (mask=false)
+
+<Example name="overlays/tour/non-modal-mask-false" />
+
+## Custom Gap
+
+<Example name="overlays/tour/custom-gap" />
+
+## Controlled State
+
+<Example name="overlays/tour/controlled-state" />
+
+---
+
+## Tour Props
+
+<ApiTable
+	of="Tour"
+	include={[
+		"steps",
+		"open",
+		"current",
+		"onClose",
+		"onChange",
+		"mask",
+		"type",
+		"gap",
+		"arrow",
+		"placement",
+		"zIndex",
+		"scrollIntoViewOptions",
+		"disabledInteraction",
+		"indicatorsRender",
+	]}
+	notes={{
+		steps: "Array of step definitions.",
+		open: "Whether the tour is visible. Bindable.",
+		current: "Active step index. Bindable.",
+		onClose: "Called when the tour is dismissed.",
+		onChange: "Called when the step changes.",
+		mask: "Show dimmed mask overlay with target cutout.",
+		type: "Card color scheme.",
+		gap: "Highlight area gap around the target element.",
+		arrow: "Show arrow pointing from card to target.",
+		placement: "Default placement for all steps.",
+		zIndex: "z-index of the tour overlay layer.",
+		scrollIntoViewOptions: "Scroll targets into view before showing.",
+		disabledInteraction: "Block interaction with highlighted element.",
+		indicatorsRender: "Custom step indicator renderer.",
+	}}
+/>
+
+## TourStepDef
+
+<ApiTable
+	of="TourStepDef"
+	include={[
+		"target",
+		"title",
+		"description",
+		"cover",
+		"placement",
+		"mask",
+		"scrollIntoView",
+		"nextButtonText",
+		"prevButtonText",
+	]}
+	notes={{
+		target: "Element to highlight. Omit for center-screen placement.",
+		title: "Step title.",
+		description: "Step description text.",
+		cover: "Cover content (image/video) above the title.",
+		placement: "Override placement for this step.",
+		mask: "Override global mask setting for this step.",
+		scrollIntoView: "Override scroll behavior for this step.",
+		nextButtonText: 'Custom "Next" / "Finish" button label.',
+		prevButtonText: 'Custom "Previous" button label.',
+	}}
+/>
+
+## Usage tips
+
+- Use `bind:open` and `bind:current` to control the tour externally.
+- Each step's `target` is a function returning an `HTMLElement` - use `bind:element` on buttons or `document.getElementById`.
+- Omitting `target` (or returning null) centers the card on screen - useful for intro/welcome steps.
+- Set `mask=false` with `type="primary"` for a non-modal tour that doesn't block interaction.
+- The `gap` prop controls the highlight cutout padding (`offset`) and corner rounding (`radius`) around the target.
+- Keyboard: `Escape` closes, `ArrowLeft`/`ArrowRight` navigate steps.
+- Set `disabledInteraction` when you want the highlighted control read-only while still visually emphasizing it.
+- Turn off `arrow` for dense layouts where the pointer would collide with nearby UI; combine with `type="primary"` for contrast.
+- Raise `zIndex` if other overlays (command palette, modal) share the same stacking context and occlude the tour.
+
+## CSS styling
+
+`.ph-tour` is the stable identification hook for Tour. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Tour panel, arrow, and mask motion are component-owned. `data-variant` selects default or primary chrome. Target measurements and step callbacks are unchanged.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.
+
+Target scrolling is immediate under reduced motion, including steps with scroll-into-view options.

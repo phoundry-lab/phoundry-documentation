@@ -1,0 +1,109 @@
+---
+title: Anchor
+order: 1
+status: experimental
+description: >-
+  Scroll-aware table-of-contents navigation. Provide items manually or point it
+  at a scrollable container to auto-discover headings.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Scroll-aware table-of-contents navigation. Provide items manually or point it at a scrollable container to auto-discover headings.
+
+```ts
+import { Anchor } from "phoundry-ui";
+```
+
+## Basic (Manual Items)
+
+<Example name="layout/anchor/basic-manual-items" />
+
+## Auto-Discovery
+
+<Example name="layout/anchor/auto-discovery" />
+
+## Horizontal
+
+<Example name="layout/anchor/horizontal" />
+
+## Nested Items
+
+<Example name="layout/anchor/nested-items" />
+
+## Offsets, replaceState, onChange
+
+<Example name="layout/anchor/offsets-replacestate-onchange" />
+
+---
+
+## API
+
+<ApiTable
+	of="Anchor"
+	include={[
+		"items",
+		"target",
+		"headingSelector",
+		"direction",
+		"offsetTop",
+		"targetOffset",
+		"bounds",
+		"affix",
+		"replace",
+		"onChange",
+		"onclick",
+		"getCurrentAnchor",
+		"class",
+	]}
+	notes={{
+		items: "Explicit anchor items (manual mode).",
+		target: "Scrollable container to scan for headings (auto mode).",
+		headingSelector: "CSS selector for discoverable headings in auto mode.",
+		direction: "Layout direction. Horizontal disables nesting.",
+		offsetTop: "Pixel offset for calculating the active section position.",
+		targetOffset:
+			"Scroll-to offset when clicking a link. Defaults to offsetTop.",
+		bounds: "Bounding distance in px for active section detection.",
+		affix: "Stick the anchor with position: sticky.",
+		replace: "Use replaceState instead of pushState for URL hash.",
+		onChange:
+			"Fires when the highlighted link changes (hash string, e.g. `#section-id`).",
+		onclick: "Click handler for anchor links.",
+		getCurrentAnchor: "Override which link is highlighted.",
+		class: "Additional CSS classes.",
+	}}
+/>
+
+## AnchorItem
+
+<ApiTable
+	of="AnchorItem"
+	include={["key", "href", "title", "children"]}
+	notes={{
+		key: "Unique identifier.",
+		href: "Hash target (e.g. #section-id).",
+		title: "Display text.",
+		children: "Nested child links (vertical only).",
+	}}
+/>
+
+## Usage tips
+
+- Pass `items` for full control, or `target` to auto-discover headings from a container.
+- In auto mode, headings without `id` attributes get one assigned automatically (slugified from text).
+- Use `headingSelector` to control which heading levels are included (e.g. `"h2, h3"` or just `"h3"`).
+- Set `direction="horizontal"` for compact inline navigation. Nesting is disabled in horizontal mode.
+- The component renders nothing when there are no items - safe to include in layouts unconditionally.
+- Add to a layout file with `target={mainEl}` to get a page ToC on every page automatically.
+
+## CSS styling
+
+`.ph-anchor` is the stable identification hook for Anchor. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Scroll tracking and measured ink-indicator geometry are unchanged. Direction and active-link styling are represented by attributes.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.
+
+Anchor scrolling is immediate when reduced motion is requested; otherwise it remains smooth.

@@ -1,37 +1,40 @@
 ---
-title: "Start a trial or activate a license"
-description: "Start the 14-day trial or activate a Phials license so you can enter the app."
+title: "Local use and Remote Access"
+description: "Use Phials locally for free, or sign in to connect your personal devices with Remote Access."
 icon: phoundry-mono:learn
 order: 2
 ai_disclosure: true
 ---
 
-# Start a trial or activate a license
+# Local use and Remote Access
 
-Start a 14-day trial or activate a license to load the main Phials window. Until Phials finds a valid trial or license, it shows an access screen instead of opening your files and active Layout. On a new installation, that screen is titled **Activate Phials**.
+Phials is free for local use. Open the app and [complete first launch](./complete-first-launch.md). You do not need an Account, license key, activation, trial, or internet connection for local work.
 
-## Start the trial
+## Sign in for Remote Access
 
-Choose **Start 14-day trial** on the activation screen. Phials starts the trial on this computer and opens the main window.
+Remote Access connects your personal devices through a verified Phoundry Account. It costs USD $4 per month per Account and covers unlimited personal desktop and iOS devices. There is no annual plan or trial. Supporter is a separate USD $20 one-time purchase that grants a badge only.
 
-You do not need an account or license key to start the trial. Trial setup is stored on the computer and does not require an internet connection. A computer can start the trial once. After the trial expires, Phials returns to the activation screen and does not offer another trial on the same computer.
+1. Open **Settings → Account** and create an Account with your email and password, or sign in.
+2. Verify your email using the verification link.
+3. On desktop, open the website from Account Settings to manage your Subscription.
+4. Sign in to the same Account on your other devices and choose **Refresh**.
 
-## Activate a license
+An entitled desktop Account enables Hosting automatically unless you have explicitly turned it off. Your Hosting preference survives restarts and sign-ins. iOS is Client-only and contains no purchase links.
 
-Activation requires an internet connection because Phials registers the license to this computer.
+## Find a Host
 
-1. Paste your license key into **License key**.
-2. Choose **Activate**.
-3. Wait for the main Phials window to load.
+Linked desktop Hosts appear automatically after a successful Account refresh. Adding them does not change your selected Host, Layout, or workspace. Select a Host when you want to connect. A linked Host may be offline; connection state indicates reachability.
 
-After successful activation, Phials stores the signed license on the computer, so ordinary launches can work offline.
+Invitation links, QR Pairing, and Nearby Pairing are retired. Both devices must run compatible Account-based Remote Access versions.
 
-If all activations for the license are in use, Phials lists the active computers. Choose **Manage account**, deactivate a computer in the account portal, then return to Phials and choose **Activate** again.
+## Connectivity and access changes
 
-## If you do not have a license key
+Every new remote session, including a reconnect, requires an online Account-service authorization check. An established session has no periodic Account checks. If startup verification fails, Remote Access waits for a successful refresh. Your remembered Hosts, Layouts, and Recovery Drafts remain available locally.
 
-Choose **Purchase a license** to open Phials pricing in your browser. You can also open the [Phoundry account portal](https://account.phoundry.app/account) to manage an existing subscription or its activated computers.
+Account state refreshes on sign-in, startup, **Refresh**, and Hosting-on. Turning Hosting off or signing out closes local remote access immediately. Changes made on another device take effect on a new connection or the next Account refresh; revocation is not promised to be immediate.
 
-If activation fails while you are offline or the licensing service cannot be reached, Phials remains on the activation screen. Restore the connection and try **Activate** again; starting the local trial remains available if this computer has not used it.
+Cancel renewals through the [Account portal](https://account.phoundry.app/account). Access continues through the paid period. A failed renewal allows seven days beyond the last paid period; repeated retries do not extend this grace. An unpaid initial checkout grants no access.
 
-After access is granted, [complete first launch](./complete-first-launch.md).
+## Recover an Account
+
+Choose **Forgot password?** and open the recovery email on the device or browser where you requested it. Existing users who signed in with email links can establish a password this way. Standard password recovery signs out other device sessions. You can also revoke device access in the Account portal.

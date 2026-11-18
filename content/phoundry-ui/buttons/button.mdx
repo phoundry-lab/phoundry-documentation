@@ -1,0 +1,115 @@
+---
+title: Button
+order: 1
+description: >-
+  Versatile button with multiple variants, sizes, icon support, loading state,
+  and automatic tooltip integration.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Versatile button with multiple variants, sizes, icon support, loading state, and automatic tooltip integration.
+
+```ts
+import { Button } from "phoundry-ui";
+```
+
+##### Variants
+
+<Example name="buttons/button/variants" />
+
+##### Sizes
+
+<Example name="buttons/button/sizes" />
+
+##### With Icons
+
+<Example name="buttons/button/with-icons" />
+
+##### States
+
+<Example name="buttons/button/states" />
+
+##### Full width
+
+<Example name="buttons/button/full-width" />
+
+##### As Link
+
+<Example name="buttons/button/as-link" />
+
+---
+
+## API
+
+<ApiTable
+	of="Button"
+	include={[
+		"variant",
+		"size",
+		"icon",
+		"iconPosition",
+		"loading",
+		"active",
+		"disabled",
+		"class",
+		"element",
+		"href",
+		"target",
+		"rel",
+		"title",
+		"noTooltip",
+		"tooltipPlacement",
+		"fullWidth",
+		"onclick",
+		"children",
+	]}
+	notes={{
+		variant: "Visual style of the button.",
+		size: "Canonical control scale - heights, typography, padding, and icon px shared via CSS custom properties.",
+		icon: "Iconify icon string shown alongside or instead of text.",
+		iconPosition: "Which side to place the icon on.",
+		loading: "Show a spinner and disable interaction.",
+		active: "Highlight the button as currently active/selected.",
+		disabled: "Disable the button.",
+		class: "Additional CSS classes merged onto the outer interactive element.",
+		element: "Bindable reference to the underlying button or anchor.",
+		href: "When provided, renders an <a> tag instead of <button>.",
+		target: "Link target when using href (e.g. _blank).",
+		rel: "Optional link rel; defaults to noopener noreferrer when target is _blank.",
+		title: "Tooltip text (uses the phoundry-ui tooltip system by default).",
+		noTooltip: "Use native title attribute instead of tooltip system.",
+		tooltipPlacement:
+			"Placement for the automatic title tooltip. Accepts follow-cursor or any PopoverPlacement value.",
+		fullWidth: "Stretch the button to the width of its parent.",
+		onclick: "Click handler.",
+		children: "Button label content.",
+	}}
+/>
+
+**Other native attributes:** Other native attributes (type, aria-_, data-_, keyboard handlers, etc.) are forwarded to the DOM element.
+
+## Usage tips
+
+- Omit children for icon-only buttons and supply `aria-label` or `title` for the accessible name.
+- Use `tooltipPlacement` to anchor the automatic tooltip to the button; the default placement is `top`.
+- Set `noTooltip` to use the native browser title attribute instead of the phoundry-ui tooltip system.
+- The `link` variant removes height and padding - it renders inline like a text link.
+- `ButtonGroup` supports text and icon segments inside an inset, rounded shell.
+
+## Link and loading semantics
+
+A linked Button prevents activation while `disabled` or `loading`, and exposes `aria-disabled`. Button toggle semantics (`aria-pressed`) apply to native buttons. Loading-only buttons infer icon-only geometry. When `target="_blank"` is supplied without an explicit `rel`, Button supplies `noopener noreferrer`; explicit `rel` values are preserved.
+
+## CSS customization
+
+The stable root is `.ph-btn`. Variant and size use `data-variant` and `data-size`;
+icon-only layout is derived from an icon or spinner and the absence of children.
+`iconOnly` has been removed. Width uses `fullWidth` or Consumer CSS. Shared
+`--ph-comp-h-*`, `--ph-comp-icon-*`, `--ph-btn-radius`, `--ph-button-shadow`,
+`--ph-button-specular`, `--ph-button-shading`, and `--ph-text-shadow` properties
+provide supported customization. Internal part selectors and `--_ph-*` values
+are implementation details.
+
+Keyboard focus uses the hover treatment without a default ring. Persistent `active` state uses the item-selection foreground/background hooks; native pressed state uses the variant's pressed treatment. `.ph-btn-label` and `.ph-btn-icon` are supported theme parts alongside `.ph-btn`. Use `:root .ph-btn` for an ordinary CSS root override with matching scoped-style specificity, or documented public custom properties.

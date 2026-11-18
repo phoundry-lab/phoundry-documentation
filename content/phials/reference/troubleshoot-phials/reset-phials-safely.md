@@ -24,7 +24,7 @@ See [Back up and restore Phials data](../phials-data-and-storage/back-up-and-res
 
 | Removed | Preserved |
 | --- | --- |
-| The complete active Phials Home, including `config.toml`, session and shortcut state, app and plugin databases, licenses and trial state, installed community plugins, and local bundles under `vials/` | Ordinary files and folders outside Phials Home |
+| The complete active Phials Home, including `config.toml`, session and shortcut state, app and plugin databases, remembered Hosts and device Hosting preferences, installed community plugins, and local bundles under `vials/` | Ordinary files and folders outside Phials Home |
 | Contents of the operating system's Phials application-cache directory, including thumbnails, metadata, and media proxies | Portable Workspace Folder bundles stored as `.phials` inside content folders outside Phials Home |
 | A legacy Tauri app-data directory when Phials can remove it | The content of mounted drives, cloud-sync folders, and server shares |
 
@@ -45,7 +45,7 @@ Phials closes its app database, clears the OS cache, deletes Phials Home, attemp
 ## After reset
 
 - App preferences, shortcuts, tabs, Layouts, favorites, saved searches, and installed community plugins begin from defaults or empty state.
-- Activate your license or choose the available startup access path again. Copied license and trial files are device-sensitive.
+- Continue free local use, or sign in again and refresh your Account for Remote Access. Account credentials remain in the operating system credential store; copying old License or trial files grants no access.
 - Open a portable Workspace Folder or run **Refresh Workspaces** to register its surviving identity again.
 - Restore a complete Phials Home backup only while Phials is closed. Restore its matching ordinary content folders before launch when local Workspace Folder paths or Relations depend on them.
 

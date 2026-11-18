@@ -1,0 +1,142 @@
+@theme inline {
+	--color-surface-deep: var(--ph-surface-1);
+	--color-surface-deep-transparent: color-mix(
+		in srgb,
+		var(--ph-surface-1) 20%,
+		transparent
+	);
+	--color-surface-sunken: var(--ph-surface-2);
+	--color-surface-sunken-transparent: color-mix(
+		in srgb,
+		var(--ph-surface-2) 20%,
+		transparent
+	);
+	--color-surface-base: var(--ph-surface-3);
+	--color-surface-base-transparent: color-mix(
+		in srgb,
+		var(--ph-surface-3) 20%,
+		transparent
+	);
+	--color-surface-dim: var(--ph-surface-4);
+	--color-surface-dim-transparent: color-mix(
+		in srgb,
+		var(--ph-surface-4) 20%,
+		transparent
+	);
+	--color-surface-raised: var(--ph-surface-5);
+	--color-surface-raised-transparent: color-mix(
+		in srgb,
+		var(--ph-surface-5) 20%,
+		transparent
+	);
+	--color-surface-overlay: var(--ph-surface-6);
+	--color-surface-overlay-transparent: color-mix(
+		in srgb,
+		var(--ph-surface-6) 20%,
+		transparent
+	);
+
+	/* Surface color variants */
+	--color-surface-overlay-base: color-mix(
+		in oklab,
+		var(--color-surface-overlay) 35%,
+		transparent
+	);
+	--color-surface-overlay-hover: color-mix(
+		in oklab,
+		var(--color-surface-overlay) 50%,
+		transparent
+	);
+	--color-surface-overlay-active: color-mix(
+		in oklab,
+		var(--color-surface-overlay) 60%,
+		transparent
+	);
+	--color-surface-overlay-active-hover: color-mix(
+		in oklab,
+		var(--color-surface-overlay) 80%,
+		transparent
+	);
+	--color-danger-base: color-mix(
+		in oklab,
+		var(--color-semantic-error) 10%,
+		transparent
+	);
+	--color-danger-hover: color-mix(
+		in oklab,
+		var(--color-semantic-error) 15%,
+		transparent
+	);
+	--color-danger-active: color-mix(
+		in oklab,
+		var(--color-semantic-error) 20%,
+		transparent
+	);
+	--color-danger-active-hover: color-mix(
+		in oklab,
+		var(--color-semantic-error) 25%,
+		transparent
+	);
+
+	--color-border-muted: var(--ph-border-muted);
+	--color-border-default: var(--ph-border-default);
+	--color-border-emphasis: var(--ph-border-emphasis);
+
+	/* Preserve the published text aliases used by component CSS. */
+	--color-txt-primary: var(--ph-text-primary);
+	--color-txt-secondary: var(--ph-text-secondary);
+	--color-txt-tertiary: var(--ph-text-tertiary);
+	--color-txt-on-accent: var(--ph-accent-fg);
+
+	--color-accent-primary: var(--ph-accent);
+	--color-accent-primary-hover: var(--ph-accent-hover);
+	--color-accent-primary-active: var(--ph-accent-pressed);
+	--color-accent-secondary: var(--ph-text-link);
+	--color-accent-text: color-mix(
+		in oklab,
+		var(--color-accent-primary) 80%,
+		var(--color-txt-primary)
+	);
+	--color-accent-dim: color-mix(
+		in oklab,
+		var(--color-accent-primary) 10%,
+		var(--color-surface-sunken)
+	);
+	--color-accent-dim-hover: color-mix(
+		in oklab,
+		var(--color-accent-primary) 20%,
+		var(--color-surface-sunken)
+	);
+
+	--color-semantic-success: var(--ph-success-fg);
+	--color-semantic-warning: var(--ph-warning-fg);
+	--color-semantic-error: var(--ph-danger-fg);
+	--color-semantic-info: var(--ph-info-fg);
+
+	--color-selection-bg: var(--ph-text-selection-bg);
+	--color-selection-text: var(--ph-text-selection-fg);
+	--color-focus-ring: var(--ph-accent);
+
+	--color-option-red: var(--ph-hue-red);
+	--color-option-orange: var(--ph-hue-orange);
+	--color-option-yellow: var(--ph-hue-yellow);
+	--color-option-green: var(--ph-hue-green);
+	--color-option-cyan: var(--ph-hue-cyan);
+	--color-option-blue: var(--ph-hue-blue);
+	--color-option-purple: var(--ph-hue-purple);
+	--color-option-pink: var(--ph-hue-pink);
+	--color-option-gray: var(--ph-hue-gray);
+
+	--color-option-orange-light: var(--ph-hue-orange-light);
+	--color-option-yellow-light: var(--ph-hue-yellow-light);
+	--color-option-green-light: var(--ph-hue-green-light);
+	--color-option-cyan-light: var(--ph-hue-cyan-light);
+	--color-option-blue-light: var(--ph-hue-blue-light);
+	--color-option-purple-light: var(--ph-hue-purple-light);
+	--color-option-pink-light: var(--ph-hue-pink-light);
+
+	--font-sans: system-ui, sans-serif;
+	--font-serif: system-ui, sans-serif;
+	--font-mono: ui-monospace, monospace;
+	--font-logo: "Orbitron", sans-serif;
+}

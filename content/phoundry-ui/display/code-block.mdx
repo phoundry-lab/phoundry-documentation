@@ -1,0 +1,38 @@
+---
+title: CodeBlock
+order: 10
+description: Theme-aware syntax highlighting with a plain-code fallback while Shiki loads.
+---
+
+import ApiTable from "@docs/ApiTable.astro";
+
+Theme-aware syntax highlighting with a plain-code fallback while Shiki loads.
+
+```ts
+import { CodeBlock } from "phoundry-ui";
+```
+
+```typescript
+const message = "Hello";
+```
+
+## API
+
+<ApiTable
+	of="CodeBlock"
+	include={["code", "lang", "colorSchemeRoot", "class", "style"]}
+	notes={{
+		code: "Source code to display; surrounding whitespace is trimmed.",
+		lang: "Shiki language. ts and js resolve to typescript and javascript.",
+		colorSchemeRoot:
+			"Element whose computed Theme variables supply syntax colors; defaults to document.documentElement.",
+		class: "Additive classes on the stable root.",
+		style: "Inline styles on the stable root.",
+	}}
+/>
+
+## Styling
+
+The stable root hook is `.ph-code-block` for both the fallback `pre` and the highlighted wrapper `div`. `class` and `style` target that root. `data-highlighted` is `false` while plain code is displayed and `true` when Shiki's markup is ready. The fallback and generated markup use local vanilla CSS; only generated `pre` and `code` descendants require bounded global selectors. `--ph-code-block-font` customizes the code font and defaults to the existing system monospace stack. Syntax colors follow the active named Theme; highlighting reacts to Theme changes and ignores stale async results.
+
+Replace `.phi-code-block` and `.phi-code-block-fallback` identification hooks with `.ph-code-block` and `data-highlighted`. Internal part selectors and Shiki's DOM are not stable customization hooks.

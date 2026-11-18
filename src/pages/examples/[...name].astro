@@ -1,0 +1,55 @@
+---
+import DemoHost from "../../components/docs/DemoHost.svelte";
+import Overlays from "../../components/docs/Overlays.svelte";
+import "../../styles/docs.css";
+export function getStaticPaths() {
+	return Object.keys(
+		import.meta.glob("/content/phoundry-ui/_examples/**/*.svelte"),
+	)
+		.filter((file) => !file.includes("/_shared/"))
+		.map((file) => ({
+			params: {
+				name: file
+					.replace("/content/phoundry-ui/_examples/", "")
+					.replace(/\.svelte$/, ""),
+			},
+		}));
+}
+const name = Astro.params.name!;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark" data-theme-mode="dark" data-pagefind-ignore>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="robots" content="noindex" />
+		<title>{name} example</title>
+	</head>
+	<body class="isolated-preview">
+		<Overlays client:load />
+		<DemoHost name={name} client:load />
+	</body>
+</html>
+<script>
+	window.addEventListener("message", (event) => {
+		if (
+			event.source !== window.parent ||
+			event.origin !== location.origin ||
+			event.data?.type !== "phoundry-docs-theme"
+		)
+			return;
+		document.documentElement.dataset.theme = event.data.theme;
+		document.documentElement.dataset.themeMode =
+			event.data.theme === "light" ? "light" : "dark";
+	});
+	new ResizeObserver(() =>
+		window.parent.postMessage(
+			{
+				type: "phoundry-docs-example-height",
+				height: document.body.scrollHeight + 24,
+			},
+			location.origin,
+		),
+	).observe(document.body);
+</script>

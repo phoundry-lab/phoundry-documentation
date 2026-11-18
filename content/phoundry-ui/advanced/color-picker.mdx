@@ -1,0 +1,129 @@
+---
+title: ColorPicker
+order: 1
+description: >-
+  HSV color picker with text input, preset swatches, and multiple output
+  formats.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+HSV color picker with text input, preset swatches, and multiple output formats.
+
+```ts
+import { ColorPicker } from "phoundry-ui";
+```
+
+## Basic (Hex)
+
+<Example name="advanced/color-picker/basic-hex" />
+
+## Without Input & Presets
+
+<Example name="advanced/color-picker/without-input-presets" />
+
+## Input field format (hex | rgb | hsl)
+
+<Example name="advanced/color-picker/input-field-format-hex-rgb-hsl" />
+
+## Compact & disabled
+
+<Example name="advanced/color-picker/compact-disabled" />
+
+## Custom presets
+
+<Example name="advanced/color-picker/custom-presets" />
+
+---
+
+## API
+
+<ApiTable
+	of="ColorPicker"
+	include={[
+		"value",
+		"onchange",
+		"format",
+		"showInput",
+		"showPresets",
+		"showChannelSummary",
+		"presetColors",
+		"recentColors",
+		"customColors",
+		"onpresetadd",
+		"onpresetdelete",
+		"disabled",
+		"size",
+		"class",
+	]}
+	notes={{
+		value: "Current color value.",
+		onchange:
+			"Called when the color changes. The value is always normalized hex (e.g. `#22c55e`), including after typing in RGB/HSL form.",
+		format:
+			"How the text field displays and parses manual entry. Callbacks still receive hex.",
+		showInput: "Show the text input for manual entry.",
+		showPresets: "Show the preset color swatches.",
+		showChannelSummary:
+			"Show the compact RGB and hue summary below the value field.",
+		presetColors:
+			"Controlled named presets. Omit for the defaults; pass `[]` to suppress them.",
+		recentColors:
+			"Controlled recent CSS colors, rendered in the provided order.",
+		customColors:
+			"One labeled consumer-defined color group with item-owned pick callbacks.",
+		onpresetadd:
+			"Shows the dashed + control and requests that the normalized current color be added.",
+		onpresetdelete:
+			"Enables right-click and Delete/Backspace preset removal requests.",
+		disabled: "Disable interaction.",
+		size: "Picker size.",
+		class: "Additional CSS classes.",
+	}}
+/>
+
+## Managed color sections
+
+```ts
+interface ColorPickerPreset {
+	id: string;
+	name: string;
+	value: string;
+}
+
+interface ColorPickerCustomItem {
+	id: string;
+	name: string;
+	value: string;
+	onpick: () => void;
+}
+
+interface ColorPickerCustomGroup {
+	label: string;
+	description?: string;
+	colors: ColorPickerCustomItem[];
+}
+```
+
+`presetColors`, `recentColors`, and `customColors` are controlled. The picker requests preset mutations through `onpresetadd` and `onpresetdelete`; consumers own persistence and pass the updated arrays back.
+
+## Usage tips
+
+- Use `format="rgb"` or `format="hsl"` when authors prefer typing CSS functions - callbacks remain hex for a single canonical storage format.
+- Pass controlled `presetColors` to name and manage a consumer-owned palette. An empty array suppresses the built-in presets.
+- `recentColors` is presentation-only; persist, deduplicate, order, and cap recents in the consumer.
+- Use `customColors` for semantic or theme-backed CSS colors. Each custom item owns its callback, so it can preserve intent that a hex callback cannot represent.
+- Manual Hex, RGB, and HSL fields commit on blur or Enter. Escape or invalid/out-of-range input restores the current value.
+- Use `size="sm"` for inline usage in toolbars or compact UIs.
+- The picker uses HSV internally for intuitive color selection - hue on the slider, saturation/value on the area.
+
+## CSS styling
+
+`.ph-color-picker` is the stable identification hook for ColorPicker. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+`data-size` selects the existing `sm` 10rem and `md` 13.75rem picker geometry. Fixed HSV gradients consume `--ph-color-space-white`, `--ph-color-space-black`, and `--ph-color-hue-spectrum` from the shared stylesheet. These describe mathematical color channels independently of the active Theme.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.
+
+CSS variables and browser-supported color functions, including `color-mix()` and `oklch()`, resolve through the browser. The picker refreshes external colors after committed theme changes and root style/appearance changes. Resolved external RGB values retain their precision rather than passing through rounded HSV coordinates.

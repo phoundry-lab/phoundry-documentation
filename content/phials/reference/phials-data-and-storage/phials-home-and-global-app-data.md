@@ -40,8 +40,8 @@ If you set the `PHIALS_HOME` environment variable before launching Phials, every
 | `state/plugin-data.json` | Namespaced key/value data stored by community plugins                                                                                                                            | Durable when you want plugin data restored                            |
 | `vials/<workspace-id>/`  | Complete bundles for Workspace Folders stored locally in Phials Home                                                                                                             | Durable; copy each bundle as one unit                                 |
 | `plugins/<plugin-id>/`   | Installed community-plugin packages and their bundled assets                                                                                                                     | Durable if you want the same installed plugins                        |
-| `license.json`           | Signed local license entitlement cache                                                                                                                                           | Device-sensitive; you may need to activate again after moving devices |
-| `trial.json`             | Local trial record tied to a machine fingerprint                                                                                                                                 | Device-sensitive; it is not a transferable trial                      |
+| `license.json`           | Legacy License cache, if retained from an older build; grants no access                                                                                                                                           | Not needed for free local use or Account authorization |
+| `trial.json`             | Legacy trial record, if retained from an older build; grants no access                                                                                                                                 | Not needed for free local use or Account authorization                      |
 
 Phials also creates app-managed directories such as `themes/`, and regenerable files such as `open-with-probes/`. Preserve the complete Phials Home for a full backup instead of selecting only the familiar filenames.
 
@@ -57,3 +57,5 @@ Phials Home does not contain:
 - OS-managed window geometry, which is stored separately and can be recreated if omitted from a backup.
 
 See [Caches and temporary data](./caches-and-temporary-data.md) for the regenerable stores and [Back up and restore Phials data](./back-up-and-restore-phials-data.md) before copying or replacing durable data.
+
+Account credentials and device private keys are stored in the operating system credential store. Copying Phials Home does not copy Account access. Legacy License or trial files grant no replacement Subscription or Supporter benefits.

@@ -28,15 +28,11 @@ Similarly, use `api.modules.openCenter()` for center tabs, `MetadataAPI.readFile
 Supply the expected return type and documented arguments:
 
 ```ts
-async function detectMediaSupport(
-  api: PluginAPI,
-): Promise<boolean> {
+async function detectMediaSupport(api: PluginAPI): Promise<boolean> {
   try {
     return await api.invoke<boolean>("ffmpeg_available_cmd");
   } catch {
-    api.notify.warning(
-      "Media support could not be checked",
-    );
+    api.notify.warning("Media support could not be checked");
     return false;
   }
 }
@@ -47,21 +43,13 @@ The TypeScript generic describes the result to your plugin; it does not validate
 ```ts
 type SystemPaths = Partial<
   Record<
-    | "home"
-    | "desktop"
-    | "documents"
-    | "downloads"
-    | "pictures"
-    | "videos",
+    "home" | "desktop" | "documents" | "downloads" | "pictures" | "videos",
     string
   >
 >;
 
-async function getDownloadsPath(
-  api: PluginAPI,
-): Promise<string | null> {
-  const result =
-    await api.invoke<unknown>("get_system_paths_cmd");
+async function getDownloadsPath(api: PluginAPI): Promise<string | null> {
+  const result = await api.invoke<unknown>("get_system_paths_cmd");
 
   if (
     typeof result !== "object" ||
@@ -82,10 +70,10 @@ Do not build command names dynamically. Use one literal command with a locally d
 
 Community plugins receive this effective command boundary:
 
-| Availability | Approved command group |
-| --- | --- |
-| Always available | System paths, drive discovery, media-tool availability, macOS detection, Full Disk Access status, and cached image or folder thumbnails |
-| `filesystem.read` | Directory reads, file metadata, embedded audio covers, text and binary reads, plugin text reads, and directory watch registration |
+| Availability       | Approved command group                                                                                                                          |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Always available   | System paths, drive discovery, media-tool availability, macOS detection, Full Disk Access status                                                |
+| `filesystem.read`  | Directory reads, file metadata, embedded audio covers, text and binary reads, plugin text reads, and directory watch registration               |
 | `filesystem.write` | Directory creation, Trash operations, same-directory rename, text and binary writes, and plugin text writes; also grants the read command group |
 
 The exact command names, arguments, return values, and platform boundaries are listed in the [Approved host command reference](../../reference/manifest-and-permissions-reference/approved-host-command-reference.md). Request permissions in `manifest.json`:
@@ -96,7 +84,7 @@ The exact command names, arguments, return values, and platform boundaries are l
   "name": "Media Inspector",
   "version": "1.0.0",
   "minAppVersion": "1.0.0",
-  "pluginApiVersion": "1.0.0",
+  "pluginApiVersion": "2.0.0",
   "author": "Example",
   "description": "Inspects selected media files.",
   "permissions": ["filesystem.read"]
@@ -132,14 +120,9 @@ async function refreshFolder(
     }
     return [...result.entries];
   } catch (error) {
-    const message =
-      error instanceof Error
-        ? error.message
-        : "Unknown error";
+    const message = error instanceof Error ? error.message : "Unknown error";
 
-    api.notify.error(
-      `Could not read the folder: ${message}`,
-    );
+    api.notify.error(`Could not read the folder: ${message}`);
     return [];
   }
 }
@@ -153,16 +136,16 @@ Keep technical details in logs when they would help diagnosis, but make user-fac
 
 Before adding `api.invoke`, check these public services:
 
-| Operation | Typed API |
-| --- | --- |
-| Paths, folder selection, directory reads, text writes, rename, Trash, watches, open, and reveal | `api.files` |
-| Plugin configuration | `api.settings` |
-| Plugin data | `api.storage` or `api.database` |
-| Center-tab opening | `api.modules` |
-| Metadata-provider file reads | [MetadataAPI](../../reference/sdk-type-reference/MetadataAPI.md) |
-| Dialogs and feedback | `api.modal` and `api.notify` |
-| Clipboard | `api.clipboard` |
-| Network requests | `api.fetch` |
+| Operation                                                                                       | Typed API                                                        |
+| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Paths, folder selection, directory reads, text writes, rename, Trash, watches, open, and reveal | `api.files`                                                      |
+| Plugin configuration                                                                            | `api.settings`                                                   |
+| Plugin data                                                                                     | `api.storage` or `api.database`                                  |
+| Center-tab opening                                                                              | `api.modules`                                                    |
+| Metadata-provider file reads                                                                    | [MetadataAPI](../../reference/sdk-type-reference/MetadataAPI.md) |
+| Dialogs and feedback                                                                            | `api.modal` and `api.notify`                                     |
+| Clipboard                                                                                       | `api.clipboard`                                                  |
+| Network requests                                                                                | `api.fetch`                                                      |
 
 The typed method owns its permission and transport behavior. `api.invoke` is not a general escape hatch and does not authorize arbitrary filesystem, shell, process, configuration, database, or app-state access.
 

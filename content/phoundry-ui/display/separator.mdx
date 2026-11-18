@@ -1,0 +1,58 @@
+---
+title: Separator
+order: 4
+description: >-
+  Visual divider for separating content sections. Supports horizontal and
+  vertical orientation with an optional centered label.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Visual divider for separating content sections. Supports horizontal and vertical orientation with an optional centered label.
+
+```ts
+import { Separator } from "phoundry-ui";
+```
+
+## Basic Horizontal
+
+<Example name="display/separator/basic-horizontal" />
+
+## With Label
+
+<Example name="display/separator/with-label" />
+
+## Vertical
+
+<Example name="display/separator/vertical" />
+
+## Center snippet (children)
+
+<Example name="display/separator/center-snippet-children" />
+
+---
+
+## API
+
+<ApiTable
+	of="Separator"
+	include={["orientation", "label", "children", "class", "style"]}
+	notes={{
+		orientation: "Direction of the divider.",
+		label: "Centered text label shown on the divider line.",
+		children: "Custom content to display in the center instead of a label.",
+		class: "Additional CSS classes.",
+		style: "Inline styles on the stable component root.",
+	}}
+/>
+
+## Usage tips
+
+- Use the `label` prop for "or" dividers in forms (e.g. "Or continue with").
+- Vertical separators need a parent with explicit height and `display: flex`.
+- Pass a `children` snippet for custom center content (icons, badges, etc.).
+
+## Styling
+
+`.ph-separator` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. The root always emits `data-orientation` and `data-has-label`, and uses the matching `aria-orientation` for separator semantics. Its one-pixel rule, vertical stretching, centered label, and snippet precedence are unchanged. Internal part selectors and `--_ph-*` properties remain implementation details.

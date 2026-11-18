@@ -1,0 +1,58 @@
+---
+title: EmptyState
+order: 6
+description: >-
+  Centered placeholder for empty views with icon, title, description, and
+  optional action slot. Three sizes control spacing, icon dimensions, and
+  typography.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Centered placeholder for empty views with icon, title, description, and optional action slot. Three sizes control spacing, icon dimensions, and typography.
+
+```ts
+import { EmptyState, Button } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="display/empty-state/basic" />
+
+## With Action Button
+
+<Example name="display/empty-state/with-action-button" />
+
+## Sizes
+
+<Example name="display/empty-state/sizes" />
+
+---
+
+## API
+
+<ApiTable
+	of="EmptyState"
+	include={["icon", "title", "description", "action", "size", "class", "style"]}
+	notes={{
+		icon: "Iconify icon string shown above the title.",
+		title: "Main heading text.",
+		description: "Supporting text below the title.",
+		action: "Action area - typically a Button.",
+		size: "Controls spacing, icon size, and typography scale.",
+		class: "Additional CSS classes.",
+		style: "Inline styles on the stable component root.",
+	}}
+/>
+
+## Usage tips
+
+- Use the `action` snippet to provide a clear call-to-action (e.g. "Create", "Upload", "Import").
+- Use `size="sm"` for inline empty states (e.g. inside a card or panel) and `size="lg"` for full-page views.
+- Always provide a `description` to guide the user on what to do next.
+- `icon` is optional - omit it for text-only empty states in tight layouts.
+
+## Styling
+
+`.ph-empty-state` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. The root emits `data-size`. Its existing layout sizes, larger illustration-like icon dimensions, action snippet, and text hierarchy are preserved; size controls this display layout rather than a control height. Internal part selectors and `--_ph-*` properties remain implementation details.

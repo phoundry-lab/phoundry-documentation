@@ -1,0 +1,55 @@
+/* Use the default palettes imported by phoundry-ui/styles as the single color
+ * source. Starlight's theme provider mirrors its mode to data-theme-mode. */
+:root,
+::backdrop {
+	--sl-color-white: var(--ph-text-primary);
+	--sl-color-gray-1: var(--ph-text-primary);
+	--sl-color-gray-2: var(--ph-text-secondary);
+	--sl-color-gray-3: var(--ph-text-tertiary);
+	--sl-color-gray-4: var(--ph-border-emphasis);
+	--sl-color-gray-5: transparent;
+	--sl-color-gray-6: var(--ph-surface-3);
+	--sl-color-gray-7: var(--ph-surface-4);
+	--sl-color-black: var(--ph-surface-3);
+
+	--sl-color-text: var(--ph-text-primary);
+	--sl-color-text-accent: var(--ph-accent);
+	--sl-color-text-invert: var(--ph-accent-fg);
+	--sl-color-bg: var(--ph-surface-2);
+	--sl-color-bg-nav: var(--ph-surface-2);
+	--sl-color-bg-sidebar: var(--ph-surface-2);
+	--sl-color-bg-inline-code: var(--ph-surface-3);
+	--sl-color-bg-accent: var(--ph-accent);
+	--sl-color-hairline-light: var(--ph-border-muted);
+	--sl-color-hairline: transparent;
+	--sl-color-hairline-shade: var(--ph-border-muted);
+	--sl-color-backdrop-overlay: color-mix(
+		in srgb,
+		var(--ph-surface-0) 66%,
+		transparent
+	);
+
+	--sl-color-accent: var(--ph-accent-subtle-bg);
+	--sl-color-accent-low: var(--ph-accent-subtle-bg);
+	--sl-color-accent-high: var(--ph-accent-subtle-fg);
+
+	--sl-color-orange: var(--ph-warning-fg);
+	--sl-color-orange-low: var(--ph-warning-bg);
+	--sl-color-orange-high: var(--ph-warning-fg);
+	--sl-color-green: var(--ph-success-fg);
+	--sl-color-green-low: var(--ph-success-bg);
+	--sl-color-green-high: var(--ph-success-fg);
+	--sl-color-blue: var(--ph-info-fg);
+	--sl-color-blue-low: var(--ph-info-bg);
+	--sl-color-blue-high: var(--ph-info-fg);
+	--sl-color-red: var(--ph-danger-fg);
+	--sl-color-red-low: var(--ph-danger-bg);
+	--sl-color-red-high: var(--ph-danger-fg);
+	--sl-color-purple: var(--ph-hue-purple);
+	--sl-color-purple-low: color-mix(
+		in oklab,
+		var(--ph-hue-purple) 10%,
+		transparent
+	);
+	--sl-color-purple-high: var(--ph-hue-purple);
+}

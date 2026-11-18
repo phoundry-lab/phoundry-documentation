@@ -1,0 +1,94 @@
+---
+title: RichTextEditor
+order: 8
+status: experimental
+description: >-
+  Contenteditable HTML editor with configurable toolbar, placeholder, and HTML
+  output.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Contenteditable HTML editor with configurable toolbar, placeholder, and HTML output.
+
+```ts
+import { RichTextEditor } from "phoundry-ui";
+```
+
+## Full Toolbar
+
+<Example name="advanced/rich-text-editor/full-toolbar" />
+
+## Minimal Toolbar
+
+<Example name="advanced/rich-text-editor/minimal-toolbar" />
+
+## Disabled
+
+<Example name="advanced/rich-text-editor/disabled" />
+
+---
+
+## API
+
+<ApiTable
+	of="RichTextEditor"
+	include={[
+		"value",
+		"onchange",
+		"placeholder",
+		"toolbar",
+		"disabled",
+		"minHeight",
+		"maxHeight",
+		"class",
+	]}
+	notes={{
+		value: "HTML content string.",
+		onchange: "Called when content changes.",
+		placeholder: "Placeholder text when empty.",
+		toolbar: "Which toolbar buttons to show. Defaults to all actions.",
+		disabled: "Disable editing.",
+		minHeight: "Minimum editor height.",
+		maxHeight: "Maximum editor height before scrolling.",
+		class: "Additional CSS classes.",
+	}}
+/>
+
+## ToolbarAction Values
+
+<ApiTable
+	of="ToolbarAction"
+	notes={{
+		bold: "Bold text formatting.",
+		italic: "Italic text formatting.",
+		underline: "Underline text.",
+		strikethrough: "Strikethrough text.",
+		code: "Inline code formatting.",
+		link: "Insert or edit hyperlink.",
+		heading: "Toggle heading level.",
+		bulletList: "Unordered list.",
+		numberedList: "Ordered list.",
+		blockquote: "Block quote formatting.",
+		horizontalRule: "Insert horizontal rule.",
+		clearFormatting: "Remove all formatting from selection.",
+	}}
+/>
+
+## Usage tips
+
+- The `value` is raw HTML - sanitize it before persisting or rendering elsewhere to prevent XSS.
+- Use a minimal toolbar (`['bold', 'italic', 'link']`) for comment fields and short-form inputs.
+- Set `maxHeight` to constrain tall content - the editor scrolls internally.
+- The editor uses `contenteditable` - no external dependencies required.
+- Toolbar shortcut keys: `⌘/Ctrl+B/I/U` for bold/italic/underline, `⌘/Ctrl+K` for links, `Tab` inserts two spaces (does not move focus).
+- The `heading` action maps to an `h3` via `formatBlock` - browser support for formatting commands varies slightly.
+
+## CSS styling
+
+`.ph-rich-text-editor` is the stable identification hook for RichTextEditor. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Toolbar and contenteditable-body styles are separate. Styles for generated rich-text markup remain scoped to the editor body.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

@@ -1,8 +1,8 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
+	"extends": "astro/tsconfigs/strict",
 	"compilerOptions": {
 		"allowJs": true,
-		"checkJs": true,
+		"checkJs": false,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
@@ -10,7 +10,13 @@
 		"sourceMap": true,
 		"strict": true,
 		"moduleResolution": "bundler",
-		"module": "Preserve"
-	}
+		"module": "Preserve",
+		"paths": {
+			"@docs/*": ["./src/components/docs/*"],
+			"$lib/*": ["./src/lib/*"],
+			"$phoundry/*": ["./node_modules/phoundry-ui/dist/*"]
+		}
+	},
+	"include": [".astro/types.d.ts", "src/**/*", "scripts/**/*.ts"],
+	"exclude": ["build", "dist-package", "experiments", "node_modules"]
 }
-

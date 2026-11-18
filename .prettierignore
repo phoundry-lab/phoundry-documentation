@@ -1,0 +1,12 @@
+node_modules/
+.astro/
+.svelte-kit/
+build/
+dist-package/
+static/docs-assets/
+src/lib/generated/
+package-lock.json
+vendor/
+content/phials-developer/reference/sdk-type-reference/
+scripts/sdk-reference/type-references-manifest.json
+scripts/sdk-reference/type-references-link-map.json

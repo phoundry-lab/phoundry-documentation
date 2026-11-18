@@ -1,0 +1,58 @@
+---
+title: JsonTree
+order: 9
+description: >-
+  Inspect-only foldable tree for a JSON object or array. The Consumer owns the
+  value. Not TreeView, not CodeBlock, and not a parser.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Inspect-only foldable tree for a JSON object or array. The Consumer owns the value. Not TreeView, not CodeBlock, and not a parser.
+
+```ts
+import { JsonTree } from "phoundry-ui";
+```
+
+## Object
+
+<Example name="display/json-tree/object" />
+
+## Array
+
+<Example name="display/json-tree/array" />
+
+## Deeper default expand
+
+<Example name="display/json-tree/deeper-default-expand" />
+
+---
+
+## API
+
+<ApiTable
+	of="JsonTree"
+	include={["value", "defaultExpandDepth", "depth", "class", "style"]}
+	notes={{
+		value:
+			"Already-parsed JSON. Objects and arrays render as a foldable tree of keys or indices. JsonTree does not parse strings.",
+		defaultExpandDepth:
+			"How many levels start open. `1` lists the value's own keys or indices and leaves nested objects and arrays collapsed.",
+		depth: "Recursive depth; leave at zero for a top-level tree.",
+		class: "Additional CSS classes on the root tree.",
+		style: "Inline styles on the stable component root.",
+	}}
+/>
+
+## Usage tips
+
+- Pass a parsed object or array. Detection and `JSON.parse` belong in the Consumer.
+- There is no wrapper `{` / `[` row. The tree starts at the value's own keys or indices.
+- Nested string leaves stay strings. JsonTree does not sniff them again.
+- Empty objects and arrays render as `{}` / `[]` leaves, not as blank fold rows.
+- This is inspect-only. There is no selection and no drag.
+
+## Styling
+
+`.ph-json-tree` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. The root remains a `tree`, nested lists remain `group` elements, and expandable rows retain their ARIA state and button controls. Top-level entries and collapsed-by-default nested containers behave as before. The shared `.ph-json-value` primitive maps `data-kind` to the active Theme’s syntax colors for both scalar roots and recursive leaves. Internal row selectors and DOM hierarchy are not customization APIs. Internal part selectors and `--_ph-*` properties remain implementation details.

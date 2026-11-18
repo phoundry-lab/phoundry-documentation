@@ -1,0 +1,81 @@
+---
+title: NoiseOverlay
+order: 6
+description: >-
+  Full-viewport static grain using an SVG feTurbulence (fractal noise) +
+  feColorMatrix (desaturate) filter chain. Renders a fixed, pointer-events-none
+  layer meant for a single use near the app root. Prefer opacity around
+  0.05–0.12 at normal zoom.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Full-viewport static grain using an SVG feTurbulence (fractal noise) + feColorMatrix (desaturate) filter chain. Renders a fixed, pointer-events-none layer meant for a single use near the app root. Prefer opacity around 0.05–0.12 at normal zoom.
+
+```ts
+import { NoiseOverlay } from "phoundry-ui";
+```
+
+## Preview (exaggerated in this box)
+
+<Example name="layout/noise-overlay/preview-exaggerated-in-this-box" />
+
+## Grain tuning
+
+<Example name="layout/noise-overlay/grain-tuning" />
+
+## Root layout
+
+Mount once inside your top-level `+layout.svelte` (or app shell). Keep `zIndex` under your modal / tooltip layer; the component defaults to `1`. The layer uses `pointer-events: none` so it never steals focus or clicks.
+
+```svelte
+<script>
+	import { NoiseOverlay } from "phoundry-ui";
+</script>
+
+<div class="relative min-h-svh">
+	<NoiseOverlay />
+	<div class="relative z-10">
+		{@render children?.()}
+	</div>
+</div>
+```
+
+---
+
+## API
+
+<ApiTable
+	of="NoiseOverlay"
+	include={[
+		"opacity",
+		"zIndex",
+		"position",
+		"baseFrequency",
+		"numOctaves",
+		"seed",
+		"blendMode",
+		"class",
+	]}
+	notes={{
+		opacity: "Layer alpha; keep low for a subtle look.",
+		zIndex: "Stacking order; keep below your overlay / modal z-indexes.",
+		position: "Fixed = viewport; absolute = fill a relative/absolute parent.",
+		baseFrequency:
+			"feTurbulence frequency; one value or x/y pair. Higher = finer grain.",
+		numOctaves: "Turbulence detail (typically 2–4).",
+		seed: "Optional 0–999; fixes the pattern when you need a stable look across remounts.",
+		blendMode:
+			"CSS mix-blend-mode; soft-light and overlay are common for UI grain.",
+		class: "Extra classes on the fixed wrapper div.",
+	}}
+/>
+
+## CSS styling
+
+`.ph-noise-overlay` is the stable identification hook for NoiseOverlay. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Position uses `data-position`. Opacity, stacking, and blend-mode props keep their existing behavior.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

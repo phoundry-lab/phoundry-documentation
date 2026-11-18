@@ -10,11 +10,11 @@ order: 3
 Phials evaluates three independent semantic versions for a plugin release. Only
 two participate in runtime compatibility.
 
-| Version | Manifest field | Meaning | Runtime compatibility input |
-| --- | --- | --- | --- |
-| Plugin version | `version` | The plugin's own release version | No |
-| Minimum Phials version | `minAppVersion` | The oldest Phials release the plugin supports | Yes |
-| Plugin API version | `pluginApiVersion` | The public SDK contract the release targets | Yes |
+| Version                | Manifest field     | Meaning                                       | Runtime compatibility input |
+| ---------------------- | ------------------ | --------------------------------------------- | --------------------------- |
+| Plugin version         | `version`          | The plugin's own release version              | No                          |
+| Minimum Phials version | `minAppVersion`    | The oldest Phials release the plugin supports | Yes                         |
+| Plugin API version     | `pluginApiVersion` | The public SDK contract the release targets   | Yes                         |
 
 Do not substitute one version for another. Svelte, `phoundry-ui`, and other npm
 package versions are separate version domains.
@@ -81,18 +81,17 @@ later releases, subject to the separate Plugin API check.
 ## Plugin API version
 
 `pluginApiVersion` names the public SDK contract used to build the release.
-Plugin API `1.0.0` is the finalized initial contract, and every authored source
-manifest declares it explicitly. Omission belonged only to incomplete
-pre-release scaffolding and is not part of the synchronized public contract.
+The current contract is Plugin API `2.0.0`. It replaces component Thumbnail contributions and old Thumbnail invoke commands directly. API 1 releases are incompatible with an API 2 Host and must migrate before activation.
 
-For the finalized initial contract, the Plugin API check is exact:
+The Host accepts an explicitly declared API version only when its major matches the supported major and it is no newer than the supported version:
 
 ```text
-supported Plugin API version = pluginApiVersion = 1.0.0
+major(pluginApiVersion) = major(supported Plugin API version)
+and
+pluginApiVersion <= supported Plugin API version
 ```
 
-Do not substitute a newer or older value. A later published Plugin API contract
-will define its own compatibility rule when it exists.
+The manifest field is required; there is no omitted-version default. A Plugin requiring the dedicated Thumbnail contract declares `2.0.0`. A future compatible minor can accept earlier API 2 releases; API 1 remains a different major.
 
 Plugin API versions follow semantic versioning:
 
@@ -107,20 +106,22 @@ A release is runtime-compatible only when both lower bounds are satisfied:
 ```text
 current Phials version >= minAppVersion
 and
-supported Plugin API version = pluginApiVersion = 1.0.0
+major(pluginApiVersion) = major(supported Plugin API version)
+and
+pluginApiVersion <= supported Plugin API version
 ```
 
 Phials checks this condition before loading and activation. When either side
 fails, the release can remain installed but its code and capabilities do not
 activate.
 
-| Current Phials | Supported API | Manifest minimum | Manifest API | Result |
-| --- | --- | --- | --- | --- |
-| `1.6.0` | `1.0.0` | `1.4.0` | `1.0.0` | Compatible |
-| `1.4.0` | `1.0.0` | `1.4.0` | `1.0.0` | Compatible at the app-version bound |
-| `1.3.2` | `1.0.0` | `1.4.0` | `1.0.0` | Minimum Phials version fails |
-| `1.6.0` | `1.0.0` | `1.4.0` | `1.1.0` | Plugin API version fails |
-| `1.3.2` | `1.0.0` | `1.4.0` | `1.1.0` | Both boundaries fail |
+| Current Phials | Supported API | Manifest minimum | Manifest API | Result                              |
+| -------------- | ------------- | ---------------- | ------------ | ----------------------------------- |
+| `1.6.0`        | `2.0.0`       | `1.4.0`          | `2.0.0`      | Compatible                          |
+| `1.4.0`        | `2.0.0`       | `1.4.0`          | `2.0.0`      | Compatible at the app-version bound |
+| `1.3.2`        | `2.0.0`       | `1.4.0`          | `2.0.0`      | Minimum Phials version fails        |
+| `1.6.0`        | `2.0.0`       | `1.4.0`          | `2.1.0`      | Plugin API too new                  |
+| `1.6.0`        | `2.0.0`       | `1.4.0`          | `1.1.0`      | Different API major                 |
 
 Compatibility is a declared lower-bound check, not proof of correctness. Test
 the release at the exact minimum, on a current Phials release, and against one

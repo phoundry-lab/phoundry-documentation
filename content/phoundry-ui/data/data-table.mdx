@@ -1,0 +1,172 @@
+---
+title: DataTable
+order: 1
+status: experimental
+description: >-
+  Rendered table with sorting, row selection, column resizing, and optional
+  virtual scrolling for large datasets.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Rendered table with sorting, row selection, column resizing, and optional virtual scrolling for large datasets.
+
+```ts
+import { DataTable } from "phoundry-ui";
+```
+
+## Basic Table
+
+<Example name="data/data-table/basic-table" />
+
+## Sortable Columns
+
+<Example name="data/data-table/sortable-columns" />
+
+## With Selection
+
+<Example name="data/data-table/with-selection" />
+
+## Cell Editors
+
+<Example name="data/data-table/cell-editors" />
+
+## Grouped rows (groupBy)
+
+<Example name="data/data-table/grouped-rows-groupby" />
+
+## Relation Cells
+
+<Example name="data/data-table/relation-cells" />
+
+---
+
+## API
+
+<ApiTable
+	of="DataTable"
+	include={[
+		"data",
+		"columns",
+		"getRowId",
+		"onSortChange",
+		"onSelectionChange",
+		"onRowClick",
+		"onRowDblClick",
+		"onCellChange",
+		"selectable",
+		"rowHeight",
+		"maxHeight",
+		"virtualScroll",
+		"striped",
+		"bordered",
+		"compact",
+		"class",
+		"groupBy",
+		"groupHeaderHeight",
+		"groupCell",
+		"cell",
+		"headerCell",
+		"empty",
+	]}
+	notes={{
+		data: "Array of row objects.",
+		columns: "Column definitions controlling headers, accessors, and behavior.",
+		getRowId: "Custom row identity function. Defaults to index.",
+		onSortChange: "Called when a sortable column header is clicked.",
+		onSelectionChange: "Called when row selection changes.",
+		onRowClick: "Single-click handler for a row.",
+		onRowDblClick: "Double-click handler for a row.",
+		onCellChange: "Called when a built-in cell editor changes a value.",
+		selectable: "Show selection checkboxes.",
+		rowHeight: "Row height in pixels.",
+		maxHeight: "Max table height before scrolling.",
+		virtualScroll: "Enable virtual scrolling for large datasets.",
+		striped: "Alternate row background colors.",
+		bordered: "Add cell borders.",
+		compact: "Reduce cell padding.",
+		class: "Additional CSS classes.",
+		groupBy:
+			"Column id to group rows by. Inserts a header row per group using the same cell visuals in read-only mode. Unknown ids are ignored.",
+		groupHeaderHeight:
+			"Height in pixels for group header rows when using groupBy (defaults to rowHeight).",
+		groupCell:
+			"Optional custom renderer for group headers when both groupBy and the cell snippet are set; otherwise a text fallback is used.",
+		cell: "Overrides built-in cell rendering for every column.",
+		headerCell: "Custom header cell content per column definition.",
+		empty: "Shown when `data` is empty.",
+	}}
+/>
+
+## ColumnDef
+
+<ApiTable
+	of="ColumnDef"
+	include={[
+		"id",
+		"header",
+		"accessorKey",
+		"accessorFn",
+		"sortFn",
+		"width",
+		"minWidth",
+		"maxWidth",
+		"sortable",
+		"resizable",
+		"align",
+		"cellType",
+		"cellConfig",
+	]}
+	notes={{
+		id: "Unique column identifier.",
+		header: "Column header text.",
+		accessorKey: "Property key to read from each row.",
+		accessorFn: "Custom accessor function.",
+		sortFn: "Custom sort comparator.",
+		width: "Fixed column width in pixels.",
+		minWidth: "Minimum resize width.",
+		maxWidth: "Maximum resize width.",
+		sortable: "Enable sorting for this column.",
+		resizable: "Enable column resizing.",
+		align: "Cell text alignment.",
+		cellType:
+			"Built-in cell editor type. Auto-renders matching cell component when no cell snippet is provided.",
+		cellConfig:
+			"Configuration object passed to the auto-rendered cell editor (options, placeholder, callbacks, etc.).",
+	}}
+/>
+
+---
+
+## Cell Types
+
+Available `cellType` values:
+
+- `text` - Click-to-edit text input
+- `number` - Click-to-edit number (supports decimals)
+- `boolean` - Always-interactive checkbox
+- `rating` - Always-interactive star rating
+- `select` / `status` - Single-select dropdown with colored option pills
+- `multi-select` - Multi-select dropdown with colored tags
+- `date` - Date/datetime picker with optional end date and time
+- `url` - URL display with click-to-edit and external link
+- `relation` - Generic link picker with async search
+
+---
+
+## Usage tips
+
+- For headless usage without the rendered table, use `createTable` from `import { createTable } from 'phoundry-ui'`.
+- Enable `virtualScroll` with a `maxHeight` for datasets over a few hundred rows.
+- Provide `getRowId` when rows have a natural unique key - it improves selection and reconciliation.
+- Combine `striped` and `compact` for dense data displays like logs or analytics.
+- Cell editors can also be used standalone via the `cell` snippet: import `CellText`, `CellSelect`, etc. from `'phoundry-ui'`.
+
+## CSS styling
+
+`.ph-data-table` is the stable identification hook for DataTable. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Replace old `dt-*` styling hooks with the stable root. Bordered, wrapping, compact, selection, and striping state use separate attributes. Column resizing, grouping, editing, and virtual-row measurements retain their behavior.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

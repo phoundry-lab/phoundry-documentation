@@ -1,0 +1,104 @@
+---
+title: ButtonDropdown
+order: 2
+description: >-
+  Button that opens a dropdown menu on click, powered by the ContextMenu overlay
+  system.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Button that opens a dropdown menu on click, powered by the ContextMenu overlay system.
+
+```ts
+import { ButtonDropdown } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="buttons/button-dropdown/basic" />
+
+## Variants
+
+<Example name="buttons/button-dropdown/variants" />
+
+## Sizes
+
+<Example name="buttons/button-dropdown/sizes" />
+
+## Split: sizes (singleClickAction)
+
+<Example name="buttons/button-dropdown/split-sizes-singleclickaction" />
+
+## Split: variants (singleClickAction)
+
+<Example name="buttons/button-dropdown/split-variants-singleclickaction" />
+
+## Split: with icon (singleClickAction)
+
+<Example name="buttons/button-dropdown/split-with-icon-singleclickaction" />
+
+## Without Arrow
+
+<Example name="buttons/button-dropdown/without-arrow" />
+
+## Searchable menus
+
+Set `searchable` to show a search input in each menu level (default: `false`). Filtering matches labels using a case-insensitive, trimmed substring; spaces inside the query are preserved. Each submenu searches only its own level, and each opening starts fresh. Empty results show “No results found”. Arrow Up/Down move through enabled results, Enter activates a result, and Escape returns from a submenu or closes the root menu.
+
+```svelte
+<ButtonDropdown {items} searchable>Choose action</ButtonDropdown>
+```
+
+## Placement
+
+<Example name="buttons/button-dropdown/placement" />
+
+## Loading, disabled, tooltip
+
+<Example name="buttons/button-dropdown/loading-disabled-tooltip" />
+
+---
+
+## API
+
+<ApiTable
+	of="ButtonDropdown"
+	include={["items", "placement", "showArrow", "searchable", "singleClickAction", "iconOnly"]}
+	notes={{
+		items:
+			"Menu items to display. Can be a static array or a function that returns items lazily.",
+		searchable:
+			"Show an independent label filter in every menu level. Defaults to false; queries reset on opening.",
+		placement:
+			"Where the dropdown opens relative to the button (top…right-end; see popover placement types).",
+		showArrow:
+			"Show the chevron indicator. When singleClickAction is set, the chevron is always shown (this prop is effectively ignored in split mode).",
+		singleClickAction:
+			"Split control: the main label area runs this handler; the chevron segment opens the menu. Renders as two <button>s; href is ignored. element bind targets the left button.",
+		iconOnly:
+			"Hide label content and use an icon-only trigger. Icon-only layout is also inferred when an icon or loading spinner is present without children. With showArrow=false the trigger is square; split mode keeps a square primary segment.",
+	}}
+/>
+
+**...buttonProps:** Same fields as Button (variant, size, icon, loading, disabled, active, title, noTooltip, class, element bind, etc.). href / link mode is not supported - use Button + separate menu if you need a link trigger.
+
+## Usage tips
+
+- Pass `items` as a function for lazy evaluation - useful when menu items depend on current state.
+- Set `placement="bottom"` to center the menu beneath the button. Unsuffixed placements center on the corresponding edge; `-start` and `-end` align to its ends. Menus stay within the viewport.
+- The dropdown uses the same `ContextMenu` overlay, so it requires `provideContextMenu()` (or `setupOverlays()`) in a parent layout.
+- Set `showArrow={false}` to hide the chevron for a cleaner look (not used when `singleClickAction` is set).
+- All six variants match `Button`: `primary` uses the dim accent surface, `secondary` uses the base surface, `outline` adds a border, `danger` uses danger colors, and `ghost` and `link` use transparent surfaces. Hover and active colors follow the same variant tokens. An open menu holds its trigger in the active style.
+- The `xs`, `sm`, `md`, and `lg` sizes use the shared CSS control-height and icon-size tokens, matching `Button`. `fullWidth` stretches the whole control, including the shell in split mode.
+- In split mode, the chevron segment's width equals the whole control's outer height, including for the outline variant. The segment keeps that width when space is constrained.
+- Clicks have no wave animation. Loading spins the icon, and opening rotates the chevron; both respect reduced-motion preferences.
+
+## Styling hooks
+
+The stable root selector is `.ph-btn-dropdown`. Consumer `class` and `style` values apply to this root: the button in single mode and the outer shell in split mode. Native attributes, tooltip attachment, and the `element` binding still target the primary button. Part selectors are internal.
+
+The root exposes `data-variant` and `data-size`. Visual customization uses `--ph-btn-radius`, `--ph-comp-h-xs` / `sm` / `md` / `lg`, and `--ph-comp-icon-xs` / `sm` / `md` / `lg` from the shared component stylesheet. The same optional `--ph-button-shadow`, `--ph-button-specular`, `--ph-button-shading`, and `--ph-text-shadow` overrides used by `Button` apply here.
+
+Optional motion overrides are `--ph-motion-fast` (100ms for surface and chevron transitions), `--ph-motion-ease-out` (`ease-out`), and `--ph-motion-spin` (1000ms per loading rotation). Reduced-motion preferences disable these transitions and the spinner animation.

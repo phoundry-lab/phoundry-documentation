@@ -11,4 +11,4 @@ Start here if you're new to Phials. These guides introduce the product without r
 
 - [What is Phials?](./what-is-phials/index.md) shows the kinds of file-based work Phials can support.
 - [Phials basics](./phials-basics/index.md) introduces the window, Explorer tabs, file views, Files and Pages, Workspace Folder data, and Layouts.
-- [Install and first launch](./install-and-first-launch/index.md) covers downloading, installing, starting a trial or activating a license, and completing the initial setup.
+- [Install and first launch](./install-and-first-launch/index.md) covers downloading, installing, free local use and optional Account-based Remote Access, and completing the initial setup.

@@ -21,13 +21,13 @@ interface ReadonlyAppSettings {
 
 These values have app-wide meaning:
 
-| Setting | Use |
-| --- | --- |
-| `thumbnailsEnabled` | Whether thumbnail presentation is enabled globally |
-| `thumbnailSize` | Current thumbnail generation and display size |
-| `thumbnailQuality` | Current thumbnail generation quality |
-| `showHiddenFiles` | Whether dot-hidden entries may appear in Explorer listings |
-| `showParentDirectory` | Whether Explorer listings include the `..` parent entry |
+| Setting               | Use                                                                         |
+| --------------------- | --------------------------------------------------------------------------- |
+| `thumbnailsEnabled`   | Whether thumbnail presentation is enabled globally                          |
+| `thumbnailSize`       | Current owning-Host generation size preference; display size is independent |
+| `thumbnailQuality`    | Current owning-Host generation quality preference                           |
+| `showHiddenFiles`     | Whether dot-hidden entries may appear in Explorer listings                  |
+| `showParentDirectory` | Whether Explorer listings include the `..` parent entry                     |
 
 The Explorer pane already applies hidden-file and parent-entry settings to `pane.listing.entries`. A file view should render that listing rather than filter it again. Read the settings directly when building another presentation that genuinely needs to mirror the global choice.
 
@@ -38,18 +38,8 @@ Retain the [PluginAPI](../../reference/sdk-type-reference/PluginAPI.md) during a
 ```ts
 import { getPluginAPI } from "./runtime";
 
-function thumbnailRequestFor(file: FileEntry) {
-  const settings = getPluginAPI().appSettings;
-
-  if (!settings.thumbnailsEnabled) {
-    return null;
-  }
-
-  return {
-    path: file.path,
-    size: settings.thumbnailSize,
-    quality: settings.thumbnailQuality,
-  };
+function showHiddenPreference() {
+  return getPluginAPI().appSettings.showHiddenFiles;
 }
 ```
 
@@ -65,30 +55,23 @@ Read app settings inside `$derived` when a mounted component should update with 
 
   const appSettings = getPluginAPI().appSettings;
 
-  const showThumbnail = $derived(
-    appSettings.thumbnailsEnabled,
-  );
-  const thumbnailSize = $derived(
-    appSettings.thumbnailSize,
-  );
+  const showHidden = $derived(appSettings.showHiddenFiles);
 </script>
 
-{#if showThumbnail}
-  <ProjectThumbnail size={thumbnailSize} />
-{:else}
-  <ProjectIcon />
-{/if}
+<p>{showHidden ? "Hidden entries are included" : "Hidden entries are hidden"}</p>
 ```
 
 Keep the getter read inside the reactive expression. This captures only a snapshot:
 
 ```ts
-const { thumbnailSize } = getPluginAPI().appSettings;
+const { showHiddenFiles } = getPluginAPI().appSettings;
 ```
 
 The local number will not change later. Destructuring is fine for one operation, but not for a long-lived reactive presentation.
 
 Outside Svelte, read the property again when an event, command, or request runs. [ReadonlyAppSettings](../../reference/sdk-type-reference/ReadonlyAppSettings.md) does not expose a mutation method or promise to notify arbitrary long-lived services.
+
+A Thumbnail renderer reads `context.generation`, captured `context.settings` and declared `context.variants`. It must not construct an independent request from these live preferences or read ambient values mid-render. Phials applies current Host generation policy and controls whether Thumbnail demand is presented. See [Add thumbnails and toolbar controls](../../add-capabilities/build-file-viewers-and-editors/add-thumbnails-and-toolbar-controls.md).
 
 ## Do not mutate global preferences
 
@@ -103,12 +86,12 @@ Do not invoke configuration commands, edit Phials configuration files, or recrea
 
 Choose the correct state owner:
 
-| Value | Owner |
-| --- | --- |
-| Supported global Phials preference | `api.appSettings` |
-| User-configurable plugin behavior | `api.settings` |
+| Value                                                 | Owner                                                                        |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Supported global Phials preference                    | `api.appSettings`                                                            |
+| User-configurable plugin behavior                     | `api.settings`                                                               |
 | Pane view, selection, navigation, or saved-view state | [PluginPaneContext](../../reference/sdk-type-reference/PluginPaneContext.md) |
-| Internal plugin application data | `api.storage` or `api.database` |
+| Internal plugin application data                      | `api.storage` or `api.database`                                              |
 
 For example, “show review badges” is a plugin setting. The current Explorer item size is pane view state. Whether Phials globally enables thumbnails is an app setting.
 

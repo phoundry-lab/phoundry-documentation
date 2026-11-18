@@ -1,0 +1,142 @@
+---
+title: Combobox
+order: 4
+status: experimental
+description: >-
+  Searchable dropdown with type-ahead filtering, multi-select with tags, async
+  search, creatable options, option groups, and custom option rendering via
+  snippets.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Searchable dropdown with type-ahead filtering, multi-select with tags, async search, creatable options, option groups, and custom option rendering via snippets.
+
+```ts
+import { Combobox } from "phoundry-ui";
+```
+
+## Button trigger
+
+<Example name="inputs/combobox/button-trigger" />
+
+## Input trigger search
+
+<Example name="inputs/combobox/input-trigger-search" />
+
+## Multiple selection
+
+<Example name="inputs/combobox/multiple-selection" />
+
+## Creatable
+
+<Example name="inputs/combobox/creatable" />
+
+## Async search
+
+<Example name="inputs/combobox/async-search" />
+
+## Custom option row
+
+<Example name="inputs/combobox/custom-option-row" />
+
+Panel and option-row styling follows Context Menu through shared internal rendering. Search, async loading, creation, selection, and input focus remain Combobox behavior; its manager and attachment usage are unchanged.
+
+---
+
+## ComboboxOptions
+
+<ApiTable
+	of="ComboboxOptions"
+	include={[
+		"options",
+		"value",
+		"onchange",
+		"onSearch",
+		"onCreate",
+		"placeholder",
+		"multiple",
+		"creatable",
+		"size",
+		"option",
+		"actions",
+	]}
+	notes={{
+		options: "Available options to search/select from",
+		value: "Selected value(s) - string for single, string[] for multiple",
+		onchange: "Called when selection changes",
+		onSearch: "Async search callback - replaces local filtering",
+		onCreate: "Called when user creates a new option",
+		placeholder: "Input placeholder text",
+		multiple: "Enable multi-select with tags",
+		creatable: "Allow creating new options from the query",
+		size: "Field typography and padding aligned to Button control scale",
+		option: "Custom snippet for rendering each option row",
+		actions:
+			"Menu items pinned below the scrolling options, unaffected by search. Supports all Context Menu item types and preventClose.",
+	}}
+/>
+
+**disabled:** Disables the combobox
+
+**class:** Additional CSS classes on the wrapper
+
+**id:** HTML id attribute
+
+**name:** HTML name attribute
+
+**element:** Bindable reference to the input element
+
+**Other native attributes:** Forwarded to the search `<input>` (e.g. `autocomplete`, `spellcheck`).
+
+## Usage tips
+
+- Use `onSearch` for server-side filtering - it debounces at 200 ms and replaces local filtering entirely.
+- Combine `multiple` + `creatable` for a tag-input pattern where users can add arbitrary values.
+- Provide the `option` snippet to render custom layouts (avatars, badges, etc.) inside each dropdown row.
+
+## Footer actions
+
+Pass `actions: MenuItem[]` to `combobox()`, `api.open()`, or `api.configure()` to pin menu items below the scrolling option list. They remain visible when you scroll or search, including when no options match. The footer supports Context Menu actions, boolean and radio items, separators, labels, groups, custom rows, and submenus.
+
+```ts
+import type { MenuItem } from "phoundry-ui";
+
+const actions: MenuItem[] = [
+	{
+		type: "action",
+		id: "refresh",
+		label: "Refresh projects",
+		preventClose: true,
+		action: () => refreshProjects(),
+	},
+	{ type: "separator" },
+	{
+		type: "action",
+		id: "new-project",
+		label: "New project…",
+		shortcut: "Mod+N",
+		action: () => createProject(),
+	},
+];
+
+api.open({
+	anchor: trigger,
+	options: projects,
+	onchange: selectProject,
+	actions,
+});
+```
+
+Footer actions close the Combobox before running unless `preventClose: true`. Top-level action shortcuts also work while focus is in the option list or search field. Arrow keys move between options and footer rows; footer submenus and custom controls own their keyboard interaction.
+
+The previous `{ id, label, run }` footer shape is replaced by the shared `{ type: 'action', id, label, action }` shape. `ComboboxAction` now aliases `ActionMenuItem`.
+
+## CSS styling
+
+`.ph-combobox-panel` is the stable identification hook for Combobox. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Searchable option rows share the overlay-row visual contract. Active and selected rows use semantic state; keyboard and selection behavior are unchanged.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

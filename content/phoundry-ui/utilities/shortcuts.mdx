@@ -1,0 +1,235 @@
+---
+title: Keyboard Shortcuts
+order: 2
+description: >-
+  Headless shortcut management with registration, conflict detection, user
+  overrides, and platform-aware display formatting.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Headless shortcut management with registration, conflict detection, user overrides, and platform-aware display formatting.
+
+```ts
+import { createShortcutManager } from "phoundry-ui";
+```
+
+<div class="max-w-3xl space-y-8">
+
+## Basic Registration & Display
+
+<Example name="utilities/shortcuts/basic-registration-display" />
+
+## Platform-Specific Shortcuts
+
+<Example name="utilities/shortcuts/platform-specific-shortcuts" />
+
+## User Overrides & Conflict Detection
+
+<div class="space-y-2">
+	<p class="text-xs text-txt-secondary">
+		Users can rebind shortcuts. The manager validates conflicts and persists
+		overrides via callbacks.
+	</p>
+</div>
+
+```ts
+// User wants to rebind Save to Ctrl+Shift+S
+await shortcuts.setOverride("app.save", ["Ctrl+Shift+S"]);
+
+// Check for conflicts before setting
+const conflict = shortcuts.checkConflict("Ctrl+N", "app.new");
+if (conflict) {
+	console.warn(`Conflicts with "${conflict.existingActionLabel}"`);
+}
+
+// Reset a single action or all overrides
+await shortcuts.resetToDefault("app.save");
+await shortcuts.resetAll();
+```
+
+## Standalone Utilities
+
+<div class="space-y-2">
+	<p class="text-xs text-txt-secondary">
+		Low-level utilities for parsing, formatting, and matching shortcuts outside
+		the manager.
+	</p>
+</div>
+
+```ts
+import { parseShortcut, formatShortcut, matchesEvent } from "phoundry-ui";
+
+const parsed = parseShortcut("CmdOrCtrl+Shift+P", "mac");
+// → { key: 'p', ctrl: false, meta: true, alt: false, shift: true }
+
+const display = formatShortcut("CmdOrCtrl+S", "mac");
+// → "⌘S"
+
+document.addEventListener("keydown", (e) => {
+	if (matchesEvent(parsed, e)) {
+		console.log("Matched!");
+	}
+});
+```
+
+## Factory vs getter
+
+<p class="text-xs text-txt-secondary">
+	<code>createShortcutManager</code> installs the singleton; subsequent modules
+	can call <code>getShortcutManager()</code> without threading instances through
+	every import.
+</p>
+
+```ts
+import { createShortcutManager, getShortcutManager } from "phoundry-ui";
+
+// Typically once at startup:
+export const shortcuts = createShortcutManager({
+	loadOverrides,
+	saveOverrides,
+});
+
+// Elsewhere (after startup):
+const same = getShortcutManager();
+```
+
+---
+
+## Construction
+
+<ApiTable of="createShortcutManager" />
+
+**createShortcutManager(options?):** Construct (or replace) the process singleton - must run before <code>getShortcutManager()</code>.
+
+**getShortcutManager():** Throws if no manager was created yet - useful for modules that only consume shortcuts.
+
+## ShortcutManager (state)
+
+<ApiTable
+	of="ShortcutManager"
+	include={["platform", "isReady"]}
+	notes={{
+		platform:
+			"Resolved platform key (<code>mac</code>, <code>windows</code>, <code>linux</code>) used when parsing definitions.",
+		isReady:
+			"Becomes true after <code>init()</code> resolves (safe to read shortcuts with overrides applied).",
+	}}
+/>
+
+---
+
+## ShortcutManagerOptions
+
+<ApiTable
+	of="ShortcutManagerOptions"
+	include={["loadOverrides", "saveOverrides", "shouldIgnore"]}
+	notes={{
+		loadOverrides: "Callback to load persisted shortcut overrides at init.",
+		saveOverrides: "Callback to persist overrides after every change.",
+		shouldIgnore:
+			"Filter to skip events. Defaults to ignoring inputs, textareas, and open modals.",
+	}}
+/>
+
+---
+
+## ShortcutRegistration
+
+<ApiTable
+	of="ShortcutRegistration"
+	include={[
+		"id",
+		"label",
+		"defaults",
+		"handler",
+		"when",
+		"section",
+		"subsection",
+		"priority",
+		"allowDefault",
+	]}
+	notes={{
+		id: "Unique identifier for the shortcut action.",
+		label: "Human-readable label shown in settings UI.",
+		defaults:
+			'Default shortcut(s). Strings like "CmdOrCtrl+S" or per-platform objects.',
+		handler:
+			"Called when the shortcut fires. Return false to allow propagation.",
+		when: "Guard - shortcut only fires when this returns true.",
+		section: "Group in settings UI.",
+		subsection: "Subgroup in settings UI.",
+		priority: "Higher priority shortcuts are checked first.",
+		allowDefault: "If true, does not call preventDefault().",
+	}}
+/>
+
+---
+
+## ShortcutManager Methods
+
+<ApiTable
+	of="ShortcutManager"
+	include={[
+		"register",
+		"registerAll",
+		"unregister",
+		"unregisterByPrefix",
+		"has",
+		"get",
+		"getShortcutsForAction",
+		"getDisplayShortcut",
+		"getDisplayShortcuts",
+		"setOverride",
+		"resetToDefault",
+		"resetAll",
+		"hasOverride",
+		"checkConflict",
+		"handleKeyDown",
+		"getSections",
+		"init",
+		"destroy",
+	]}
+	notes={{
+		register:
+			"Register a keyboard shortcut with id, label, defaults, and handler.",
+		registerAll: "Register multiple shortcuts at once.",
+		unregister: "Remove a shortcut registration by id.",
+		unregisterByPrefix:
+			"Remove all registrations whose id starts with the given prefix.",
+		has: "Check if a shortcut id is registered.",
+		get: "Get a registration by id.",
+		getShortcutsForAction:
+			"Get the active shortcut strings for an action (respects overrides).",
+		getDisplayShortcut:
+			"Get the formatted display string for the primary shortcut.",
+		getDisplayShortcuts:
+			"Get formatted display strings for all shortcuts of an action.",
+		setOverride:
+			"Set user-customized shortcut(s) for an action. Validates conflicts.",
+		resetToDefault:
+			"Remove the user override for an action, restoring defaults.",
+		resetAll: "Clear all user overrides.",
+		hasOverride: "Check if an action has a user override.",
+		checkConflict:
+			"Check if a shortcut string conflicts with existing registrations.",
+		handleKeyDown:
+			"Process a keyboard event. Returns true if a shortcut matched.",
+		getSections:
+			"Get all registrations grouped by section/subsection for settings UI.",
+		init: "Load persisted overrides. Call once after creation.",
+		destroy: "Clear all registrations and caches.",
+	}}
+/>
+
+</div>
+
+## Usage tips
+
+- Use `CmdOrCtrl` as a modifier prefix - it resolves to `Cmd` on Mac and `Ctrl` elsewhere.
+- Call `init()` after creation to load persisted overrides before registering shortcuts.
+- The default `shouldIgnore` skips events in inputs, textareas, contenteditable, and when a modal is open.
+- Use `when` guards for context-dependent shortcuts (e.g., only active when a panel is focused).
+- Up to 3 shortcut bindings per action are supported.
+- `getSections()` returns grouped registrations - useful for building a keyboard shortcuts settings panel.

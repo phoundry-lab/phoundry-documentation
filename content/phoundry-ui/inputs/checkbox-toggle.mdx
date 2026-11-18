@@ -1,0 +1,83 @@
+---
+title: CheckboxToggle
+order: 9
+description: >-
+  Toggle switch with sliding pill animation. Semantically a switch
+  (role="switch") with optional label and press animation on the thumb.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Toggle switch with sliding pill animation. Semantically a switch (role="switch") with optional label and press animation on the thumb.
+
+```ts
+import { CheckboxToggle } from "phoundry-ui";
+```
+
+## Basic toggle
+
+<Example name="inputs/checkbox-toggle/basic-toggle" />
+
+## With label
+
+<Example name="inputs/checkbox-toggle/with-label" />
+
+## Sizes
+
+<Example name="inputs/checkbox-toggle/sizes" />
+
+## Snippet label
+
+<Example name="inputs/checkbox-toggle/snippet-label" />
+
+## Disabled
+
+<Example name="inputs/checkbox-toggle/disabled" />
+
+---
+
+## API
+
+<ApiTable
+	of="CheckboxToggle"
+	include={[
+		"checked",
+		"onchange",
+		"disabled",
+		"size",
+		"label",
+		"description",
+		"class",
+		"style",
+		"id",
+		"name",
+		"element",
+	]}
+	notes={{
+		checked: "Whether the toggle is on",
+		onchange: "Called when the toggle is flipped",
+		disabled: "Prevents interaction",
+		size: "Size of the toggle track and thumb",
+		label: "Inline label rendered next to the toggle",
+		description: "Helper text below the label",
+		class: "Additional CSS classes",
+		style: "Inline styles on the component styling target described below.",
+		id: "Element id (auto-generated if omitted)",
+		name: "Form field name - renders a hidden input",
+		element: "Bindable reference to the switch button.",
+	}}
+/>
+
+**Other native attributes:** Forwarded to the `<button>` (e.g. `aria-describedby`).
+
+## Usage tips
+
+- Use for boolean settings that take effect immediately (e.g. dark mode, notifications).
+- Prefer `Checkbox` over `CheckboxToggle` when the value is part of a form that requires explicit submission.
+- The thumb has a press animation - users get tactile feedback on click.
+- Pass a `name` prop for native form submission via hidden input.
+
+## Styling
+
+`.ph-toggle` is the stable root identification hook. Styling is component-local vanilla CSS; `data-size` always identifies the selected size. The root is the label wrapper when labelled and the switch button otherwise. `class` and `style` apply to that root; native attributes, attachments, and `bind:element` still target the button. Sizes remain `xs`, `sm`, and `md`. `--ph-toggle-thumb-shadow` controls the thumb shadow. Press and slide transitions respect reduced-motion preferences. Internal part selectors and `--_ph-*` properties are implementation details. Filled indicators use the active Theme’s `--text-on-accent` foreground.

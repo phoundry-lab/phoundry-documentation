@@ -1,0 +1,78 @@
+---
+import { Code } from "@astrojs/starlight/components";
+import { selectApiRows, inlineDescription, uiApi } from "../../lib/ui/api";
+interface Props {
+	of: string;
+	include?: string[];
+	exclude?: string[];
+	notes?: Record<string, string>;
+}
+const { of: symbol, include, exclude = [], notes = {} } = Astro.props;
+const { entry, rows } = selectApiRows(symbol, include, exclude);
+---
+
+<div class="api-reference" data-api-symbol={symbol}>
+	<p class="api-provenance">
+		From{" "}
+		<code>
+			{uiApi.package}@{uiApi.version}
+		</code>
+	</p>
+	{rows.length ? (
+		<div class="api-scroll">
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					{rows.map((row) => (
+						<tr>
+							<td>
+								<code>{row.name}</code>
+								{row.required &&
+									["component", "interface", "type"].includes(entry.kind) && (
+										<small>required</small>
+									)}
+								{row.bindable && <small>bindable</small>}
+							</td>
+							<td>
+								<code>{row.type}</code>
+							</td>
+							<td>{row.default ? <code>{row.default}</code> : "—"}</td>
+							<td>
+								<Fragment
+									set:html={inlineDescription(
+										notes[row.name] ?? row.description ?? "",
+									)}
+								/>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	) : entry.values?.length ? (
+		<ul>
+			{entry.values.map((value) => (
+				<li>
+					<code>{value}</code>
+					{notes[value.replace(/^['"]|['"]$/g, "")] && (
+						<span> — {notes[value.replace(/^['"]|['"]$/g, "")]}</span>
+					)}
+				</li>
+			))}
+		</ul>
+	) : entry.signature ? (
+		<Code
+			code={`${symbol}${entry.signature.startsWith("(") ? ": " : " = "}${entry.signature}`}
+			lang="ts"
+		/>
+	) : (
+		<p>{entry.description}</p>
+	)}
+</div>

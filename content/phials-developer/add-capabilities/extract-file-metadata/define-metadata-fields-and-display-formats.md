@@ -15,59 +15,59 @@ A field has a stable extracted `key`, a user-facing `label`, and a semantic `typ
 
 ```typescript
 const FIELD = {
-	wordCount: "example.document-metadata:word-count",
-	language: "example.document-metadata:language",
-	reviewed: "example.document-metadata:reviewed",
-	publishedAt: "example.document-metadata:published-at",
-	keywords: "example.document-metadata:keywords",
+  wordCount: "example.document-metadata:word-count",
+  language: "example.document-metadata:language",
+  reviewed: "example.document-metadata:reviewed",
+  publishedAt: "example.document-metadata:published-at",
+  keywords: "example.document-metadata:keywords",
 } as const;
 
 const documentSchema: MetadataSchema = {
-	fields: [
-		{
-			key: FIELD.wordCount,
-			label: "Word Count",
-			type: "number",
-			icon: "phoundry-mono:properties",
-		},
-		{
-			key: FIELD.language,
-			label: "Language",
-			type: "dynamic-enum",
-			icon: "phoundry-mono:text",
-		},
-		{
-			key: FIELD.reviewed,
-			label: "Reviewed",
-			type: "boolean",
-			icon: "phoundry-mono:check",
-		},
-		{
-			key: FIELD.publishedAt,
-			label: "Published",
-			type: "date",
-			icon: "phoundry-mono:calendar",
-		},
-		{
-			key: FIELD.keywords,
-			label: "Keywords",
-			type: "array",
-			icon: "phoundry-mono:tag",
-		},
-	],
+  fields: [
+    {
+      key: FIELD.wordCount,
+      label: "Word Count",
+      type: "number",
+      icon: "phoundry-mono:properties",
+    },
+    {
+      key: FIELD.language,
+      label: "Language",
+      type: "dynamic-enum",
+      icon: "phoundry-mono:text",
+    },
+    {
+      key: FIELD.reviewed,
+      label: "Reviewed",
+      type: "boolean",
+      icon: "phoundry-mono:check",
+    },
+    {
+      key: FIELD.publishedAt,
+      label: "Published",
+      type: "date",
+      icon: "phoundry-mono:calendar",
+    },
+    {
+      key: FIELD.keywords,
+      label: "Keywords",
+      type: "array",
+      icon: "phoundry-mono:tag",
+    },
+  ],
 };
 ```
 
 The extracted record must use values compatible with each type:
 
-| Type | Return value | Phials behavior |
-| --- | --- | --- |
-| `string` | string | text display and lexical comparison |
-| `number` | finite number | numeric display, comparison, and calculations |
-| `date` | epoch milliseconds | host-controlled date display, sort, and filtering |
-| `boolean` | boolean | checked or unchecked display and boolean filtering |
-| `array` | JSON-safe array | joined display and item-aware filtering |
-| `dynamic-enum` | stable string | choice filtering from provider options or listing values |
+| Type           | Return value       | Phials behavior                                          |
+| -------------- | ------------------ | -------------------------------------------------------- |
+| `string`       | string             | text display and lexical comparison                      |
+| `number`       | finite number      | numeric display, comparison, and calculations            |
+| `date`         | epoch milliseconds | host-controlled date display, sort, and filtering        |
+| `boolean`      | boolean            | checked or unchecked display and boolean filtering       |
+| `array`        | JSON-safe array    | joined display and item-aware filtering                  |
+| `dynamic-enum` | stable string      | choice filtering from provider options or listing values |
 
 Omit a key when the value is unknown. Do not use an empty string, `0`, or `false` to stand for missing data because each can be a meaningful value.
 
@@ -86,39 +86,38 @@ Declare only the formatted field in the schema:
 
 ```typescript
 const FIELD = {
-	wordCount: "example.document-metadata:word-count",
-	wordCountDisplay: "example.document-metadata:word-count-display",
+  wordCount: "example.document-metadata:word-count",
+  wordCountDisplay: "example.document-metadata:word-count-display",
 } as const;
 
 const provider: MetadataProvider = {
-	type: "metadata",
-	id: "example.document-metadata.values",
-	name: "Document metadata",
-	extensions: ["txt", "md", "markdown"],
+  type: "metadata",
+  id: "example.document-metadata.values",
+  name: "Document metadata",
+  extensions: ["txt", "md", "markdown"],
 
-	extract: async (file, _rawMeta, api) => {
-		const text = await api.readTextFile();
-		const count = (text.match(/\S+/gu) ?? []).length;
+  extract: async (file, _rawMeta, api) => {
+    const text = await api.readTextFile();
+    const count = (text.match(/\S+/gu) ?? []).length;
 
-		return {
-			[FIELD.wordCount]: count,
-			[FIELD.wordCountDisplay]:
-				`<strong>${count.toLocaleString()}</strong> words`,
-		};
-	},
+    return {
+      [FIELD.wordCount]: count,
+      [FIELD.wordCountDisplay]: `<strong>${count.toLocaleString()}</strong> words`,
+    };
+  },
 
-	schema: {
-		fields: [
-			{
-				key: FIELD.wordCountDisplay,
-				rawKey: FIELD.wordCount,
-				label: "Word Count",
-				type: "number",
-				format: "html",
-				icon: "phoundry-mono:properties",
-			},
-		],
-	},
+  schema: {
+    fields: [
+      {
+        key: FIELD.wordCountDisplay,
+        rawKey: FIELD.wordCount,
+        label: "Word Count",
+        type: "number",
+        format: "html",
+        icon: "phoundry-mono:properties",
+      },
+    ],
+  },
 };
 ```
 
@@ -126,7 +125,7 @@ On a formatted field, `type` describes the raw value at `rawKey`, not the HTML s
 
 Keep user-controlled text escaped before placing it in markup even though Phials performs final sanitization. Prefer a plain field when semantic tokens and host formatting already express the value.
 
-`format` is a closed union. Plugin API `1.0.0` supports only `"html"`, and an
+`format` is a closed union. The current Plugin API supports only `"html"`, and an
 HTML field must declare a distinct plugin-prefixed `rawKey` that is not listed
 as a separate schema field. Invalid relationships reject provider registration.
 
@@ -145,20 +144,20 @@ A `dynamic-enum` field can supply stable values through `getFilterValueOptions`.
 
 ```typescript
 const LANGUAGE = {
-	en: "English",
-	es: "Spanish",
-	fr: "French",
+  en: "English",
+  es: "Spanish",
+  fr: "French",
 } as const;
 
 const getLanguageFilterOptions: NonNullable<
-	MetadataProvider["getFilterValueOptions"]
+  MetadataProvider["getFilterValueOptions"]
 > = async (fieldKey) => {
-		if (fieldKey !== FIELD.language) return [];
+  if (fieldKey !== FIELD.language) return [];
 
-		return Object.entries(LANGUAGE).map(([value, label]) => ({
-			value,
-			label,
-		}));
+  return Object.entries(LANGUAGE).map(([value, label]) => ({
+    value,
+    label,
+  }));
 };
 ```
 

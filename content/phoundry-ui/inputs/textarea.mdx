@@ -1,0 +1,97 @@
+---
+title: Textarea
+order: 2
+description: >-
+  Multi-line text area with configurable rows, resize behavior, an auto-resize
+  mode that grows with content, and the same four visual variants as TextInput.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Multi-line text area with configurable rows, resize behavior, an auto-resize mode that grows with content, and the same four visual variants as TextInput.
+
+```ts
+import { Textarea } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="inputs/textarea/basic" />
+
+## Auto-resize
+
+<Example name="inputs/textarea/auto-resize" />
+
+## Sizes
+
+<Example name="inputs/textarea/sizes" />
+
+## Variants
+
+<Example name="inputs/textarea/variants" />
+
+## Resize none & disabled
+
+<Example name="inputs/textarea/resize-none-disabled" />
+
+---
+
+## API
+
+<ApiTable
+	of="Textarea"
+	include={[
+		"value",
+		"onchange",
+		"oninput",
+		"placeholder",
+		"rows",
+		"resize",
+		"size",
+		"variant",
+		"disabled",
+		"readonly",
+		"class",
+		"style",
+		"id",
+		"name",
+		"element",
+	]}
+	notes={{
+		value: "Current textarea value.",
+		onchange: "Fires on blur after value changes",
+		oninput: "Fires on every keystroke",
+		placeholder: "Placeholder text",
+		rows: "Initial visible rows",
+		resize: "Resize behavior - 'auto' grows with content",
+		size: "Typography and padding selected in CSS (no fixed height)",
+		variant:
+			"Visual style. `trueGhost` has no border, fill, or hover/focus chrome.",
+		disabled: "Disables the textarea",
+		readonly: "Makes the textarea read-only",
+		class: "Additional CSS classes",
+		style: "Inline styles on the component styling target described below.",
+		id: "HTML id attribute",
+		name: "HTML name attribute for forms",
+		element: "Bindable reference to the underlying textarea element",
+	}}
+/>
+
+**…rest:** Forwarded native attributes (`rows` also exists as an explicit prop).
+
+## Usage tips
+
+- Use `resize="auto"` for comment boxes or chat inputs where height should match content.
+- Set `resize="none"` when the textarea lives inside a fixed-height layout (e.g. a split pane).
+- Pair with `FormField` to add a label, helper text, and character count.
+- The auto-resize mode recalculates on every input - for very long documents, prefer `resize="vertical"`.
+- Use `variant="trueGhost"` for inline editing where the parent already supplies hover/focus treatment. It has no border, fill, or focus ring — provide your own affordance if the field stands alone.
+
+## Styling
+
+`.ph-textarea` is the stable root identification hook. Variant chrome and size configuration use the shared `.ph-text-field` primitive; anatomy stays in scoped CSS; `data-size` always identifies the selected size. `class`, `style`, native attributes, attachments, and `bind:element` target the textarea. `data-variant` exposes `outline`, `fill`, `ghost`, or `trueGhost`; `data-resize` exposes `none`, `vertical`, or `auto`. The outline surface shadow uses `--ph-input-shadow`. Focus uses the same variant chrome as hover, without a blue or accent-colored focus ring. `trueGhost` stays chrome-free. The theming guide documents public theme parts; other part selectors and `--_ph-*` properties remain implementation details.
+
+The shared `.ph-text-field` primitive in `phoundry-ui/styles/components.css` keeps variant chrome and size configuration aligned with NumberInput. All three fields use `--ph-field-radius` (0.5rem) and `--ph-input-shadow` for outline surfaces. Focus and hover share the same appearance; native blue focus rings are suppressed.
+
+`outline` has a quiet translucent background, muted border, and input shadow. `fill` uses the stronger neutral control background with no visible border or shadow; the distinction remains on hover and focus.

@@ -1,0 +1,66 @@
+---
+title: Roving TabIndex
+order: 4
+description: >-
+  Manages tabindex for keyboard navigation within a group of items. Only the
+  focused item is tabbable; arrow keys move focus between items.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Manages tabindex for keyboard navigation within a group of items. Only the focused item is tabbable; arrow keys move focus between items.
+
+```ts
+import { createRovingTabIndex } from "phoundry-ui";
+```
+
+## Horizontal Toolbar
+
+<Example name="utilities/roving-tabindex/horizontal-toolbar" />
+
+## Both axes (grid)
+
+<Example name="utilities/roving-tabindex/both-axes-grid" />
+
+## Vertical Menu
+
+<Example name="utilities/roving-tabindex/vertical-menu" />
+
+---
+
+## RovingTabIndexOptions
+
+<ApiTable
+	of="RovingTabIndexOptions"
+	include={["orientation", "itemSelector", "loop", "onFocus"]}
+	notes={{
+		orientation: "Arrow key direction for navigation.",
+		itemSelector: "CSS selector for focusable items within the container.",
+		loop: "Wrap around when reaching the start or end.",
+		onFocus: "Called when an item receives focus.",
+	}}
+/>
+
+---
+
+## Return Value
+
+<ApiTable
+	of="createRovingTabIndex.return"
+	include={["action", "focusItem", "focusedIndex"]}
+	notes={{
+		action:
+			"Svelte action to apply to the container element via use:roving.action.",
+		focusItem: "Programmatically focus a specific item by index.",
+		focusedIndex: "The currently focused item index.",
+	}}
+/>
+
+## Usage tips
+
+- Items are matched by `[role="tab"]`, `[role="menuitem"]`, `[role="option"]`, `[role="treeitem"]`, or `[data-roving-item]` by default.
+- Disabled items (`disabled` or `aria-disabled="true"`) are skipped.
+- Use for toolbars, radio groups, tab lists, and menu navigation patterns.
+- `Home` and `End` keys are supported for jumping to first/last items.
+- Call `focusItem(index)` to programmatically move focus (e.g., after adding/removing items).

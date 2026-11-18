@@ -1,0 +1,25 @@
+---
+import MarkdownContent from "@astrojs/starlight/components/MarkdownContent.astro";
+import Overlays from "./docs/Overlays.svelte";
+const route = Astro.locals.starlightRoute;
+const { ai_disclosure, status } = route.entry.data;
+const ui = route.id.startsWith("phoundry-ui");
+---
+
+{status === "experimental" && (
+	<aside class="docs-notice">
+		Experimental: this API may change as it is developed.
+	</aside>
+)}
+{ui && <Overlays client:load />}
+<MarkdownContent>
+	<slot />
+</MarkdownContent>
+<footer class="docs-article-footer">
+	{ai_disclosure && <p>This article includes AI-assisted content.</p>}
+	<p>
+		Documentation is licensed under{" "}
+		<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+		Phoundry names and marks remain reserved.
+	</p>
+</footer>

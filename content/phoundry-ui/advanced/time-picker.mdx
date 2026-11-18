@@ -1,0 +1,56 @@
+---
+title: TimePicker
+order: 4
+description: A 12-hour format time picker with an AM/PM select.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+A 12-hour format time picker with an AM/PM select.
+
+```ts
+import { TimePicker } from "phoundry-ui";
+```
+
+## Basic usage
+
+<Example name="advanced/time-picker/basic-usage" />
+
+## onchange callback
+
+<Example name="advanced/time-picker/onchange-callback" />
+
+## Disabled
+
+<Example name="advanced/time-picker/disabled" />
+
+---
+
+## TimePicker props
+
+<ApiTable
+	of="TimePicker"
+	include={["hour", "minute", "onchange", "disabled", "class"]}
+	notes={{
+		hour: "Hour value (0-23).",
+		minute: "Minute value (0-59).",
+		onchange: "Called when the time changes.",
+		disabled: "Disable the inputs and select.",
+		class: "Additional CSS classes on the wrapper.",
+	}}
+/>
+
+## Usage tips
+
+- Use `bind:hour` and `bind:minute` to keep your state in sync with the picker.
+- The component automatically handles 12-hour to 24-hour conversion internally.
+- The `hour` prop is always a 24-hour value (0-23).
+
+## CSS styling
+
+`.ph-time-picker` is the stable identification hook for TimePicker. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Clock and duration modes keep their value and callback contracts. Field widths and typography are owned by CSS; duration hours remain wider than minute/second fields.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

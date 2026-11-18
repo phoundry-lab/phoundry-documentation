@@ -12,19 +12,21 @@ plugin JavaScript. It accepts only the fields in this page.
 
 ## Complete field table
 
-| Field | Type | Required | Default when omitted | Validation and meaning |
-| --- | --- | --- | --- | --- |
-| `id` | `string` | Yes | None | Permanent community plugin identity. Must match `^[a-z][a-z0-9]*\.[a-z][a-z0-9-]*[a-z0-9]$`, must not use `phials.`, and must not conflict with a built-in identity. |
-| `name` | `string` | Yes | None | Non-empty trimmed display name. Must equal the default-exported `PhialsPlugin.name`. |
-| `version` | SemVer `string` | Yes | None | Exact plugin version without a leading `v` or range. Must equal package metadata, the exported plugin version, normalized release tag, and release assets. |
-| `minAppVersion` | SemVer `string` | Yes | None | Inclusive oldest supported Phials version. Runtime requires current Phials `>= minAppVersion`. |
-| `pluginApiVersion` | SemVer `string` | Yes | None | Public SDK contract targeted by the release. The finalized initial contract requires exactly `"1.0.0"`. |
-| `author` | `string` | Yes | None | Non-empty trimmed person, team, or organization responsible for the release. |
-| `description` | `string` | Yes | None | Non-empty trimmed sentence describing the user-visible plugin outcome. |
-| `authorUrl` | HTTPS URL `string` | No | Absent | Absolute `https://` website or profile URL for the author. |
-| `repository` | HTTPS URL `string` | No | Absent | Absolute `https://` URL for the public source and release repository. In a community release, use the GitHub repository named by the registry entry. |
-| `icons` | `string[]` | No | `[]` | Unique Iconify identifiers in `collection:name` form. Each value names an icon to preload; URLs and local paths are invalid. |
-| `permissions` | `PluginPermission[]` | No | `[]` | Unique names from the [permission catalog](./plugin-permission-reference.md). Write permissions imply the corresponding read permission, so redundant pairs are invalid. |
+| Field              | Type                 | Required | Default when omitted | Validation and meaning                                                                                                                                                        |
+| ------------------ | -------------------- | -------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | `string`             | Yes      | None                 | Permanent community plugin identity. Must match `^[a-z][a-z0-9]*\.[a-z][a-z0-9-]*[a-z0-9]$`, must not use `phials.`, and must not conflict with a built-in identity.          |
+| `name`             | `string`             | Yes      | None                 | Non-empty trimmed display name. Must equal the default-exported `PhialsPlugin.name`.                                                                                          |
+| `version`          | SemVer `string`      | Yes      | None                 | Exact plugin version without a leading `v` or range. Must equal package metadata, the exported plugin version, normalized release tag, and release assets.                    |
+| `minAppVersion`    | SemVer `string`      | Yes      | None                 | Inclusive oldest supported Phials version. Runtime requires current Phials `>= minAppVersion`.                                                                                |
+| `pluginApiVersion` | SemVer `string`      | Yes      | None                 | Public SDK contract targeted by the release. The declared major must match the Host and its version must not exceed the supported version; the current contract is `"2.0.0"`. |
+| `author`           | `string`             | Yes      | None                 | Non-empty trimmed person, team, or organization responsible for the release.                                                                                                  |
+| `description`      | `string`             | Yes      | None                 | Non-empty trimmed sentence describing the user-visible plugin outcome.                                                                                                        |
+| `authorUrl`        | HTTPS URL `string`   | No       | Absent               | Absolute `https://` website or profile URL for the author.                                                                                                                    |
+| `repository`       | HTTPS URL `string`   | No       | Absent               | Absolute `https://` URL for the public source and release repository. In a community release, use the GitHub repository named by the registry entry.                          |
+| `icons`            | `string[]`           | No       | `[]`                 | Unique Iconify identifiers in `collection:name` form. Each value names an icon to preload; URLs and local paths are invalid.                                                  |
+| `permissions`      | `PluginPermission[]` | No       | `[]`                 | Unique names from the [permission catalog](./plugin-permission-reference.md). Write permissions imply the corresponding read permission, so redundant pairs are invalid.      |
+
+| `thumbnailProviders` | `{ id: string; rendererVersion: string }[]` | No | Absent | API 2 optional complete renderer catalog: exact unique IDs and versions of dedicated Thumbnail contributions. |
 
 No field accepts `null`. Optional fields are either present with the declared
 type or omitted.
@@ -33,22 +35,17 @@ type or omitted.
 
 ```json
 {
-	"id": "acme.review-tools",
-	"name": "Review Tools",
-	"version": "1.3.0",
-	"minAppVersion": "1.4.0",
-	"pluginApiVersion": "1.0.0",
-	"author": "Acme",
-	"description": "Adds review commands and file annotations.",
-	"authorUrl": "https://acme.example",
-	"repository": "https://github.com/acme/review-tools",
-	"icons": [
-		"phoundry-mono:check",
-		"phoundry-mono:circle-info"
-	],
-	"permissions": [
-		"filesystem.write"
-	]
+  "id": "acme.review-tools",
+  "name": "Review Tools",
+  "version": "1.3.0",
+  "minAppVersion": "1.4.0",
+  "pluginApiVersion": "2.0.0",
+  "author": "Acme",
+  "description": "Adds review commands and file annotations.",
+  "authorUrl": "https://acme.example",
+  "repository": "https://github.com/acme/review-tools",
+  "icons": ["phoundry-mono:check", "phoundry-mono:circle-info"],
+  "permissions": ["filesystem.write"]
 }
 ```
 
@@ -115,7 +112,9 @@ Runtime compatibility is the conjunction:
 ```text
 current Phials version >= minAppVersion
 and
-supported Plugin API version = pluginApiVersion = "1.0.0"
+major(supported Plugin API version) = major(pluginApiVersion)
+and
+pluginApiVersion <= supported Plugin API version
 ```
 
 `version` orders plugin releases; it is not part of this compatibility
@@ -199,17 +198,23 @@ community registry entry.
 Schema validation checks the manifest in isolation. Release validation also
 enforces these relationships:
 
-| Relationship | Required result |
-| --- | --- |
-| `src/plugin.manifest.ts` and `package.json` | Equal `version` |
-| Generated `manifest.json` and default-exported [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md) | Equal generated `id`, `name`, and `version` |
-| Source and release manifest | Release manifest is an exact data-only projection |
-| Install directory and manifest | Directory name equals `id` |
-| Community registry and manifest | Registry `id` equals manifest `id`; registry `repo` identifies the repository URL |
-| Git tag and manifest | Tag normalized by removing one leading `v` equals `version` |
-| GitHub release and checksummed candidate | Attached and installed bytes match the verified artifact inventory and checksum |
-| Manifest permissions and runtime operations | Every gated operation is declared; no unused permission is requested |
-| Compatibility fields and SDK use | Bounds include every public contract and Phials behavior required by the release |
+| Relationship                                                                                                      | Required result                                                                   |
+| ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `src/plugin.manifest.ts` and `package.json`                                                                       | Equal `version`                                                                   |
+| Generated `manifest.json` and default-exported [PhialsPlugin](../../reference/sdk-type-reference/PhialsPlugin.md) | Equal generated `id`, `name`, and `version`                                       |
+| Source and release manifest                                                                                       | Release manifest is an exact data-only projection                                 |
+| Install directory and manifest                                                                                    | Directory name equals `id`                                                        |
+| Community registry and manifest                                                                                   | Registry `id` equals manifest `id`; registry `repo` identifies the repository URL |
+| Git tag and manifest                                                                                              | Tag normalized by removing one leading `v` equals `version`                       |
+| GitHub release and checksummed candidate                                                                          | Attached and installed bytes match the verified artifact inventory and checksum   |
+| Manifest permissions and runtime operations                                                                       | Every gated operation is declared; no unused permission is requested              |
+| Compatibility fields and SDK use                                                                                  | Bounds include every public contract and Phials behavior required by the release  |
 
 For the authoring workflow, see
 [Configure the plugin manifest](../../package-and-publish/configure-the-plugin-manifest/index.md).
+
+## Thumbnail renderer catalog
+
+A release may declare `thumbnailProviders: [{ id, rendererVersion }]` matching every shipped dedicated Thumbnail provider. The Host validates the declared catalog against the loaded contributions. IDs and renderer versions must be nonblank strings of at most 256 characters; the list is bounded at 128 unique IDs. Change `rendererVersion` when encoded behavior changes.
+
+Automatic caching works without a catalog. A successfully validated catalog additionally lets the Host prove that an older renderer is obsolete for proactive cleanup; absent or unavailable authority is retained conservatively. Cache destinations and publication paths are never manifest fields.

@@ -1,0 +1,62 @@
+---
+title: StatusCheckbox
+order: 7
+description: >-
+  Multi-state checkbox that snaps between first/last on click and cycles through
+  all states with Ctrl/Cmd+click. Each state can use an Iconify icon and a CSS
+  color.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Multi-state checkbox that snaps between first/last on click and cycles through all states with Ctrl/Cmd+click. Each state can use an Iconify icon and a CSS color.
+
+```ts
+import { StatusCheckbox } from "phoundry-ui";
+```
+
+## Default three states
+
+<Example name="inputs/status-checkbox/default-three-states" />
+
+## Custom workflow states
+
+<Example name="inputs/status-checkbox/custom-workflow-states" />
+
+---
+
+## API
+
+<ApiTable
+	of="StatusCheckbox"
+	include={[
+		"activeKey",
+		"states",
+		"fallbackChar",
+		"disabled",
+		"size",
+		"ariaLabelPrefix",
+		"onchange",
+		"class",
+		"style",
+		"element",
+	]}
+	notes={{
+		activeKey: "Current state key (bindable)",
+		states:
+			"Ordered states for cycle/snap; defaults to unchecked / indeterminate / checked",
+		fallbackChar: "Character shown when activeKey is not in states (gray box)",
+		disabled: "Prevents interaction",
+		size: "Indicator box (~14px sm / ~16px md display size)",
+		ariaLabelPrefix: 'Prepended to state label for aria-label (e.g. "Task")',
+		onchange: "Called after cycle or snap with the new key",
+		class: "Additional CSS classes on the button",
+		style: "Inline styles on the component styling target described below.",
+		element: "Bindable reference to the control button",
+	}}
+/>
+
+## Styling
+
+`.ph-status-checkbox` is the stable root identification hook. Styling is component-local vanilla CSS; `data-size` always identifies the selected size. `class` and `style` apply to the button. Indicator sizes use `--ph-indicator-sm` (0.875rem) and `--ph-indicator-md` (1rem), with `--ph-comp-icon-xs` / `--ph-comp-icon-sm` for icons. `--ph-indicator-icon-filter` controls the shared icon shadow. State colors still come from each state definition; state cycling and binding are unchanged. Internal part selectors and `--_ph-*` properties are implementation details. Filled indicators use the active Theme’s `--text-on-accent` foreground.

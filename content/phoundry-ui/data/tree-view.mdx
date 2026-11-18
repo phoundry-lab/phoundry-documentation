@@ -1,0 +1,110 @@
+---
+title: TreeView
+order: 2
+description: >-
+  Hierarchical tree with expand/collapse, single or multi-selection, keyboard
+  navigation, optional virtual scrolling for large lists, and custom row
+  rendering.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Hierarchical tree with expand/collapse, single or multi-selection, keyboard navigation, optional virtual scrolling for large lists, and custom row rendering.
+
+```ts
+import { TreeView } from "phoundry-ui";
+import type { TreeNode } from "phoundry-ui";
+```
+
+## Basic (single select)
+
+<Example name="data/tree-view/basic-single-select" />
+
+## Multi-select
+
+<Example name="data/tree-view/multi-select" />
+
+## Controlled expanded state
+
+<Example name="data/tree-view/controlled-expanded-state" />
+
+## Virtual scroll
+
+<Example name="data/tree-view/virtual-scroll" />
+
+---
+
+## API
+
+<ApiTable
+	of="TreeView"
+	include={[
+		"nodes",
+		"selected",
+		"expanded",
+		"onselect",
+		"onexpand",
+		"onactivate",
+		"multiSelect",
+		"showIndentGuides",
+		"indentWidth",
+		"itemHeight",
+		"virtualScroll",
+		"maxHeight",
+		"class",
+		"nodeContent",
+	]}
+	notes={{
+		nodes: "Root nodes of the tree.",
+		selected: "Selected node IDs. Bindable when you need two-way updates.",
+		expanded:
+			"Expanded branch node IDs. Bindable for controlled expand/collapse.",
+		onselect: "Called when selection changes (click or keyboard).",
+		onexpand: "Called when expanded set changes.",
+		onactivate:
+			"Called on double-click on a node, or Enter on a leaf/focused row (see implementation).",
+		multiSelect:
+			"Cmd/Ctrl-click toggles selection; Shift-click selects ranges.",
+		showIndentGuides: "Vertical guide lines for depth.",
+		indentWidth: "Pixels per depth level for indentation.",
+		itemHeight: "Row height in px (also used with virtual scrolling).",
+		virtualScroll:
+			"Window rendering for large flat lists under expanded branches.",
+		maxHeight: "Optional max height in px; inner area scrolls.",
+		class: "Classes on the scroll container.",
+		nodeContent: "Replace default label/icon row for a node.",
+	}}
+/>
+
+## TreeNode
+
+<ApiTable
+	of="TreeNode"
+	include={["id", "label", "icon", "children", "data", "disabled"]}
+	notes={{
+		id: "Unique node identifier.",
+		label: "Display text.",
+		icon: "Iconify icon string.",
+		children: "Child nodes.",
+		data: "Opaque payload on the node.",
+		disabled: "Exclude from selection and gray out.",
+	}}
+/>
+
+---
+
+## Usage tips
+
+- Use `nodeContent` when you need badges, secondary lines, or actions inside each row while keeping expand/collapse behavior.
+- Set `showIndentGuides={false}` for a flatter explorer-style list.
+- `disabled` on a node prevents selection and dims the row; expand chevrons remain for folders unless you hide them via custom content.
+- Icons use Iconify strings (same as elsewhere in the library).
+
+## CSS styling
+
+`.ph-tree-view` is the stable identification hook for TreeView. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Row selection and expansion use `aria-selected` and `aria-expanded`; variants use `data-variant`. Virtualization and pixel-based row/indent measurements are unchanged.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

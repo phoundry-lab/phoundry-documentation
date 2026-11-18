@@ -1,0 +1,17 @@
+---
+import ThemeProvider from "@astrojs/starlight/components/ThemeProvider.astro";
+---
+
+<ThemeProvider />
+{/* Run before paint on every page, including pages without live examples. */}
+<script is:inline>
+	const syncPhoundryTheme = () => {
+		document.documentElement.dataset.themeMode =
+			document.documentElement.dataset.theme === "light" ? "light" : "dark";
+	};
+	syncPhoundryTheme();
+	new MutationObserver(syncPhoundryTheme).observe(document.documentElement, {
+		attributes: true,
+		attributeFilter: ["data-theme"],
+	});
+</script>

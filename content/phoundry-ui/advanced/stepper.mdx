@@ -1,0 +1,92 @@
+---
+title: Stepper
+order: 6
+status: experimental
+description: >-
+  Multi-step progress indicator with horizontal/vertical layout, clickable
+  navigation, and step numbers.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Multi-step progress indicator with horizontal/vertical layout, clickable navigation, and step numbers.
+
+```ts
+import { Stepper } from "phoundry-ui";
+```
+
+## Horizontal with Navigation
+
+<Example name="advanced/stepper/horizontal-with-navigation" />
+
+## Vertical
+
+<Example name="advanced/stepper/vertical" />
+
+## Icons in indicators
+
+<Example name="advanced/stepper/icons-in-indicators" />
+
+## With Numbers & Clickable
+
+<Example name="advanced/stepper/with-numbers-clickable" />
+
+---
+
+## API
+
+<ApiTable
+	of="Stepper"
+	include={[
+		"steps",
+		"currentStep",
+		"clickable",
+		"onstepchange",
+		"orientation",
+		"showNumbers",
+		"class",
+		"step",
+	]}
+	notes={{
+		steps: "Array of step definitions.",
+		currentStep: "Zero-based index of the active step.",
+		clickable: "Allow clicking steps to navigate.",
+		onstepchange: "Called when a clickable step is clicked.",
+		orientation: "Layout direction.",
+		showNumbers:
+			"Show numeric badges for upcoming steps; completed steps still show the check icon.",
+		class: "Additional CSS classes.",
+		step: "Custom snippet for rendering each step indicator.",
+	}}
+/>
+
+## StepperStep
+
+<ApiTable
+	of="StepperStep"
+	include={["id", "label", "description", "icon", "optional"]}
+	notes={{
+		id: "Unique step identifier.",
+		label: "Step label text.",
+		description: "Optional description below the label.",
+		icon: "Iconify icon for the step indicator.",
+		optional: "Mark step as optional.",
+	}}
+/>
+
+## Usage tips
+
+- Use `clickable` with `onstepchange` for wizard UIs where users can jump between completed steps.
+- Mark optional steps with `optional: true` to display an "Optional" label.
+- Use the `step` snippet prop for fully custom step indicators when icons + labels are not enough.
+- `clickable` requires `onstepchange` - clicks on non-current steps invoke the handler.
+- Vertical orientation works well in sidebars or narrow containers.
+
+## CSS styling
+
+`.ph-stepper` is the stable identification hook for Stepper. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Orientation and step status drive CSS. The numbered indicator uses `--ph-comp-h-md`; step navigation and custom snippets retain their contracts.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

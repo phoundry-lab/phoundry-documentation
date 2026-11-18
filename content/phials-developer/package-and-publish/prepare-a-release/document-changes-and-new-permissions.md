@@ -34,7 +34,7 @@ Write release notes before the final candidate review. Notes should tell an exis
 ### Compatibility
 
 - Requires Phials 0.1.9 or later.
-- Targets Plugin API 1.0.0.
+- Targets Plugin API 2.0.0.
 
 ### Settings and data
 

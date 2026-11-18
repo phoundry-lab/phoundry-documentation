@@ -1,0 +1,107 @@
+---
+title: NumberInput
+order: 5
+description: >-
+  Numeric input with increment/decrement buttons, min/max clamping, step
+  control, and keyboard arrow support. Hold-to-repeat on buttons for fast value
+  changes.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Numeric input with increment/decrement buttons, min/max clamping, step control, and keyboard arrow support. Hold-to-repeat on buttons for fast value changes.
+
+```ts
+import { NumberInput } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="inputs/number-input/basic" />
+
+## With Min / Max
+
+<Example name="inputs/number-input/with-min-max" />
+
+## Custom Step
+
+<Example name="inputs/number-input/custom-step" />
+
+## Sizes
+
+<Example name="inputs/number-input/sizes" />
+
+## Variants
+
+<Example name="inputs/number-input/variants" />
+
+## Disabled
+
+<Example name="inputs/number-input/disabled" />
+
+## Button Layout
+
+<Example name="inputs/number-input/button-layout" />
+
+---
+
+## API
+
+<ApiTable
+	of="NumberInput"
+	include={[
+		"value",
+		"onchange",
+		"min",
+		"max",
+		"step",
+		"size",
+		"variant",
+		"width",
+		"buttonLayout",
+		"disabled",
+		"class",
+		"style",
+		"id",
+		"name",
+		"element",
+	]}
+	notes={{
+		value: "Current numeric value",
+		onchange: "Called when value changes",
+		min: "Minimum allowed value",
+		max: "Maximum allowed value",
+		step: "Increment / decrement step",
+		size: "TextInput-aligned height, font, padding, and icon scale; includes lg",
+		variant:
+			"Same variant chrome as TextInput. Focus matches hover without a focus ring; trueGhost stays chrome-free.",
+		width: "CSS inline size for the wrapper, such as 8rem or 100%",
+		buttonLayout:
+			"Button arrangement: vertical (stacked on right) or horizontal (left/right)",
+		disabled: "Disables the input and buttons",
+		class: "Additional CSS classes",
+		style: "Inline styles on the component styling target described below.",
+		id: "HTML id attribute",
+		name: "HTML name attribute for forms",
+		element: "Bindable reference to the underlying input element",
+	}}
+/>
+
+**…rest:** Additional attributes forwarded to the inner `<input>` (e.g. `aria-label`, `autocomplete`).
+
+## Usage tips
+
+- Hold down the +/- buttons for continuous increment - useful for large ranges.
+- Arrow Up / Arrow Down keys work when the input is focused.
+- Use `width` to control the wrapper size - defaults to `6rem` which works well for most counters.
+- Always set `min` and `max` when the domain has natural bounds to prevent invalid values.
+- Non-numeric manual input resolves to `min` when set, otherwise `0` - validate in your form layer if you need stricter behavior.
+
+## Styling
+
+`.ph-number-input` is the stable root identification hook. Variant chrome and size configuration use the shared `.ph-text-field` primitive; anatomy stays in scoped CSS; `data-size` always identifies the selected size. `class` and `style` apply to the root shell; native attributes, attachments, and `bind:element` target the input. `data-variant` exposes `outline`, `fill`, `ghost`, or `trueGhost`; `data-layout` exposes `vertical` or `horizontal`. Heights use `--ph-comp-h-sm` (1.5rem), `--ph-comp-h-md` (1.75rem), and `--ph-comp-h-lg` (2rem), with the corresponding `--ph-comp-icon-*` tokens for horizontal icons. Font sizes (0.75rem / 0.875rem / 1rem) and input padding (0.375rem / 0.5rem / 0.625rem) match TextInput. The default size remains `sm`. The default width remains 6rem. Set `width="8rem"`, `width="100%"`, or a CSS expression; width class strings are no longer supported. `style="inline-size: 8rem"` remains available. Internal part selectors and `--_ph-*` properties are implementation details.
+
+NumberInput, TextInput, and Textarea share `.ph-text-field` for variant chrome and size configuration. Their radius uses `--ph-field-radius` (0.5rem); outline shadows use `--ph-input-shadow`. Focus uses the same appearance as hover without a blue or accent-colored focus ring, including the step buttons. `trueGhost` has no border, fill, shadow, or hover/focus chrome. A disabled step button at a min/max bound does not suppress an enabled field’s hover/focus appearance.
+
+`outline` has a quiet translucent background, muted border, and input shadow. `fill` uses the stronger neutral control background with no visible border or shadow; the distinction remains on hover and focus.

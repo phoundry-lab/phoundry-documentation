@@ -1,0 +1,66 @@
+---
+title: CSS Utilities
+order: 1
+description: >-
+  Shared classes shipped with phoundry-ui styles: import phoundry-ui/styles or
+  the split theme.css + components.css + utils.css bundle so shared defaults,
+  overlays, and decorative utilities resolve.
+---
+
+Shared classes shipped with phoundry-ui styles: import phoundry-ui/styles or the split theme.css + components.css + utils.css bundle so shared defaults, overlays, and decorative utilities resolve.
+
+```ts
+import "phoundry-ui/styles/theme.css";
+import "phoundry-ui/styles/components.css";
+import "phoundry-ui/styles/utils.css";
+```
+
+## Specular card
+
+`.phi-specular-card` adds a soft corner glow and edge highlight. Layer content above the pseudo-elements (`relative z-10` on children) if you need crisp text atop the effect.
+
+## Specular effect
+
+<div class="flex items-center justify-center rounded-lg bg-surface-sunken p-8">
+	<div class="phi-specular-card relative w-64 rounded-xl border border-border-muted bg-surface-base p-6 shadow-lg">
+		<div class="relative z-10">
+			<h3 class="mb-2 text-base font-medium text-txt-primary">
+				Specular Effect
+			</h3>
+			<p class="text-sm text-txt-tertiary">
+				Soft glow top-left plus a thin specular rim.
+			</p>
+		</div>
+	</div>
+</div>
+
+```ts
+<div class="phi-specular-card relative rounded-xl border border-border-muted bg-surface-base p-6">
+  <div class="relative z-10">
+    <h3>Title</h3>
+    <p>Body copy stays readable above the gloss.</p>
+  </div>
+</div>
+```
+
+---
+
+## Keyboard focus
+
+Library controls use their hover treatment for keyboard focus. Chrome-free variants remain clear. Theme CSS can provide its own focus treatment; there are no default focus rings, focus-ring utilities, or focus-ring token.
+
+---
+
+## Z-index tokens
+
+`components.css` defines `--z-dropdown` through `--z-tooltip`. Overlay components (context menu, command bar, modals) reference these - override in your theme if you stack third-party widgets.
+
+---
+
+## Overlay chrome
+
+Panel shells such as `.ctx-menu-panel`, `.cmd-bar-panel`, `.modal-panel`, and `.tour-panel` style built-in overlays. Custom modals opened through the modal manager should keep the `modal-panel` class on the inner card for consistent depth.
+
+## Vanilla CSS hooks
+
+The shared visual hooks `.ph-frosted-panel` and `.ph-specular-card` use regular CSS. The decorative `.phi-frosted-panel` and `.phi-specular-card` names remain aliases. Import `components.css` for dialog surfaces and `utils.css` for the optional frosted and specular surfaces.

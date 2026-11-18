@@ -770,6 +770,11 @@
 			"title": "Repository inspection",
 			"types": [
 				"GitInfo",
+				"GitFileStatus",
+				"GitCommit",
+				"GitBranch",
+				"GitDiffOptions",
+				"GitLogOptions",
 				"RepositoryLanguage",
 				"FolderSummary"
 			],
@@ -777,6 +782,31 @@
 				{
 					"name": "GitInfo",
 					"alias": "references/GitInfo",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "GitFileStatus",
+					"alias": "references/GitFileStatus",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "GitCommit",
+					"alias": "references/GitCommit",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "GitBranch",
+					"alias": "references/GitBranch",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "GitDiffOptions",
+					"alias": "references/GitDiffOptions",
+					"sincePluginApiVersion": "1.0.0"
+				},
+				{
+					"name": "GitLogOptions",
+					"alias": "references/GitLogOptions",
 					"sincePluginApiVersion": "1.0.0"
 				},
 				{

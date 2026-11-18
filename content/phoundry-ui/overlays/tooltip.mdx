@@ -1,0 +1,60 @@
+---
+title: Tooltip
+order: 6
+description: >-
+  Hover tooltips via Svelte 5 attachments. Automatically integrated with
+  Button's title prop.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Hover tooltips via Svelte 5 attachments. Automatically integrated with Button's title prop.
+
+```ts
+import { tooltip } from "phoundry-ui";
+```
+
+## Button with Title
+
+<Example name="overlays/tooltip/button-with-title" />
+
+## Tooltip Attachment
+
+<Example name="overlays/tooltip/tooltip-attachment" />
+
+## Snippet content
+
+<Example name="overlays/tooltip/snippet-content" />
+
+---
+
+## tooltip() attachment
+
+<ApiTable
+	of="TooltipOptions"
+	include={["content", "disabled"]}
+	notes={{
+		content: "Tooltip body - plain text or a snippet with richer markup.",
+		disabled: "Skip attaching listeners - useful while loading.",
+	}}
+/>
+
+**tooltip(...):** Pass a string for shorthand (`tooltip("Hi")` expands to `{ content: "Hi" }`). Otherwise use `{ content, disabled? }`.
+
+## Usage tips
+
+- Initialize overlays once via `setupOverlays()` (or wire providers manually) and mount `TooltipOverlay` beside other overlays - the attachment talks to `getTooltipManager()`.
+- `Button` with a `title` prop automatically uses the tooltip system. Set `noTooltip` to use the native browser title instead.
+- Tooltips hide on pointer leave, immediately on click, and on window scroll (capture phase).
+- Prefer concise strings in tooltips; move long help text into dialogs or docs - hover delays make long copy hard to read.
+
+Tooltips respond to hover-capable pointer entry. Touch entry does not open a tooltip, and a pointer press hides any visible tooltip immediately.
+
+## CSS styling
+
+`.ph-tooltip` is the stable identification hook for Tooltip. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Tooltip chrome and entry animation are local to the overlay. Position measurements and content behavior are unchanged.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

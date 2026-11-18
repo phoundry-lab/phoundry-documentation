@@ -1,0 +1,103 @@
+---
+title: Toast
+order: 5
+description: >-
+  Non-blocking notification toasts with variants, actions, and auto-dismiss.
+  Singleton manager accessible from anywhere.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Non-blocking notification toasts with variants, actions, and auto-dismiss. Singleton manager accessible from anywhere.
+
+```ts
+import { getToastManager } from "phoundry-ui";
+```
+
+## Variants
+
+<Example name="overlays/toast/variants" />
+
+## With Description
+
+<Example name="overlays/toast/with-description" />
+
+## With Action
+
+<Example name="overlays/toast/with-action" />
+
+## Stable ID (replace in place)
+
+<Example name="overlays/toast/stable-id-replace-in-place" />
+
+## Persistent & clear
+
+<Example name="overlays/toast/persistent-clear" />
+
+---
+
+## ToastOptions
+
+<ApiTable
+	of="ToastOptions"
+	include={[
+		"message",
+		"id",
+		"variant",
+		"duration",
+		"description",
+		"dismissible",
+		"action",
+	]}
+	notes={{
+		message: "Toast message text.",
+		id: "Stable ID - posting another toast with the same ID replaces the previous one.",
+		variant: "Visual style.",
+		duration: "Auto-dismiss time in ms. Set to 0 for persistent.",
+		description: "Secondary text shown below the message.",
+		dismissible: "Show a dismiss button.",
+		action: "Action button displayed in the toast.",
+	}}
+/>
+
+## ToastOverlay Props
+
+<ApiTable
+	of="ToastOverlay"
+	include={["position"]}
+	notes={{
+		position: "Screen position for the toast stack.",
+	}}
+/>
+
+## ToastManager
+
+<ApiTable
+	of="getToastManager.return"
+	include={["add", "dismiss", "clear", "toasts"]}
+	notes={{
+		add: "Enqueue a toast; returns its ID.",
+		dismiss: "Remove one toast by ID.",
+		clear: "Remove every toast.",
+		toasts: "Reactive list for debugging or custom UI.",
+	}}
+/>
+
+**success / error / warning / info:** Shorthand variants of add().
+
+## Usage tips
+
+- Pass `maxToasts` to `setupOverlays` or the first `getToastManager(max)` call - it only applies when the singleton is first created.
+- `getToastManager()` returns a singleton - call it from any component or service after overlays are initialized.
+- Render `ToastOverlay` once in your root layout to display toasts.
+- Set `duration: 0` for persistent toasts that require manual dismissal.
+- Use `manager.clear()` to dismiss all active toasts at once.
+
+## CSS styling
+
+`.ph-toast-overlay` is the stable identification hook for Toast. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Individual notifications use `.ph-toast`. Placement uses `data-position`, and notification variants use `data-variant`. Variant colors consume Theme tokens.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

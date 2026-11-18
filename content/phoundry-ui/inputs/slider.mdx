@@ -1,0 +1,98 @@
+---
+title: Slider
+order: 10
+description: >-
+  Range slider with optional ticks, value display, and custom formatter. Uses a
+  native range input for full accessibility.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Range slider with optional ticks, value display, and custom formatter. Uses a native range input for full accessibility.
+
+```ts
+import { Slider } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="inputs/slider/basic" />
+
+## With showValue
+
+<Example name="inputs/slider/with-showvalue" />
+
+## Value label on the left
+
+<Example name="inputs/slider/value-label-on-the-left" />
+
+## With ticks
+
+<Example name="inputs/slider/with-ticks" />
+
+## Disabled
+
+<Example name="inputs/slider/disabled" />
+
+## Custom formatter
+
+<Example name="inputs/slider/custom-formatter" />
+
+---
+
+## API
+
+<ApiTable
+	of="Slider"
+	include={[
+		"value",
+		"onchange",
+		"min",
+		"max",
+		"step",
+		"ticks",
+		"size",
+		"showValue",
+		"valuePosition",
+		"valueFormatter",
+		"disabled",
+		"class",
+		"style",
+		"id",
+		"name",
+		"element",
+	]}
+	notes={{
+		value: "Current slider value",
+		onchange: "Called with the new value on input",
+		min: "Minimum value (ignored when ticks are provided)",
+		max: "Maximum value (ignored when ticks are provided)",
+		step: "Step increment (ignored when ticks are provided)",
+		ticks: "Predefined snap points with labels",
+		size: "Track height",
+		showValue: "Display current value next to the slider",
+		valuePosition:
+			"Which side of the track shows the value label when showValue is true",
+		valueFormatter:
+			"Custom display formatter (ignored when ticks are provided)",
+		disabled: "Prevents interaction",
+		class: "Additional CSS classes",
+		style: "Inline styles on the component styling target described below.",
+		id: "Element id",
+		name: "Form field name",
+		element: "Bindable reference to the range input",
+	}}
+/>
+
+**…rest:** Forwarded to the native range input (e.g. `aria-valuetext`).
+
+## Usage tips
+
+- When `ticks` are provided, the slider snaps to tick values and uses the tick label for display.
+- Use `valueFormatter` for custom units (percentages, currency, etc.) on continuous sliders.
+- Use `style="inline-size: 16rem"` to control slider length.
+
+## Styling
+
+`.ph-slider` is the stable root identification hook. Styling is component-local vanilla CSS; `data-size` always identifies the selected size. `class` and `style` apply to the root wrapper; native attributes, attachments, and `bind:element` target the range input. `data-value-position` exposes `start` or `end`. Both sizes retain the same track geometry. Tick snapping, value formatting, and keyboard input are unchanged. Disabled controls do not respond visually to hover, and track and thumb transitions respect reduced-motion preferences. Internal part selectors and `--_ph-*` properties are implementation details.

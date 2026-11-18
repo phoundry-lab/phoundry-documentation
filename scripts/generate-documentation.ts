@@ -24,11 +24,11 @@ function copyStaticMedia(): void {
 }
 
 function verifyMarkdownLinks(): void {
-	const files = fg.sync('content/**/*.md', { cwd: root, onlyFiles: true });
+	const files = fg.sync('content/**/*.{md,mdx}', { cwd: root, onlyFiles: true });
 	const failures: string[] = [];
 	for (const relative of files) {
 		const source = fs.readFileSync(path.join(root, relative), 'utf8');
-		for (const match of source.matchAll(/\]\(([^)\s]+\.md)(?:#[^)]+)?\)/g)) {
+		for (const match of source.matchAll(/\]\(([^)\s]+\.mdx?)(?:#[^)]+)?\)/g)) {
 			const target = match[1]!;
 			if (/^[a-z][a-z0-9+.-]*:/i.test(target)) continue;
 			const absolute = target.startsWith('/')

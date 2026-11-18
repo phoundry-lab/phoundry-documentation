@@ -1,0 +1,88 @@
+---
+title: Sheet
+order: 5
+description: >-
+  Slide-in drawer panel from any edge. Supports backdrop, keyboard dismiss, and
+  multiple sizes.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Slide-in drawer panel from any edge. Supports backdrop, keyboard dismiss, and multiple sizes.
+
+```ts
+import { Sheet } from "phoundry-ui";
+```
+
+## Right Sheet (Default)
+
+<Example name="advanced/sheet/right-sheet-default" />
+
+## Left Sheet
+
+<Example name="advanced/sheet/left-sheet" />
+
+## Top Sheet
+
+<Example name="advanced/sheet/top-sheet" />
+
+## Full width column
+
+<Example name="advanced/sheet/full-width-column" />
+
+## Modal-like dismissal
+
+<Example name="advanced/sheet/modal-like-dismissal" />
+
+## Bottom Sheet
+
+<Example name="advanced/sheet/bottom-sheet" />
+
+---
+
+## API
+
+<ApiTable
+	of="Sheet"
+	include={[
+		"open",
+		"onclose",
+		"side",
+		"size",
+		"title",
+		"closeOnBackdrop",
+		"closeOnEscape",
+		"showCloseButton",
+		"class",
+		"children",
+	]}
+	notes={{
+		open: "Whether the sheet is visible.",
+		onclose: "Called when the sheet should close.",
+		side: "Which edge the sheet slides from.",
+		size: "Sheet width (left/right) or height (top/bottom).",
+		title: "Header title text.",
+		closeOnBackdrop: "Close when clicking the backdrop.",
+		closeOnEscape: "Close on Escape key.",
+		showCloseButton: "Show the X close button in the header.",
+		class: "Additional CSS classes for the sheet panel.",
+		children: "Sheet body content.",
+	}}
+/>
+
+## Usage tips
+
+- Use `side="right"` for detail panels, `side="left"` for navigation, and `side="bottom"` for mobile-style menus.
+- Set `closeOnBackdrop=false` for sheets with unsaved form data to prevent accidental dismissal.
+- The `size` prop controls width for left/right sheets and height for top/bottom sheets (`sm`–`xl` map to px presets, `full` fills the axis).
+- `showCloseButton={false}` hides the header close control - still provide another dismiss affordance when `closeOnEscape` is left enabled.
+- Uses `role="dialog"` and `aria-modal="true"`; add your own focus trap if the sheet contains complex interactive widgets.
+
+## CSS styling
+
+`.ph-sheet` is the stable identification hook for Sheet. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+`data-side` and `data-size` select the existing panel geometry. Preset widths/heights are `sm` 17.5rem, `md` 25rem, `lg` 35rem, `xl` 45rem, and `full` 100%. These panel presets are distinct from the control-height scale.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

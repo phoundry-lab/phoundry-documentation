@@ -1,0 +1,82 @@
+---
+title: RadioGroup
+order: 11
+description: >-
+  Radio button group with arrow-key navigation, horizontal/vertical layout, and
+  per-option descriptions. Only the selected radio is in the tab order.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Radio button group with arrow-key navigation, horizontal/vertical layout, and per-option descriptions. Only the selected radio is in the tab order.
+
+```ts
+import { RadioGroup } from "phoundry-ui";
+```
+
+## Basic vertical
+
+<Example name="inputs/radio-group/basic-vertical" />
+
+## Horizontal
+
+<Example name="inputs/radio-group/horizontal" />
+
+## With descriptions
+
+<Example name="inputs/radio-group/with-descriptions" />
+
+## Disabled option
+
+<Example name="inputs/radio-group/disabled-option" />
+
+## Sizes (sm / md)
+
+<Example name="inputs/radio-group/sizes-sm-md" />
+
+## Group disabled
+
+<Example name="inputs/radio-group/group-disabled" />
+
+---
+
+## API
+
+<ApiTable
+	of="RadioGroup"
+	include={[
+		"options",
+		"value",
+		"onchange",
+		"name",
+		"orientation",
+		"size",
+		"disabled",
+		"class",
+		"style",
+	]}
+	notes={{
+		options: "Array of { value, label, icon?, description?, disabled? }",
+		value: "Currently selected value",
+		onchange: "Called when selection changes",
+		name: "Group name (auto-generated if omitted)",
+		orientation: "Layout direction",
+		size: "Size of radio circles and text",
+		disabled: "Disables all options",
+		class: "Additional CSS classes on the group container",
+		style: "Inline styles on the component styling target described below.",
+	}}
+/>
+
+## Usage tips
+
+- Arrow keys move selection between enabled options - no need to Tab through each radio.
+- Set `disabled` on individual options to grey them out while keeping the rest interactive.
+- Use `orientation="horizontal"` for compact option sets like size pickers.
+- The `description` field on options is great for plan selectors or settings with context.
+- Set `name` when embedding multiple groups in one form so browsers associate radios correctly (otherwise a random fallback name is generated).
+
+## Styling
+
+`.ph-radio-group` is the stable root identification hook. Styling is component-local vanilla CSS; `data-size` always identifies the selected size. `class` and `style` apply to the group container. `data-orientation` exposes `vertical` or `horizontal`; each button exposes its selection through `aria-checked` and its disabled state through the native attribute. Sizes retain the existing circle, dot, and text dimensions. Arrow navigation skips disabled options and is inactive when the whole group is disabled. Internal part selectors and `--_ph-*` properties are implementation details. Filled indicators use the active Theme’s `--text-on-accent` foreground.

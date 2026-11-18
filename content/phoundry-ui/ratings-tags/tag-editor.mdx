@@ -1,0 +1,88 @@
+---
+title: TagEditor
+order: 2
+status: experimental
+description: >-
+  Tag input with comma-separated entry, duplicate detection, validation, max
+  limit, and typeahead suggestions (static or async). Tags display as removable
+  chips.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Tag input with comma-separated entry, duplicate detection, validation, max limit, and typeahead suggestions (static or async). Tags display as removable chips.
+
+```ts
+import { TagEditor } from "phoundry-ui";
+```
+
+## Basic
+
+<Example name="ratings-tags/tag-editor/basic" />
+
+## With Suggestions
+
+<Example name="ratings-tags/tag-editor/with-suggestions" />
+
+## With Max Tags (4)
+
+<Example name="ratings-tags/tag-editor/with-max-tags-4" />
+
+## Validation
+
+<Example name="ratings-tags/tag-editor/validation" />
+
+## Async suggestions
+
+<Example name="ratings-tags/tag-editor/async-suggestions" />
+
+## Disabled
+
+<Example name="ratings-tags/tag-editor/disabled" />
+
+---
+
+## API
+
+<ApiTable
+	of="TagEditor"
+	include={[
+		"tags",
+		"placeholder",
+		"onchange",
+		"onChange",
+		"disabled",
+		"maxTags",
+		"validate",
+		"suggestions",
+		"class",
+	]}
+	notes={{
+		tags: "Current tags.",
+		placeholder: "Input placeholder text.",
+		onchange: "Called when tags change.",
+		onChange: "Deprecated - use `onchange` instead.",
+		disabled: "Disable input and remove buttons.",
+		maxTags: "Maximum number of tags allowed.",
+		validate:
+			"Custom validation - return true, false, or an error message string.",
+		suggestions: "Static array or async function for typeahead suggestions.",
+		class: "Additional CSS classes.",
+	}}
+/>
+
+## Usage tips
+
+- Type a tag and press Enter or click Add. Use commas to add multiple tags at once.
+- Backspace on an empty input removes the last tag.
+- Duplicates are rejected automatically with an inline validation message.
+- Pass an async function to `suggestions` for server-side typeahead (debounced at 200ms).
+
+## CSS styling
+
+`.ph-tag-editor` is the stable identification hook for TagEditor. Part selectors and `--_ph-*` properties are internal. Component CSS is scoped and unlayered; Consumer classes remain additive and utility overrides may lose precedence.
+
+Tag validation, limits, callbacks, and suggestion behavior are unchanged. Invalid fields and disabled controls retain their semantic state.
+
+Keep the shared component stylesheet and a named Theme imported. Decorative motion respects reduced-motion preferences.

@@ -1,0 +1,67 @@
+---
+title: ProgressBar
+order: 7
+description: >-
+  Horizontal progress indicator with determinate and indeterminate modes.
+  Supports semantic color variants and optional percentage display.
+---
+
+import Example from "@docs/Example.astro";
+import ApiTable from "@docs/ApiTable.astro";
+
+Horizontal progress indicator with determinate and indeterminate modes. Supports semantic color variants and optional percentage display.
+
+```ts
+import { ProgressBar } from "phoundry-ui";
+```
+
+## Determinate
+
+<Example name="display/progress-bar/determinate" />
+
+## Variants
+
+<Example name="display/progress-bar/variants" />
+
+## Sizes
+
+<Example name="display/progress-bar/sizes" />
+
+## With Value
+
+<Example name="display/progress-bar/with-value" />
+
+## Clamped values
+
+<Example name="display/progress-bar/clamped-values" />
+
+## Indeterminate
+
+<Example name="display/progress-bar/indeterminate" />
+
+---
+
+## API
+
+<ApiTable
+	of="ProgressBar"
+	include={["value", "variant", "size", "showValue", "class", "style"]}
+	notes={{
+		value: "0–100 for determinate progress. Omit or pass -1 for indeterminate.",
+		variant: "Semantic color of the progress fill.",
+		size: "Bar thickness.",
+		showValue: "Display percentage text next to the bar.",
+		class: "Additional CSS classes.",
+		style: "Inline styles on the stable component root.",
+	}}
+/>
+
+## Usage tips
+
+- Omit `value` or pass `-1` for an animated indeterminate bar.
+- Use `variant="success"` when progress reaches 100% to reinforce completion.
+- Enable `showValue` for file uploads or long-running tasks where users need exact progress.
+
+## Styling
+
+`.ph-progress` is the stable root hook. Consumer `class` values are additive, and `style` applies to that root. Styling uses vanilla CSS with semantic state attributes. The root emits `data-size` and `data-variant`; `role="progressbar"` and value attributes remain on the track. Values clamp to 0–100; omitted or negative values retain indeterminate semantics and omit `aria-valuenow`. Track thickness stays 0.25rem / 0.5rem / 0.75rem for `sm` / `md` / `lg`. Numeric progress is passed through an internal CSS property. Fill transitions use `--ph-motion-slow` (300ms), and indeterminate motion uses `--ph-motion-progress` (1800ms). Reduced motion removes both movement and transitions. Internal part selectors and `--_ph-*` properties remain implementation details.
