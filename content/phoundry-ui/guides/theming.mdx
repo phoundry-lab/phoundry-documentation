@@ -134,7 +134,7 @@ Keep `theme.css` next to a `theme.json` manifest. A theme targets one appearance
 
 That is sufficient: the selected foundation supplies every other library value. Copy Default Dark or Default Light when you want a full starter palette. Themes can set any custom properties, import CSS, define fonts and effects, or target components and application chrome directly. Registration does not require any particular token declarations.
 
-The author-chosen `--ph-accent` is the exact solid fill. Hover, pressed, and subtle treatments have modest derived defaults. Foreground choice and visual quality remain the author's responsibility. There is no numbered accent ramp or automatic contrast-selection engine.
+The author-chosen `--ph-accent` sets the solid fill and supplies the color for the default translucent text selection. Default Dark, Default Darker, and Default Light set opaque accent treatments independently. When changing the accent, set the hover, pressed, subtle, and foreground tokens you want to customize.
 
 A more individually tuned theme can add:
 
@@ -152,16 +152,16 @@ A more individually tuned theme can add:
 }
 ```
 
-Explicit treatment values stay fixed when input colors change. Other defaults continue deriving from the effective inputs. Normal CSS specificity still applies to component rules: `:root .ph-btn` is a useful root override, and `:root .ph-btn .ph-btn-icon` can target a documented part without assuming its immediate parent.
+Normal CSS specificity applies to component rules. Use `:root .ph-btn` for a root override or `:root .ph-btn .ph-btn-icon` to target the documented icon part.
 
 ## Optional color hooks
 
-These hooks all have foundation defaults; they are not a checklist a theme must fill in. `THEME_TOKENS` and the `ThemeToken` type catalog the optional color interface.
+`THEME_TOKENS` and the `ThemeToken` type catalog the optional color hooks used by foundations and named themes.
 
 | Family                | Hooks                                                                                                                     |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | Surfaces              | `--ph-surface-0` through `--ph-surface-7`, deepest to highest elevation                                                   |
-| Optional neutral tint | `--ph-neutral`; individual surface, text, and border overrides remain available                                           |
+| Optional neutral tint | `--ph-neutral` applies in themes that reference it, such as Fern                                                          |
 | Text                  | `--ph-text-primary`, `--ph-text-secondary`, `--ph-text-tertiary`, `--ph-text-disabled`, `--ph-text-link`                  |
 | Borders               | `--ph-border-muted`, `--ph-border-default`, `--ph-border-emphasis`                                                        |
 | Controls              | `--ph-control-bg`, `--ph-control-bg-hover`, `--ph-control-bg-pressed`                                                     |
