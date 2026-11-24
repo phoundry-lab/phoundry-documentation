@@ -1,6 +1,6 @@
 ---
 title: "Build a complete release artifact set"
-description: "Produces matching required and optional files, including supported CSS and theme assets, without publishing development-only files."
+description: "Produces matching required and optional files, including optional interface CSS, without publishing development-only files."
 ai_disclosure: true
 order: 2
 ---
@@ -39,11 +39,7 @@ Add optional artifacts only when the plugin supplies them:
 dist/
 ├── manifest.json
 ├── main.js
-├── styles.css
-├── theme-slate-light.json
-├── theme-slate-light.css
-├── theme-slate-dark.json
-└── theme-slate-dark.css
+└── styles.css
 ```
 
 | Artifact | Contract |
@@ -51,10 +47,6 @@ dist/
 | `manifest.json` | Strict manifest for this exact plugin version |
 | `main.js` | Loadable ES module with the plugin’s default export |
 | `styles.css` | Optional compiled global CSS for plugin interfaces |
-| `theme-<slug>.json` | Optional flat theme metadata asset |
-| `theme-<slug>.css` | Required matching CSS half of a theme pair |
-
-Theme pairs use one identical lowercase kebab-case slug. Follow [Package and test theme release artifacts](../../add-capabilities/create-themes/package-and-test-theme-release-artifacts.md) when the plugin contributes themes.
 
 ## Exclude development files
 
@@ -75,7 +67,7 @@ Release notes belong in the GitHub release body. Images used by those notes may 
 
 The build validates the manifest and checks basic module identity by importing the plugin’s own bundle. It also records artifact sizes and SHA-256 checksums in the release inventory. This is not a sandbox or a provider and lifecycle test harness; installed behavior still needs testing.
 
-Review optional styles and theme pairs yourself. The example does not enforce a CSS policy.
+Review optional styles yourself. The example does not enforce a CSS policy.
 
 Use [Build and validate release artifacts](../../test-and-troubleshoot/test-and-validate-your-plugin/build-and-validate-release-artifacts.md) for the detailed checks.
 

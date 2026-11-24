@@ -8,7 +8,7 @@ ai_disclosure: true
 
 # Find and run commands with the Command Bar
 
-Use the **Command Bar** to find and run an action without first adding it to the Path Bar, an Explorer context menu, or a keyboard shortcut.
+Use the **Command Bar** to find and run an action without first looking for it in a menu or remembering its shortcut.
 
 ## Open and search the Command Bar
 
@@ -26,4 +26,4 @@ The Command Bar uses the active Explorer tab, current selection, and other open 
 
 If you cannot find an action, close the Command Bar, make the relevant Explorer tab or surface active, prepare the required selection, and open it again. Commands supplied by an active community plugin use the same list.
 
-To make an action quicker to repeat, [change its keyboard shortcuts](./change-keyboard-shortcuts.md) or [add it to the Path Bar](./customize-the-path-bar.md). For the complete shipped command inventory, see the [built-in command reference](../../reference/commands-and-keyboard-shortcuts/built-in-command-reference.md).
+To make an action quicker to repeat, [change its keyboard shortcuts](./change-keyboard-shortcuts.md) or [add it to an Explorer context menu](./customize-explorer-context-menus.md). For the complete shipped command inventory, see the [built-in command reference](../../reference/commands-and-keyboard-shortcuts/built-in-command-reference.md).

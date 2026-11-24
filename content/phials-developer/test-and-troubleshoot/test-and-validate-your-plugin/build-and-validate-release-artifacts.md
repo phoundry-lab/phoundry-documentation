@@ -1,6 +1,6 @@
 ---
 title: "Build and validate release artifacts"
-description: "Creates production output and verifies required filenames, matching manifest identity and version, optional CSS and theme pairs, and loadable ES-module shape."
+description: "Creates production output and verifies required filenames, matching manifest identity and version, optional interface CSS, and loadable ES-module shape."
 ai_disclosure: true
 order: 3
 ---
@@ -23,12 +23,8 @@ The example’s build produces `dist/main.js`, `dist/manifest.json`, optional `d
 | `manifest.json` | Always |
 | `main.js` | Always |
 | `styles.css` | When the plugin emits interface CSS |
-| `theme-<slug>.json` | For a contributed theme |
-| `theme-<slug>.css` | Paired with the matching theme JSON |
 
 Attach installable files individually, not as a plugin archive. Source, source maps, test fixtures, local configuration, dependencies, and the release inventory are not plugin release assets.
-
-Theme assets use flat release filenames with matching lowercase kebab-case slugs. See [Package and test theme release artifacts](../../add-capabilities/create-themes/package-and-test-theme-release-artifacts.md) if your plugin adds themes.
 
 ## Understand the build checks
 
@@ -64,6 +60,6 @@ npm run release:verify
 
 For routine development, `npm run dev:install` builds first and installs into your normal Phials home. An optional `--phials-home` argument or `PHIALS_HOME` environment variable selects another home.
 
-Do **not** use that command to install a frozen release candidate: it always rebuilds. Instead copy the exact `dist/manifest.json`, `dist/main.js`, and optional `dist/styles.css` into `<Phials home>/plugins/<id>/`. Map each flat `theme-<slug>.json` and `.css` pair to `themes/<slug>/theme.json` and `themes/<slug>/theme.css` inside that plugin directory. Check the copied bytes against the inventory, then test loading and activation in Phials.
+Do **not** use that command to install a frozen release candidate: it always rebuilds. Instead copy the exact `dist/manifest.json`, `dist/main.js`, and optional `dist/styles.css` into `<Phials home>/plugins/<id>/`. Check the copied bytes against the inventory, then test loading and activation in Phials.
 
 A rebuild or artifact edit creates a new candidate. Continue with [Prepare a release](../../package-and-publish/prepare-a-release/index.md).

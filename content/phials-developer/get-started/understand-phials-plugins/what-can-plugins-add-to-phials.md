@@ -19,7 +19,6 @@ Choose the capability that directly produces the outcome you need. The public SD
 | Add another presentation of an Explorer tab's current location                  | [FileBrowserViewProvider](../../reference/sdk-type-reference/FileBrowserViewProvider.md) | [Build file views](../../add-capabilities/build-file-views/index.md)                             |
 | Add a tool surface to a left, right, or bottom dock or to a center tab          | [ModuleProvider](../../reference/sdk-type-reference/ModuleProvider.md)                   | [Add panels and tabs](../../add-capabilities/add-panels-and-tabs/index.md)                       |
 | Let users configure plugin behavior                                             | `PhialsPlugin.settings` and optional `settingsComponent`                                 | [Add plugin settings](../../add-capabilities/add-plugin-settings/index.md)                       |
-| Supply a light or dark appearance for Phials                                    | Plugin theme assets                                                                      | [Create themes](../../add-capabilities/create-themes/index.md)                                   |
 
 These capabilities compose. For example, a plugin for a specialized document format might contribute:
 

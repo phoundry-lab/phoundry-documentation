@@ -43,8 +43,7 @@ Terminal sessions do not return after you quit Phials. A Terminal restored or ad
 ## Choose the terminal font
 
 1. Open **Settings**.
-2. Under **Plugins**, choose **Panels**.
-3. Select **Terminal**.
-4. Choose a **Font Family**.
+2. Under **This Client**, choose **Appearance**.
+3. In **Terminal**, choose a **Font Family**.
 
-Phials loads the monospace choices from your system. The control remains unavailable while that list loads. Your choice applies to every Terminal and session and is saved automatically.
+Phials lists the monospaced fonts installed on your device. Your choice applies to every Terminal and session and is saved automatically.

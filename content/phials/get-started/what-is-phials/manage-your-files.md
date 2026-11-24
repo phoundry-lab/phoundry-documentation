@@ -12,7 +12,7 @@ Use Phials for ordinary file management while choosing how each location is pres
 
 An **Explorer tab** browses one location and keeps its own navigation, selection, and **file view**. You can keep several locations open, use a split view when you need them side by side, and choose a presentation suited to the folder. Details emphasizes columns, Grid emphasizes visual browsing, Columns follows a folder branch, and Boards or Calendar arrange files by Workspace Folder data or dates.
 
-Search, sorting, filtering, and grouping help narrow a busy location without changing its contents. Selecting a file updates the **File panel**, which shows the file and available metadata, and the **Page panel**, which presents Workspace Folder properties and related written context when available. Opening a file creates or focuses a file tab when Phials handles that file in the center.
+Search, sorting, filtering, and grouping help narrow a busy location without changing its contents. Selecting a file updates the **File panel**. Choose **File** to see the file and its metadata, or **Page** to see its properties and notes. Opening a file creates or focuses a file tab when Phials handles that file in the center.
 
 When a folder needs more structure, a **Workspace Folder** lets Phials store properties, ratings, tags, notes, Relations, and saved views for its files. That information supplements the ordinary files rather than replacing them.
 

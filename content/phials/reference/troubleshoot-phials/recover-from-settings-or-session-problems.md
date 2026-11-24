@@ -14,13 +14,12 @@ Use the narrowest recovery that matches the problem. App preferences live separa
 
 When Phials opens normally, use the owning surface's reset action:
 
-- In **Commands** → **Shortcuts**, reset one command or choose **Reset All to Defaults**.
-- In **Commands** → **Path Bar**, choose **Reset** to remove Path Bar customizations.
-- In **Commands** → **Context Menus**, choose **Reset Layout**.
-- In **Files** → **Visibility**, choose **Reset to default** for hidden-file patterns.
-- Under **General**, use **Reset to home** beside **Default Directory** when an unavailable startup folder keeps returning.
+- In **This Client → Shortcuts**, reset one command or choose **Reset All to Defaults**.
+- In **This Client → Context Menus**, choose **Reset Layout**.
+- In **Files** under **Host · [device name]**, choose **Reset to default** for hidden-file patterns.
+- In **General** under **Host · [device name]**, use **Reset to home** beside **Default Directory** when an unavailable startup folder keeps returning.
 
-Use the task article for details and consequences. For example, see [Change keyboard shortcuts](../../arrange-and-customize-phials/customize-commands-and-shortcuts/change-keyboard-shortcuts.md), [Customize the Path Bar](../../arrange-and-customize-phials/customize-commands-and-shortcuts/customize-the-path-bar.md), or [Customize Explorer context menus](../../arrange-and-customize-phials/customize-commands-and-shortcuts/customize-explorer-context-menus.md).
+Use the task article for details and consequences. For example, see [Change keyboard shortcuts](../../arrange-and-customize-phials/customize-commands-and-shortcuts/change-keyboard-shortcuts.md) or [Customize Explorer context menus](../../arrange-and-customize-phials/customize-commands-and-shortcuts/customize-explorer-context-menus.md).
 
 For an unwanted restored tab, close that tab and quit Phials normally. For a restored location that should remain but is offline, repair its access instead of deleting session state; see [Fix file and folder access problems](./fix-file-and-folder-access-problems.md).
 
@@ -32,7 +31,7 @@ If settings repeatedly return to defaults, fail to save, or Phials reports that 
 2. Quit Phials completely.
 3. Make a safety copy of `config.toml`.
 
-> **Warning:** Renaming `config.toml` removes all current app preferences on the next launch, including appearance, Explorer defaults, visibility, opening behavior, media settings, and Path Bar configuration. It does not remove session state, shortcuts, databases, plugins, ordinary files, or Workspace Folder bundles.
+> **Warning:** Renaming `config.toml` removes all current app preferences on the next launch, including appearance, Explorer defaults, visibility, opening behavior, and media settings. It does not remove session state, shortcuts, databases, plugins, ordinary files, or Workspace Folder bundles.
 
 4. Rename `config.toml` to `config.toml.disabled`.
 5. Start Phials. Missing configuration loads with factory defaults; the file is recreated when Phials next saves a preference.

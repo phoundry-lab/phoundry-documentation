@@ -25,7 +25,7 @@ Confirm:
 - the current commit is the reviewed release commit;
 - the worktree is clean;
 - `manifest.json` and `main.js` are present in `dist/`;
-- optional CSS and theme assets form a complete supported set;
+- optional interface CSS is named `styles.css`;
 - the artifact inventory still matches every file; and
 - the release notes describe this exact candidate.
 
@@ -73,16 +73,6 @@ Add `dist/styles.css` when the plugin ships compiled interface styles:
 gh release upload v1.3.0 dist/styles.css
 ```
 
-Upload each theme pair with its exact flat filename:
-
-```bash
-gh release upload v1.3.0 \
-	dist/theme-slate-light.json \
-	dist/theme-slate-light.css \
-	dist/theme-slate-dark.json \
-	dist/theme-slate-dark.css
-```
-
 The supported release assets are:
 
 | Asset | Requirement |
@@ -90,8 +80,6 @@ The supported release assets are:
 | `manifest.json` | Required, exact filename |
 | `main.js` | Required, exact filename |
 | `styles.css` | Optional, exact filename |
-| `theme-<slug>.json` | Optional, paired with matching CSS |
-| `theme-<slug>.css` | Optional, paired with matching JSON |
 
 Attach the files individually. Do not replace them with a source archive or a
 plugin archive. GitHub may add automatic source-code archives to the release;

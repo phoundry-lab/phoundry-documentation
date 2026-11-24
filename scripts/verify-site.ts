@@ -13,12 +13,20 @@ type Page = {
 	ids: Set<string>;
 	links: string[];
 	h1s: number;
+	disclosures: number;
 	examples: string[];
 };
 const pages = new Map<string, Page>();
 for (const file of fg.sync("**/*.html", { cwd: output })) {
 	const html = fs.readFileSync(path.join(output, file), "utf8");
-	const page: Page = { html, ids: new Set(), links: [], h1s: 0, examples: [] };
+	const page: Page = {
+		html,
+		ids: new Set(),
+		links: [],
+		h1s: 0,
+		disclosures: 0,
+		examples: [],
+	};
 	function walk(node: Html.Node) {
 		if ("tagName" in node) {
 			const attrs = Object.fromEntries(
@@ -26,6 +34,8 @@ for (const file of fg.sync("**/*.html", { cwd: output })) {
 			);
 			if (attrs.id) page.ids.add(attrs.id);
 			if (node.tagName === "h1") page.h1s++;
+			if (node.tagName === "aside" && attrs["aria-label"] === "AI Disclosure")
+				page.disclosures++;
 			if (node.tagName === "a" && attrs.href) page.links.push(attrs.href);
 			if (["img", "iframe"].includes(node.tagName) && attrs.src)
 				page.links.push(attrs.src);
@@ -39,14 +49,12 @@ for (const file of fg.sync("**/*.html", { cwd: output })) {
 
 const sets = Object.values(manifest) as unknown as DocSet[];
 const canonical = [
-	"/",
-	...sets.flatMap((set) =>
-		Object.values(set.pagesBySlug).map((page) => page.href),
-	),
+	{ href: "/", aiDisclosure: false },
+	...sets.flatMap((set) => Object.values(set.pagesBySlug)),
 ];
 const failures: string[] = [];
 const normalize = (route: string) => decodeURI(route).replace(/\/$/, "") || "/";
-for (const route of canonical) {
+for (const { href: route, aiDisclosure } of canonical) {
 	const page = pages.get(route);
 	if (!page) {
 		failures.push(`Missing canonical page ${route}`);
@@ -54,6 +62,10 @@ for (const route of canonical) {
 	}
 	if (page.h1s !== 1)
 		failures.push(`${route}: expected one H1, found ${page.h1s}`);
+	if (aiDisclosure !== undefined && page.disclosures !== Number(aiDisclosure))
+		failures.push(
+			`${route}: expected ${Number(aiDisclosure)} AI Disclosure notices, found ${page.disclosures}`,
+		);
 	for (const link of page.links) {
 		const url = new URL(link, `https://docs.phoundry.app${route}`);
 		if (url.origin !== "https://docs.phoundry.app") continue;
@@ -120,5 +132,5 @@ assert(
 );
 assert.equal(failures.length, 0, failures.slice(0, 40).join("\n"));
 console.log(
-	`Verified ${canonical.length} canonical pages, ${aliases} query/fragment-preserving aliases, local links, anchors, example sources, sitemap, and search index.`,
+	`Verified ${canonical.length} canonical pages, ${aliases} query/fragment-preserving aliases, local links, anchors, AI disclosures, example sources, sitemap, and search index.`,
 );

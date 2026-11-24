@@ -49,7 +49,7 @@ The install command builds and updates files on disk. The old module remains act
 
 ## Reload in Phials
 
-Open **Settings → Plugins → Community plugins → Installed**, find **Hello Phials**, and choose **Reload**.
+Open **Settings → Plugins → Installed & Community → Installed**, find **Hello Phials**, and choose **Reload**.
 
 Phials performs the plugin reload lifecycle:
 

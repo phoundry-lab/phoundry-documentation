@@ -65,11 +65,16 @@ import { getToastManager } from "phoundry-ui";
 
 <ApiTable
 	of="ToastOverlay"
-	include={["position"]}
 	notes={{
 		position: "Screen position for the toast stack.",
 	}}
 />
+
+Set `offset` on the `ToastOverlay` in your root layout to shift the entire stack from its `position` anchor. The values are in CSS pixels. Positive `x` moves right and positive `y` moves down. Each axis defaults to `0`, preserving the anchor's usual spacing.
+
+```svelte
+<ToastOverlay position="bottom-right" offset={{ x: -12, y: -24 }} />
+```
 
 ## ToastManager
 

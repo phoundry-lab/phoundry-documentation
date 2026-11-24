@@ -29,7 +29,7 @@ The main cache root is the operating system's application-cache location for `co
 
 ## Clear a supported cache
 
-In Settings, choose **Files**, then **Media**:
+In Settings, choose **Media** under **Host · [device name]** to clear the caches for that computer.
 
 - Choose **Clear Cache** under **Clear Thumbnail Cache** to remove only `thumbnails/`.
 - Choose **Clear metadata cache** to remove only `metadata/`.

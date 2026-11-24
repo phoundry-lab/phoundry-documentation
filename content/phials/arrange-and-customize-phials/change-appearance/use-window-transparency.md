@@ -13,7 +13,7 @@ Use see-through Phials chrome when you want the desktop to remain visible behind
 ## Turn transparency on or off
 
 1. Open **Settings**.
-2. Under **General**, choose **Appearance**.
+2. Under **This Client**, choose **Appearance**.
 3. Turn **Window Transparency** on or off.
 
 The change applies immediately to the main Phials window and the Settings window, including one that is already open. Phials saves the choice for later launches. Other Phials windows remain opaque. On Windows, transparency starts off; turn it on here if you want see-through chrome.

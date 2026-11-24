@@ -36,7 +36,7 @@ If an audio format has metadata support but cannot be decoded for playback, **Pl
 
 ## Play a video
 
-Select a video to show it in the File panel. Depending on **Settings → Media**, it may start automatically and may begin muted. Choose the file panel's open control, double-click the video, or choose **Open in Tab** to keep it in a file tab.
+Select a video to show it in the File panel. It may start automatically or begin muted, depending on your [video playback settings](../../arrange-and-customize-phials/choose-default-behaviors/configure-thumbnails-and-media-behavior.md#configure-video-playback-behavior). Choose the file panel's open control, double-click the video, or choose **Open in Tab** to keep it in a file tab.
 
 Move the pointer over the video or focus it to reveal the transport. The controls include:
 

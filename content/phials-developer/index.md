@@ -8,7 +8,7 @@ aliases:
 
 # Phials plugin documentation
 
-Build plugins that add focused capabilities to Phials, from commands and file views to editors, panels, metadata, and themes. The public SDK gives your plugin typed registration contracts, runtime services, validation tools, and generated API reference.
+Build plugins that add focused capabilities to Phials, from commands and file views to editors, panels, and metadata. The public SDK gives your plugin typed registration contracts, runtime services, validation tools, and generated API reference.
 
 Start with the plugin starter if you are building your first plugin. If you already have a project, go directly to the capability or workflow you need.
 

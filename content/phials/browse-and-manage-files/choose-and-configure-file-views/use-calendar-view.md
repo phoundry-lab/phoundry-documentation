@@ -20,7 +20,7 @@ Use the date-source menu at the left of the Calendar toolbar. You can choose:
 - **Created** or **Modified** for dates supplied by the file system.
 - Any Date property or date-valued Formula in the current Workspace Folder.
 
-Calendar starts with the Calendar property when one exists and falls back to Modified when it does not. Use **Add Calendar Property** in the Calendar toolbar to create it explicitly. A Workspace Folder can have one Calendar property and any number of ordinary Date properties. If Date properties already exist, creation can optionally copy values from one of them without changing or removing the original.
+Calendar starts with the Calendar property when one exists and falls back to Modified when it does not. To create it, choose **New → Add Property → Calendar** in the Explorer toolbar. A Workspace Folder can have one Calendar property and any number of ordinary Date properties. If Date properties already exist, creation can optionally copy values from one of them without changing or removing the original.
 
 Created, Modified, and Formula sources are read-only. Calendar and ordinary Date properties can be changed from Calendar view. Deleting Calendar changes Calendar views that used it back to Modified; it does not silently recreate the property.
 
@@ -40,15 +40,15 @@ Use **Previous** and **Next** to move by the selected scope. Choose **Today** to
 
 Month and Week place files and folders on their dates as cards. Day and 3-Day separate date-only items into an all-day area and place items with times on an hourly grid. Times outside the main daytime range remain available in earlier or later bands. Date ranges appear on every day they span.
 
-Calendar date-only values are floating civil dates: June 5 remains June 5 when the computer's time zone changes. Calendar values with a time are absolute instants and display in the current local time zone.
+A date without a time stays on the same calendar day when you travel. A date with a time is shown in your device’s current time zone.
 
-When the date source is Calendar or a Workspace Folder Date property, drag an item to another date to reschedule it. In Day and 3-Day, timed drops snap to 15-minute intervals. Dropping a timed item into an all-day area removes its time while keeping the date. Rescheduling a range preserves its civil-day span for date-only values and elapsed duration for timed values.
+When the date source is Calendar or a Workspace Folder Date property, drag an item to another date to reschedule it. In Day and 3-Day, timed drops snap to 15-minute intervals. Dropping a timed item into an all-day area removes its time while keeping the date. Dragging a range keeps the same number of days or the same duration, depending on whether it has a time.
 
 Dragging is unavailable for Created and Modified because those dates come from the file system.
 
 ## Find or clear missing dates
 
-Choose **No date** to open a panel containing files and folders that have no value for the selected date source. The button includes the number of items when any are missing a date.
+The **No date** panel starts closed. Open it to find files and folders without a date in the selected property. The button includes the number of items when any are missing a date.
 
 For the Calendar property or an editable Workspace Folder Date property:
 

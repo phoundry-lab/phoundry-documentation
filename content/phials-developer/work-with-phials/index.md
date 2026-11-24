@@ -10,6 +10,7 @@ The Plugin API gives activated plugins a typed, permission-aware way to work wit
 
 - [Work with files and folders](./work-with-files-and-folders/index.md) covers paths, directory choices, text-file revisions, mutations, watches, opening, and revealing.
 - [Use app and Explorer context](./use-app-and-explorer-context/index.md) explains runtime API scopes, pane context, read-only app settings, and approved host commands.
+- [Run a local Node process](./use-app-and-explorer-context/run-a-local-node-process.md) for tasks that need Node.js on a local desktop.
 - [Store plugin data](./store-plugin-data/index.md) helps you choose among settings, key-value storage, and a plugin-owned database.
 - [Respond to events](./respond-to-events/index.md) covers supported Phials events, plugin-owned events, subscriptions, and asynchronous handlers.
 - [Show dialogs and notifications](./show-dialogs-and-notifications/index.md) covers confirmations, prompts, choices, alerts, and non-blocking feedback.

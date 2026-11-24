@@ -28,6 +28,10 @@ Risk labels are review cues, not security ratings. A low-risk label does not
 make an operation harmless in every workflow, and a high-risk label does not
 mean the operation is prohibited.
 
+## Node.js runtime permission
+
+Plugin API 3.2.0 adds the high-risk `runtime.node` permission. It lets a plugin run code on the selected local desktop with the operating-system permissions of the signed-in user. See [Run a local Node process](../../work-with-phials/use-app-and-explorer-context/run-a-local-node-process.md).
+
 ## `filesystem.read`
 
 Accepted manifest value:

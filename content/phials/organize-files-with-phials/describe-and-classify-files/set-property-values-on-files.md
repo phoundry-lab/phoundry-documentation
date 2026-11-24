@@ -19,7 +19,7 @@ You can edit the same Workspace Folder properties from several surfaces:
 - **Details view** is best for comparing many files. Make the property visible through **Configure view** > **Properties**, then choose the file's cell in that column.
 - **Grid view** is useful while browsing visual cards. Make the property visible, point to a card, then choose **Edit properties**.
 - The **File panel** shows the selected file's property list alongside its file presentation.
-- The **Page panel** and Page mode show properties above the Page body. Choose a value beside its property name.
+- In the File panel or a file tab, choose **Page** to see properties above the Page body. Choose a value beside its property name.
 - The file-explorer context menu's **Edit Property** submenu is best when you want to set the same value on several files at once. See [Set a property value on several files at once](#set-a-property-value-on-several-files-at-once) below.
 
 For the view-specific controls, see [Use Details view](../../browse-and-manage-files/choose-and-configure-file-views/use-details-view.md), [Use Grid view](../../browse-and-manage-files/choose-and-configure-file-views/use-grid-view.md), or [Choose which properties appear on Pages](../../view-and-edit-files/use-pages/choose-which-properties-appear-on-pages.md).

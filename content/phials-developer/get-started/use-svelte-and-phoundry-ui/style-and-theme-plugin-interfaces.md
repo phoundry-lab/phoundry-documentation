@@ -98,4 +98,4 @@ Before packaging:
 4. Enable reduced motion and confirm the interface remains understandable without transition cues.
 5. If the build emits `dist/styles.css`, inspect global rules and theme overrides for effects outside the intended plugin surface.
 
-If the plugin supplies a complete theme rather than merely consuming the active theme, follow [Create themes](../../add-capabilities/create-themes/index.md).
+To design a separate appearance for the app, see [Create themes](../../add-capabilities/create-themes/index.md).

@@ -105,7 +105,7 @@ The versioned `@phoundry/phials-plugin-sdk` package produced by Phials from its 
 _Avoid_: reading unversioned Phials source from a sibling checkout; treating generated Markdown as the SDK contract; moving Phials-internal extraction transforms into the documentation repository.
 
 **Phoundry UI documentation target**:
-The exact phoundry-ui package version or immutable revision resolved by the documentation lockfile and used for both live examples and generated API facts; it may represent unreleased API work. The current input is `phoundry-ui@0.4.21`.
+The exact phoundry-ui package version or immutable revision resolved by the documentation lockfile and used for both live examples and generated API facts; it may represent unreleased API work. The current input is `phoundry-ui@0.4.24`.
 _Avoid_: requiring an npm release before documenting an API; calling the target latest without identifying a revision; unrepeatable sibling-checkout state in CI.
 
 **Same-change documentation contract**:

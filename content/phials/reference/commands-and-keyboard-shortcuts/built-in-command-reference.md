@@ -17,7 +17,8 @@ Most available commands can be found by opening the [Command Bar](../../arrange-
 | Command | Purpose | Availability | Principal surface |
 | --- | --- | --- | --- |
 | Open Command Bar | Search for and run available commands. | Any Phials window. | Keyboard shortcut |
-| Help | Open Phials help. | Any Phials window. | Keyboard shortcut |
+| Help | Open the online Phials guide. | Any Phials window. | Keyboard shortcut or Command Bar |
+| Web Browser | Open a browser tab in Phials. | Desktop. | Command Bar |
 | Settings | Open the Settings window. | Any Phials window. | Keyboard shortcut |
 | Toggle Hidden Files | Show or hide filesystem items whose names begin with a period. | Any Explorer tab. | Command Bar |
 | Toggle Parent Directory | Show or hide the `..` entry in folder listings. | Any Explorer tab. | Command Bar |
@@ -134,7 +135,8 @@ The **View Mode** group in the Path Bar and Command Bar contains one command for
 | Masonry View | Pack ratio-aware thumbnail cards into variable-height columns. | Any Explorer tab. | **View Mode** group |
 | Column View | Browse a folder branch across adjacent columns. This is called **Columns view** elsewhere in the user documentation. | Any Explorer tab. | **View Mode** group |
 | Boards View | Group files into cards and columns by an option-backed property. | A Workspace Folder with properties. | **View Mode** group |
-| Gallery View | Show large previews in a gallery layout. | Any Explorer tab. | **View Mode** group |
+| Gallery View | Show a large preview beside a filmstrip. | Any Explorer tab. | **View Mode** group |
+| Notebook View | Browse files alongside the selected file’s Page. | Any Explorer tab. | **View Mode** group |
 | Calendar View | Place files on a calendar using filesystem dates or date properties. | Any Explorer tab. | **View Mode** group |
 | Filter | Open or close the filter controls. | Any Explorer tab. | Path Bar |
 | Sort | Open or close the sort controls. | Any Explorer tab. | Path Bar |

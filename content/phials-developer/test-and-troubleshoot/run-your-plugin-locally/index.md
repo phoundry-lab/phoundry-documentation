@@ -30,7 +30,7 @@ Return here for the complete loop:
 
 | State | Meaning | Direct evidence |
 | --- | --- | --- |
-| **Installed** | A valid release directory exists under the active Phials Home. | The plugin appears under **Settings → Plugins → Community plugins → Installed** with the expected ID and version. |
+| **Installed** | A valid release directory exists under the active Phials Home. | The plugin appears under **Settings → Plugins → Installed & Community → Installed** with the expected ID and version. |
 | **Enabled** | The active Phials Home records that the plugin may run. | The Installed card shows **Enabled** and no permission review is pending. |
 | **Loaded** | Phials imported `main.js` and accepted its module shape and identity. | The card has no load diagnostic; a load failure identifies the import, export, or identity problem before activation. |
 | **Activated** | Phials registered the plugin's capabilities and `onActivate` completed. | An activation probe and one representative capability both work. |

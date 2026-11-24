@@ -14,7 +14,7 @@ failures.
 
 ## Read the installed state first
 
-Open **Settings → Plugins → Community plugins → Installed** and locate the
+Open **Settings → Plugins → Installed & Community → Installed** and locate the
 plugin.
 
 | Visible symptom | Likely cause | Next action | Expected result |

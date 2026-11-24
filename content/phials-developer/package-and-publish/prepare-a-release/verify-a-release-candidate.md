@@ -46,7 +46,7 @@ Do not change or rebuild `dist/` after recording the inventory.
 
 - [ ] The build’s manifest and basic module identity checks pass.
 - [ ] `manifest.json` and `main.js` are present.
-- [ ] Only supported optional CSS and theme assets are present.
+- [ ] Optional interface CSS is named `styles.css`.
 - [ ] Package, manifest, exported plugin, tag, and release versions match.
 - [ ] IDs match across registry entry, manifest, exported plugin, and install directory.
 - [ ] The artifact inventory is recorded and unchanged.
@@ -54,7 +54,7 @@ Do not change or rebuild `dist/` after recording the inventory.
 
 ### Installation and activation
 
-Copy the exact candidate files into `<Phials home>/plugins/<id>/`: `dist/manifest.json`, `dist/main.js`, and `dist/styles.css` if present. For themes, copy each flat `dist/theme-<slug>.json` and `.css` pair to `themes/<slug>/theme.json` and `themes/<slug>/theme.css` inside that plugin directory. Remove stale artifacts from a previous candidate, without deleting plugin data.
+Copy the exact candidate files into `<Phials home>/plugins/<id>/`: `dist/manifest.json`, `dist/main.js`, and `dist/styles.css` if present. Remove stale artifacts from a previous candidate, without deleting plugin data.
 
 Do not use `npm run dev:install` for this step: it **always builds first**, so it does not preserve a frozen candidate unchanged. For routine development it installs into the normal Phials home by default; `--phials-home` or `PHIALS_HOME` can optionally select another home.
 

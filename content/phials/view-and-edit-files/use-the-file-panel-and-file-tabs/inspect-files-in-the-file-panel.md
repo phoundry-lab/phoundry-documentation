@@ -14,7 +14,7 @@ The **File panel** follows your Explorer selection. Use it to move through files
 
 1. Activate the Explorer tab that contains the file.
 2. Select one file.
-3. If another panel is in front, choose **File** in the panel dock.
+3. Open the **File** panel and choose **File** in its toolbar.
 
 The panel updates to the new selection. Selecting another file replaces what the panel presents; it does not open a file tab.
 
@@ -30,15 +30,11 @@ For a supported file, the File panel can combine:
 
 Metadata appears above the file representation when it is available. Choose **Show All** to include supported fields that do not currently have values, and **Show Less** to return to the populated fields. This expansion resets when you select another file.
 
-The remaining controls depend on the file type. For format-specific guidance, see [View and inspect files](../view-and-inspect-files/index.md) and [Edit files in Phials](../edit-files-in-phials/index.md). The [metadata support reference](../../reference/file-format-and-metadata-support/metadata-support-by-file-type.md) lists what Phials can read from different formats.
+Choose **Page** at the top of the panel to [read the file’s properties and notes](../use-pages/view-a-selected-files-page.md). The remaining controls in **File** depend on the file type. For format-specific guidance, see [View and inspect files](../view-and-inspect-files/index.md) and [Edit files in Phials](../edit-files-in-phials/index.md). The [metadata support reference](../../reference/file-format-and-metadata-support/metadata-support-by-file-type.md) lists what Phials can read from different formats.
 
 ## Move from inspection to a file tab
 
-Choose **Open in Tab** in the File panel toolbar to open the selected file in persistent File mode. If that file already has a file tab, Phials focuses the existing tab instead of opening a duplicate.
-
-When the same file is already visible in File mode, Phials does not repeat its interactive representation in the File panel. The panel can still show the file's metadata. If the file tab is showing Page mode, the File panel continues to provide the complementary file representation.
-
-In Gallery view, the gallery itself presents the selected file, so the File panel does not repeat that representation.
+Choose **Open in tab** in the File panel toolbar to open the selected file in persistent File mode. If that file already has a file tab, Phials focuses the existing tab instead of opening a duplicate.
 
 ## When there is no representation
 

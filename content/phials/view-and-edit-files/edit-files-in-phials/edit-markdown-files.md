@@ -34,7 +34,7 @@ Choose **Switch to raw markdown** when you need exact control of Markdown source
 
 If Editor mode cannot represent part of the source cleanly, it shows a parse note instead of silently removing the text. Use Raw mode to inspect and correct that source. If the visual editor itself fails to load, choose **Raw mode** in the error state.
 
-To enable spelling suggestions for prose blocks, open **Settings** > **Editors** > **Markdown Editor** and turn on **Enable spellcheck**. Code and Raw mode are excluded.
+To enable spelling suggestions for prose blocks, open **Settings → This Client → Markdown Editor** and turn on **Enable spellcheck**. Code and Raw mode are excluded.
 
 ## Add links, images, and file embeds
 
@@ -42,7 +42,13 @@ Standard Markdown links and images remain as written in the file. A relative ima
 
 Type `[[` to find and link to a file or Workspace Folder known to Phials. Type `![[` at the start of a standalone block to embed a whole file or folder. File embeds are for inspection; use their **Open** action to edit the embedded file in its normal file tab.
 
-Moving or renaming an embedded target does not rewrite the Markdown reference. If an embed becomes unresolved, use **Change target**, or edit the original target directly in Raw mode.
+If an embed becomes unresolved after a move or rename, use **Change target** or edit the reference directly in Raw mode.
+
+## Mention a tag
+
+In Editor mode, type `#` and start typing a tag’s name. Choose the tag from the suggestions, or create it if the name is new. Select a tag in the text to browse files that use it. In Raw mode, a mention looks like `#[User Research]`.
+
+A mention adds the tag to the text. To label the file itself, [assign the tag in its Tags property](../../organize-files-with-phials/describe-and-classify-files/tag-files-across-workspace-folders.md).
 
 ## Let autosave finish
 

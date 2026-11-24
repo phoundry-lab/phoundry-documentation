@@ -16,7 +16,7 @@ This arrangement does not change context menus for Navigator rows, tabs, propert
 
 ## Open the context-menu editor
 
-Open Settings. Under **Commands**, choose **Context Menus**.
+Open Settings. Under **This Client**, choose **Context Menus**.
 
 The editor has two sides:
 

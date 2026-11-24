@@ -13,11 +13,11 @@ Choose where a new Explorer tab begins and how Phials presents a folder before a
 ## Choose where new Explorer tabs start
 
 1. Open **Settings**.
-2. Under **General**, find **Startup**.
+2. Under **This Client**, choose **General** and find **Startup**.
 3. Set **New Tab Behavior** to one of these choices:
    - **Use Default Directory** opens every new Explorer tab at **Default Directory**.
    - **Duplicate Current Tab** opens it at the active Explorer tab's current folder.
-4. If you chose **Use Default Directory**, choose **Browse** beside **Default Directory** and select a folder. Use **Reset to home** to return to your system home folder.
+4. To change the starting folder, find **General** under **Host · [device name]**. Choose **Browse** beside **Default Directory** or use **Reset to home** to use that computer’s home folder.
 
 The behavior applies to the tab-bar **+**, the **New Tab** command, and its keyboard shortcut. It affects new Explorer tabs only; it does not move a tab that is already open or replace tabs restored from a Layout.
 
@@ -29,7 +29,7 @@ If no Explorer tab is active, Phials uses the default directory instead. Leaving
 
 ## Set fallback folder presentation
 
-In **Settings → General**, find **Defaults**, then set:
+In Settings, choose **This Client → General** and find **Defaults**.
 
 - **Explorer View Mode** for the initial file view
 - **Default primary sort** to **Name**, **Size**, **Created**, **Modified**, **Extension**, or **Kind**

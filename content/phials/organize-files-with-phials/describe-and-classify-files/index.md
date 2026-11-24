@@ -19,4 +19,4 @@ When you first use one of these features in an ordinary folder, Phials prepares 
 - [Set property values on files](./set-property-values-on-files.md) from Details, Grid, File, or Page surfaces.
 - [Use Select, Multi-select, and Status properties](./use-select-multi-select-and-status-properties.md) to create reusable, colored choices.
 - [Rate files](./rate-files.md) with one to five stars.
-- [Tag files across Workspace Folders](./tag-files-across-workspace-folders.md) and browse tagged files in the Tags panel.
+- [Tag files across Workspace Folders](./tag-files-across-workspace-folders.md) and browse tagged files in the Property Browser.

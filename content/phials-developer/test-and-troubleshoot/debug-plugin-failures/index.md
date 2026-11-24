@@ -46,7 +46,7 @@ npm run build
 ```
 
 If those commands pass, continue from the installed plugin card in
-**Settings → Plugins → Community plugins → Installed**. Keep the distinction
+**Settings → Plugins → Installed & Community → Installed**. Keep the distinction
 between **installed**, **enabled**, **loaded**, and **activated** visible during
 the investigation.
 

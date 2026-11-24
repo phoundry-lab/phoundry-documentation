@@ -12,18 +12,18 @@ Control which entries Phials presents and how their names are displayed. These a
 
 ## Change the common visibility choices
 
-Open **Settings → Files → Visibility**, then choose any of these options:
+In Settings, choose **Files** under **This Client** to change the display on the device you’re using. To change **Show Hidden Files** for the computer you’re browsing, choose **Files** under **Host · [device name]**.
 
 - **Show Hidden Files** includes files and folders whose names begin with a dot, unless an always-hidden pattern also matches them.
 - **Show Parent Directory** adds the `..` entry for navigating to the current folder's parent. It is not shown at a filesystem root or in views where a parent entry does not apply.
 - **Show File Extensions** includes the final extension in displayed filenames. Turning it off leaves folders and dotfiles unchanged and does not rename the file.
 - **Folders First** keeps folders ahead of files while preserving the active sort inside each set. Turn it off to sort files and folders together.
 
-You can also reach these four choices from **General options** in an Explorer tab. They still apply across Phials, not only to that tab or folder.
+You can also reach these four choices from **General options** in an Explorer tab.
 
 ## Always hide matching names or paths
 
-Use **Always hide (globs)** for entries you do not want Phials to show even when **Show Hidden Files** is on:
+In Settings, choose **Files** under **Host · [device name]**. Use **Always hide (globs)** to hide matching files and folders on that computer even with **Show Hidden Files** on.
 
 1. Enter one glob pattern per line.
 2. Use a name-only pattern such as `.DS_Store`, `*.tmp`, or `node_modules` to match an entry's filename.

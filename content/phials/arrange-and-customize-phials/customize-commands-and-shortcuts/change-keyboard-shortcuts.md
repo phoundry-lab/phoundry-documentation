@@ -15,7 +15,7 @@ Assign keyboard shortcuts to the commands you use most often, or remove a bindin
 ## Find a command
 
 1. Open Settings.
-2. Under **Commands**, choose **Shortcuts**.
+2. Under **This Client**, choose **Shortcuts**.
 3. Enter the command name or part of its description in **Search shortcuts...**.
 
 Phials groups commands into sections. The shortcut badges in each row show the current assignments, including your changes. Commands supplied by active community plugins can appear here too.

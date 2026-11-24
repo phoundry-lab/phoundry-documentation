@@ -14,7 +14,7 @@ installing a different release.
 
 ## Start with the generated diagnostic report
 
-Open **Settings → Plugins → Community plugins → Installed**, open the affected
+Open **Settings → Plugins → Installed & Community → Installed**, open the affected
 plugin's actions, and choose **Copy diagnostics**. The report contains:
 
 - plugin name, ID, and installed version;

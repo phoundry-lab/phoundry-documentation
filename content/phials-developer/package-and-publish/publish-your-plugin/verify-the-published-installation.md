@@ -50,7 +50,7 @@ Record:
 
 In Phials:
 
-1. Open **Settings → Plugins → Community plugins**.
+1. Open **Settings → Plugins → Installed & Community**.
 2. Turn off **Community plugins safe mode** and accept the trust warning for
    this isolated profile.
 3. Refresh the Community list.
@@ -114,8 +114,7 @@ advertised capability:
 - inspect one extracted file-metadata value;
 - switch to each contributed file view;
 - open, move, close, and restore each panel or tab capability;
-- change and reset one plugin setting; and
-- select every contributed theme mode.
+- change and reset one plugin setting.
 
 Test the plugin's permission-gated operations, not only a notification or
 static interface.
@@ -126,14 +125,8 @@ Optional files need their own visible checks:
 
 - If `styles.css` is attached, inspect every plugin interface in light and dark
   modes and confirm the installed release is styled without source CSS.
-- For each theme, confirm both `theme-<slug>.json` and
-  `theme-<slug>.css` were attached, the theme appears by its intended name and
-  mode, and selecting it applies the expected tokens.
 - Confirm an omitted optional asset does not leave a broken selector, unstyled
-  component, or partial theme.
-
-Theme assets are installed from attached release assets. A raw-tag fallback for
-`manifest.json` and `main.js` does not prove theme distribution works.
+  or component.
 
 ## Restart and repeat the primary workflow
 
@@ -163,7 +156,7 @@ Record a pass or failure for:
 | Compatibility | Public manifest is accepted by the tested compatible build |
 | Activation | No load or activation error |
 | Capabilities | One representative workflow passes per capability |
-| Optional assets | Styles and every theme pair load from the release |
+| Optional assets | Optional interface styles load from the release |
 | Restart | Activation and intended durable state survive a full restart |
 
 If any boundary fails, preserve its exact message and public URLs. Use

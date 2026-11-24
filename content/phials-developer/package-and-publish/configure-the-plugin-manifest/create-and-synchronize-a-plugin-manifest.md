@@ -111,8 +111,7 @@ The directory name, release manifest ID, and exported plugin ID must agree. See 
 Do not rename the install folder independently or copy a manifest from another
 build. To test a frozen release candidate, copy the already-built `dist/` files
 to `<test-home>/plugins/acme.review-tools/` instead of using `dev:install`,
-which would rebuild them. Theme assets, when present, need the supported
-installed layout described in the release-artifact guide.
+which would rebuild them.
 
 ## Provide screenshots and a README
 

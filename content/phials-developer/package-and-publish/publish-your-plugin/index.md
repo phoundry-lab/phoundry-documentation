@@ -29,7 +29,7 @@ have:
 - one clean release commit and semantic plugin version;
 - matching package, manifest, exported plugin, tag, and release versions;
 - a validated `manifest.json` and `main.js`;
-- supported optional `styles.css` and theme assets when needed;
+- optional `styles.css` for the plugin’s interfaces;
 - release notes that explain permission, compatibility, settings, and data
   consequences; and
 - an artifact inventory with filenames, byte sizes, and SHA-256 checksums.

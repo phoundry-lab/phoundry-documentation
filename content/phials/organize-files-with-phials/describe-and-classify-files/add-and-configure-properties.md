@@ -25,6 +25,8 @@ Choose a type based on the values you need:
 - **Text**, **Number**, **Date**, **Checkbox**, and **URL** store ordinary single values.
 - **Select** stores one reusable choice. **Multi-select** stores several choices. **Status** stores one workflow state. See [Use Select, Multi-select, and Status properties](./use-select-multi-select-and-status-properties.md).
 - **Rating** stores one to five stars. **Tags** stores shared labels. A Workspace Folder can have only one property of each of these types.
+- **Calendar** gives files a shared scheduling property for [Calendar view](../../browse-and-manage-files/choose-and-configure-file-views/use-calendar-view.md).
+- **Formula** calculates a value from other properties.
 - **Relation** connects files, and **Rollup** summarizes values from connected files. See [Connect files with Relations](../add-notes-and-connect-files/connect-files-with-relations.md) and [Summarize connected files with Rollups](../add-notes-and-connect-files/summarize-connected-files-with-rollups.md).
 
 A property's type cannot be changed after creation. If you need a different type, create a replacement property and set its values before deleting the original.
@@ -40,6 +42,14 @@ Use the entry point nearest to where you are working:
 In **Configure property**, choose an icon and edit the display name. Phials saves the name when you press Enter or leave the field; press Escape before leaving the field to restore the last saved name.
 
 Choice-based properties also show their reusable options here. For option creation, colors, ordering, and deletion, see [Use Select, Multi-select, and Status properties](./use-select-multi-select-and-status-properties.md). Rating has no additional configuration. Tags add icon-aware shared options, covered in [Tag files across Workspace Folders](./tag-files-across-workspace-folders.md).
+
+## Create a formula
+
+Choose **New → Add Property → Formula** to calculate a value for each file. For example, combine the estimated and actual hours in a project folder to show the difference for each task.
+
+Use **Code** to write the calculation or **Graph** to connect properties, values, and operations visually. The list beside the editor lets you find and insert the parts you need. Review **Output** to check the type of result and **Dependencies** to see which properties the calculation uses. Save the formula to make its result available in your views and Pages.
+
+To change the calculation later, open the property’s settings and choose **Edit formula…**.
 
 ## Delete a property
 

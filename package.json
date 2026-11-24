@@ -25,7 +25,7 @@
 	},
 	"dependencies": {
 		"@iconify/svelte": "^5.2.1",
-		"phoundry-ui": "0.4.21"
+		"phoundry-ui": "0.4.24"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.12",

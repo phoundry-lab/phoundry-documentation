@@ -14,7 +14,7 @@ Use **Configure view** to change how files are presented in the active Explorer 
 
 1. Choose **Configure view** in the toolbar.
 2. Choose **View mode**.
-3. Choose **Details**, **Grid**, **Masonry**, **Columns**, **Boards**, or **Calendar**.
+3. Choose **Details**, **Grid**, **Masonry**, **Gallery**, **Notebook**, **Columns**, **Boards**, or **Calendar**.
 
 The available choices depend on the current location. Boards appears only when the Explorer tab is inside a Workspace Folder with properties.
 

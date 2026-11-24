@@ -12,7 +12,7 @@ Choose what Phials should do by default when you open a file of a particular typ
 
 ## Set a preference for an extension
 
-1. Open **Settings → Files → Open Behavior**.
+1. Open **Settings → This Client → Open Behavior**.
 2. Find the extension you want. You can filter the list by extension or by the name of a compatible Phials representation.
 3. Open the extension's selector and choose:
    - A compatible Phials viewer or editor to open the file in Phials

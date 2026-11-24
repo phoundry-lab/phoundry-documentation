@@ -45,7 +45,7 @@ The command:
 2. Stages the supported files under the plugin's ID.
 3. Replaces a previous installation of that ID, with rollback if replacement fails.
 
-`main.js` and `manifest.json` are required; `styles.css` is included when emitted. Optional flat theme assets are installed into their corresponding theme folders. Source files, SDK declarations, and `node_modules` are not installed.
+`main.js` and `manifest.json` are required; `styles.css` is included when emitted. Source files, SDK declarations, and `node_modules` are not installed.
 
 The plugin ID in `src/plugin.manifest.ts`, the built manifest, the exported definition, and the installation directory must agree. The version comes from `package.json`. Fix source metadata and rebuild rather than editing generated files.
 
@@ -55,7 +55,7 @@ Installing files does not enable or reload the plugin. If a first installation i
 
 In Phials:
 
-1. Open **Settings → Plugins → Community plugins**.
+1. Open **Settings → Plugins → Installed & Community**.
 2. Turn off **Community plugins safe mode** and accept the trust warning if needed.
 3. Find the plugin in **Installed**.
 4. Review permissions if prompted, then enable it.

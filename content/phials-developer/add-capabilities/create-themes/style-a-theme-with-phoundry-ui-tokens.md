@@ -9,7 +9,7 @@ order: 3
 
 Theme CSS is ordinary CSS. Phials already supplies `phoundry-ui/styles`, including complete light and dark foundations, shared control dimensions, component styles, and a low-priority native-element reset. Your theme can override only what it needs.
 
-There is no mandatory token set, token-completeness validator, or CSS selector policy. A theme can use custom properties, component rules, fonts, effects, and CSS imports. Tailwind and other CSS build tools are optional, not part of the theme contract.
+A theme can override any of the public tokens it uses. Keep the final CSS self-contained. It can use custom properties, component rules, and effects.
 
 ## Start with one override
 
@@ -90,7 +90,7 @@ Theme CSS applies to the whole document while selected. `:root`, `html`, `body`,
 
 Prefer public hooks and documented selectors for changes intended to survive component updates. Broad rules or selectors tied to Phials internals can affect unrelated surfaces; inspect those effects deliberately. Phials already supplies the shared reset, so another reset or utility framework may change more than the theme’s colors.
 
-CSS imports and fonts are allowed, but plan their delivery. The plugin release format contains flat theme pairs, not arbitrary asset directories. Inline supporting resources when needed, and test offline behavior if you rely on remote resources. No theme CSS compiler is required; if you add one, make sure the emitted theme asset contains its output.
+Phials accepts self-contained CSS, including embedded resources such as data URLs and references to fragments. Bundle any imported CSS at build time and embed any resources you need before releasing the theme.
 
 ## Test contrast and the whole state system
 

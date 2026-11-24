@@ -108,7 +108,7 @@ Validation checks:
 - matching registry, manifest, exported plugin, and normalized tag identity and
   version;
 - supported manifest permissions and runtime compatibility declarations; and
-- complete optional CSS and theme assets.
+- optional `styles.css`, if the plugin uses it.
 
 A successful remote run ends with:
 

@@ -16,6 +16,8 @@ File views change how the same files are arranged in an Explorer tab. Choose a v
 | [Details](./use-details-view.md) | Comparing files across sortable property columns |
 | [Grid](./use-grid-view.md) | Browsing visual previews, notes, and property captions |
 | [Masonry](./use-masonry-view.md) | Scanning mixed-aspect thumbnails in compact columns |
+| [Gallery](./use-gallery-view.md) | Reviewing one large preview at a time with thumbnails close by |
+| [Notebook](./use-notebook-view.md) | Browsing a list of files and reading or editing their Pages |
 | [Columns](./use-columns-view.md) | Following a folder branch without repeatedly replacing the current path |
 | [Boards](./use-boards-view.md) | Moving files through option-based properties such as Status |
 | [Calendar](./use-calendar-view.md) | Seeing and rescheduling files by a date property |
@@ -29,6 +31,8 @@ Sorting, filtering, and grouping narrow or reorder the files supplied to a file 
 - [Use Details view](./use-details-view.md)
 - [Use Grid view](./use-grid-view.md)
 - [Use Masonry view](./use-masonry-view.md)
+- [Use Gallery view](./use-gallery-view.md)
+- [Use Notebook view](./use-notebook-view.md)
 - [Use Columns view](./use-columns-view.md)
 - [Use Boards view](./use-boards-view.md)
 - [Use Calendar view](./use-calendar-view.md)

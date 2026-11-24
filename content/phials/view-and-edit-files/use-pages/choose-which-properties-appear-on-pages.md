@@ -1,6 +1,6 @@
 ---
 title: "Choose which properties appear on Pages"
-description: "Set Page-specific property visibility, order, and compact presentation for a Workspace Folder."
+description: "Choose which properties appear on Pages, arrange them, and use a compact layout."
 icon: phoundry-mono:eye
 order: 3
 ai_disclosure: true
@@ -8,13 +8,13 @@ ai_disclosure: true
 
 # Choose which properties appear on Pages
 
-Choose which Workspace Folder properties a Page shows when you want the important fields easy to scan and less useful fields available only when needed. Page presentation is shared by every Page in one Workspace Folder and is independent of property columns or captions in file views.
+Choose which Workspace Folder properties a Page shows when you want the important fields easy to scan and less useful fields available only when needed. Visibility and order are shared by the Pages in a Workspace Folder.
 
 Phials saves these choices with the Workspace Folder data. If you make the Workspace Folder portable, its Page presentation travels with it.
 
 ## Set a property's visibility
 
-1. Open the Page panel or Page mode for a file in the Workspace Folder.
+1. Choose **Page** in the File panel or in a file tab for a file in the Workspace Folder.
 2. Choose the property name, then choose **Show on Page**.
 3. Choose a visibility rule:
 
@@ -42,9 +42,9 @@ The order applies to every Page in the Workspace Folder. It does not change the 
 
 ## Use a compact property layout
 
-Open the Page panel's tab menu, or choose **Page options** in Page mode, then turn on **Compact properties**. Properties become compact chips in a single horizontal row you can scroll, instead of labeled rows.
+With **Page** selected, open **File options** in the toolbar and turn on **Compact properties**. Properties become compact chips in a single horizontal row you can scroll, instead of labeled rows.
 
-Compact properties applies to every Page in the Workspace Folder. It is separate from similarly named Grid, Calendar, and File-mode metadata settings.
+The compact layout is saved for the File panel or file tab where you set it.
 
 Choosing **Show All** temporarily restores labeled rows so every property remains identifiable. Choosing **Show Less** restores the saved compact layout.
 

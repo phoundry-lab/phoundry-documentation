@@ -19,7 +19,7 @@ npm run dev:install
 
 The installer builds first and uses your normal Phials home, or `PHIALS_HOME` when set. To install elsewhere, add `-- --phials-home /absolute/path/to/phials-plugin-dev` and run Phials with that same home.
 
-Then open **Settings → Plugins → Community plugins → Installed** and choose **Reload** on the plugin. Run `npm run check` and `npm test` as well when checking types or behavior covered by automated tests.
+Then open **Settings → Plugins → Installed & Community → Installed** and choose **Reload** on the plugin. Run `npm run check` and `npm test` as well when checking types or behavior covered by automated tests.
 
 ## Use watch mode while editing
 

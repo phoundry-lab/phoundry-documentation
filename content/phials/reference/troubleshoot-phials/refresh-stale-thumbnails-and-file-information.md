@@ -33,7 +33,7 @@ Choose the cache by symptom:
 Clearing either cache deletes only Phials' regenerable copies. It does not delete ordinary files or Workspace Folder data, but the next browse can be slower while Phials recreates the missing work.
 
 1. Open Settings.
-2. Under **Files**, choose **Media**.
+2. Choose **Media** under **Host · [device name]**.
 3. For stale generated images, choose **Clear Cache** under **Clear Thumbnail Cache**.
 4. For stale file facts, choose **Clear metadata cache**.
 5. Return to the folder and run **Refresh** again.

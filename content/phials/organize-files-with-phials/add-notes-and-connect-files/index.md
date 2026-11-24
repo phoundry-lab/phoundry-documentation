@@ -18,4 +18,4 @@ Start with the outcome you need:
 - [Follow backlinks between files](./follow-backlinks-between-files.md) to understand the present incoming-connection limitation.
 - [Summarize connected files with Rollups](./summarize-connected-files-with-rollups.md) to count, list, or calculate values from related files.
 
-For the Page panel, Page mode, and Page-specific property visibility, see [Use Pages](../../view-and-edit-files/use-pages/index.md).
+For using Pages in the File panel or a file tab, see [Use Pages](../../view-and-edit-files/use-pages/index.md).

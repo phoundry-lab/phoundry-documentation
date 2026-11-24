@@ -13,4 +13,4 @@ Phials installs a plugin from the matching release artifacts attached to a versi
 - [Publish your plugin](./publish-your-plugin/index.md) publishes a GitHub release, submits the registry entry, and verifies the same installation path users receive.
 - [Maintain a published plugin](./maintain-a-published-plugin/index.md) covers upgrades, permission and compatibility changes, data migrations, broken releases, ownership, and unlisting.
 
-Keep `manifest.json`, `main.js`, optional `styles.css`, and any supported theme assets from one build together. A release is complete only when its identity and version agree across every artifact.
+Keep `manifest.json`, `main.js`, and optional `styles.css` from one build together. A release is complete only when its identity and version agree across every artifact.

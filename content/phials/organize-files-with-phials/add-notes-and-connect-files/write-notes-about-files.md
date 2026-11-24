@@ -15,12 +15,12 @@ A file's **Page body** gives you a Markdown writing surface beside its Workspace
 ## Open the Page body
 
 1. Select a regular file.
-2. Open the **Page panel** if it is not already visible.
+2. Choose **Page** in the **File** panel.
 3. Write in the body beneath the file's properties.
 
-If the file is not ready for a Page, choose **Open Page** in the Page panel. When Workspace Folder data is needed, Phials explains what it will add and continues after you approve. You do not need to create a Workspace Folder as a separate preliminary task.
+You can also choose **Open Page** from the file’s context menu. When Workspace Folder data is needed, Phials explains what it will add and continues after you approve. You do not need to create a Workspace Folder as a separate preliminary task.
 
-You can also open the file in a file tab and choose **Page** to give the body more room. The Page panel and Page mode use the same content; opening another surface does not create another note.
+You can also open the file in a file tab and choose **Page** to give the body more room. The panel and the file tab share the same note.
 
 For Page navigation and property presentation, see [Use Pages](../../view-and-edit-files/use-pages/index.md).
 

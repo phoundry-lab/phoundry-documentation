@@ -14,17 +14,23 @@ Drag files for quick spatial moves, or use **Cut**, **Copy**, and **Paste** when
 
 Drag selected items to any of these destinations:
 
-- A folder in File, Grid, or Columns view
+- A folder in a view such as Details, Grid, or Columns
 - The open folder's background
 - A location in the Navigator
 - A folder in the breadcrumb path
 - Another Explorer tab
 
-A drag that starts in Phials moves items by default. To copy instead, hold `Option` on macOS or `Ctrl` on Windows and Linux while you drop. A drag from another app into Phials always copies.
+A drag that starts in Phials moves items by default. To copy instead, hold `Option` on macOS or `Ctrl` on Windows and Linux while you drop.
 
 If the destination contains items with the same names, Phials asks you to choose **Replace existing files**, **Skip these files**, or **Keep both (auto-rename)**. Replacing moves the existing destination items to Trash before writing the incoming items.
 
 Phials prevents a folder from being moved into itself or one of its descendants.
+
+## Bring in files from another app
+
+On desktop, drop files or folders from your system’s file manager to copy them into the current local folder or a location in the Navigator. You can also drop an image from a browser if it provides an image file or an image address Phials can download.
+
+Select your own computer in the device menu before dropping items. If you drop local files while browsing another computer, Phials opens the files on this device. To add files to a folder on that computer, use a transfer method outside Phials.
 
 ## Use Cut, Copy, and Paste
 

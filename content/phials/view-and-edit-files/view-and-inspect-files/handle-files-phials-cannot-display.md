@@ -24,7 +24,7 @@ Use [File viewing and editing support](../../reference/file-format-and-metadata-
 
 Use the file's **Open** command when its configured primary action is the system application. To choose a specific installed application for this one opening, use **Open in…** from the context menu or command bar.
 
-If you regularly want an extension to leave Phials, set its handler under **Settings → Files → Open Behavior**. That preference affects future primary opens; it does not prevent the File panel from showing any compatible metadata or representation when you select the file.
+If you regularly want an extension to leave Phials, set its handler under **Settings → This Client → Open Behavior**. That preference affects future primary opens; it does not prevent the File panel from showing any compatible metadata or representation when you select the file.
 
 For step-by-step handler configuration, see [Open files in Phials or another app](../../browse-and-manage-files/manage-files-and-folders/open-files-in-phials-or-another-app.md).
 

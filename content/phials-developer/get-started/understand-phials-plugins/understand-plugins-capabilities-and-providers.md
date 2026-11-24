@@ -103,6 +103,6 @@ Not every public SDK feature is a provider.
 - `database` declares the plugin's structured data schema.
 - [PluginAPI](../../reference/sdk-type-reference/PluginAPI.md) services perform work such as file operations, storage, events, dialogs, and notifications.
 - Lifecycle hooks prepare and clean up the complete plugin.
-- Theme assets follow the plugin theme contract rather than appearing in the `providers` array.
+- [Themes](../../add-capabilities/create-themes/index.md) are distributed separately.
 
 These pieces support capabilities; they do not create another installed identity. Keeping that distinction clear makes the plugin easier to explain, test, permission, and maintain.

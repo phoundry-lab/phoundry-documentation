@@ -13,7 +13,7 @@ describe("Phials documentation manifest v2", () => {
     const set = buildManifest(projectRoot).phials!;
     expect(set.schemaVersion).toBe(2);
     expect(set.sections).toHaveLength(6);
-    expect(Object.keys(set.pagesBySlug)).toHaveLength(146);
+    expect(Object.keys(set.pagesBySlug)).toHaveLength(151);
     expect(Object.keys(set.aliasesBySlug)).toHaveLength(44);
     expect(set.aliasesBySlug["basic-use/file-explorer"]).toBe(
       "get-started/phials-basics/the-phials-window",

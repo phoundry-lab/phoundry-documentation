@@ -38,7 +38,7 @@ The manifest and inventory are generated automatically. You do not need a separa
 
 If Phials is not running, launch it normally. If a first installation does not appear in an already-running app, restart Phials.
 
-1. Open **Settings → Plugins → Community plugins**.
+1. Open **Settings → Plugins → Installed & Community**.
 2. Turn off **Community plugins safe mode** and accept the trust warning if needed.
 3. Find **Hello Phials** in **Installed**.
 4. Review permissions if prompted and enable the plugin.

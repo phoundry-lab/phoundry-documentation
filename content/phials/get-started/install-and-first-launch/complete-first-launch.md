@@ -1,6 +1,6 @@
 ---
 title: "Complete first launch"
-description: "Complete permissions and welcome steps, then open your first location in an Explorer tab."
+description: "Respond to the macOS access reminder and open your first location in an Explorer tab."
 icon: phoundry-mono:learn
 order: 3
 ai_disclosure: true
@@ -8,11 +8,11 @@ ai_disclosure: true
 
 # Complete first launch
 
-Finish the platform access decision, take the welcome tutorial, and choose the first location you want to browse. Local use is free and requires no Account, license, or trial.
+Open Phials and choose the first location you want to browse. Local use is free and requires no account.
 
 ## Respond to the macOS access reminder
 
-On macOS, Phials checks whether it can read protected locations. If that access appears to be missing, **Full Disk Access** opens before the welcome tutorial.
+On macOS, Phials checks whether it can read protected locations. If that access appears to be missing, Phials shows a **Full Disk Access** reminder.
 
 Full Disk Access is not required to browse ordinary locations. It may be needed for protected locations such as parts of your Library and Applications folders.
 
@@ -21,16 +21,6 @@ Full Disk Access is not required to browse ordinary locations. It may be needed 
 - Choose **Don't show again** to stop the startup reminder. This does not grant access to protected locations.
 
 Windows does not show this Phials Full Disk Access reminder. If a location remains unavailable, follow [Fix file and folder access problems](../../reference/troubleshoot-phials/fix-file-and-folder-access-problems.md).
-
-## Take or skip the welcome tutorial
-
-After other first-launch dialogs close, **Welcome to Phials** starts automatically. It introduces the main browsing area, file-view controls, search, the Navigator panel, tab groups, and Settings.
-
-Use **Next** to move through the tutorial. Choose **Skip tour** if you do not want it to start automatically again. Closing an unfinished tutorial without choosing **Skip tour** leaves it incomplete, so it can open again on a later launch.
-
-At the end, you can choose **Workspaces** to continue into the guided Workspace Folder demo. The demo does not create files until you choose **Create Demo Workspace Folder**. That action creates a folder named `Phials Demo` in your home folder and adds example files. At the end of the demo, choose whether to keep the folder or move it to Trash.
-
-You can start or replay tutorials later from the **Learning** panel. See [Get help inside Phials](../../arrange-and-customize-phials/use-tools-and-community-plugins/get-help-inside-phials.md).
 
 ## Open your first location
 

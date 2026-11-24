@@ -1,6 +1,6 @@
 ---
 title: "Files and Pages"
-description: "Understand the difference between File and Page panels, tabs, and modes."
+description: "Choose between File and Page in a panel or tab."
 icon: phoundry-mono:learn
 order: 4
 ai_disclosure: true
@@ -14,7 +14,7 @@ Phials gives you two ways to work with a selected file: **File** presents the un
 
 The **File panel** follows the selection in the active Explorer tab. It shows an appropriate representation of the selected file together with metadata that Phials reads from the file or filesystem.
 
-The **Page panel** also follows the active Explorer selection. For a file in a Workspace Folder, it combines that file's properties with a body. A Markdown file uses its own contents as the Page body. Other files can use a per-file note.
+Choose **Page** in the File panel to show the selected file’s Page. For a file in a Workspace Folder, it combines that file's properties with a body. A Markdown file uses its own contents as the Page body. Other files can use a per-file note.
 
 These panels are useful for inspecting several files without opening and closing a tab for each one. Selecting another file updates both panels.
 

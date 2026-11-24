@@ -43,7 +43,7 @@ Phials does not load community-plugin code until all pre-load checks succeed:
 6. The manifest's current permission set has user approval.
 
 Failure at this boundary leaves the plugin unactivated and exposes none of its
-providers, themes, styles, subscriptions, or other runtime contributions.
+providers, styles, subscriptions, or other runtime contributions.
 
 ## Loading and definition acceptance
 
@@ -70,9 +70,8 @@ order:
 2. Initialize the declared plugin database schema.
 3. Register every provider and its commands, components, shortcuts, and
    activation-scoped event ownership.
-4. Register plugin theme assets.
-5. Call and await `onActivate(api)`, when present.
-6. Install optional active styles and commit the plugin as activated.
+4. Call and await `onActivate(api)`, when present.
+5. Install optional active styles and commit the plugin as activated.
 
 The supplied [PluginAPI](../../reference/sdk-type-reference/PluginAPI.md) is the plugin's base runtime scope. Provider callbacks
 can receive a narrower or specialized API described by that provider's
@@ -84,7 +83,7 @@ complete transition. If any step fails, Phials reports an activation failure,
 removes contributions created by the attempt, and does not mark the plugin
 activated.
 
-Rollback removes styles and themes, unregisters providers and shortcuts,
+Rollback removes styles, unregisters providers and shortcuts,
 releases event and file subscriptions, and clears activation-scoped caches in
 reverse ownership order. Stable-ID collisions fail the transition; Phials never
 replaces the earlier owner.
@@ -97,14 +96,13 @@ call `onActivate()` again until a complete deactivation has occurred.
 Deactivation stops runtime behavior without uninstalling the release. Phials:
 
 1. calls and awaits `onDeactivate()`, when present;
-2. unregisters plugin themes;
-3. unregisters all providers;
-4. unregisters plugin-owned shortcuts;
-5. removes plugin-owned event listeners, file subscriptions, and active styles;
-6. clears runtime settings caches and other activation-scoped handles;
-7. invalidates the base, Preview, and Metadata API objects supplied by that
+2. unregisters all providers;
+3. unregisters plugin-owned shortcuts;
+4. removes plugin-owned event listeners, file subscriptions, and active styles;
+5. clears runtime settings caches and other activation-scoped handles;
+6. invalidates the base, Preview, and Metadata API objects supplied by that
    activation;
-8. commits the plugin as deactivated.
+7. commits the plugin as deactivated.
 
 Phials continues host-owned cleanup even when `onDeactivate()` throws. The
 plugin becomes deactivated and the error remains diagnosable; a failing hook

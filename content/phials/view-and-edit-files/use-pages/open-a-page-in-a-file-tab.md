@@ -15,7 +15,7 @@ Open **Page mode** when you want a file's Page to remain available while you bro
 Use any of these entry points:
 
 - Select or open a regular file, then choose **Open Page** from its context menu.
-- In the Page panel, choose **Open in Tab**.
+- In the File panel, choose **Open in tab**, then choose **Page**.
 - In an existing file tab, choose **Page** in the File/Page switcher.
 - In Details or Grid view, use the file's **Page** action when it appears.
 
@@ -34,8 +34,6 @@ Switching modes does not close either working session:
 - Unsaved indicators remain visible for the mode that owns the pending work.
 
 For a Markdown file, File and Page modes edit the same document. Phials keeps one shared document state while changing its presentation, so switching does not create competing drafts.
-
-The matching Page panel yields to the open Page presentation and shows **Page open in tab**. When the file tab is in File mode, the Page panel can show the Page as complementary context.
 
 ## Recover when a Page is unavailable
 

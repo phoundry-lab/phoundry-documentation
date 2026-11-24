@@ -42,7 +42,7 @@ Pair the notification with a representative capability. An activation notificati
 
 ## Test enable and disable
 
-From **Settings → Plugins → Community plugins → Installed**:
+From **Settings → Plugins → Installed & Community → Installed**:
 
 1. Enable the plugin.
 2. Confirm one activation and one copy of each capability.
