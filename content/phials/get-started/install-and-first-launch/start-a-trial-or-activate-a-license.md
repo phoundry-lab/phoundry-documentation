@@ -12,7 +12,7 @@ Phials is free for local use. Open the app and [complete first launch](./complet
 
 ## Sign in for Remote Access
 
-Remote Access connects your personal devices through a verified Phoundry Account. It costs USD $4 per month per Account and covers unlimited personal desktop and iOS devices. There is no annual plan or trial. Supporter is a separate USD $20 one-time purchase that grants a badge only.
+Remote Access connects your personal devices through a verified Phoundry Account. It costs USD $40 per year or USD $4 per month per Account and covers unlimited personal desktop and iOS devices. There is no trial. Supporter is a separate USD $20 one-time purchase that grants a badge only.
 
 1. Open **Settings → This Client → Account** and choose **Create an Account** or **Sign in**.
 2. Verify your email using the verification link.
